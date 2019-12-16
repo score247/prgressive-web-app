@@ -1,3 +1,4 @@
+import * as React from 'react';
 import Header from './Header';
 import { NextPage } from "next";
 import { ReactNode } from 'react';
