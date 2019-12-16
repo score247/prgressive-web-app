@@ -7,7 +7,7 @@ describe('Components', () => {
     it('should render without throwing an error', function () {
       const wrap = mount(<Header/>);
 
-      expect(wrap.find('a').first().text()).toBe('Soccer');
+      expect(wrap.find('a').first().text()).toBe('Home');
     })
   })  
 })

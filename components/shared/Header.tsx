@@ -8,13 +8,16 @@ const linkStyle = {
 
 const Header: NextPage = () => (
     <div>
-        <Link href="/">
+        <Link href="/index">
+            <a style={linkStyle}>Home</a>
+        </Link>
+        <Link href="/soccer/soccer">
             <a style={linkStyle}>Soccer</a>
         </Link>
-        <Link href="/basketball">
+        <Link href="/basketball/basketball">
             <a style={linkStyle}>Basketball</a>
         </Link>
-        <Link href="/basketball">
+        <Link href="/esports/esports">
             <a style={linkStyle}>eSports</a>
         </Link>
   </div>

@@ -1,7 +1,9 @@
 import * as React from 'react';
-import Header from './Header';
 import { NextPage } from "next";
 import { ReactNode } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+
 
 type LayoutProps = {
     children: ReactNode
@@ -18,6 +20,7 @@ const Layout: NextPage<LayoutProps> = ({ children }: LayoutProps) =>
     <div style={layoutStyle}>
       <Header />
       {children}
+      <Footer />
     </div>
   );
 
