@@ -1,12 +1,11 @@
 import * as React from 'react';
-import { NextPage } from "next";
 import Link from 'next/link';
 
 const linkStyle = {
     marginRight: 15
   };
 
-const Footer: NextPage = () => (
+const Footer = () => (
     <div>
         <Link href="/index">
             <a style={linkStyle}>Terms</a>

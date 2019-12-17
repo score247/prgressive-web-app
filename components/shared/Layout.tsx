@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { NextPage } from "next";
 import { ReactNode } from 'react';
 import Header from './Header';
 import Footer from './Footer';
@@ -15,7 +14,7 @@ const layoutStyle = {
     border: '1px solid #DDD'
   };
   
-const Layout: NextPage<LayoutProps> = ({ children }: LayoutProps) => 
+const Layout = ({ children }: LayoutProps) => 
   (
     <div style={layoutStyle}>
       <Header />
