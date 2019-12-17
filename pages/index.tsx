@@ -1,7 +1,7 @@
 import * as React from 'react';
 import "./Index.scss";
 import { NextPage } from "next";
-import Layout from '../components/shared/Layout';
+import Layout from '../components/shared/layout';
 
 const Index: NextPage<{ userAgent: string }> = ({ userAgent }) => (
     <Layout>
