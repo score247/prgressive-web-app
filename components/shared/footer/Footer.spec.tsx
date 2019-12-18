@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
-import Footer from './footer';
+import Footer from './Footer';
 
 describe('Components', () => {
   describe('Header', () => {

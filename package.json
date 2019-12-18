@@ -11,7 +11,8 @@
     "start": "cross-env SETTINGENV=production next start -p 8500",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "export": "next export"
   },
   "keywords": [],
   "author": "",
