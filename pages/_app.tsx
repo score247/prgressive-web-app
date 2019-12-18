@@ -1,8 +1,9 @@
 import React from 'react';
 import App from 'next/app';
 import Sentry from '../common/helpers/sentry';
+import { appWithTranslation } from '../common/helpers/Localizer';
 
-export default class MyApp extends App {
+class MyApp extends App {
   componentDidCatch(error: Error, errorInfo: any) {
     Sentry.withScope(scope => {
       Object.keys(errorInfo).forEach(key => {
@@ -22,3 +23,5 @@ export default class MyApp extends App {
     );
   }
 }
+
+export default appWithTranslation(MyApp)
