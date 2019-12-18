@@ -1,0 +1,33 @@
+export interface MatchSummary {
+  Id: string;
+  EventDate: Date;
+  CurrentPeriodStartTime: Date;
+  LeagueId: string;
+  LeagueName: string;
+  HomeTeamId: string;
+  HomeTeamName: string;
+  AwayTeamId: string;
+  AwayTeamName: string;
+  HomeScore: number;
+  AwayScore: number;
+  WinnerId: string;
+  AggregateWinnerId: string;
+  AggregateHomeScore: number;
+  AggregateAwayScore: number;
+  HomeRedCards: number;
+  HomeYellowRedCards: number;
+  AwayRedCards: number;
+  AwayYellowRedCards: number;
+  MatchTime: number;
+  StoppageTime: string;
+  InjuryTimeAnnounced: number;
+  CountryCode: string;
+  CountryName: string;
+  ModifiedTime: Date;
+  IsInternationalLeague: boolean;
+  LeagueOrder: number;
+  LeagueSeasonId: string;
+  LeagueRoundName: string;
+  LeagueRoundNumber: number;
+  LeagueRoundGroup: string;
+}
