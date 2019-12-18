@@ -35,12 +35,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var express = require("express");
-var next = require("next");
-var nextI18NextMiddleware = require("next-i18next/middleware").default;
-var nextI18next = require("./common/helpers/Localizer.js");
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+//import nextI18next from './common/helpers/Localizer';
+var express_1 = __importDefault(require("express"));
+var next_1 = __importDefault(require("next"));
+//const nextI18next = require("./common/helpers/Localizer").default;
 var port = process.env.PORT || 3000;
-var app = next({ dev: process.env.NODE_ENV !== "production" });
+var app = next_1.default({ dev: process.env.NODE_ENV !== "production" });
 var handle = app.getRequestHandler();
 (function () { return __awaiter(void 0, void 0, void 0, function () {
     var server;
@@ -49,8 +53,8 @@ var handle = app.getRequestHandler();
             case 0: return [4 /*yield*/, app.prepare()];
             case 1:
                 _a.sent();
-                server = express();
-                server.use(nextI18NextMiddleware(nextI18next));
+                server = express_1.default();
+                // server.use(nextI18NextMiddleware(nextI18next));
                 server.get("*", function (req, res) { return handle(req, res); });
                 server.listen(port);
                 console.log("> Ready on http://localhost:" + port); // eslint-disable-line no-console

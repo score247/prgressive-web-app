@@ -1,8 +1,9 @@
-const express = require("express");
-const next = require("next");
-const nextI18NextMiddleware = require("next-i18next/middleware").default;
+import nextI18next from './common/helpers/Localizer';
+import express from 'express';
+import next from 'next';
+import nextI18NextMiddleware from 'next-i18next/middleware';
 
-const nextI18next = require("./common/helpers/Localizer").default;
+//const nextI18next = require("./common/helpers/Localizer").default;
 
 const port = process.env.PORT || 3000;
 const app = next({ dev: process.env.NODE_ENV !== "production" });

@@ -4,7 +4,14 @@
       "module": "commonjs",
       "outDir": "./",
       "isolatedModules": false,
-      "noEmit": false
+      "noEmit": true
     },
     "include": ["server.ts"],
+    "exclude": [
+      "node_modules",
+      "**/*.spec.ts",
+      "**/*.spec.tsx",
+      "**/*.test.ts",
+      "**/*.test.tsx"
+    ]
   }
