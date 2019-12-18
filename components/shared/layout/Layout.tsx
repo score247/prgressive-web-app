@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ReactNode } from "react";
-import Header from "./header";
-import Footer from "./footer/footer";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 type LayoutProps = {
   children: ReactNode;

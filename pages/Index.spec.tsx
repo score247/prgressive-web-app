@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {mount} from 'enzyme';
-import Index from '../Index';
+import Index from './Index';
 
 describe('Pages', () => {
   describe('Index', () => {
