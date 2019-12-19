@@ -1,7 +1,7 @@
-import "react-datepicker/src/stylesheets/datepicker.scss";
+
 
 import React, { Component } from "react";
-import DatePicker from "react-datepicker";
+import DatePicker from '../DatePicker';
 import { format, addDays, isSameDay } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { WithTranslation } from "next-i18next";

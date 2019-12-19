@@ -8,6 +8,7 @@ var react_i18next_1 = require("react-i18next");
 var NextI18NextInstance = new next_i18next_1.default({
     defaultLanguage: "en",
     otherLanguages: ["vi", "id", "ms", "th", "zh"],
+    localePath: "public/static/locales",
     localeSubpaths: {
         vi: "vi",
         id: "id",
