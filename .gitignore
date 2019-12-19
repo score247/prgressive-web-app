@@ -42,3 +42,4 @@ jspm_packages
 .vs
 *.ncrunchsolution.user
 /dist/common/helpers/Localizer.js
+/dist/server.js
