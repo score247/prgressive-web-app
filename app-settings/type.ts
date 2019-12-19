@@ -3,4 +3,5 @@ export default interface AppSettings {
   shared: string;
   secretKey: string;
   soccerAPIBaseUrl: string;
+  sentryDSN: string;
 }
