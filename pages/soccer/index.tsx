@@ -9,8 +9,9 @@ const SoccerPage: NextPage<{ matches: MatchSummary[] }> = ({ matches }) => (
     <h1>Soccer Page</h1>
     <ul>
       {matches.map(match => (
-        <li>
-          {match.HomeTeamName} - {match.AwayTeamName}
+        <li key={match.Id}>
+          {match.HomeTeamName} - {match.AwayTeamName} -{" "}
+          {match.EventStatus.DisplayName}
         </li>
       ))}
     </ul>

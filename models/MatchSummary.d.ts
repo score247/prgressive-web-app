@@ -1,3 +1,6 @@
+import { Enumeration } from "./Enumeration";
+import { MatchPeriod } from "./MatchPeriod";
+
 export interface MatchSummary {
   Id: string;
   EventDate: Date;
@@ -8,6 +11,8 @@ export interface MatchSummary {
   HomeTeamName: string;
   AwayTeamId: string;
   AwayTeamName: string;
+  MatchStatus: Enumeration;
+  EventStatus: Enumeration;
   HomeScore: number;
   AwayScore: number;
   WinnerId: string;
@@ -21,12 +26,15 @@ export interface MatchSummary {
   MatchTime: number;
   StoppageTime: string;
   InjuryTimeAnnounced: number;
+  LastTimelineType: Enumeration;
+  MatchPeriods: MatchPeriod[];
   CountryCode: string;
   CountryName: string;
   ModifiedTime: Date;
   IsInternationalLeague: boolean;
   LeagueOrder: number;
   LeagueSeasonId: string;
+  LeagueRoundType: Enumeration;
   LeagueRoundName: string;
   LeagueRoundNumber: number;
   LeagueRoundGroup: string;
