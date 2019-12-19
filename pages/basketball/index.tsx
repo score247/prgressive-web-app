@@ -1,15 +1,16 @@
 import * as React from "react";
 import Layout from "../../components/shared/layout/Layout";
-import { withTranslation, LocalizedPage } from "../../common/helpers/Localizer";
+import { withTranslation, LocalizedPage,  } from "../../common/helpers/Localizer";
 
-const Basketball: LocalizedPage = props => (
+const Basketball: LocalizedPage = props => {
+  return (
   <Layout>
-    <div>{props.t("basketball", { ns: "common" })}</div>
+    <div>{props.t("common:basketball")}</div>
   </Layout>
-);
+)};
 
 Basketball.getInitialProps = () => ({
-  namespacesRequired: ["basketball"]
+  namespacesRequired: ["basketball", "common"]
 });
 
 export default withTranslation(["basketball", "common"])(Basketball);
