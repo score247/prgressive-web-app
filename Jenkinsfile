@@ -1,4 +1,4 @@
-@Library("JenkinsPipelineLibrary") _
+@Library("JenkinsPipelineLibrary@119256-AddMoreFunctions") _
 
 pipeline{
     agent any    
