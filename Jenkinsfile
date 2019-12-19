@@ -1,9 +1,7 @@
 @Library("JenkinsPipelineLibrary") _
 
 pipeline{
-    agent {
-        label 'slave108'
-    }
+    agent any    
 
     options{
         buildDiscarder(logRotator(numToKeepStr: '5'))    
@@ -14,19 +12,11 @@ pipeline{
         pollSCM("H/30 * * * *")       
     }
 
-    stages{
-        stage('Build') {
-            steps {        
-                script{
-                    pipelineLib.beginSonarQubeForMsBuild("score247-web-app", "Score247 / Score247 Web App", "/d:sonar.cs.opencover.reportsPaths=\"${WORKSPACE}\\CoverageReports\\*.xml\" /d:sonar.cs.vstest.reportsPaths=\"${WORKSPACE}\\TestResults\\*.trx\"")
-                }
-            }
-        }
-          
+    stages{        
         stage("SonarQube Analysis"){
             steps{       
                 script{
-                    pipelineLib.endSonarQubeForMsBuild()
+                    pipelineLib.sonarScanner()
                 }
             }
             
@@ -40,9 +30,7 @@ pipeline{
 
                     archiveArtifacts "*.xml,*.email"
 
-                    step([$class: 'ACIPluginPublisher', name: '*.xml', shownOnProjectPage: false])                                       
-                    
-                    mstest failOnError: false
+                    step([$class: 'ACIPluginPublisher', name: '*.xml', shownOnProjectPage: false])
                 }
             }
         }
