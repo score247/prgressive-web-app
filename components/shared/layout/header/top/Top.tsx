@@ -1,5 +1,5 @@
 import React from "react";
-import "./top.scss";
+import "./Top.scss";
 
 const Top = () => (
   <div className="header-top">

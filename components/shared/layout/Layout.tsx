@@ -1,10 +1,10 @@
 import * as React from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import "./layout.scss";
+import "./Layout.scss";
 
 const Layout: React.FunctionComponent = ({ children }) => (
-  <div className="App">
+  <div>
     <Header />
     <div className="container">{children}</div>
     <Footer />
