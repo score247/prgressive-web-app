@@ -3,7 +3,7 @@ import Link from "next/link";
 import "./Navbar.scss";
 
 const Navbar = () => (
-  <nav className="nav-menu">
+  <nav className="nav-menu hide-mobile">
     <div className="container">
       <div className="nav-sports">
         <ul className="menu">
