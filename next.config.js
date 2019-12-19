@@ -11,6 +11,8 @@ const nextConfig = {
   publicRuntimeConfig: appSettings
 };
 
+console.log(process.env.NODE_ENV);
+
 module.exports = withPlugins(
   [
     sass,

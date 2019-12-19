@@ -2,16 +2,9 @@
     "extends": "./tsconfig.json",
     "compilerOptions": {
       "module": "commonjs",
-      "outDir": "./",
+      "outDir": "./dist",
       "isolatedModules": false,
-      "noEmit": true
+      "noEmit": false
     },
     "include": ["server.ts"],
-    "exclude": [
-      "node_modules",
-      "**/*.spec.ts",
-      "**/*.spec.tsx",
-      "**/*.test.ts",
-      "**/*.test.tsx"
-    ]
   }
