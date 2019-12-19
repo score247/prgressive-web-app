@@ -1,9 +1,19 @@
 import React from 'react';
-import App from 'next/app';
+import App, { AppContext } from 'next/app';
 import Sentry from '../common/helpers/sentry';
 import { appWithTranslation } from '../common/helpers/Localizer';
 
 class MyApp extends App {
+  static async getInitialProps({ Component, ctx }: AppContext) {
+    let pageProps = {};
+
+    if (Component.getInitialProps) {
+      pageProps = await Component.getInitialProps(ctx);
+    }
+
+    return { pageProps };
+  }
+
   componentDidCatch(error: Error, errorInfo: any) {
     Sentry.withScope(scope => {
       Object.keys(errorInfo).forEach(key => {

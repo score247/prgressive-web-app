@@ -5,6 +5,15 @@ import Document, {
   NextScript,
   DocumentContext
 } from "next/document";
+import Sentry from '../common/helpers/sentry';
+
+process.on('unhandledRejection', (err) => {
+  Sentry.captureException(err);
+});
+
+process.on('uncaughtException', (err) => {
+  Sentry.captureException(err);
+});
 
 class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
