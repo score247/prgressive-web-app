@@ -17,9 +17,7 @@ const nextConfig = {
   }
 };
 
-console.log(process.env.NODE_ENV);
 const sourceMaps = require('@zeit/next-source-maps')();
-
 module.exports = withPlugins(
   [
     sass,

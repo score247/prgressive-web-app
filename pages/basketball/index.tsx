@@ -1,11 +1,15 @@
 import * as React from "react";
-import { NextPage } from "next";
 import Layout from "../../components/shared/layout/Layout";
+import { withTranslation, LocalizedPage } from "../../common/helpers/Localizer";
 
-const BasketballPage: NextPage = () => (
+const Basketball: LocalizedPage = props => (
   <Layout>
-    <div>Basketball Page</div>
+    <div>{props.t("basketball", { ns: "common" })}</div>
   </Layout>
 );
 
-export default BasketballPage;
+Basketball.getInitialProps = () => ({
+  namespacesRequired: ["basketball"]
+});
+
+export default withTranslation(["basketball", "common"])(Basketball);
