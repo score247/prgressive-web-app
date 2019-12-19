@@ -1,24 +1,12 @@
 import * as React from "react";
-import { ReactNode } from "react";
-import Header from "../header/Header";
-import Footer from "../footer/Footer";
+import Header from "./header/Header";
+import Footer from "./footer/Footer";
+import "./layout.scss";
 
-type LayoutProps = {
-  children: ReactNode;
-};
-
-const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: "1px solid #DDD"
-};
-
-const Layout: React.FunctionComponent<LayoutProps> = ({
-  children
-}) => (
-  <div style={layoutStyle}>
+const Layout: React.FunctionComponent = ({ children }) => (
+  <div className="App">
     <Header />
-    {children}
+    <div className="container">{children}</div>
     <Footer />
   </div>
 );

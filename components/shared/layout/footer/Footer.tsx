@@ -1,6 +1,6 @@
 import * as React from "react";
 import Link from "next/link";
-import { withTranslation } from "../../../common/helpers/Localizer";
+import { withTranslation } from "../../../../common/helpers/Localizer";
 import { WithTranslation } from "next-i18next";
 
 const linkStyle = {

@@ -1,0 +1,38 @@
+.nav-menu {
+    background: #017aaf;
+    display: none;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .menu-item:last-child {
+        padding-right: 0;
+    }
+
+    .menu-item:first-child {
+        padding-left: 0;
+    }
+
+    @media (min-width: 1025px) {
+        display: block;
+    }
+}
+
+.menu {
+    margin: 0;
+    padding: 0;
+
+    .menu-item {
+        list-style: none;
+        display: inline-block;
+        padding: 10px 20px;
+    }
+}
+
+.nav-menu-mobile {
+    @media (min-width: 1025px) {
+        display: none;
+    }
+}
