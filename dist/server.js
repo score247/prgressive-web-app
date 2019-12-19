@@ -43,7 +43,6 @@ var Localizer_1 = __importDefault(require("./common/helpers/Localizer"));
 var express_1 = __importDefault(require("express"));
 var next_1 = __importDefault(require("next"));
 var middleware_1 = __importDefault(require("next-i18next/middleware"));
-//const nextI18next = require("./common/helpers/Localizer").default;
 var port = process.env.PORT || 3000;
 var app = next_1.default({ dev: process.env.NODE_ENV !== "production" });
 var handle = app.getRequestHandler();

@@ -3,8 +3,6 @@ import express from 'express';
 import next from 'next';
 import nextI18NextMiddleware from 'next-i18next/middleware';
 
-//const nextI18next = require("./common/helpers/Localizer").default;
-
 const port = process.env.PORT || 3000;
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handle = app.getRequestHandler();
