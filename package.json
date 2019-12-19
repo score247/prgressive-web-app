@@ -1,11 +1,11 @@
 {
-  "name": "Score247.WebApp",
+  "name": "Score247-Web-App",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node --project tsconfig.server.json server.ts ",
-    "build:test": "cross-env SETTINGENV=test next build && tsc --project tsconfig.server.json ",
+    "build:test": "cross-env SETTINGENV=test next build && tsc --project tsconfig.server.json",
     "build:production": "cross-env SETTINGENV=production next build && tsc --project tsconfig.server.json",
     "start:test": "cross-env SETTINGENV=test NODE_ENV=production PORT=8400 node dist/server.js",
     "start": "cross-env SETTINGENV=production NODE_ENV=production PORT=8500 node dist/server.js",
