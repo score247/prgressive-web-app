@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { mount } from 'enzyme';
-import NavLink from './index';
+import ActiveLink from './index';
 
 describe('Components', () => {
-  describe('NavLink', () => {
+  describe('ActiveLink', () => {
     it('should render without throwing an error', function() {});
   });
 });
