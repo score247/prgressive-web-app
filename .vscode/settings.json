@@ -3,5 +3,9 @@
         "**/.next": true,
         "**/.vscode": true,
         "**/node_modules": true
+    },
+    "sonarlint.connectedMode.project": {
+        "serverId": "nexdevsonarqube",
+        "projectKey": "score247-web-app"
     }
 }
