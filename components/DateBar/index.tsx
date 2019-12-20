@@ -1,6 +1,6 @@
 import "./style.scss";
 import React, { Component } from "react";
-import DatePicker from "../DatePicker";
+import DatePicker from "../datepicker";
 import { format, addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { WithTranslation } from "next-i18next";
@@ -45,7 +45,7 @@ class DateBar extends Component<Props & WithTranslation, State> {
 
   handleLiveMatchChange = () => {
     this.props.onDateChange(this.today);
-    this.props.onLiveMatchChange(!this.props.onlyLiveMatch);
+    this.props.onLiveMatchChange(true);
   };
 
   renderDate = (date: Date) => {
@@ -61,7 +61,7 @@ class DateBar extends Component<Props & WithTranslation, State> {
           }`}
           onClick={() => this.handleChange(date)}
         >
-          Today
+          {this.props.t("today")}
         </span>
       );
     }
@@ -85,7 +85,7 @@ class DateBar extends Component<Props & WithTranslation, State> {
           onClick={this.handleLiveMatchChange}
         >
           <span className="badge-label">2</span>
-          <span>Live Match</span>
+          <span>&nbsp;{this.props.t("livematch")}</span>
         </button>
         <div className="date-bar">
           <span className="show-mobile">Live</span>
@@ -97,6 +97,7 @@ class DateBar extends Component<Props & WithTranslation, State> {
             dateFormat="dd MMM yyyy"
             minDate={this.minDate}
             maxDate={this.maxDate}
+            locale={this.props.i18n.language}
           />
         </div>
       </div>
@@ -104,4 +105,4 @@ class DateBar extends Component<Props & WithTranslation, State> {
   }
 }
 
-export default withTranslation()(DateBar);
+export default withTranslation("common")(DateBar);

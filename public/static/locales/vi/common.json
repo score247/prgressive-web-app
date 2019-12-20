@@ -1,7 +1,7 @@
 {
-    "basketball": "bóng rổ",
-    "esports": "thể thao điện tử",
-    "soccer": "bóng đá",
-    "today": "hôm nay"
-
+  "basketball": "bóng rổ",
+  "esports": "thể thao điện tử",
+  "soccer": "bóng đá",
+  "today": "hôm nay",
+  "livematch": "trực tiếp"
 }

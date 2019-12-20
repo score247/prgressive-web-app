@@ -1,11 +1,18 @@
 .site-info {
-    background: #454949;
-    display: none;
-    padding: 8px 10px;
+  background: #454949;
+  display: none;
+  padding: 8px 10px;
 
-    @media (min-width: 1025px) {
-        display: flex;
-        justify-content: space-between;
-        ;
-    }
+  @media (min-width: 1025px) {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .selected-sport {
+    text-transform: uppercase;
+  }
+
+  .selected-date {
+    text-transform: capitalize;
+  }
 }

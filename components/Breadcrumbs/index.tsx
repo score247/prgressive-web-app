@@ -2,28 +2,35 @@ import "./style.scss";
 import React, { PureComponent } from "react";
 import { State, Props } from "./type";
 import { format, isSameDay } from "date-fns";
+import { WithTranslation } from "next-i18next";
+import { withTranslation } from "../../common/helpers/Localizer";
 
-export default class Breadcrumbs extends PureComponent<Props, State> {
+class Breadcrumbs extends PureComponent<Props & WithTranslation, State> {
   today: Date = new Date();
 
-  constructor(props: Props) {
+  constructor(props: Props & WithTranslation) {
     super(props);
   }
 
   render() {
-    const { selectedDate, onlyLiveMatch } = this.props;
+    const { selectedDate, onlyLiveMatch, t } = this.props;
+
     return (
       <div className="site-info">
         <div className="breadcrumbs">
-          SOCCER / 
+          <span className="selected-sport">{t("soccer")} / </span>
+          <span className="selected-date">
           {onlyLiveMatch
-            ? "Live Match"
+            ? t("livematch")
             : isSameDay(selectedDate, this.today)
-            ? "Today"
+            ? t("today")
             : format(selectedDate, "dd MMM yyyy")}
+          </span>
         </div>
-          <div className="GMT-time">{format(this.today, "H:mm OOO")}</div>
+        <div className="GMT-time">{format(this.today, "H:mm OOO")}</div>
       </div>
     );
   }
 }
+
+export default withTranslation("common")(Breadcrumbs);

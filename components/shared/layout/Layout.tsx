@@ -3,9 +3,8 @@ import "./Layout.scss";
 import React, { useState } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import DateBar from "../../DateBar";
-import Breadcrumbs  from "../../Breadcrumbs";
-
+import DateBar from "../../datebar";
+import Breadcrumbs from "../../breadcrumbs";
 
 const Layout: React.FunctionComponent = ({ children }) => {
   const [date, setDate] = useState(new Date());
@@ -27,7 +26,12 @@ const Layout: React.FunctionComponent = ({ children }) => {
           </div>
 
           <div className="main-container">
-            <DateBar onDateChange={setDate} selectedDate={date} onLiveMatchChange={setOnlyLiveMatch} onlyLiveMatch={onlyLiveMatch} />
+            <DateBar
+              onDateChange={setDate}
+              selectedDate={date}
+              onLiveMatchChange={setOnlyLiveMatch}
+              onlyLiveMatch={onlyLiveMatch}
+            />
             <div className="banner-big block">Advertising Banner</div>
             <div className="content">{children}</div>
           </div>

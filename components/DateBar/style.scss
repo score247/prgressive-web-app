@@ -16,6 +16,10 @@
         padding: 0 10px;
         line-height: 42px;
         cursor: pointer;
+
+        &.today{
+            text-transform: uppercase;
+        }
     }
 
     .active {
