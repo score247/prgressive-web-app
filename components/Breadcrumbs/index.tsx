@@ -22,7 +22,7 @@ export default class Breadcrumbs extends PureComponent<Props, State> {
             ? "Today"
             : format(selectedDate, "dd MMM yyyy")}
         </div>
-        <div className="GMT-time">10:19 GMT +7</div>
+          <div className="GMT-time">{format(this.today, "H:mm OOO")}</div>
       </div>
     );
   }

@@ -38,7 +38,10 @@ class DateBar extends Component<Props & WithTranslation, State> {
     };
   }
 
-  handleChange = (date: Date) => this.props.onDateChange(date);
+  handleChange = (date: Date) => {
+    this.props.onDateChange(date);
+    this.props.onLiveMatchChange(false);
+  };
 
   handleLiveMatchChange = () => {
     this.props.onDateChange(this.today);
@@ -49,8 +52,12 @@ class DateBar extends Component<Props & WithTranslation, State> {
     if (isSameDay(date, this.today)) {
       return (
         <span
+          key={date.getDay()}
           className={`today ${
-            isSameDay(date, this.props.selectedDate) ? "active" : ""
+            isSameDay(date, this.props.selectedDate) &&
+            !this.props.onlyLiveMatch
+              ? "active"
+              : ""
           }`}
           onClick={() => this.handleChange(date)}
         >
@@ -61,6 +68,7 @@ class DateBar extends Component<Props & WithTranslation, State> {
 
     return (
       <span
+        key={date.getDay()}
         onClick={() => this.handleChange(date)}
         className={isSameDay(this.props.selectedDate, date) ? "active" : ""}
       >
