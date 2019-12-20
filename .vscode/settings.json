@@ -1,7 +1,12 @@
 {
     "files.exclude": {
+        "**/.gitignore": true,
         "**/.next": true,
+        "**/.sonarlint": true,
+        "**/.vs": true,
         "**/.vscode": true,
+        "**/*.ncrunchsolution.user": true,
+        "**/*.sln": true,
         "**/node_modules": true
     },
     "sonarlint.connectedMode.project": {
