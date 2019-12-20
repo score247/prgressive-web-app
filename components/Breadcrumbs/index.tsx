@@ -15,7 +15,7 @@ export default class Breadcrumbs extends PureComponent<Props, State> {
     return (
       <div className="site-info">
         <div className="breadcrumbs">
-          SOCCER /
+          SOCCER / 
           {onlyLiveMatch
             ? "Live Match"
             : isSameDay(selectedDate, this.today)

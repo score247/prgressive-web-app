@@ -3,7 +3,7 @@ import "./Layout.scss";
 import React, { useState } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import DateBar from "../../DateBar/DateBar";
+import DateBar from "../../DateBar";
 import Breadcrumbs  from "../../Breadcrumbs";
 
 
