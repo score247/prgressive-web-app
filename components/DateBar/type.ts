@@ -1,6 +1,10 @@
-type State = {
-  selectedDate: Date;
+export type State = {
   dateList: Array<Date>;
 };
 
-export default State;
+export type Props = {
+  selectedDate: Date;
+  onlyLiveMatch: boolean;
+  onDateChange: (date: Date) => void;
+  onLiveMatchChange: (onlyLiveMatch: boolean) => void;
+};

@@ -1,0 +1,40 @@
+.nav-date {
+    display: flex;
+    justify-content: space-between;
+    background: #3876a7;
+
+    .btn {
+        margin: 8px;
+    }
+}
+
+.date-bar {
+    margin-right: 8px;
+
+    >span {
+        display: inline-block;
+        padding: 0 10px;
+        line-height: 42px;
+        cursor: pointer;
+    }
+
+    .active {
+        background: rgba($color: #fff, $alpha: 0.3);
+    }
+
+    @media (max-width: 1024px) {
+        display: flex;
+        flex: 0 1 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
+
+        >span {
+            flex-grow: 1;
+            flex-basis: 0;
+            max-width: 100%;
+            text-align: center;
+            padding: 0;
+        }
+    }
+}
