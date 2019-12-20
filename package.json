@@ -54,10 +54,12 @@
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
+    "jest-sonar-reporter": "^2.0.0",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.3"
   },
   "jest": {
+    "testResultsProcessor": "jest-sonar-reporter",
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/mocks.js",
       "\\.(css|less|scss)$": "<rootDir>/__mocks__/mocks.js"
