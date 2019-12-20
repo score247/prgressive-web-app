@@ -5,7 +5,7 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import DateBar from "../../date-bar";
 import "../icons/Icons.scss";
-import Breadcrumbs from "../../breadcrumbs";
+import Breadcrumbs from "../../bread-crumbs";
 
 const Layout: React.FunctionComponent = ({ children }) => {
   const [date, setDate] = useState(new Date());

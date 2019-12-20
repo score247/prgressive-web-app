@@ -97,6 +97,7 @@ class DateBar extends Component<Props & WithTranslation, State> {
             minDate={this.minDate}
             maxDate={this.maxDate}
             locale={this.props.i18n.language}
+            showPopperArrow={false}
           />
         </div>
       </div>

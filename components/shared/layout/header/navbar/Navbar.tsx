@@ -1,6 +1,6 @@
 import React from "react";
 import "./Navbar.scss";
-import ActiveLink from "../../../../activelink";
+import ActiveLink from "../../../../activeLink";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../../common/helpers/Localizer";
 
