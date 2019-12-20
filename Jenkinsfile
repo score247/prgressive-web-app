@@ -12,7 +12,16 @@ pipeline{
         pollSCM("H/30 * * * *")       
     }
 
-    stages{        
+    stages{ 
+         
+        stage("Typescript Unittest & Coverage"){
+            steps{       
+                script{
+                    pipelineLib.tsJest("")
+                }
+            }
+        }     
+
         stage("SonarQube Analysis"){
             steps{       
                 script{
