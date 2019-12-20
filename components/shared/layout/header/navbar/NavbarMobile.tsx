@@ -1,40 +1,15 @@
 import React from 'react';
 import './Navbar.scss';
-import ActiveLink from '../../../../activeLink';
+import { createLink } from './Navbar';
 
 const NavbarMobile = () => (
   <nav className="nav-menu-mobile">
     <ul className="menu">
-      <ActiveLink href="/soccer" activeClassName="active" listItemClassName="menu-item">
-        <a className="nav-link">
-          <i className="icon-scores" />
-          Scores
-        </a>
-      </ActiveLink>
-      <ActiveLink href="/favorites" activeClassName="active" listItemClassName="menu-item">
-        <a className="nav-link">
-          <i className="icon-favorites" />
-          Favorites
-        </a>
-      </ActiveLink>
-      <ActiveLink href="/leagues" activeClassName="active" listItemClassName="menu-item">
-        <a className="nav-link">
-          <i className="icon-leagues" />
-          Leagues
-        </a>
-      </ActiveLink>
-      <ActiveLink href="/news" activeClassName="active" listItemClassName="menu-item">
-        <a className="nav-link">
-          <i className="icon-news" />
-          News
-        </a>
-      </ActiveLink>
-      <ActiveLink href="/tv" activeClassName="active" listItemClassName="menu-item">
-        <a className="nav-link">
-          <i className="icon-tv" />
-          TV
-        </a>
-      </ActiveLink>
+      {createLink('/soccer', 'active', 'menu-item', 'Scores')}
+      {createLink('/favorites', 'active', 'menu-item', 'Favorites')}
+      {createLink('/leagues', 'active', 'menu-item', 'Leagues')}
+      {createLink('/news', 'active', 'menu-item', 'News')}
+      {createLink('/tv', 'active', 'menu-item', 'TV')}
     </ul>
   </nav>
 );

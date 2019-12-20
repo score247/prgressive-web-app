@@ -26,6 +26,13 @@
   .menu-item.active {
     background-color: red;
   }
+
+  .nav-sports {
+    background-color: #015a96;
+    .menu-item.active {
+      background-color: #3876a7;
+    }
+  }
 }
 
 .nav-menu-mobile {
@@ -55,6 +62,11 @@
 
   .menu-item.active {
     background: #3876a7;
+  }
+
+  .nav-link {
+    color: white;
+    text-decoration: none;
   }
 
   @media (min-width: 1025px) {
