@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import React, { Children } from 'react';
-import { withRouter } from 'next/router';
-import { WithRouterProps } from 'next/dist/client/with-router';
-import { ReactElementLike } from 'prop-types';
-import { SportsEnum } from '../../common/sportenum';
+import Link from "next/link";
+import React, { Children } from "react";
+import { withRouter } from "next/router";
+import { WithRouterProps } from "next/dist/client/with-router";
+import { ReactElementLike } from "prop-types";
+import { SportsEnum } from "../../common/sportenum";
 
 interface IProps extends WithRouterProps {
   href: string;
@@ -14,15 +14,15 @@ interface IProps extends WithRouterProps {
 
 const ActiveLink: React.FunctionComponent<IProps> = ({ router, children, href, activeClassName, listItemClassName, ...props }) => {
   const child = Children.only(children);
-  const childClassName = child.props.className || '';
+  const childClassName = child.props.className || "";
 
-  let className = '';
+  let className = "";
   if (router.pathname === href) {
     className = `${listItemClassName} ${activeClassName}`.trim();
   } else {
-    const sport = router.pathname.split('/')[1];
+    const sport = router.pathname.split("/")[1];
     if (
-      sport === href.replace('/', '') &&
+      sport === href.replace("/", "") &&
       (sport === SportsEnum.BASKETBALL || sport === SportsEnum.ESPORTS || sport === SportsEnum.SOCCER)
     ) {
       className = `${listItemClassName} ${activeClassName}`.trim();
