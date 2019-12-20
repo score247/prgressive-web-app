@@ -3,6 +3,7 @@ import React, { Children } from 'react';
 import { withRouter } from 'next/router';
 import { WithRouterProps } from 'next/dist/client/with-router';
 import { ReactElementLike } from 'prop-types';
+import { SportsEnum } from '../../common/sportenum';
 
 interface IProps extends WithRouterProps {
   href: string;
@@ -15,7 +16,20 @@ const ActiveLink: React.FunctionComponent<IProps> = ({ router, children, href, a
   const child = Children.only(children);
   const childClassName = child.props.className || '';
 
-  const className = router.pathname === href ? `${listItemClassName} ${activeClassName}`.trim() : `${listItemClassName}`.trim();
+  let className = '';
+  if (router.pathname === href) {
+    className = `${listItemClassName} ${activeClassName}`.trim();
+  } else {
+    const sport = router.pathname.split('/')[1];
+    if (
+      sport === href.replace('/', '') &&
+      (sport === SportsEnum.BASKETBALL || sport === SportsEnum.ESPORTS || sport === SportsEnum.SOCCER)
+    ) {
+      className = `${listItemClassName} ${activeClassName}`.trim();
+    } else {
+      className = `${listItemClassName}`.trim();
+    }
+  }
 
   return (
     <li className={className}>

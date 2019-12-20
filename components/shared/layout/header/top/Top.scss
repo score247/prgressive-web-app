@@ -1,25 +1,28 @@
 .header-top {
-    background: #040e17;
-    padding: 10px 0;
-    display: none;
+  background: #040e17;
+  padding: 10px 0;
+  display: none;
 
-    .container {
-        display: flex;
-        justify-content: space-between;
-    }
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    @media (min-width: 1025px) {
-        display: block;
-    }
+  @media (min-width: 1025px) {
+    display: block;
+  }
 }
 
 .header-top-mobile {
-    background: #286093;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
+  background: #286093;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
 
-    @media (min-width: 1025px) {
-        display: none;
-    }
+  .sport-dropdown {
+    width: 150px;
+  }
+  @media (min-width: 1025px) {
+    display: none;
+  }
 }

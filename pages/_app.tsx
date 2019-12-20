@@ -2,6 +2,7 @@ import React from 'react';
 import App, { AppContext } from 'next/app';
 import Sentry from '../common/helpers/sentry';
 import { appWithTranslation } from '../common/helpers/Localizer';
+import Router from 'next/router';
 
 class MyApp extends App {
   static async getInitialProps({ Component, ctx }: AppContext) {
@@ -28,10 +29,8 @@ class MyApp extends App {
 
   render() {
     const { Component, pageProps } = this.props;
-    return (
-      <Component {...pageProps} />
-    );
+    return <Component {...pageProps} />;
   }
 }
 
-export default appWithTranslation(MyApp)
+export default appWithTranslation(MyApp);
