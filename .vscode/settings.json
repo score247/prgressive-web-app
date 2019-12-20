@@ -12,5 +12,5 @@
     "sonarlint.connectedMode.project": {
         "serverId": "nexdevsonarqube",
         "projectKey": "score247-web-app"
-    }
+    },
 }

@@ -2,7 +2,7 @@ import axios from "axios";
 import appSettings from "../app-settings";
 import { MatchSummary } from "../models/MatchSummary";
 import { MatchInfo } from "../models/MatchInfo";
-var msgPack = require("msgpack-lite");
+import msgPack from "msgpack-lite";
 
 const instance = axios.create({
   baseURL: appSettings.soccerAPIBaseUrl,
@@ -20,21 +20,18 @@ const instance = axios.create({
 export const SoccerAPI = {
   GetMatchesByDate: async (
     date: string,
-    language: string = "en-US"
+    language = "en-US"
   ): Promise<MatchSummary[]> => {
-    var response = await instance.get(
+    const response = await instance.get(
       `/soccer/${language}/matches?fd=${date}&td=${date}`
     );
 
-    return await response.data;
+    return response.data;
   },
 
-  GetMatch: async (
-    id: string,
-    language: string = "en-US"
-  ): Promise<MatchInfo> => {
-    var response = await instance.get(`/soccer/${language}/matches/${id}`);
+  GetMatch: async (id: string, language = "en-US"): Promise<MatchInfo> => {
+    const response = await instance.get(`/soccer/${language}/matches/${id}`);
 
-    return await response.data;
+    return response.data;
   }
 };
