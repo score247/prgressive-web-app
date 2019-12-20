@@ -1,0 +1,67 @@
+@import "./fonts";
+
+[class^="icon-"],
+[class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'Score247' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-search:before {
+    content: "\e906";
+}
+
+.icon-hambuger:before {
+    content: "\e904";
+    color: #fff;
+}
+
+.icon-menu-tv:before {
+    content: "\e905";
+    color: #cbcbcb;
+}
+
+.icon-menu-favorites:before {
+    content: "\e907";
+}
+
+.icon-menu-leagues:before {
+    content: "\e908";
+    color: #cbcbcb;
+}
+
+.icon-menu-news:before {
+    content: "\e909";
+    color: #cbcbcb;
+}
+
+.icon-menu-scores:before {
+    content: "\e90a";
+    color: #ff7d00;
+}
+
+.icon-calendar:before {
+    content: "\e900";
+}
+
+.icon-basketball:before {
+    content: "\e901";
+}
+
+.icon-esports:before {
+    content: "\e902";
+}
+
+.icon-soccer:before {
+    content: "\e903";
+    color: #21339f;
+}

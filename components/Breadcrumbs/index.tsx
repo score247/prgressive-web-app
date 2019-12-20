@@ -20,11 +20,11 @@ class Breadcrumbs extends PureComponent<Props & WithTranslation, State> {
         <div className="breadcrumbs">
           <span className="selected-sport">{t("soccer")} / </span>
           <span className="selected-date">
-          {onlyLiveMatch
-            ? t("livematch")
-            : isSameDay(selectedDate, this.today)
-            ? t("today")
-            : format(selectedDate, "dd MMM yyyy")}
+            {onlyLiveMatch
+              ? t("livematch")
+              : isSameDay(selectedDate, this.today)
+              ? t("today")
+              : format(selectedDate, "dd MMM yyyy")}
           </span>
         </div>
         <div className="GMT-time">{format(this.today, "H:mm OOO")}</div>

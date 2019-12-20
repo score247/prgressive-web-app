@@ -1,6 +1,6 @@
 import "./style.scss";
 import React, { Component } from "react";
-import DatePicker from "../datepicker";
+import DatePicker from "../date-picker";
 import { format, addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { WithTranslation } from "next-i18next";

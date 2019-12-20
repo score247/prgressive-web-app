@@ -1,9 +1,9 @@
-const withPlugins = require('next-compose-plugins');
-const sass = require('@zeit/next-sass');
-const offline = require('next-offline');
-const env = process.env.SETTINGENV || 'development';
+const withPlugins = require("next-compose-plugins");
+const sass = require("@zeit/next-sass");
+const offline = require("next-offline");
+const env = process.env.SETTINGENV || "development";
 const appSettings = {
-  ...require('./appsettings.json'),
+  ...require("./appsettings.json"),
   ...require(`./appsettings.${env}.json`)
 };
 const nextConfig = {
@@ -11,13 +11,23 @@ const nextConfig = {
   publicRuntimeConfig: appSettings,
   webpack: (config, { isServer, buildId }) => {
     if (!isServer) {
-      config.resolve.alias['@sentry/node'] = '@sentry/browser';
+      config.resolve.alias["@sentry/node"] = "@sentry/browser";
     }
+
+    config.module.rules.push({
+      test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+      use: {
+        loader: "url-loader",
+        options: {
+          limit: 100000
+        }
+      }
+    });
     return config;
   }
 };
 
-const sourceMaps = require('@zeit/next-source-maps')();
+const sourceMaps = require("@zeit/next-source-maps")();
 module.exports = withPlugins(
   [
     sass,
@@ -26,14 +36,14 @@ module.exports = withPlugins(
       offline,
       {
         workboxOpts: {
-          swDest: 'static/service-worker.js'
+          swDest: "static/service-worker.js"
         },
         experimental: {
           async rewrites() {
             return [
               {
-                source: '/service-worker.js',
-                destination: '/_next/static/service-worker.js'
+                source: "/service-worker.js",
+                destination: "/_next/static/service-worker.js"
               }
             ];
           }

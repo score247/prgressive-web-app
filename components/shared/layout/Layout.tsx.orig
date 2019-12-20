@@ -3,9 +3,13 @@ import "./Layout.scss";
 import React, { useState } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import DateBar from "../../date-bar";
-import "../icons/Icons.scss";
+<<<<<<< HEAD
+import DateBar from "../../datebar";
 import Breadcrumbs from "../../breadcrumbs";
+=======
+import "./Layout.scss";
+import "../icons/Icons.scss";
+>>>>>>> 00000 - Icons
 
 const Layout: React.FunctionComponent = ({ children }) => {
   const [date, setDate] = useState(new Date());
