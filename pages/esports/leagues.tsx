@@ -6,7 +6,7 @@ import { useTranslation, LocalizedPage } from "../../common/helpers/Localizer";
 const LeaguesPage: LocalizedPage = () => {
   return (
     <Layout>
-      <div>Leagues Page</div>
+      <h1>E-Sports - Leagues</h1>
     </Layout>
   );
 };

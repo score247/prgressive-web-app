@@ -5,7 +5,7 @@ import { LocalizedPage } from "../../common/helpers/Localizer";
 const SettingPage: LocalizedPage = () => {
   return (
     <Layout title="Setting">
-      <div>Setting Page</div>
+      <h1>Setting Page</h1>
     </Layout>
   );
 };

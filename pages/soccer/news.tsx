@@ -7,7 +7,7 @@ const NewsPage: LocalizedPage = () => {
   const { t } = useTranslation();
   return (
     <Layout>
-      <div>News Page</div>
+      <h1>E-Sports - News</h1>
     </Layout>
   );
 };

@@ -6,7 +6,7 @@ const FavoritesPage: LocalizedPage = () => {
   const { t } = useTranslation();
   return (
     <Layout>
-      <div>FavoritesPage</div>
+      <h1>Soccer - Favorites</h1>
     </Layout>
   );
 };

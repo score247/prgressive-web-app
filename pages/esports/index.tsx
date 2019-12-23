@@ -6,7 +6,7 @@ const ESportsPage: LocalizedPage = () => {
   const { t } = useTranslation();
   return (
     <Layout title="E-Sports">
-      <div>{t("esports")}</div>
+      <h1>{t("esports")}</h1>
     </Layout>
   );
 };

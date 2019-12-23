@@ -5,7 +5,7 @@ import { LocalizedPage } from "../../common/helpers/Localizer";
 const MobilePage: LocalizedPage = () => {
   return (
     <Layout title="Mobile">
-      <div>Mobile Page</div>
+      <h1>Mobile Page</h1>
     </Layout>
   );
 };

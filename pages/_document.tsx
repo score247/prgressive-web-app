@@ -25,7 +25,7 @@ class Score247Document extends Document {
     return (
       <Html>
         <Head>
-          <meta name="theme-color" content="#ffffff" />
+          <meta name="theme-color" content="#F8F9FC" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/favicon.ico" />
         </Head>

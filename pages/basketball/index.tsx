@@ -5,7 +5,7 @@ import { withTranslation, LocalizedPage } from "../../common/helpers/Localizer";
 const Basketball: LocalizedPage = props => {
   return (
     <Layout title="Basketball">
-      <div>{props.t("common:basketball")}</div>
+      <h1>{props.t("common:basketball")}</h1>
     </Layout>
   );
 };
