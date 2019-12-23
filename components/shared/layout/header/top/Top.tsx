@@ -41,7 +41,10 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => (
   <>
     <div className="header-top">
       <div className="container">
-        <img src="/static/images/Logo.png" alt="Logo" />
+        <div className="logo">
+          <img src="/static/images/Logo.png" alt="Logo" />
+          <img className="logo-text" src="/static/images/SCORE247.png" alt="Logo" />
+        </div>        
         <div className="user-languages">
           <div className="login">Login</div>
           <div className="login">Register</div>
