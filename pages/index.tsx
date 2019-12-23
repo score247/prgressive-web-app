@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./Index.scss";
+import "./index.scss";
 import Layout from "../components/shared/layout/Layout";
 import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
 
