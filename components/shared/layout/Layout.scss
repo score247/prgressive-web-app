@@ -1,12 +1,18 @@
+html {
+  font-size: 62.5%;
+}
+
 body {
-    color: #fff;
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    font-size: 12px;
+    background: #F8F9FC;   
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif; 
+}
 
-    @media (min-width: 1025px) {
-        background: url(~/static/images/ftb-latestnew.jpg) no-repeat;
-    }
+*, ::after, ::before {
+  box-sizing: border-box;
 }
 
 .container {
@@ -25,12 +31,12 @@ body {
     // }
 
     @media (min-width: 1025px) {
-        padding-right: 15px;
-        padding-left: 15px;
+        padding-right: 12px;
+        padding-left: 12px;
     }
 
     @media (min-width: 1200px) {
-        max-width: 1140px;
+        max-width: 1273px;
     }
 }
 
@@ -38,14 +44,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #fff;
+    box-shadow: 0 0 5px 0 #d7d7d7;
     padding: 10px;
-    background: rgba(0, 0, 0, .6);
+    border-radius: 3px;
+    margin-bottom: 6px;
 
-    &.languages,
-    &.login {
-        display: inline-block;
-    }
+    
 
     &.h-200 {
         height: 200px;
@@ -53,6 +57,20 @@ body {
 
     &.h-400 {
         height: 400px;
+    }
+}
+
+.login {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    font-family: "Montserrat";
+    font-size: 14px;
+    color: #fff;
+    
+    &:first-child {
+      margin-right: 5px;
     }
 }
 
@@ -83,19 +101,19 @@ body {
         flex: 0 0 auto;
 
         @media (min-width: 1025px) {
-            padding-right: .5rem;
-            padding-left: .5rem;
+            padding-right: .6rem;
+            padding-left: .6rem;
         }
     }
 
     .left-container {
-        flex-basis: 200px;
-        max-width: 200px;
+        flex-basis: 267px;
+        max-width: 267px;
     }
 
     .right-container {
-        flex-basis: 300px;
-        max-width: 300px;
+        flex-basis: 292px;
+        max-width: 292px;
     }
 
     .main-container {
@@ -141,19 +159,6 @@ body {
     margin-right: 5px;
 }
 
-.btn {
-    height: 26px;
-    line-height: 26px;
-    text-transform: capitalize;
-    padding: 0 1rem;
-    border: 0;
-
-    &.live-match {
-        background: rgba($color: #fff, $alpha: 0.2);
-        color: #edbf2e;
-    }
-}
-
 .menu {
     margin: 0;
     padding: 0;
@@ -161,7 +166,13 @@ body {
     .menu-item {
         list-style: none;
         display: inline-block;
-        padding: 10px 20px;
+        padding: 13px 15px;
     }
 }
 
+
+.banner {
+  .ads-img {
+    width: 100%;
+  }
+}

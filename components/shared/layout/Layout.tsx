@@ -25,7 +25,9 @@ const Layout: React.FunctionComponent<{ title?: string }> = ({
         <Breadcrumbs selectedDate={date} onlyLiveMatch={onlyLiveMatch} />
         <div className="wrap-content">
           <div className="left-container hide-mobile">
-            <div className="banner-big block">Advertising Banner</div>
+            <div className="banner">
+              <img src="/static/images/ads-banner-2.png" alt="Logo" className="ads-img" />
+            </div>
             <div className="search block">Search</div>
             <div className="block h-200">Top Events</div>
             <div className="block h-200">List of Leagues</div>
@@ -40,12 +42,16 @@ const Layout: React.FunctionComponent<{ title?: string }> = ({
               onLiveMatchChange={setOnlyLiveMatch}
               onlyLiveMatch={onlyLiveMatch}
             />
-            <div className="banner-big block">Advertising Banner</div>
+            <div className="banner">
+              <img src="/static/images/ads-banner-1.png" alt="Logo" className="ads-img" />
+            </div>
             <div className="content">{children}</div>
           </div>
 
           <div className="right-container hide-mobile">
-            <div className="banner-big block">Advertising Banner</div>
+            <div className="banner">
+              <img src="/static/images/ads-banner-3.png" alt="Logo" className="ads-img" />
+            </div>
             <div className="block h-400">League Table</div>
             <div className="banner-small block">Advertising Banner</div>
             <div className="banner-big block">Advertising Banner</div>

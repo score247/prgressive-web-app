@@ -1,7 +1,8 @@
+@import '../../assets/styles//abstracts/variables';
 .site-info {
-  background: #454949;
   display: none;
-  padding: 8px 10px;
+  padding: 27px 0;
+  font-size: 18px;
 
   @media (min-width: 1025px) {
     display: flex;
@@ -9,10 +10,16 @@
   }
 
   .selected-sport {
-    text-transform: uppercase;
+    color: #263E6C;
+    font-weight: bold;
+    text-transform: capitalize;
   }
 
   .selected-date {
     text-transform: capitalize;
+  }
+
+  .GMT-time {
+    color: #3A3B45;
   }
 }

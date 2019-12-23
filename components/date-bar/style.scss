@@ -1,38 +1,44 @@
 .nav-date {
   display: flex;
   justify-content: space-between;
-  background: #3876a7;
-
-  .btn {
-    margin: 8px;
-  }
-
-  .live,
-  .live-match {
-    text-transform: uppercase;
-  }
+  background: #fff;
+  padding: 1.8rem 2.2rem;
+  border-radius: 4px 4px 0 0;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 2px -5px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);   
 }
 
 .date-bar {
   > span {
     display: inline-block;
     padding: 0 10px;
-    line-height: 42px;
-    cursor: pointer;
-
-    &.today {
-      text-transform: uppercase;
-    }
-  }
-
-  > .datepicker-wrapper {
-    padding: 0 10px;
-    cursor: pointer;
+    line-height: 33px;
+    color: #9193A1;
+    font-size: 14px;
+    cursor: pointer;    
+    text-transform: capitalize;
   }
 
   .active {
-    background: rgba($color: #fff, $alpha: 0.3);
+    color: #3A3B45;    
+    border-bottom: 1px solid #3A3B45;
+    font-weight: bold;
   }
+
+  .datepicker-wrapper {
+    padding: 0 10px;
+    cursor: pointer;
+
+    &.active {
+      border-bottom: 0;
+    }
+
+    .icon-calendar {
+      font-size: 20px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    
+  } 
 
   @media (max-width: 1024px) {
     display: flex;
