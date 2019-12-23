@@ -2,13 +2,13 @@
 
 .btn {
   border: 0;
-  border-radius: 4px;
+  border-radius: .4rem;
   text-transform: capitalize;
 
   &.live-match {
       background: #FD4549;
       color: $white;
-      font-size: 16px;
+      font-size: 1.6rem;
       padding: .8rem 2.5rem;
   }
 }

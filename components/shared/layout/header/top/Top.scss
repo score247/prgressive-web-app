@@ -2,7 +2,7 @@
 
 .header-top {
   background: $headerBg;
-  padding: 10px 0;
+  padding: 1rem 0;
   display: none;
 
   .container {
@@ -17,12 +17,12 @@
 
 .header-top-mobile {
   background: #286093;
-  padding: 10px;
+  padding: 1rem;
   display: flex;
   justify-content: space-between;
 
   .sport-dropdown {
-    width: 150px;
+    width: 15rem;
   }
   @media (min-width: 1025px) {
     display: none;
