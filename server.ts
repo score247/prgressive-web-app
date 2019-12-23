@@ -6,7 +6,7 @@ import { IncomingMessage, ServerResponse } from 'http';
 
 const port = process.env.PORT || 3000;
 const app = next({ dev: process.env.NODE_ENV !== "production" });
-const handle = app.getRequestHandler();
+const handler = app.getRequestHandler();
 
 (async () => {
   await app.prepare();
@@ -14,7 +14,11 @@ const handle = app.getRequestHandler();
 
   server.use(nextI18NextMiddleware(nextI18next));
 
-  server.get("*", (req: IncomingMessage, res: ServerResponse) => handle(req, res));
+  server.get('/', (req, res) => {
+    return app.render(req, res, '/basketball');
+  });
+
+  server.get("*", (req: IncomingMessage, res: ServerResponse) => handler(req, res));
 
   server.listen(port);
   console.log(`> Ready on http://localhost:${port}`); // eslint-disable-line no-console
