@@ -38,7 +38,6 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   }
 
   handleSizeChange = () => {
-    debugger;
     const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
     const withPortal = width < this.minWidth;
 
