@@ -1,17 +1,17 @@
-import React from 'react';
-import './Top.scss';
-import Select from 'react-select';
+import React from "react";
+import "./Top.scss";
+import Select from "react-select";
 
 const options = [
-  { value: 'soccer', label: 'soccer' },
-  { value: 'basketball', label: 'basketball' },
-  { value: 'esport', label: 'esport' }
+  { value: "soccer", label: "soccer" },
+  { value: "basketball", label: "basketball" },
+  { value: "esport", label: "esport" }
 ];
 
 const customStyles = {
   menu: (provided: any, state: any) => ({
     ...provided,
-    color: 'black'
+    color: "black"
   })
 };
 
@@ -30,7 +30,7 @@ const Top = () => (
     </div>
     <div className="header-top-mobile">
       <i className="icon-hambuger" />
-      <Select className="sport-dropdown" styles={customStyles} options={options} />
+      <Select className="sport-dropdown" styles={customStyles} options={options} value={options[1]} />
       <i className="icon-search" />
     </div>
   </>

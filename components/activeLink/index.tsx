@@ -3,7 +3,7 @@ import { withRouter } from "next/router";
 import { WithRouterProps } from "next/dist/client/with-router";
 import { ReactElementLike } from "prop-types";
 import { SportsEnum } from "../../common/sportenum";
-import { Link } from '../../common/helpers/Localizer';
+import { Link } from "../../common/helpers/Localizer";
 
 interface IProps extends WithRouterProps {
   href: string;
@@ -25,7 +25,11 @@ const ActiveLink: React.FunctionComponent<IProps> = ({ router, children, href, a
       sport === href.replace("/", "") &&
       (sport === SportsEnum.BASKETBALL || sport === SportsEnum.ESPORTS || sport === SportsEnum.SOCCER)
     ) {
-      className = `${listItemClassName} ${activeClassName}`.trim();
+      if (router.pathname.split("/").length >= 3 && href.split("/").length >= 3) {
+        className = `${listItemClassName} ${activeClassName}`.trim();
+      } else {
+        className = `${listItemClassName}`.trim();
+      }
     } else {
       className = `${listItemClassName}`.trim();
     }
