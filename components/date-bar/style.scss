@@ -14,8 +14,6 @@
 }
 
 .date-bar {
-  margin-right: 8px;
-
   > span {
     display: inline-block;
     padding: 0 10px;
@@ -27,7 +25,8 @@
     }
   }
 
-  .icon-calendar {
+  > .datepicker-wrapper {
+    padding: 0 10px;
     cursor: pointer;
   }
 
@@ -43,7 +42,7 @@
     width: 100%;
 
     > span,
-    > div {
+    > .datepicker-wrapper {
       flex-grow: 1;
       flex-basis: 0;
       max-width: 100%;
@@ -51,8 +50,8 @@
       padding: 0;
     }
 
-    .icon-calendar {
-      line-height: 42px;
+    .icon-calendar{
+        line-height: 2.625;
     }
   }
 }

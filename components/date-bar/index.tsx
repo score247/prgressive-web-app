@@ -76,6 +76,14 @@ class DateBar extends Component<Props & WithTranslation, State> {
     );
   };
 
+  getDatePickerClassName = () =>{
+    if(this.state.dateList.some(d => isSameDay(d, this.props.selectedDate))){
+      return "";
+    }
+
+    return "active";
+  }
+
   render() {
     return (
       <div className="nav-date">
@@ -100,7 +108,7 @@ class DateBar extends Component<Props & WithTranslation, State> {
               maxDate={this.maxDate}
               locale={this.props.i18n.language}
               showPopperArrow={false}
-              wrapperClassName="wrapper"
+              className={this.getDatePickerClassName()}
             />
           
         </div>

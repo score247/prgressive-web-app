@@ -53,7 +53,13 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   };
 
   render() {
-    return <DatePicker {...this.props} withPortal={this.state.withPortal} />;
+    const {className, ...rest} = this.props;
+
+    return (
+      <div className={`datepicker-wrapper ${className}`}>
+        <DatePicker {...rest} withPortal={this.state.withPortal} />
+      </div>
+    );
   }
 }
 
