@@ -10,8 +10,8 @@ describe("DatePicker", () => {
       onChange: function(date: Date) {}
     };
 
-    const datePicker = shallow(<DatePicker {...props} />);
+    const wrapper = shallow(<DatePicker {...props} />);
 
-    expect(datePicker).toMatchSnapshot();
+    expect(wrapper).toMatchSnapshot();
   });
 });

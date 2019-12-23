@@ -3,6 +3,8 @@ import "./style.scss";
 
 import React, { PureComponent } from "react";
 import dynamic from "next/dynamic";
+import { State } from "./type";
+
 import DatePicker, {
   ReactDatePickerProps,
   registerLocale,
@@ -16,10 +18,6 @@ enUS.options = { weekStartsOn: 1 };
 registerLocale("vi", vi);
 registerLocale("en", enUS);
 setDefaultLocale("en");
-
-type State = {
-  withPortal: boolean;
-};
 
 class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   minWidth = 1025;
@@ -53,7 +51,7 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   };
 
   render() {
-    const {className, ...rest} = this.props;
+    const { className, ...rest } = this.props;
 
     return (
       <div className={`datepicker-wrapper ${className}`}>
