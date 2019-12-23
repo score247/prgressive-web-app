@@ -1,7 +1,8 @@
 import "react-datepicker/src/stylesheets/datepicker.scss";
 import "./style.scss";
 
-import React, {PureComponent} from "react";
+import React, { PureComponent } from "react";
+import dynamic from "next/dynamic";
 import DatePicker, {
   ReactDatePickerProps,
   registerLocale
@@ -10,8 +11,47 @@ import vi from "date-fns/locale/vi";
 
 registerLocale("vi", vi);
 
-export default class DatePickerWrapper extends PureComponent<ReactDatePickerProps> {
-    render(){
-        return <DatePicker {...this.props} />;
+type State = {
+  withPortal: boolean;
+};
+
+class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
+  minWidth = 1025;
+
+  constructor(props: ReactDatePickerProps) {
+    super(props);
+
+    const width =
+      window && window.innerWidth > 0 ? window.innerWidth : screen.width;
+
+    this.state = {
+      withPortal: width < this.minWidth
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.handleSizeChange);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleSizeChange);
+  }
+
+  handleSizeChange = () => {
+    debugger;
+    const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
+    const withPortal = width < this.minWidth;
+
+    if (this.state.withPortal !== withPortal) {
+      this.setState({ withPortal });
     }
+  };
+
+  render() {
+    return <DatePicker {...this.props} withPortal={this.state.withPortal} />;
+  }
 }
+
+export default dynamic(() => Promise.resolve(DatePickerWrapper), {
+  ssr: false
+});
