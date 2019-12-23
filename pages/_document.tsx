@@ -5,13 +5,13 @@ import Document, {
   NextScript,
   DocumentContext
 } from "next/document";
-import Sentry from '../common/helpers/sentry';
+import Sentry from "../common/helpers/sentry";
 
-process.on('unhandledRejection', (err) => {
+process.on("unhandledRejection", err => {
   Sentry.captureException(err);
 });
 
-process.on('uncaughtException', (err) => {
+process.on("uncaughtException", err => {
   Sentry.captureException(err);
 });
 
@@ -25,7 +25,9 @@ class Score247Document extends Document {
     return (
       <Html>
         <Head>
+          <meta name="theme-color" content="#ffffff" />
           <link rel="manifest" href="/manifest.json" />
+          <link rel="icon" href="/favicon.ico" />
         </Head>
         <body>
           <Main />

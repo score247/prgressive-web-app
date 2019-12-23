@@ -1,12 +1,10 @@
-import * as React from 'react';
-import { NextPage } from 'next';
-import Layout from '../../components/shared/layout/Layout';
-import { useTranslation, LocalizedPage } from '../../common/helpers/Localizer';
+import * as React from "react";
+import Layout from "../../components/shared/layout/Layout";
+import { LocalizedPage } from "../../common/helpers/Localizer";
 
 const SettingPage: LocalizedPage = () => {
-  const { t } = useTranslation();
   return (
-    <Layout>
+    <Layout title="Setting">
       <div>Setting Page</div>
     </Layout>
   );
@@ -14,7 +12,7 @@ const SettingPage: LocalizedPage = () => {
 
 SettingPage.getInitialProps = async () => {
   return {
-    namespacesRequired: ['esports']
+    namespacesRequired: ["esports"]
   };
 };
 

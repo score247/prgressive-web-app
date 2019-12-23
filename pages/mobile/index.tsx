@@ -1,11 +1,10 @@
 import * as React from "react";
-import { NextPage } from "next";
 import Layout from "../../components/shared/layout/Layout";
-import { useTranslation, LocalizedPage } from "../../common/helpers/Localizer";
+import { LocalizedPage } from "../../common/helpers/Localizer";
 
 const MobilePage: LocalizedPage = () => {
   return (
-    <Layout>
+    <Layout title="Mobile">
       <div>Mobile Page</div>
     </Layout>
   );

@@ -5,25 +5,25 @@ import { MatchSummary } from "../../models/MatchSummary";
 import { SoccerAPI } from "../../apis/SoccerApi";
 
 const SoccerPage: NextPage<{ matches: MatchSummary[] }> = ({ matches }) => (
-  <Layout>
+  <Layout title="Soccer">
     <h1>Soccer Page</h1>
-    <ul>
+    {/* <ul>
       {matches.map(match => (
         <li key={match.Id}>
           {match.HomeTeamName} - {match.AwayTeamName} -{" "}
           {match.EventStatus.DisplayName}
         </li>
       ))}
-    </ul>
+    </ul> */}
   </Layout>
 );
 
-SoccerPage.getInitialProps = async () => {
-  const matches: MatchSummary[] = await SoccerAPI.GetMatchesByDate(
-    "2019-12-19"
-  );
+// SoccerPage.getInitialProps = async () => {
+//   const matches: MatchSummary[] = await SoccerAPI.GetMatchesByDate(
+//     "2019-12-19"
+//   );
 
-  return { matches };
-};
+//   return { matches };
+// };
 
 export default SoccerPage;

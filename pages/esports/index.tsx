@@ -5,7 +5,7 @@ import { useTranslation, LocalizedPage } from "../../common/helpers/Localizer";
 const ESportsPage: LocalizedPage = () => {
   const { t } = useTranslation();
   return (
-    <Layout>
+    <Layout title="E-Sports">
       <div>{t("esports")}</div>
     </Layout>
   );
@@ -14,7 +14,7 @@ const ESportsPage: LocalizedPage = () => {
 ESportsPage.getInitialProps = async () => {
   return {
     namespacesRequired: ["esports"]
-  }
-}
+  };
+};
 
 export default ESportsPage;
