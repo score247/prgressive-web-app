@@ -3,7 +3,7 @@ import Top from "./top/Top";
 import Navbar from "./navbar/Navbar";
 import NavbarMobile from "./navbar/NavbarMobile";
 import { useRouter } from "next/router";
-import { SportsEnum } from "../../../../common/sportenum";
+import { SportsEnum } from "../../../../common/enums/sportenum";
 
 const Header: React.FunctionComponent = () => {
   const { pathname } = useRouter();

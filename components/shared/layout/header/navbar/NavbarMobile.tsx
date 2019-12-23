@@ -1,7 +1,7 @@
 import React from "react";
 import "./Navbar.scss";
 import { createLink } from "./Navbar";
-import { SportsEnum } from "../../../../../common/sportenum";
+import { SportsEnum } from "../../../../../common/enums/sportenum";
 import { useRouter } from "next/router";
 
 interface IProps {
