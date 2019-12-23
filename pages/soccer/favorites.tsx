@@ -1,6 +1,6 @@
-import * as React from 'react';
-import Layout from '../../../components/shared/layout/Layout';
-import { useTranslation, LocalizedPage } from '../../../common/helpers/Localizer';
+import * as React from "react";
+import Layout from "../../components/shared/layout/Layout";
+import { useTranslation, LocalizedPage } from "../../common/helpers/Localizer";
 
 const FavoritesPage: LocalizedPage = () => {
   const { t } = useTranslation();
@@ -13,7 +13,7 @@ const FavoritesPage: LocalizedPage = () => {
 
 FavoritesPage.getInitialProps = async () => {
   return {
-    namespacesRequired: ['esports']
+    namespacesRequired: ["esports"]
   };
 };
 
