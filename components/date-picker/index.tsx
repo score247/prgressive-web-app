@@ -8,10 +8,10 @@ import DatePicker, {
   registerLocale,
   setDefaultLocale
 } from "react-datepicker";
-import {vi, enUS} from "date-fns/locale";
+import { vi, enUS } from "date-fns/locale";
 
-vi.options = {weekStartsOn :1};
-enUS.options={ weekStartsOn: 1};
+vi.options = { weekStartsOn: 1 };
+enUS.options = { weekStartsOn: 1 };
 
 registerLocale("vi", vi);
 registerLocale("en", enUS);
@@ -53,7 +53,7 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   };
 
   render() {
-    return <DatePicker {...this.props} withPortal={this.state.withPortal}  />;
+    return <DatePicker {...this.props} withPortal={this.state.withPortal} />;
   }
 }
 

@@ -21,7 +21,7 @@ class Breadcrumbs extends PureComponent<Props & WithTranslation, State> {
     this.intervalId =  window.setInterval(() => this.setState({currentDate: new Date()}), this.intervalNumber);
   }
 
-  componentWillMount(){
+  componentWillUnmount(){
     window.clearInterval(this.intervalId);
   }
 
