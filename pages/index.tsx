@@ -1,8 +1,6 @@
 import * as React from "react";
 import "./Index.scss";
-import { NextPage } from "next";
 import Layout from "../components/shared/layout/Layout";
-import appSettings from "../app-settings";
 import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
 
 const Index: LocalizedPage<{ userAgent: string }> = ({ userAgent }) => (

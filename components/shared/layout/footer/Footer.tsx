@@ -7,14 +7,14 @@ const linkStyle = {
   marginRight: 15
 };
 
-const Footer: React.FunctionComponent<WithTranslation> = props => {
+const Footer: React.FunctionComponent<WithTranslation> = ({ t }) => {
   return (
     <div>
       <Link href="/">
-        <a style={linkStyle}>{props.t("terms")}</a>
+        <a style={linkStyle}>{t("terms")}</a>
       </Link>
       <Link href="/soccer">
-        <a style={linkStyle}>{props.t("aboutUs")}</a>
+        <a style={linkStyle}>{t("aboutUs")}</a>
       </Link>
     </div>
   );

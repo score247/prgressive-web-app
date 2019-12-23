@@ -1,10 +1,10 @@
 import "./Layout.scss";
+import "../icons/Icons.scss";
 
 import React, { useState } from "react";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import DateBar from "../../date-bar";
-import "../icons/Icons.scss";
 import Breadcrumbs from "../../bread-crumbs";
 
 const Layout: React.FunctionComponent = ({ children }) => {
