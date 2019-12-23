@@ -91,7 +91,6 @@ class DateBar extends Component<Props & WithTranslation, State> {
             {this.props.t("live")}
           </span>
           {this.state.dateList.map(this.renderDate)}
-          <span>
             <DatePicker
               selected={this.props.selectedDate}
               onChange={this.handleChange}
@@ -101,8 +100,8 @@ class DateBar extends Component<Props & WithTranslation, State> {
               maxDate={this.maxDate}
               locale={this.props.i18n.language}
               showPopperArrow={false}
+              wrapperClassName="wrapper"
             />
-          </span>
           
         </div>
       </div>

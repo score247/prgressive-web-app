@@ -6,10 +6,23 @@ import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../common/helpers/Localizer";
 
 class Breadcrumbs extends PureComponent<Props & WithTranslation, State> {
-  today: Date = new Date();
+  intervalId?: number;
+  intervalNumber = 1000;
 
   constructor(props: Props & WithTranslation) {
     super(props);
+
+    this.state={
+      currentDate: new Date()
+    };
+  }
+
+  componentDidMount(){
+    this.intervalId =  window.setInterval(() => this.setState({currentDate: new Date()}), this.intervalNumber);
+  }
+
+  componentWillMount(){
+    window.clearInterval(this.intervalId);
   }
 
   render() {
@@ -22,12 +35,12 @@ class Breadcrumbs extends PureComponent<Props & WithTranslation, State> {
           <span className="selected-date">
             {onlyLiveMatch
               ? t("livematch")
-              : isSameDay(selectedDate, this.today)
-            ? t("today").toUpperCase()
+              : isSameDay(selectedDate, this.state.currentDate)
+              ? t("today").toUpperCase()
               : format(selectedDate, "dd MMM yyyy")}
           </span>
         </div>
-        <div className="GMT-time">{format(this.today, "H:mm OOO")}</div>
+        <div className="GMT-time">{format(this.state.currentDate, "H:mm OOO")}</div>
       </div>
     );
   }

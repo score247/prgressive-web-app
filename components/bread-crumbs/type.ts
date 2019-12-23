@@ -1,4 +1,6 @@
-export type State = {};
+export type State = {
+  currentDate: Date
+};
 
 export type Props = {
   selectedDate: Date;

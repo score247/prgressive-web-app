@@ -5,11 +5,17 @@ import React, { PureComponent } from "react";
 import dynamic from "next/dynamic";
 import DatePicker, {
   ReactDatePickerProps,
-  registerLocale
+  registerLocale,
+  setDefaultLocale
 } from "react-datepicker";
-import vi from "date-fns/locale/vi";
+import {vi, enUS} from "date-fns/locale";
+
+vi.options = {weekStartsOn :1};
+enUS.options={ weekStartsOn: 1};
 
 registerLocale("vi", vi);
+registerLocale("en", enUS);
+setDefaultLocale("en");
 
 type State = {
   withPortal: boolean;
@@ -47,7 +53,7 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   };
 
   render() {
-    return <DatePicker {...this.props} withPortal={this.state.withPortal} />;
+    return <DatePicker {...this.props} withPortal={this.state.withPortal}  />;
   }
 }
 
