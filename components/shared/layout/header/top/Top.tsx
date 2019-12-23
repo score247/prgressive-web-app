@@ -54,6 +54,7 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => (
     <div className="header-top-mobile">
       <i className="icon-hambuger" />
       <Select
+        instanceId={sport}
         className="sport-dropdown"
         styles={customStyles}
         options={createOptions()}
