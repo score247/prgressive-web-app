@@ -25,11 +25,7 @@ const ActiveLink: React.FunctionComponent<IProps> = ({ router, children, href, a
       sport === href.replace("/", "") &&
       (sport === SportsEnum.BASKETBALL || sport === SportsEnum.ESPORTS || sport === SportsEnum.SOCCER)
     ) {
-      if (router.pathname.split("/").length >= 3 && href.split("/").length >= 3) {
-        className = `${listItemClassName} ${activeClassName}`.trim();
-      } else {
-        className = `${listItemClassName}`.trim();
-      }
+      className = `${listItemClassName} ${activeClassName}`.trim();
     } else {
       className = `${listItemClassName}`.trim();
     }
