@@ -17,11 +17,29 @@ const NavbarMobile: React.FunctionComponent<IProps> = ({ sport }) => {
   return (
     <nav className="nav-menu-mobile">
       <ul className="menu">
-        {createLink(`/${sport}`, pathname.split("/").length < 3 ? "active" : "deactive", "menu-item", "Scores", detectIconClassName(sport))}
-        {createLink(`/${sport}/favorites`, "active", "menu-item", "Favorites", "icon-menu-favorites")}
-        {createLink(`/${sport}/leagues`, "active", "menu-item", "Leagues", "icon-menu-leagues")}
-        {createLink(`/${sport}/news`, "active", "menu-item", "News", "icon-menu-news")}
-        {createLink(`/${sport}/tv`, "active", "menu-item", "TV", "icon-menu-tv")}
+        {createLink(
+          sport === SportsEnum.SOCCER ? "/" : `/${sport}`,
+          pathname.split("/").length < 3 ? "active" : "deactive",
+          "menu-item",
+          "Scores",
+          detectIconClassName(sport)
+        )}
+        {createLink(
+          `/${sport}/favorites`,
+          pathname === `/${sport}/favorites` ? "active" : "deactive",
+          "menu-item",
+          "Favorites",
+          "icon-menu-favorites"
+        )}
+        {createLink(
+          `/${sport}/leagues`,
+          pathname === `/${sport}/leagues` ? "active" : "deactive",
+          "menu-item",
+          "Leagues",
+          "icon-menu-leagues"
+        )}
+        {createLink(`/${sport}/news`, pathname === `/${sport}/news` ? "active" : "deactive", "menu-item", "News", "icon-menu-news")}
+        {createLink(`/${sport}/tv`, pathname === `/${sport}/tv` ? "active" : "deactive", "menu-item", "TV", "icon-menu-tv")}
       </ul>
     </nav>
   );

@@ -17,10 +17,17 @@ interface SelectOptions {
 const createOptions = () => {
   const createdOptions = [];
   for (const item in SportsEnum) {
-    createdOptions.push({
-      value: `/${item.toLowerCase()}`,
-      label: `${item}`
-    });
+    if (item.toLowerCase() === SportsEnum.SOCCER) {
+      createdOptions.push({
+        value: "/",
+        label: `${item}`
+      });
+    } else {
+      createdOptions.push({
+        value: `/${item.toLowerCase()}`,
+        label: `${item}`
+      });
+    }
   }
   return createdOptions;
 };
@@ -44,7 +51,7 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => (
         <div className="logo">
           <img src="/static/images/Logo.png" alt="Logo" />
           <img className="logo-text" src="/static/images/SCORE247.png" alt="Logo" />
-        </div>        
+        </div>
         <div className="user-languages">
           <div className="login">Login</div>
           <div className="login">Register</div>
@@ -58,7 +65,7 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => (
         className="sport-dropdown"
         styles={customStyles}
         options={createOptions()}
-        value={filter(createOptions(), { value: `/${sport}` })}
+        value={filter(createOptions(), { label: `${sport.toUpperCase()}` })}
         onChange={onChangeSportMobile}
       />
       <i className="icon-search" />
