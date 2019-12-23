@@ -87,18 +87,23 @@ class DateBar extends Component<Props & WithTranslation, State> {
           <span>{this.props.t("livematch")}</span>
         </button>
         <div className="date-bar">
-          <span className="show-mobile live" onClick={this.handleLiveMatchChange}>{this.props.t("live")}</span>
+          <span className="show-mobile live" onClick={this.handleLiveMatchChange}>
+            {this.props.t("live")}
+          </span>
           {this.state.dateList.map(this.renderDate)}
-          <DatePicker
-            selected={this.props.selectedDate}
-            onChange={this.handleChange}
-            customInput={<CustomDateInput />}
-            dateFormat="dd MMM yyyy"
-            minDate={this.minDate}
-            maxDate={this.maxDate}
-            locale={this.props.i18n.language}
-            showPopperArrow={false}
-          />
+          <span>
+            <DatePicker
+              selected={this.props.selectedDate}
+              onChange={this.handleChange}
+              customInput={<CustomDateInput />}
+              dateFormat="dd MMM yyyy"
+              minDate={this.minDate}
+              maxDate={this.maxDate}
+              locale={this.props.i18n.language}
+              showPopperArrow={false}
+            />
+          </span>
+          
         </div>
       </div>
     );
