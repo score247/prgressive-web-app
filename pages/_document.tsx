@@ -15,7 +15,7 @@ process.on('uncaughtException', (err) => {
   Sentry.captureException(err);
 });
 
-class MyDocument extends Document {
+class Score247Document extends Document {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
     return { ...initialProps };
@@ -36,4 +36,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument;
+export default Score247Document;

@@ -4,7 +4,7 @@ import Sentry from '../common/helpers/sentry';
 import { appWithTranslation } from '../common/helpers/Localizer';
 import Router from 'next/router';
 
-class MyApp extends App {
+class Score247App extends App {
   static async getInitialProps({ Component, ctx }: AppContext) {
     let pageProps = {};
 
@@ -33,4 +33,4 @@ class MyApp extends App {
   }
 }
 
-export default appWithTranslation(MyApp);
+export default appWithTranslation(Score247App);
