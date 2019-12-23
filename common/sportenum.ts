@@ -1,5 +1,5 @@
 export const SportsEnum = {
-  SOCCER: 'soccer',
-  BASKETBALL: 'basketball',
-  ESPORTS: 'esports'
+  SOCCER: "soccer",
+  BASKETBALL: "basketball",
+  ESPORTS: "esports"
 };

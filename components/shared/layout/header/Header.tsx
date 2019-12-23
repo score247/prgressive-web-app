@@ -11,7 +11,7 @@ const Header: React.FunctionComponent = () => {
   const sport = href === SportsEnum.BASKETBALL || href === SportsEnum.ESPORTS || href === SportsEnum.SOCCER ? href : SportsEnum.SOCCER;
   return (
     <header>
-      <Top />
+      <Top sport={sport} />
       <Navbar sport={sport} />
       <NavbarMobile sport={sport} />
     </header>

@@ -1,12 +1,29 @@
 import React from "react";
 import "./Top.scss";
-import Select from "react-select";
+import Select, { ValueType } from "react-select";
+import Router from "next/router";
+import { SportsEnum } from "../../../../../common/sportenum";
+import { filter } from "lodash";
 
-const options = [
-  { value: "soccer", label: "soccer" },
-  { value: "basketball", label: "basketball" },
-  { value: "esport", label: "esport" }
-];
+interface IProps {
+  sport: string;
+}
+
+interface SelectOptions {
+  value: string;
+  label: string;
+}
+
+const createOptions = () => {
+  const createdOptions = [];
+  for (const item in SportsEnum) {
+    createdOptions.push({
+      value: `/${item.toLowerCase()}`,
+      label: `${item}`
+    });
+  }
+  return createdOptions;
+};
 
 const customStyles = {
   menu: (provided: any, state: any) => ({
@@ -15,9 +32,12 @@ const customStyles = {
   })
 };
 
-const onChangeSportMobile = () => {};
+const onChangeSportMobile = (selectedOption: ValueType<SelectOptions>) => {
+  const option = selectedOption as SelectOptions;
+  Router.push(option.value);
+};
 
-const Top = () => (
+const Top: React.FunctionComponent<IProps> = ({ sport }) => (
   <>
     <div className="header-top">
       <div className="container">
@@ -30,7 +50,13 @@ const Top = () => (
     </div>
     <div className="header-top-mobile">
       <i className="icon-hambuger" />
-      <Select className="sport-dropdown" styles={customStyles} options={options} value={options[1]} />
+      <Select
+        className="sport-dropdown"
+        styles={customStyles}
+        options={createOptions()}
+        value={filter(createOptions(), { value: `/${sport}` })}
+        onChange={onChangeSportMobile}
+      />
       <i className="icon-search" />
     </div>
   </>
