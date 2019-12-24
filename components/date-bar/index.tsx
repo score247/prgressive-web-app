@@ -90,7 +90,7 @@ class DateBar extends Component<Props, State> {
           className="btn live-match hide-mobile"
           onClick={this.handleLiveMatchChange}
         >
-          <span className="badge-label">2</span>
+          <span className="badge-label">2 </span>
           <span>{this.props.t("livematch")}</span>
         </button>
         <div className="date-bar">
