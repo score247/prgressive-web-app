@@ -1,31 +1,47 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, render } from "enzyme";
+import { State, Props } from "./type";
 import DateBar from "./index";
-import {State, Props} from "./type";
-import { WithTranslation } from "next-i18next";
-import {  getI18n } from "react-i18next";
 
-jest.mock('react-i18next', () => ({
-    withTranslation: () => (Component: React.ComponentType)=> {
-      Component.defaultProps  = { ...Component.defaultProps, t: (key: string) => key};
-      return Component;
-    },
-  }));
+jest.mock("../../common/helpers/Localizer", () =>
+  jest.requireActual("../../common/helpers/__mocks__/Localizer")
+);
 
 describe("DateBar", () => {
-  it("DateBar-render correctly", () => {
-/*     const props: Props & WithTranslation = {
-      onDateChange: function(date: Date) {},
-      onLiveMatchChange: function (onlyLiveMatch: boolean){},
+  let props: Props;
+
+  beforeEach(() => {
+    const instance: any = {
+      language: "en",
+      languages: ["en", "fr"],
+      isInitialized: true
+    };
+
+    props = {
+      onDateChange: jest.fn(),
+      onLiveMatchChange: jest.fn(),
       onlyLiveMatch: false,
       selectedDate: new Date(),
       t: (key: string): string => key,
-      i18n:  getI18n(),
+      i18n: instance,
       tReady: true
-    }; */
+    };
+  });
 
-    //const wrapper = shallow(<DateBar {...props} />);
+  it("render correctly", () => {
+    const wrapper = shallow(<DateBar {...props} />);
+    expect(wrapper).toMatchSnapshot();
+  });
 
-    //expect(wrapper).toMatchSnapshot();
+  it("should call onLiveMatchChange when clicking on live match button", () => {
+    const wrapper = shallow(<DateBar {...props} />);
+    wrapper.dive().find(".live-match").simulate("click");
+    expect(props.onLiveMatchChange).toBeCalledWith(true);
+  });
+
+  it("should call onLiveMatchChange when clicking on live button", () => {
+    const wrapper = shallow(<DateBar {...props} />);
+    wrapper.dive().find(".show-mobile.live").simulate("click");
+    expect(props.onLiveMatchChange).toBeCalledWith(true);
   });
 });

@@ -1,11 +1,11 @@
-import NextI18Next, { WithTranslation } from "next-i18next";
+import NextI18Next, { WithTranslation,  } from "next-i18next";
 import { NextPage } from "next";
 import { useTranslation as originalUseTranslation } from "react-i18next";
-
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: "en",
   otherLanguages: ["vi", "id", "ms", "th", "zh"],
-  localePath: typeof window === "undefined" ? "public/static/locales" : "static/locales",
+  localePath:
+    typeof window === "undefined" ? "public/static/locales" : "static/locales",
   localeSubpaths: {
     vi: "vi",
     id: "id",
@@ -15,11 +15,7 @@ const NextI18NextInstance = new NextI18Next({
   }
 });
 
-export const {
-  withTranslation,
-  appWithTranslation,
-  Link
-} = NextI18NextInstance;
+export const { withTranslation, appWithTranslation, Link } = NextI18NextInstance;
 
 export const useTranslation = originalUseTranslation;
 

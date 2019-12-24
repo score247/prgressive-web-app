@@ -8,13 +8,14 @@ import Footer from "./footer/Footer";
 import DateBar from "../../date-bar";
 import Breadcrumbs from "../../bread-crumbs";
 
-const Layout: React.FunctionComponent<{ title?: string }> = ({
+const Layout: React.FunctionComponent<{ title?: string, breadcrumbs?: string[]}> = ({
   children,
-  title = "Home"
+  title = "Home",
+  breadcrumbs =  [""]
 }) => {
   const [date, setDate] = useState(new Date());
   const [onlyLiveMatch, setOnlyLiveMatch] = useState(false);
-
+  
   return (
     <div>
       <Head>
@@ -22,7 +23,7 @@ const Layout: React.FunctionComponent<{ title?: string }> = ({
       </Head>
       <Header />
       <div className="container">
-        <Breadcrumbs selectedDate={date} onlyLiveMatch={onlyLiveMatch} />
+        <Breadcrumbs breadcrumbs={breadcrumbs} selectedDate={date} onlyLiveMatch={onlyLiveMatch} />
         <div className="wrap-content">
           <div className="left-container hide-mobile">
             <div className="banner">

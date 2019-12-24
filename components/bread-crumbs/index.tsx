@@ -26,12 +26,12 @@ class Breadcrumbs extends PureComponent<Props & WithTranslation, State> {
   }
 
   render() {
-    const { selectedDate, onlyLiveMatch, t } = this.props;
+    const { selectedDate, onlyLiveMatch, t, breadcrumbs } = this.props;
 
     return (
       <div className="site-info">
         <div className="breadcrumbs">
-          <span className="selected-sport">{t("soccer")} / </span>
+          <span className="selected-sport">{breadcrumbs[0]} / </span>
           <span className="selected-date">
             {onlyLiveMatch
               ? t("livematch")

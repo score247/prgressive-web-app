@@ -3,10 +3,9 @@ import React, { Component } from "react";
 import DatePicker from "../date-picker";
 import { format, addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
-import { WithTranslation } from "next-i18next";
 import { State, Props } from "./type";
 
-const CustomDateInput = (props: any) => {
+const CustomDateInput = (props: { onClick?: () => void }) => {
   return (
     <span onClick={props.onClick}>
       <i className="icon-calendar" />
@@ -14,12 +13,12 @@ const CustomDateInput = (props: any) => {
   );
 };
 
-class DateBar extends Component<Props & WithTranslation, State> {
+class DateBar extends Component<Props, State> {
   today: Date;
   minDate: Date;
   maxDate: Date;
 
-  constructor(props: Props & WithTranslation) {
+  constructor(props: Props) {
     super(props);
 
     this.today = new Date();
@@ -76,18 +75,18 @@ class DateBar extends Component<Props & WithTranslation, State> {
     );
   };
 
-  getDatePickerClassName = () =>{
-    if(this.state.dateList.some(d => isSameDay(d, this.props.selectedDate))){
+  getDatePickerClassName = () => {
+    if (this.state.dateList.some(d => isSameDay(d, this.props.selectedDate))) {
       return "";
     }
 
     return "active";
-  }
+  };
 
   render() {
     return (
       <div className="nav-date">
-        <button
+        <button type="button"
           className="btn live-match hide-mobile"
           onClick={this.handleLiveMatchChange}
         >
@@ -95,22 +94,24 @@ class DateBar extends Component<Props & WithTranslation, State> {
           <span>{this.props.t("livematch")}</span>
         </button>
         <div className="date-bar">
-          <span className="show-mobile live" onClick={this.handleLiveMatchChange}>
+          <span
+            className="show-mobile live"
+            onClick={this.handleLiveMatchChange}
+          >
             {this.props.t("live")}
           </span>
           {this.state.dateList.map(this.renderDate)}
-            <DatePicker
-              selected={this.props.selectedDate}
-              onChange={this.handleChange}
-              customInput={<CustomDateInput />}
-              dateFormat="dd MMM yyyy"
-              minDate={this.minDate}
-              maxDate={this.maxDate}
-              locale={this.props.i18n.language}
-              showPopperArrow={false}
-              className={this.getDatePickerClassName()}
-            />
-          
+          <DatePicker
+            selected={this.props.selectedDate}
+            onChange={this.handleChange}
+            customInput={<CustomDateInput />}
+            dateFormat="dd MMM yyyy"
+            minDate={this.minDate}
+            maxDate={this.maxDate}
+            locale={this.props.i18n.language}
+            showPopperArrow={false}
+            className={this.getDatePickerClassName()}
+          />
         </div>
       </div>
     );

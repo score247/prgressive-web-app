@@ -1,11 +1,12 @@
 import * as React from "react";
 import Layout from "../../components/shared/layout/Layout";
-import { useTranslation, LocalizedPage } from "../../common/helpers/Localizer";
+import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
+import { SportsEnum } from "../../common/enums/sportenum";
 
-const ESportsPage: LocalizedPage = () => {
-  const { t } = useTranslation();
+const ESportsPage: LocalizedPage = ({t}) => {
+
   return (
-    <Layout title="E-Sports">
+    <Layout title="E-Sports" breadcrumbs={[t(SportsEnum.ESPORTS)]}>
       <h1>{t("esports")}</h1>
     </Layout>
   );
@@ -17,4 +18,4 @@ ESportsPage.getInitialProps = async () => {
   };
 };
 
-export default ESportsPage;
+export default  withTranslation()(ESportsPage);
