@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { shallow } from "enzyme";
-import NavBar from "./Navbar";
+import NavBarMobile from "./NavbarMobile";
 import { Link } from "../../../../../common/helpers/Localizer";
 
 jest.mock("react-i18next", () => ({
@@ -23,7 +23,7 @@ jest.mock("next/router", () => ({
 }));
 
 describe("NavBar", () => {
-  const wrapper = shallow(<NavBar sport="basketball" />);
+  const wrapper = shallow(<NavBarMobile sport="soccer" />);
 
   it("should render correctly", () => {
     expect(wrapper).toMatchSnapshot();
@@ -34,17 +34,16 @@ describe("NavBar", () => {
       wrapper
         .find(".active")
         .find(Link)
-        .find({ href: "/basketball" }).length
+        .find({ href: "/" }).length
     ).toEqual(1);
   });
 
-  it("should highlight Soccer correctly", () => {
-    const wrapperWithSoccer = shallow(<NavBar sport="soccer" />);
+  it("should not highlight sport correctly", () => {
     expect(
-      wrapperWithSoccer
+      wrapper
         .find(".active")
         .find(Link)
-        .find({ href: "/" }).length
-    ).toEqual(1);
+        .find({ href: "/basketball" }).length
+    ).toEqual(0);
   });
 });

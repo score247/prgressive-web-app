@@ -7,7 +7,7 @@ const TVPage: LocalizedPage = () => {
   const { t } = useTranslation();
   return (
     <Layout>
-      <h1>E-Sports - TV</h1>
+      <h1>Soccer - TV</h1>
     </Layout>
   );
 };

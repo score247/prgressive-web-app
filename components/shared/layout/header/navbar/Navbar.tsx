@@ -1,29 +1,9 @@
 import React from "react";
 import "./Navbar.scss";
-import ActiveLink from "../../../../active-link";
 import { WithTranslation } from "next-i18next";
-import { withTranslation } from "../../../../../common/helpers/Localizer";
+import { withTranslation, Link } from "../../../../../common/helpers/Localizer";
 import { useRouter } from "next/router";
 import { SportsEnum } from "../../../../../common/enums/sportenum";
-
-export const createLink = (
-  href: string,
-  activeClassName: string,
-  listItemClassName: string,
-  htmlText: string,
-  iconClassName: string
-) => (
-  <ActiveLink
-    href={href}
-    activeClassName={activeClassName}
-    listItemClassName={listItemClassName}
-  >
-    <a className="nav-link">
-      <i className={iconClassName} />
-      {htmlText}
-    </a>
-  </ActiveLink>
-);
 
 interface IProps extends WithTranslation {
   sport: string;
@@ -31,88 +11,60 @@ interface IProps extends WithTranslation {
 
 const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
   const { pathname } = useRouter();
+
+  const createSportLink = (href: string, activeClassName: string, htmlText: string, iconClassName: string) => {
+    let className = "";
+    if (sport === SportsEnum.SOCCER && href === "/") {
+      if (pathname === "/" || pathname.search(SportsEnum.SOCCER) >= 1) {
+        className = `menu-item ${activeClassName}`.trim();
+      } else {
+        className = `menu-item`;
+      }
+    } else if (href.replace("/", "") === sport) {
+      className = `menu-item ${activeClassName}`.trim();
+    } else {
+      className = `menu-item`;
+    }
+    return (
+      <li className={className}>
+        <Link href={href}>
+          <a className="nav-link">
+            <i className={iconClassName} />
+            {htmlText}
+          </a>
+        </Link>
+      </li>
+    );
+  };
+
+  const createFunctionLink = (href: string, activeClassName: string, htmlText: string) => {
+    const className = href === pathname ? `menu-item ${activeClassName}`.trim() : "menu-item";
+    return (
+      <li className={className}>
+        <Link href={href}>
+          <a className="nav-link">{htmlText}</a>
+        </Link>
+      </li>
+    );
+  };
   return (
     <nav className="nav-menu hide-mobile">
       <div className="container">
         <div className="nav-sports">
           <ul className="menu">
-            {createLink(
-              "/",
-              pathname.replace("/", "") === "" ||
-                pathname.split("/")[1] === SportsEnum.SOCCER.toLowerCase()
-                ? "active"
-                : "deactive",
-              "menu-item",
-              t("soccer"),
-              "icon-soccer"
-            )}
-            {createLink(
-              "/basketball",
-              pathname.replace("/", "") ===
-                SportsEnum.BASKETBALL.toLowerCase() ||
-                pathname.split("/")[1] === SportsEnum.BASKETBALL.toLowerCase()
-                ? "active"
-                : "deactive",
-              "menu-item",
-              t("basketball"),
-              "icon-basketball"
-            )}
-            {createLink(
-              "/esports",
-              pathname.replace("/", "") === SportsEnum.ESPORTS.toLowerCase() ||
-                pathname.split("/")[1] === SportsEnum.ESPORTS.toLowerCase()
-                ? "active"
-                : "deactive",
-              "menu-item",
-              t("esports"),
-              "icon-esports"
-            )}
+            {createSportLink("/", "active", t("soccer"), "icon-soccer")}
+            {createSportLink("/basketball", "active", t("basketball"), "icon-basketball")}
+            {createSportLink("/esports", "active", t("esports"), "icon-esports")}
           </ul>
         </div>
         <div className="nav-function">
           <ul className="menu">
-            {createLink(
-              `/${sport}/leagues`,
-              pathname === `/${sport}/leagues` ? "active" : "deactive",
-              "menu-item",
-              t("leagues"),
-              ""
-            )}
-            {createLink(
-              `/${sport}/favorites`,
-              pathname === `/${sport}/favorites` ? "active" : "deactive",
-              "menu-item",
-              t("my favorites"),
-              ""
-            )}
-            {createLink(
-              `/${sport}/news`,
-              pathname === `/${sport}/news` ? "active" : "deactive",
-              "menu-item",
-              t("news"),
-              ""
-            )}
-            {createLink(
-              `/${sport}/tv`,
-              pathname === `/${sport}/tv` ? "active" : "deactive",
-              "menu-item",
-              t("TV schedule"),
-              ""
-            )}
-            {createLink(
-              "/mobile",
-              pathname === "/mobile" ? "active" : "deactive",
-              "menu-item",
-              t("mobile"),
-              ""
-            )}
-            {createLink(
-              "/settings",
-              pathname === "/settings" ? "active" : "deactive",
-              "menu-item",
-              t("settings"),
-              ""
-            )}
+            {createFunctionLink(`/${sport}/leagues`, "active", t("leagues"))}
+            {createFunctionLink(`/${sport}/favorites`, "active", t("my favorites"))}
+            {createFunctionLink(`/${sport}/news`, "active", t("news"))}
+            {createFunctionLink(`/${sport}/tv`, "active", t("TV schedule"))}
+            {createFunctionLink(`/mobile`, "active", t("mobile"))}
+            {createFunctionLink(`/settings`, "active", t("settings"))}
           </ul>
         </div>
       </div>
