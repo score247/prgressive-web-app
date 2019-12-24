@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import { shallow } from "enzyme";
 import NavBar from "./Navbar";
 import { Link } from "../../../../../common/helpers/Localizer";
+import { SportsEnum } from "../../../../../common/enums/sportenum";
 
 jest.mock("react-i18next", () => ({
   // this mock makes sure any components using the translate HoC receive the t function as a prop
@@ -23,7 +24,7 @@ jest.mock("next/router", () => ({
 }));
 
 describe("NavBar", () => {
-  const wrapper = shallow(<NavBar sport="basketball" />);
+  const wrapper = shallow(<NavBar sport={SportsEnum.BASKETBALL} />);
 
   it("should render correctly", () => {
     expect(wrapper).toMatchSnapshot();
@@ -39,7 +40,7 @@ describe("NavBar", () => {
   });
 
   it("should highlight Soccer correctly", () => {
-    const wrapperWithSoccer = shallow(<NavBar sport="soccer" />);
+    const wrapperWithSoccer = shallow(<NavBar sport={SportsEnum.SOCCER} />);
     expect(
       wrapperWithSoccer
         .find(".active")
