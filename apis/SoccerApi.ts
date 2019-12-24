@@ -2,6 +2,7 @@ import axios from "axios";
 import appSettings from "../app-settings";
 import { MatchSummary } from "../models/MatchSummary";
 import { MatchInfo } from "../models/MatchInfo";
+import { League } from "../models/League";
 import msgPack from "msgpack-lite";
 
 const instance = axios.create({
@@ -31,6 +32,12 @@ export const SoccerAPI = {
 
   GetMatch: async (id: string, language = "en-US"): Promise<MatchInfo> => {
     const response = await instance.get(`/soccer/${language}/matches/${id}`);
+
+    return response.data;
+  },
+
+  GetMajorLeagues: async (language = "en-US"): Promise<League[]> => {
+    const response = await instance.get(`/soccer/${language}/leagues/major`);
 
     return response.data;
   }

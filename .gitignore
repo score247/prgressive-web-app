@@ -43,3 +43,6 @@ jspm_packages
 *.ncrunchsolution.user
 /dist/common/helpers/Localizer.js
 /dist/server.js
+
+*.orig
+*.snap
