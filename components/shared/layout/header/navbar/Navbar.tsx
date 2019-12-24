@@ -43,7 +43,7 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
                 ? "active"
                 : "deactive",
               "menu-item",
-              t("Soccer"),
+              t("soccer"),
               "icon-soccer"
             )}
             {createLink(
@@ -54,7 +54,7 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
                 ? "active"
                 : "deactive",
               "menu-item",
-              t("Basketball"),
+              t("basketball"),
               "icon-basketball"
             )}
             {createLink(
