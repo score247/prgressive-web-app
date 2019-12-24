@@ -2,14 +2,13 @@ import "./style.scss";
 import React, { PureComponent } from "react";
 import { State, Props } from "./type";
 import { format, isSameDay } from "date-fns";
-import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../common/helpers/Localizer";
 
-class Breadcrumbs extends PureComponent<Props & WithTranslation, State> {
+class Breadcrumbs extends PureComponent<Props , State> {
   intervalId?: number;
   intervalNumber = 1000;
 
-  constructor(props: Props & WithTranslation) {
+  constructor(props: Props) {
     super(props);
 
     this.state={
