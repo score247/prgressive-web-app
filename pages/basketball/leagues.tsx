@@ -1,12 +1,14 @@
 import * as React from "react";
-import { NextPage } from "next";
 import Layout from "../../components/shared/layout/Layout";
-import { useTranslation, LocalizedPage } from "../../common/helpers/Localizer";
+import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
+import { SportsEnum } from "../../common/enums/sportenum";
 
-const LeaguesPage: LocalizedPage = () => {
+const LeaguesPage: LocalizedPage = ({t}) => {
+  const breadcrumbs = [t(SportsEnum.BASKETBALL), t("leagues")];
+
   return (
-    <Layout>
-      <div>Basketball - Leagues</div>
+    <Layout breadcrumbs={breadcrumbs}>
+      <h1>Soccer - Leagues</h1>
     </Layout>
   );
 };
@@ -17,4 +19,4 @@ LeaguesPage.getInitialProps = async () => {
   };
 };
 
-export default LeaguesPage;
+export default withTranslation()(LeaguesPage);

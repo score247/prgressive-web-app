@@ -1,10 +1,12 @@
 import * as React from "react";
 import Layout from "../../components/shared/layout/Layout";
-import { LocalizedPage } from "../../common/helpers/Localizer";
+import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 
-const SettingPage: LocalizedPage = () => {
+const SettingPage: LocalizedPage = ({t}) => {
+  const breadcrumbs = [t("settings")];
+
   return (
-    <Layout title="Setting">
+    <Layout title="Setting" breadcrumbs={breadcrumbs}>
       <h1>Setting Page</h1>
     </Layout>
   );
@@ -12,8 +14,8 @@ const SettingPage: LocalizedPage = () => {
 
 SettingPage.getInitialProps = async () => {
   return {
-    namespacesRequired: ["esports"]
+    namespacesRequired: ["common"]
   };
 };
 
-export default SettingPage;
+export default withTranslation()(SettingPage);

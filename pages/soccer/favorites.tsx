@@ -1,11 +1,13 @@
 import * as React from "react";
 import Layout from "../../components/shared/layout/Layout";
-import { useTranslation, LocalizedPage } from "../../common/helpers/Localizer";
+import {  LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
+import { SportsEnum } from "../../common/enums/sportenum";
 
-const FavoritesPage: LocalizedPage = () => {
-  const { t } = useTranslation();
+const FavoritesPage: LocalizedPage = ({t}) => {
+  const breadcrumbs = [t(SportsEnum.SOCCER), t("myfavorites")];
+
   return (
-    <Layout>
+    <Layout breadcrumbs={breadcrumbs}>
       <h1>Soccer - Favorites</h1>
     </Layout>
   );
@@ -13,8 +15,8 @@ const FavoritesPage: LocalizedPage = () => {
 
 FavoritesPage.getInitialProps = async () => {
   return {
-    namespacesRequired: ["esports"]
+    namespacesRequired: ["soccer"]
   };
 };
 
-export default FavoritesPage;
+export default withTranslation()(FavoritesPage);

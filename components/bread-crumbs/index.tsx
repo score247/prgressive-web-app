@@ -31,6 +31,7 @@ class Breadcrumbs extends PureComponent<Props , State> {
       <div className="site-info">
         <div className="breadcrumbs">
           <span className="selected-sport">{breadcrumbs[0]} / </span>
+          {breadcrumbs[1] && <span className="selected-sub">{breadcrumbs[1]} / </span>}
           <span className="selected-date">
             {onlyLiveMatch
               ? t("livematch")
