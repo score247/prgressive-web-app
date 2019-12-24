@@ -6,8 +6,18 @@ import { withTranslation } from "../../../../../common/helpers/Localizer";
 import { useRouter } from "next/router";
 import { SportsEnum } from "../../../../../common/enums/sportenum";
 
-export const createLink = (href: string, activeClassName: string, listItemClassName: string, htmlText: string, iconClassName: string) => (
-  <ActiveLink href={href} activeClassName={activeClassName} listItemClassName={listItemClassName}>
+export const createLink = (
+  href: string,
+  activeClassName: string,
+  listItemClassName: string,
+  htmlText: string,
+  iconClassName: string
+) => (
+  <ActiveLink
+    href={href}
+    activeClassName={activeClassName}
+    listItemClassName={listItemClassName}
+  >
     <a className="nav-link">
       <i className={iconClassName} />
       {htmlText}
@@ -28,7 +38,8 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
           <ul className="menu">
             {createLink(
               "/",
-              pathname.replace("/", "") === SportsEnum.SOCCER.toLowerCase() || pathname.split("/")[1] === SportsEnum.SOCCER.toLowerCase()
+              pathname.replace("/", "") === "" ||
+                pathname.split("/")[1] === SportsEnum.SOCCER.toLowerCase()
                 ? "active"
                 : "deactive",
               "menu-item",
@@ -37,7 +48,8 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
             )}
             {createLink(
               "/basketball",
-              pathname.replace("/", "") === SportsEnum.BASKETBALL.toLowerCase() ||
+              pathname.replace("/", "") ===
+                SportsEnum.BASKETBALL.toLowerCase() ||
                 pathname.split("/")[1] === SportsEnum.BASKETBALL.toLowerCase()
                 ? "active"
                 : "deactive",
@@ -47,7 +59,8 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
             )}
             {createLink(
               "/esports",
-              pathname.replace("/", "") === SportsEnum.ESPORTS.toLowerCase() || pathname.split("/")[1] === SportsEnum.ESPORTS.toLowerCase()
+              pathname.replace("/", "") === SportsEnum.ESPORTS.toLowerCase() ||
+                pathname.split("/")[1] === SportsEnum.ESPORTS.toLowerCase()
                 ? "active"
                 : "deactive",
               "menu-item",
@@ -58,7 +71,13 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
         </div>
         <div className="nav-function">
           <ul className="menu">
-            {createLink(`/${sport}/leagues`, pathname === `/${sport}/leagues` ? "active" : "deactive", "menu-item", t("leagues"), "")}
+            {createLink(
+              `/${sport}/leagues`,
+              pathname === `/${sport}/leagues` ? "active" : "deactive",
+              "menu-item",
+              t("leagues"),
+              ""
+            )}
             {createLink(
               `/${sport}/favorites`,
               pathname === `/${sport}/favorites` ? "active" : "deactive",
@@ -66,10 +85,34 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
               t("my favorites"),
               ""
             )}
-            {createLink(`/${sport}/news`, pathname === `/${sport}/news` ? "active" : "deactive", "menu-item", t("news"), "")}
-            {createLink(`/${sport}/tv`, pathname === `/${sport}/tv` ? "active" : "deactive", "menu-item", t("TV schedule"), "")}
-            {createLink("/mobile", pathname === "/mobile" ? "active" : "deactive", "menu-item", t("mobile"), "")}
-            {createLink("/settings", pathname === "/settings" ? "active" : "deactive", "menu-item", t("settings"), "")}
+            {createLink(
+              `/${sport}/news`,
+              pathname === `/${sport}/news` ? "active" : "deactive",
+              "menu-item",
+              t("news"),
+              ""
+            )}
+            {createLink(
+              `/${sport}/tv`,
+              pathname === `/${sport}/tv` ? "active" : "deactive",
+              "menu-item",
+              t("TV schedule"),
+              ""
+            )}
+            {createLink(
+              "/mobile",
+              pathname === "/mobile" ? "active" : "deactive",
+              "menu-item",
+              t("mobile"),
+              ""
+            )}
+            {createLink(
+              "/settings",
+              pathname === "/settings" ? "active" : "deactive",
+              "menu-item",
+              t("settings"),
+              ""
+            )}
           </ul>
         </div>
       </div>

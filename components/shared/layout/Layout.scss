@@ -1,5 +1,7 @@
+@import "../../../assets/styles/theme.scss";
+
 html {
-  font-size: 62.5%;
+    font-size: 62.5%;
 }
 
 body {
@@ -7,12 +9,14 @@ body {
     padding: 0;
     font-family: sans-serif;
     font-size: 1.2rem;
-    background: #F8F9FC;   
-    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif; 
+    background: #F8F9FC;
+    font-family: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
 }
 
-*, ::after, ::before {
-  box-sizing: border-box;
+*,
+::after,
+::before {
+    box-sizing: border-box;
 }
 
 .container {
@@ -49,7 +53,7 @@ body {
     border-radius: .3rem;
     margin-bottom: .6rem;
 
-    
+
 
     &.h-200 {
         height: 20rem;
@@ -68,9 +72,9 @@ body {
     font-family: "Montserrat";
     font-size: 1.4rem;
     color: #fff;
-    
+
     &:first-child {
-      margin-right: .5rem;
+        margin-right: .5rem;
     }
 }
 
@@ -171,7 +175,7 @@ body {
 }
 
 .banner {
-  .ads-img {
-    width: 100%;
-  }
+    .ads-img {
+        width: 100%;
+    }
 }

@@ -14,10 +14,6 @@ const handler = app.getRequestHandler();
 
   server.use(nextI18NextMiddleware(nextI18next));
 
-  server.get("/", (req, res) => {
-    return app.render(req, res, "/soccer");
-  });
-
   server.get("*", (req: IncomingMessage, res: ServerResponse) =>
     handler(req, res)
   );
