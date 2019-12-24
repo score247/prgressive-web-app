@@ -1,4 +1,3 @@
-import "react-datepicker/src/stylesheets/datepicker-cssmodules.scss";
 import "./style.scss";
 
 import React, { PureComponent } from "react";
