@@ -32,13 +32,6 @@ const createOptions = () => {
   return createdOptions;
 };
 
-const customStyles = {
-  menu: (provided: any, state: any) => ({
-    ...provided,
-    color: "black"
-  })
-};
-
 const onChangeSportMobile = (selectedOption: ValueType<SelectOptions>) => {
   const option = selectedOption as SelectOptions;
   Router.push(option.value);
@@ -63,7 +56,6 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => (
       <Select
         instanceId={sport}
         className="sport-dropdown"
-        styles={customStyles}
         options={createOptions()}
         value={filter(createOptions(), { label: `${sport.toUpperCase()}` })}
         onChange={onChangeSportMobile}
