@@ -1,12 +1,19 @@
 import * as React from "react";
-import { NextPage } from "next";
 import Layout from "../components/shared/layout/Layout";
 import { MatchSummary } from "../models/MatchSummary";
+import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
+import { SportsEnum } from "../common/enums/sportenum";
 
-const SoccerPage: NextPage<{ matches: MatchSummary[] }> = ({ matches }) => (
-  <Layout title="Soccer">
+const SoccerPage: LocalizedPage<{ matches: MatchSummary[] }, {}> = ({ matches, t }) => (
+  <Layout title="Soccer" breadcrumbs={[t(SportsEnum.SOCCER)]}>
     <h1>Soccer Page</h1>
   </Layout>
 );
 
-export default SoccerPage;
+SoccerPage.getInitialProps = async() =>{
+  return {
+    namespacesRequired: ["soccer"]
+  }
+}
+
+export default withTranslation()(SoccerPage);
