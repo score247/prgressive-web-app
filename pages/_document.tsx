@@ -26,8 +26,13 @@ class Score247Document extends Document {
       <Html>
         <Head>
           <meta name="theme-color" content="#F8F9FC" />
+          <meta name="Description" content="Score247" />
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/favicon.ico" />
+          <link
+            rel="apple-touch-icon"
+            href="/static/images/icon152x152.png"
+          ></link>
         </Head>
         <body>
           <Main />
