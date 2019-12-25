@@ -27,7 +27,7 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
       withPortal: false
     };
 
-    this.handleSizeChange.bind(this);
+    this.handleSizeChange = this.handleSizeChange.bind(this);
   }
 
   componentDidMount() {
@@ -42,7 +42,7 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   handleSizeChange() {
     const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
     const withPortal = width < this.minWidth;
-
+    
     if (this.state.withPortal !== withPortal) {
       this.setState({ withPortal });
     }
