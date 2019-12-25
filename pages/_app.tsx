@@ -1,8 +1,11 @@
-import React from 'react';
-import App, { AppContext } from 'next/app';
-import Sentry from '../common/helpers/sentry';
-import { appWithTranslation } from '../common/helpers/Localizer';
-import Router from 'next/router';
+import React from "react";
+import App, { AppContext } from "next/app";
+import Sentry from "../common/helpers/sentry";
+import { appWithTranslation } from "../common/helpers/Localizer";
+
+interface CustomErrorInfo extends React.ErrorInfo {
+  [key: string]: string;
+}
 
 class Score247App extends App {
   static async getInitialProps({ Component, ctx }: AppContext) {
@@ -15,7 +18,7 @@ class Score247App extends App {
     return { pageProps };
   }
 
-  componentDidCatch(error: Error, errorInfo: any) {
+  componentDidCatch(error: Error, errorInfo: CustomErrorInfo) {
     Sentry.withScope(scope => {
       Object.keys(errorInfo).forEach(key => {
         scope.setExtra(key, errorInfo[key]);
