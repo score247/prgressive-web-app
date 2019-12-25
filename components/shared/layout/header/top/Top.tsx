@@ -11,21 +11,31 @@ interface IProps {
 
 interface SelectOptions {
   value: string;
-  label: string;
+  label: JSX.Element;
+  forSport: string;
 }
 
 const createOptions = () => {
   const createdOptions = [];
   for (const item in SportsEnum) {
+    const icon = `icon-${item.toLowerCase()}`;
+    const labelWithIcon = (
+      <span>
+        <i className={icon} />
+        {item}
+      </span>
+    );
     if (item.toLowerCase() === SportsEnum.SOCCER) {
       createdOptions.push({
         value: "/",
-        label: `${item}`
+        label: labelWithIcon,
+        forSport: item
       });
     } else {
       createdOptions.push({
         value: `/${item.toLowerCase()}`,
-        label: `${item}`
+        label: labelWithIcon,
+        forSport: item
       });
     }
   }
@@ -43,11 +53,7 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => (
       <div className="container">
         <div className="logo">
           <img src="/static/images/Logo.png" alt="Logo" />
-          <img
-            className="logo-text"
-            src="/static/images/SCORE247.png"
-            alt="Logo"
-          />
+          <img className="logo-text" src="/static/images/SCORE247.png" alt="Logo" />
         </div>
         <div className="user-languages">
           <div className="login">Languages</div>
@@ -60,9 +66,9 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => (
       <Select
         instanceId={sport}
         className="sport-dropdown"
-        classNamePrefix='select'
+        classNamePrefix="select"
         options={createOptions()}
-        value={filter(createOptions(), { label: `${sport.toUpperCase()}` })}
+        value={filter(createOptions(), { forSport: `${sport.toUpperCase()}` })}
         onChange={onChangeSportMobile}
         //menuIsOpen
       />
