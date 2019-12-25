@@ -60,6 +60,7 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => (
       <Select
         instanceId={sport}
         className="sport-dropdown"
+        classNamePrefix='select'
         options={createOptions()}
         value={filter(createOptions(), { label: `${sport.toUpperCase()}` })}
         onChange={onChangeSportMobile}

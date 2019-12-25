@@ -28,14 +28,69 @@
 }
 
 .header-top-mobile {
-  background: #286093;
-  padding: 1rem;
+  background: $headerBg;
+  padding: .9rem 1.8rem;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  .icon-hambuger {
+    font-size: 1.7rem;
+  }
+
+  .icon-search {
+    font-size: 2.5rem;
+  }
 
   .sport-dropdown {
-    width: 15rem;
+    width: 100%;
   }
+
+  .select__control {
+    background-color: transparent;
+    border: 0;
+    min-height: auto;
+
+    &.select__control--is-focused {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+
+  .select__value-container {
+    padding: 0;
+  }
+
+  .select__single-value {
+    color: #fff;
+    position: static;
+    margin: 0;
+    transform: none;
+    font-size: 1.4rem;
+  }
+
+  .select__input input {
+    font-size: 1.6rem !important;
+  }
+
+  .select__indicator {
+    padding: 0;
+
+    > svg {
+      fill: #FF7D00;
+      width: 1.6rem;
+    }
+  }
+
+  .select__indicator-separator {
+    display: none;
+  }
+
+  .select__option--is-focused {
+    background: none;
+    color: $red;
+  }
+
   @media (min-width: 1025px) {
     display: none;
   }

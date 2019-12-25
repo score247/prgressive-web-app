@@ -16,6 +16,11 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-live:before {
+  content: "\e90a";
+  color: #9193a1;
+}
+
 .icon-esports:before {
   content: "\e900";
   color: #fff;
@@ -26,6 +31,7 @@
 }
 .icon-search:before {
   content: "\e902";
+  color: #fff;
 }
 .icon-soccer:before {
   content: "\e903";
@@ -41,16 +47,17 @@
 }
 .icon-menu-tv:before {
   content: "\e905";
-  color: #cbcbcb;
+  color: #fff;
 }
 .icon-menu-favorites:before {
   content: "\e907";
+  color: #fff;
 }
 .icon-menu-leagues:before {
   content: "\e908";
-  color: #cbcbcb;
+  color: #fff;
 }
 .icon-menu-news:before {
   content: "\e909";
-  color: #cbcbcb;
+  color: #fff;
 }

@@ -2,6 +2,11 @@ footer {
   background: #343A40;
   color: #A2A2A3;
   padding: 3rem 0;
+  display: none;
+
+  @media (min-width: 1025px) {
+      display: block !important;
+  }
 }
 
 .link-footer {
