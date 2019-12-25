@@ -100,6 +100,7 @@ class DateBar extends Component<Props, State> {
           >
             {/* {this.props.t("live")} */}
             <i className="icon-live" />
+            <span className="has-live" />
           </span>
           {this.state.dateList.map(this.renderDate)}
           <DatePicker
