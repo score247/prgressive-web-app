@@ -91,6 +91,11 @@
     color: $red;
   }
 
+  .select__option--is-selected {
+    background: none;
+    color: $red;
+  }
+
   @media (min-width: 1025px) {
     display: none;
   }

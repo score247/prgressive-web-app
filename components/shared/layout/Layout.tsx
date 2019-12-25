@@ -43,7 +43,7 @@ const Layout: React.FunctionComponent<{ title?: string, breadcrumbs?: string[]}>
               onLiveMatchChange={setOnlyLiveMatch}
               onlyLiveMatch={onlyLiveMatch}
             />
-            <div className="banner">
+            <div className="banner hide-mobile">
               <img src="/static/images/ads-banner-1.png" alt="Logo" className="ads-img" />
             </div>
             <div className="content">{children}</div>

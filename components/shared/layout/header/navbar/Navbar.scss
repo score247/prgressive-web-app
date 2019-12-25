@@ -51,21 +51,23 @@
       flex-basis: 0;
       max-width: 100%;
       text-align: center;
-      padding: 1.2rem 0;
+      padding: .7rem 0 .5rem 0;
     }
   }
 
   .menu-item.active {
-    background: #3876a7;
+    background: rgba($color: #000000, $alpha: 0.12);
   }
 
   .nav-link {
     color: white;
     text-decoration: none;
+    font-size: 1.1rem;
 
     > i {
       display: block;
-      margin-bottom: .6rem;
+      margin-bottom: .4rem;
+      font-size: 2rem;
     }
   }
 
