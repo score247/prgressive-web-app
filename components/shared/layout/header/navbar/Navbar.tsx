@@ -62,7 +62,7 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
             {createFunctionLink(`/${sport}/leagues`, "active", t("leagues"))}
             {createFunctionLink(`/${sport}/favorites`, "active", t("myfavorites"))}
             {createFunctionLink(`/${sport}/news`, "active", t("news"))}
-            {createFunctionLink(`/${sport}/tv`, "active", t("tvschedule"))}
+            {createFunctionLink(`/${sport}/tv`, "active", t("tvschedules"))}
             {createFunctionLink(`/mobile`, "active", t("mobile"))}
             {createFunctionLink(`/settings`, "active", t("settings"))}
           </ul>

@@ -1,7 +1,6 @@
 import "./style.scss";
 
 import React, { PureComponent } from "react";
-import dynamic from "next/dynamic";
 import { State } from "./type";
 
 import DatePicker, {
@@ -24,15 +23,15 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   constructor(props: ReactDatePickerProps) {
     super(props);
 
-    const width =
-      window && window.innerWidth > 0 ? window.innerWidth : screen.width;
-
     this.state = {
-      withPortal: width < this.minWidth
+      withPortal: false
     };
+
+    this.handleSizeChange.bind(this);
   }
 
   componentDidMount() {
+    this.handleSizeChange();
     window.addEventListener("resize", this.handleSizeChange);
   }
 
@@ -40,14 +39,14 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
     window.removeEventListener("resize", this.handleSizeChange);
   }
 
-  handleSizeChange = () => {
+  handleSizeChange() {
     const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
     const withPortal = width < this.minWidth;
 
     if (this.state.withPortal !== withPortal) {
       this.setState({ withPortal });
     }
-  };
+  }
 
   render() {
     const { className, ...rest } = this.props;
@@ -60,6 +59,4 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
   }
 }
 
-export default dynamic(() => Promise.resolve(DatePickerWrapper), {
-  ssr: false
-});
+export default DatePickerWrapper;

@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, render } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { Props } from "./type";
 import Breadcrumbs from "./index";
 
@@ -35,5 +35,12 @@ describe("DateBar", () => {
   it("should render breadcrumbs", () => {
     const wrapper = shallow(<Breadcrumbs {...props} />);
     expect(wrapper.dive().find(".selected-sport")).toHaveLength(1);
+  });
+
+  it("should call clearInterval when unmount", () => {
+    global.clearInterval = jest.fn();
+    const wrapper = mount(<Breadcrumbs {...props} />);
+    wrapper.unmount();
+    expect(global.clearInterval).toBeCalled();
   });
 });
