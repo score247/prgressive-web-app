@@ -1,3 +1,3 @@
-const TimeHelper: string = "TimeHelper";
+const TimeHelper = "TimeHelper";
 
 export default TimeHelper;

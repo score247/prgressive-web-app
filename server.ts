@@ -3,8 +3,8 @@ import express from "express";
 import next from "next";
 import nextI18NextMiddleware from "next-i18next/middleware";
 import { IncomingMessage, ServerResponse } from "http";
-
-const port = process.env.PORT || 3000;
+const defaultPort = 3000;
+const port = process.env.PORT || defaultPort;
 const app = next({ dev: process.env.NODE_ENV !== "production" });
 const handler = app.getRequestHandler();
 

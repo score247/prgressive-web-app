@@ -1,3 +1,3 @@
-const League: string = "League";
+const League = "League";
 
 export default League;
