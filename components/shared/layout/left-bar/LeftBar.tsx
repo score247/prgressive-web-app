@@ -1,14 +1,16 @@
 import React from "react";
 import Banner from "../banner/Banner";
+import SearchBar from "../search-bar/SearchBar";
+import TopEvents from "../top-events/TopEvents";
+import BottomAds from "../bottom-ads/BottomAds";
 
 const LeftBar: React.FunctionComponent = () => (
   <div className="left-container hide-mobile">
     <Banner url="#" imgSrc="/static/images/ads-banner-2.png" />
-    <div className="search block">Search</div>
-    <div className="block h-200">Top Events</div>
+    <SearchBar />
+    <TopEvents />
     <div className="block h-200">List of Leagues</div>
-    <div className="banner-small block">Advertising Banner</div>
-    <div className="banner-big block">Advertising Banner</div>
+    <BottomAds />
   </div>
 );
 

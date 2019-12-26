@@ -1,12 +1,13 @@
 import React from "react";
 import Banner from "../banner/Banner";
+import BottomAds from "../bottom-ads/BottomAds";
+import LeagueTable from "../league-table/LeagueTable";
 
 const RightBar: React.FunctionComponent = () => (
   <div className="right-container hide-mobile">
     <Banner url="#" imgSrc="/static/images/ads-banner-3.png" />
-    <div className="block h-400">League Table</div>
-    <div className="banner-small block">Advertising Banner</div>
-    <div className="banner-big block">Advertising Banner</div>
+    <LeagueTable />
+    <BottomAds />
   </div>
 );
 
