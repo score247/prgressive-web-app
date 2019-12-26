@@ -3,6 +3,7 @@ import Link from "next/link";
 import "./Footer.scss";
 import { withTranslation } from "../../../../common/helpers/Localizer";
 import { WithTranslation } from "next-i18next";
+import { ResourceType } from "../../../../common/constants";
 
 const Footer: React.FunctionComponent<WithTranslation> = ({ t }) => {
   return (
@@ -20,4 +21,4 @@ const Footer: React.FunctionComponent<WithTranslation> = ({ t }) => {
   );
 };
 
-export default withTranslation("footer")(Footer);
+export default withTranslation(ResourceType.FOOTER)(Footer);

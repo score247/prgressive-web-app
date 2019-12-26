@@ -4,6 +4,7 @@ import DatePicker from "../date-picker";
 import { format, addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { State, Props } from "./type";
+import { ResourceType } from "../../common/constants";
 
 const CustomDateInput = (props: { onClick?: () => void }) => {
   return (
@@ -120,4 +121,4 @@ class DateBar extends Component<Props, State> {
   }
 }
 
-export default withTranslation("common")(DateBar);
+export default withTranslation(ResourceType.COMMON)(DateBar);

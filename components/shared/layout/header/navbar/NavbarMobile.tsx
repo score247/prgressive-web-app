@@ -4,6 +4,7 @@ import { WithTranslation } from "next-i18next";
 import { withTranslation, Link } from "../../../../../common/helpers/Localizer";
 import { SportsEnum } from "../../../../../common/enums/sportenum";
 import { useRouter } from "next/router";
+import { ResourceType } from "../../../../../common/constants";
 
 interface IProps extends WithTranslation {
   sport: string;
@@ -42,4 +43,4 @@ const NavbarMobile: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => 
   );
 };
 
-export default withTranslation("common")(NavbarMobile);
+export default withTranslation(ResourceType.COMMON)(NavbarMobile);

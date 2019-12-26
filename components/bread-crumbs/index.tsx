@@ -2,6 +2,7 @@ import "./style.scss";
 import React, { PureComponent } from "react";
 import { State, Props } from "./type";
 import { format, isSameDay } from "date-fns";
+import { ResourceType } from "../../common/constants"; 
 import { withTranslation } from "../../common/helpers/Localizer";
 
 class Breadcrumbs extends PureComponent<Props , State> {
@@ -26,7 +27,6 @@ class Breadcrumbs extends PureComponent<Props , State> {
 
   render() {
     const { selectedDate, onlyLiveMatch, t, breadcrumbs } = this.props;
-
     return (
       <div className="site-info">
         <div className="breadcrumbs">
@@ -46,4 +46,4 @@ class Breadcrumbs extends PureComponent<Props , State> {
   }
 }
 
-export default withTranslation("common")(Breadcrumbs);
+export default withTranslation(ResourceType.COMMON)(Breadcrumbs);
