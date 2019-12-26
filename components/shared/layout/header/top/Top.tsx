@@ -47,34 +47,37 @@ const onChangeSportMobile = (selectedOption: ValueType<SelectOptions>) => {
   Router.push(option.value);
 };
 
-const Top: React.FunctionComponent<IProps> = ({ sport }) => (
-  <>
-    <div className="header-top">
-      <div className="container">
-        <div className="logo">
-          <img src="/static/images/Logo.png" alt="Logo" />
-          <img className="logo-text" src="/static/images/SCORE247.png" alt="Logo" />
-        </div>
-        <div className="user-languages">
-          <div className="login">Languages</div>
-          <div className="login">Login/Register</div>
+const Top: React.FunctionComponent<IProps> = ({ sport }) => {
+  const sportOptions = createOptions();
+  return (
+    <>
+      <div className="header-top">
+        <div className="container">
+          <div className="logo">
+            <img src="/static/images/Logo.png" alt="Logo" />
+            <img className="logo-text" src="/static/images/SCORE247.png" alt="Logo" />
+          </div>
+          <div className="user-languages">
+            <div className="login">Languages</div>
+            <div className="login">Login/Register</div>
+          </div>
         </div>
       </div>
-    </div>
-    <div className="header-top-mobile">
-      <i className="icon-hambuger" />
-      <Select
-        instanceId={sport}
-        className="sport-dropdown"
-        classNamePrefix="select"
-        options={createOptions()}
-        value={filter(createOptions(), { forSport: `${sport.toUpperCase()}` })}
-        onChange={onChangeSportMobile}
-        //menuIsOpen
-      />
-      <i className="icon-search" />
-    </div>
-  </>
-);
+      <div className="header-top-mobile">
+        <i className="icon-hambuger" />
+        <Select
+          instanceId={sport}
+          className="sport-dropdown"
+          classNamePrefix="select"
+          options={sportOptions}
+          value={filter(sportOptions, { forSport: `${sport.toUpperCase()}` })}
+          onChange={onChangeSportMobile}
+          //menuIsOpen
+        />
+        <i className="icon-search" />
+      </div>
+    </>
+  );
+};
 
 export default Top;
