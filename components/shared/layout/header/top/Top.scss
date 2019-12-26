@@ -50,6 +50,7 @@
     background-color: transparent;
     border: 0;
     min-height: auto;
+    justify-content: center;
 
     &.select__control--is-focused {
       border: 0;
@@ -59,6 +60,7 @@
 
   .select__value-container {
     padding: 0;
+    flex: unset;
   }
 
   .select__single-value {
@@ -67,6 +69,11 @@
     margin: 0;
     transform: none;
     font-size: 1.4rem;
+    max-width: none;
+
+    i {
+      display: none;
+    }
   }
 
   .select__input input {
@@ -94,6 +101,36 @@
   .select__option--is-selected {
     background: none;
     color: $red;
+  }
+
+  .select__menu {
+    margin-top: .9rem;
+    border-radius: 0;
+    box-shadow: none;
+    background: none;
+  }
+
+  .select__menu-list {
+    padding: 0;
+    background: #fff;
+    box-shadow: 0 0.0625em 0.3125em rgba(0,0,0,.15);
+    width: 18rem;
+    margin: 0 auto;
+  }
+
+  .select__option {
+    padding: 1.3rem 2rem;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid #DFDFDF;
+    }
+
+    i {
+      font-size: 1.5rem;
+      display: inline-block;
+      vertical-align: bottom;
+      margin-right: 1rem;
+    }
   }
 
   @media (min-width: 1025px) {
