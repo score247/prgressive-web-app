@@ -1,9 +1,7 @@
 import React from "react";
 import "./Navbar.scss";
 import { WithTranslation } from "next-i18next";
-import { withTranslation, Link } from "../../../../../common/helpers/Localizer";
-import { useRouter } from "next/router";
-import { SportsEnum } from "../../../../../common/enums/sportenum";
+import { withTranslation } from "../../../../../common/helpers/Localizer";
 import { ResourceType } from "../../../../../common/constants";
 import SportLink from "../../../../sport-link";
 import FunctionLink from "../../../../function-link";
