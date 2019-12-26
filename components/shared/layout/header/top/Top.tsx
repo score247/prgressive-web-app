@@ -72,6 +72,7 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => {
           options={sportOptions}
           value={filter(sportOptions, { forSport: `${sport.toUpperCase()}` })}
           onChange={onChangeSportMobile}
+          isSearchable={false}
         />
         <i className="icon-search" />
       </div>
