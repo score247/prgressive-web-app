@@ -6,18 +6,18 @@ type ChatState = {
     message: string,
     messages: Array<string>,
     hubConnection?: signalR.HubConnection,
-}
+};
 
 class Chat extends Component<{}, ChatState> {
   constructor(props: ReactPropTypes) {
     super(props);
-    
+     
     this.state = {
       nick: 'test-user',
       message: '',
       messages: [],
       hubConnection: undefined,
-    };
+    }; 
   }
 
   componentDidMount = () => {
@@ -26,8 +26,7 @@ class Chat extends Component<{}, ChatState> {
                 .withUrl("http://localhost:57321/chat")
                 .build();
 
-    hubConnection.on('broadcastMessage', (name: string, message: string) => 
-    {
+    hubConnection.on('broadcastMessage', (name: string, message: string) => {
         this.state.messages.push(message);
         this.setState({
             messages: this.state.messages
@@ -36,9 +35,8 @@ class Chat extends Component<{}, ChatState> {
 
     this.setState({
         hubConnection: hubConnection
-    }, () => 
-    {
-        hubConnection
+    }, () => {
+        hubConnection 
             .start()
             .then(() => console.log("Connection started!"))
             .catch(err => console.log("Error while establishing connection :("));

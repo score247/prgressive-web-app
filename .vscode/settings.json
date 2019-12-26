@@ -13,5 +13,4 @@
         "serverId": "nexdevsonarqube",
         "projectKey": "score247-web-app"
     },
-    "sonarlint.trace.server": "messages",
 }
