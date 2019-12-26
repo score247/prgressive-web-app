@@ -15,10 +15,16 @@ process.on("uncaughtException", err => {
   Sentry.captureException(err);
 });
 
-class Score247Document extends Document {
+class Score247Document extends Document<{ isMobileView: boolean }> {
   static async getInitialProps(ctx: DocumentContext) {
     const initialProps = await Document.getInitialProps(ctx);
-    return { ...initialProps };
+
+    const isMobileView = (
+      ctx.req?.headers["user-agent"] ?? navigator.userAgent
+    ).match(
+      /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+    );
+    return { ...initialProps, isMobileView };
   }
 
   render() {
@@ -34,7 +40,7 @@ class Score247Document extends Document {
             href="/static/images/icon152x152.png"
           ></link>
         </Head>
-        <body>
+        <body className={this.props.isMobileView ? "mobile" : ""}>
           <Main />
           <NextScript />
         </body>
