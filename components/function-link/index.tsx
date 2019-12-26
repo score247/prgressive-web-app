@@ -9,8 +9,9 @@ interface IProps {
   iconClassName: string;
 }
 
-const FunctionLink: React.FunctionComponent<IProps> = ({ href, activeClassName, htmlText, iconClassName }: IProps) => {
+const FunctionLink: React.FunctionComponent<IProps> = (props: IProps) => {
   const { pathname } = useRouter();
+  const { href, activeClassName, htmlText, iconClassName } = props;
   const className = href === pathname ? `menu-item ${activeClassName}`.trim() : "menu-item";
   return (
     <li className={className}>

@@ -11,8 +11,7 @@ interface IProps {
   iconClassName: string;
 }
 
-const SportLink: React.FunctionComponent<IProps> = ({ sport, href, activeClassName, htmlText, iconClassName }: IProps) => {
-  const { pathname } = useRouter();
+const detectClassName = (sport: string, href: string, pathname: string, activeClassName: string) => {
   let className = "";
   if (sport === SportsEnum.SOCCER && href === "/") {
     if (pathname === "/" || pathname.search(SportsEnum.SOCCER) >= 1) {
@@ -25,8 +24,14 @@ const SportLink: React.FunctionComponent<IProps> = ({ sport, href, activeClassNa
   } else {
     className = `menu-item`;
   }
+  return className;
+};
+
+const SportLink: React.FunctionComponent<IProps> = (props: IProps) => {
+  const { pathname } = useRouter();
+  const { sport, href, activeClassName, htmlText, iconClassName } = props;
   return (
-    <li className={className}>
+    <li className={detectClassName(sport, href, pathname, activeClassName)}>
       <Link href={href}>
         <a className="nav-link">
           <i className={iconClassName} />
