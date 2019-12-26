@@ -99,7 +99,6 @@ class DateBar extends Component<Props, State> {
             className="show-mobile live"
             onClick={this.handleLiveMatchChange}
           >
-            {/* {this.props.t("live")} */}
             <i className="icon-live" />
             <span className="has-live" />
           </span>
