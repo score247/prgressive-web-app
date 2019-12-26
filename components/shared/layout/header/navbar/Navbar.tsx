@@ -5,67 +5,40 @@ import { withTranslation, Link } from "../../../../../common/helpers/Localizer";
 import { useRouter } from "next/router";
 import { SportsEnum } from "../../../../../common/enums/sportenum";
 import { ResourceType } from "../../../../../common/constants";
+import SportLink from "../../../../sport-link";
+import FunctionLink from "../../../../function-link";
 
 interface IProps extends WithTranslation {
   sport: string;
 }
 
 const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
-  const { pathname } = useRouter();
+  const activeClass = "active";
 
-  const createSportLink = (href: string, activeClassName: string, htmlText: string, iconClassName: string) => {
-    let className = "";
-    if (sport === SportsEnum.SOCCER && href === "/") {
-      if (pathname === "/" || pathname.search(SportsEnum.SOCCER) >= 1) {
-        className = `menu-item ${activeClassName}`.trim();
-      } else {
-        className = `menu-item`;
-      }
-    } else if (href.replace("/", "") === sport) {
-      className = `menu-item ${activeClassName}`.trim();
-    } else {
-      className = `menu-item`;
-    }
-    return (
-      <li className={className}>
-        <Link href={href}>
-          <a className="nav-link">
-            <i className={iconClassName} />
-            {htmlText}
-          </a>
-        </Link>
-      </li>
-    );
-  };
-
-  const createFunctionLink = (href: string, activeClassName: string, htmlText: string) => {
-    const className = href === pathname ? `menu-item ${activeClassName}`.trim() : "menu-item";
-    return (
-      <li className={className}>
-        <Link href={href}>
-          <a className="nav-link">{htmlText}</a>
-        </Link>
-      </li>
-    );
-  };
   return (
     <nav className="nav-menu hide-mobile">
       <div className="container">
         <div className="nav-sports">
           <ul className="menu">
-            {createSportLink("/", "active", t("soccer"), "icon-soccer")}
-            {createSportLink("/basketball", "active", t("basketball"), "icon-basketball")}
-            {createSportLink("/esports", "active", t("esports"), "icon-esports")}
+            <SportLink sport={sport} href={"/"} activeClassName={activeClass} htmlText={t("soccer")} iconClassName="icon-soccer" />
+            <SportLink
+              sport={sport}
+              href={"/basketball"}
+              activeClassName={activeClass}
+              htmlText={t("basketball")}
+              iconClassName="icon-basketball"
+            />
+            <SportLink sport={sport} href={"/esports"} activeClassName={activeClass} htmlText={t("esports")} iconClassName="icon-esports" />
           </ul>
         </div>
         <div className="nav-function">
           <ul className="menu">
-            {createFunctionLink(`/${sport}/leagues`, "active", t("leagues"))}
-            {createFunctionLink(`/${sport}/favorites`, "active", t("myfavorites"))}
-            {createFunctionLink(`/${sport}/news`, "active", t("news"))}
-            {createFunctionLink(`/${sport}/tv`, "active", t("tvschedules"))}
-            {createFunctionLink(`/mobile`, "active", t("mobile"))}
-            {createFunctionLink(`/settings`, "active", t("settings"))}
+            <FunctionLink href={`/${sport}/leagues`} activeClassName={activeClass} htmlText={t("leagues")} iconClassName="" />
+            <FunctionLink href={`/${sport}/favorites`} activeClassName={activeClass} htmlText={t("myfavorites")} iconClassName="" />
+            <FunctionLink href={`/${sport}/news`} activeClassName={activeClass} htmlText={t("news")} iconClassName="" />
+            <FunctionLink href={`/${sport}/tv`} activeClassName={activeClass} htmlText={t("tvschedules")} iconClassName="" />
+            <FunctionLink href={`/mobile`} activeClassName={activeClass} htmlText={t("mobile")} iconClassName="" />
+            <FunctionLink href={`/settings`} activeClassName={activeClass} htmlText={t("settings")} iconClassName="" />
           </ul>
         </div>
       </div>
