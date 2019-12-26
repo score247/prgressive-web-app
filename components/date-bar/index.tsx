@@ -87,7 +87,8 @@ class DateBar extends Component<Props, State> {
   render() {
     return (
       <div className="nav-date">
-        <button type="button"
+        <button
+          type="button"
           className="btn live-match hide-mobile"
           onClick={this.handleLiveMatchChange}
         >
@@ -113,6 +114,7 @@ class DateBar extends Component<Props, State> {
             locale={this.props.i18n.language}
             showPopperArrow={false}
             className={this.getDatePickerClassName()}
+            popperPlacement="bottom-end"
           />
         </div>
       </div>

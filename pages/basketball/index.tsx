@@ -13,7 +13,7 @@ const Basketball: LocalizedPage = props => {
 };
 
 Basketball.getInitialProps = () => ({
-  namespacesRequired: ["basketball", "common"]
+  namespacesRequired: [ResourceType.BASKETBALL]
 });
 
-export default withTranslation([ ResourceType.COMMON, ResourceType.BASKETBALL])(Basketball);
+export default withTranslation(ResourceType.BASKETBALL)(Basketball);

@@ -1,7 +1,6 @@
 import "./style.scss";
 
 import React, { PureComponent } from "react";
-import { State } from "./type";
 
 import DatePicker, {
   ReactDatePickerProps,
@@ -17,43 +16,13 @@ registerLocale("vi", vi);
 registerLocale("en", enUS);
 setDefaultLocale("en");
 
-class DatePickerWrapper extends PureComponent<ReactDatePickerProps, State> {
-  minWidth = 1025;
-
-  constructor(props: ReactDatePickerProps) {
-    super(props);
-
-    this.state = {
-      withPortal: false
-    };
-
-    this.handleSizeChange = this.handleSizeChange.bind(this);
-  }
-
-  componentDidMount() {
-    this.handleSizeChange();
-    window.addEventListener("resize", this.handleSizeChange);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener("resize", this.handleSizeChange);
-  }
-
-  handleSizeChange() {
-    const width = window.innerWidth > 0 ? window.innerWidth : screen.width;
-    const withPortal = width < this.minWidth;
-    
-    if (this.state.withPortal !== withPortal) {
-      this.setState({ withPortal });
-    }
-  }
-
+class DatePickerWrapper extends PureComponent<ReactDatePickerProps> {
   render() {
     const { className, ...rest } = this.props;
 
     return (
       <div className={`datepicker-wrapper ${className}`}>
-        <DatePicker {...rest} withPortal={this.state.withPortal} />
+        <DatePicker {...rest}/>
       </div>
     );
   }

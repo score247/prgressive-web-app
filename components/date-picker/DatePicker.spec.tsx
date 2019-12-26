@@ -14,15 +14,4 @@ describe("DatePicker", () => {
 
     expect(wrapper).toMatchSnapshot();
   });
-
-  it("should call handleSizeChange when mount", () => {
-    const props: ReactDatePickerProps = {
-      selected: new Date(),
-      onChange: function(date: Date) {}
-    };
-
-    jest.spyOn(DatePicker.prototype, "handleSizeChange");
-    const wrapper = shallow(<DatePicker {...props} />);
-    expect(DatePicker.prototype.handleSizeChange).toBeCalled();
-  });
 });

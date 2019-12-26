@@ -3,6 +3,7 @@ import Layout from "../components/shared/layout/Layout";
 import { MatchSummary } from "../models/MatchSummary";
 import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
 import { SportsEnum } from "../common/enums/sportenum";
+import { ResourceType } from "../common/constants";
 
 const SoccerPage: LocalizedPage<{ matches: MatchSummary[] }, {}> = ({
   matches,
@@ -15,7 +16,7 @@ const SoccerPage: LocalizedPage<{ matches: MatchSummary[] }, {}> = ({
 
 SoccerPage.getInitialProps = async () => {
   return {
-    namespacesRequired: ["soccer"]
+    namespacesRequired: [ResourceType.SOCCER]
   };
 };
 
