@@ -5,14 +5,8 @@ import { format, addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { State, Props } from "./type";
 import { ResourceType } from "../../common/constants";
+import CustomDateInput from './custom-date-input';
 
-const CustomDateInput = (props: { onClick?: () => void }) => {
-  return (
-    <span onClick={props.onClick}>
-      <i className="icon-calendar" />
-    </span>
-  );
-};
 
 class DateBar extends Component<Props, State> {
   today: Date;
@@ -87,8 +81,7 @@ class DateBar extends Component<Props, State> {
   render() {
     return (
       <div className="nav-date">
-        <button
-          type="button"
+        <button type="button"
           className="btn live-match hide-mobile"
           onClick={this.handleLiveMatchChange}
         >
