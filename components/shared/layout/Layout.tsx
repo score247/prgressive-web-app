@@ -7,35 +7,31 @@ import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import DateBar from "../../date-bar";
 import Breadcrumbs from "../../bread-crumbs";
+import LeftBar from "./left-bar/LeftBar";
+import RightBar from "./right-bar/RightBar";
+import Banner from "./banner/Banner";
 
-const Layout: React.FunctionComponent<{ title?: string, breadcrumbs?: string[]}> = ({
-  children,
-  title = "Home",
-  breadcrumbs =  [""]
-}) => {
+const Layout: React.FunctionComponent<{
+  title?: string;
+  breadcrumbs?: string[];
+}> = ({ children, title = "Home", breadcrumbs = [""] }) => {
   const [date, setDate] = useState(new Date());
   const [onlyLiveMatch, setOnlyLiveMatch] = useState(false);
-  
+
   return (
-    <div>
+    <>
       <Head>
         <title>{title} | Score247</title>
       </Head>
       <Header />
       <div className="container">
-        <Breadcrumbs breadcrumbs={breadcrumbs} selectedDate={date} onlyLiveMatch={onlyLiveMatch} />
+        <Breadcrumbs
+          breadcrumbs={breadcrumbs}
+          selectedDate={date}
+          onlyLiveMatch={onlyLiveMatch}
+        />
         <div className="wrap-content">
-          <div className="left-container hide-mobile">
-            <div className="banner">
-              <img src="/static/images/ads-banner-2.png" alt="Logo" className="ads-img" />
-            </div>
-            <div className="search block">Search</div>
-            <div className="block h-200">Top Events</div>
-            <div className="block h-200">List of Leagues</div>
-            <div className="banner-small block">Advertising Banner</div>
-            <div className="banner-big block">Advertising Banner</div>
-          </div>
-
+          <LeftBar />
           <div className="main-container">
             <DateBar
               onDateChange={setDate}
@@ -43,24 +39,14 @@ const Layout: React.FunctionComponent<{ title?: string, breadcrumbs?: string[]}>
               onLiveMatchChange={setOnlyLiveMatch}
               onlyLiveMatch={onlyLiveMatch}
             />
-            <div className="banner hide-mobile">
-              <img src="/static/images/ads-banner-1.png" alt="Logo" className="ads-img" />
-            </div>
+            <Banner url="#" imgSrc="/static/images/ads-banner-1.png" />
             <div className="content">{children}</div>
           </div>
-
-          <div className="right-container hide-mobile">
-            <div className="banner">
-              <img src="/static/images/ads-banner-3.png" alt="Logo" className="ads-img" />
-            </div>
-            <div className="block h-400">League Table</div>
-            <div className="banner-small block">Advertising Banner</div>
-            <div className="banner-big block">Advertising Banner</div>
-          </div>
+          <RightBar />
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 
