@@ -45,18 +45,18 @@ class DateBar extends Component<Props, State> {
   renderDate = (date: Date) => {
     const className =
       !this.props.onlyLiveMatch && isSameDay(date, this.props.selectedDate)
-        ? "active"
-        : "";
+        ? "date-item active"
+        : "date-item";
 
     return (
-      <span
+      <div
         key={date.getDay()}
         className={className}
         onClick={() => this.handleChange(date)}
       >
-        {isSameDay(date, this.today) ? this.props.t(ResourceKey.TODAY) : format(date, "iii")}
+        <div className="days">{isSameDay(date, this.today) ? this.props.t(ResourceKey.TODAY) : format(date, "iii")}</div>
         <div>{format(date, "dd MMM")}</div>
-      </span>
+      </div>
     );
   };
 
@@ -81,7 +81,7 @@ class DateBar extends Component<Props, State> {
         </button>
         <div className="date-bar">
           <span
-            className={`live-score ${this.props.onlyLiveMatch && "active"}`}
+            className={`date-item live-score ${this.props.onlyLiveMatch && "active"}`}
             onClick={this.handleLiveMatchChange}
           >
             <i className="icon-live" />
