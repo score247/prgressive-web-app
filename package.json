@@ -13,7 +13,10 @@
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
-    "export": "next export"
+    "export": "next export",
+    "lighthouse:html": "node node_modules/lighthouse/lighthouse-cli/index.js --output-path=./audit/lighthouse-report.html --quiet --chrome-flags='--headless' https://score247-web.nexdev.net/",
+    "lighthouse:json": "mkdir audit && node node_modules/lighthouse/lighthouse-cli/index.js --output json --output-path=./audit/lighthouse-report.json --quiet --chrome-flags='--headless' https://score247-web.nexdev.net/",
+    "lighthouse:report": ""
   },
   "keywords": [],
   "author": "",
@@ -63,6 +66,7 @@
     "enzyme-adapter-react-16": "^1.15.1",
     "jest": "^24.9.0",
     "jest-sonar-reporter": "^2.0.0",
+    "lighthouse": "^5.6.0",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.3",
     "url-loader": "^3.0.0"

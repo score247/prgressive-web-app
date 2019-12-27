@@ -39,9 +39,9 @@ class Chat extends Component<{}, ChatState> {
         hubConnection: hubConnection
     }, () => {
         hubConnection 
-            .start()
-            .then(() => console.log("Connection started!"))
-            .catch(err => console.log("Error while establishing connection :("));
+            .start();
+            // .then(() => console.log("Connection started!"))
+            // .catch(err => console.log("Error while establishing connection :("));
     });
   }
   
