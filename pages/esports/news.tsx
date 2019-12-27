@@ -5,7 +5,7 @@ import { SportsEnum } from "../../common/enums/sportenum";
 import { ResourceKey, ResourceType } from "../../common/constants";
 
 const NewsPage: LocalizedPage = ({t}) => {
-  const breadcrumbs = [t(ResourceKey.BASKETBALL), t(ResourceKey.NEWS)];
+  const breadcrumbs = [t(ResourceKey.ESPORTS), t(ResourceKey.NEWS)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
@@ -16,7 +16,7 @@ const NewsPage: LocalizedPage = ({t}) => {
 
 NewsPage.getInitialProps = async () => {
   return {
-    namespacesRequired: [ResourceType.BASKETBALL]
+    namespacesRequired: [ResourceType.ESPORTS]
   };
 };
 
