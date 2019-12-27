@@ -1,10 +1,10 @@
 import * as React from "react";
 import Layout from "../../components/shared/layout/Layout";
 import {  LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { SportsEnum } from "../../common/enums/sportenum";
+import { ResourceKey, ResourceType } from "../../common/constants";
 
 const FavoritesPage: LocalizedPage = ({t}) => {
-  const breadcrumbs = [t(SportsEnum.SOCCER), t("myfavorites")];
+  const breadcrumbs = [t(ResourceKey.BASKETBALL), t(ResourceKey.FAVORITES)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
@@ -15,7 +15,7 @@ const FavoritesPage: LocalizedPage = ({t}) => {
 
 FavoritesPage.getInitialProps = async () => {
   return {
-    namespacesRequired: ["soccer"]
+    namespacesRequired: [ResourceType.SOCCER]
   };
 };
 

@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.scss";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../../common/helpers/Localizer";
-import { ResourceType } from "../../../../../common/constants";
+import { ResourceType, ResourceKey } from "../../../../../common/constants";
 import SportLink from "../../../../sport-link";
 import FunctionLink from "../../../../function-link";
 
@@ -18,25 +18,25 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
       <div className="container">
         <div className="nav-sports">
           <ul className="menu">
-            <SportLink sport={sport} href={"/"} activeClassName={activeClass} htmlText={t("soccer")} iconClassName="icon-soccer" />
+            <SportLink sport={sport} href={"/"} activeClassName={activeClass} htmlText={t(ResourceKey.SOCCER)} iconClassName="icon-soccer" />
             <SportLink
               sport={sport}
               href={"/basketball"}
               activeClassName={activeClass}
-              htmlText={t("basketball")}
+              htmlText={t(ResourceKey.BASKETBALL)}
               iconClassName="icon-basketball"
             />
-            <SportLink sport={sport} href={"/esports"} activeClassName={activeClass} htmlText={t("esports")} iconClassName="icon-esports" />
+            <SportLink sport={sport} href={"/esports"} activeClassName={activeClass} htmlText={t(ResourceKey.ESPORTS)} iconClassName="icon-esports" />
           </ul>
         </div>
         <div className="nav-function">
           <ul className="menu">
-            <FunctionLink href={`/${sport}/leagues`} activeClassName={activeClass} htmlText={t("leagues")} iconClassName="" />
-            <FunctionLink href={`/${sport}/favorites`} activeClassName={activeClass} htmlText={t("myfavorites")} iconClassName="" />
-            <FunctionLink href={`/${sport}/news`} activeClassName={activeClass} htmlText={t("news")} iconClassName="" />
-            <FunctionLink href={`/${sport}/tv`} activeClassName={activeClass} htmlText={t("tvschedules")} iconClassName="" />
-            <FunctionLink href={`/mobile`} activeClassName={activeClass} htmlText={t("mobile")} iconClassName="" />
-            <FunctionLink href={`/settings`} activeClassName={activeClass} htmlText={t("settings")} iconClassName="" />
+            <FunctionLink href={`/${sport}/leagues`} activeClassName={activeClass} htmlText={t(ResourceKey.LEAGUES)} iconClassName="" />
+            <FunctionLink href={`/${sport}/favorites`} activeClassName={activeClass} htmlText={t(ResourceKey.MYFAVORITES)} iconClassName="" />
+            <FunctionLink href={`/${sport}/news`} activeClassName={activeClass} htmlText={t(ResourceKey.NEWS)} iconClassName="" />
+            <FunctionLink href={`/${sport}/tv`} activeClassName={activeClass} htmlText={t(ResourceKey.TVSCHEDULES)} iconClassName="" />
+            <FunctionLink href={`/mobile`} activeClassName={activeClass} htmlText={t(ResourceKey.MOBILE)} iconClassName="" />
+            <FunctionLink href={`/settings`} activeClassName={activeClass} htmlText={t(ResourceKey.SETTINGS)} iconClassName="" />
           </ul>
         </div>
       </div>

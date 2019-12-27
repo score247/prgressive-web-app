@@ -4,7 +4,7 @@ import DatePicker from "../date-picker";
 import { format, addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { State, Props } from "./type";
-import { ResourceType } from "../../common/constants";
+import { ResourceType, ResourceKey } from "../../common/constants";
 import CustomDateInput from './custom-date-input';
 
 
@@ -54,7 +54,7 @@ class DateBar extends Component<Props, State> {
           }`}
           onClick={() => this.handleChange(date)}
         >
-          {this.props.t("today")}
+          {this.props.t(ResourceKey.TODAY)}
         </span>
       );
     }
@@ -86,7 +86,7 @@ class DateBar extends Component<Props, State> {
           onClick={this.handleLiveMatchChange}
         >
           <span className="badge-label">2 </span>
-          <span>{this.props.t("livematch")}</span>
+          <span>{this.props.t(ResourceKey.LIVEMATCH)}</span>
         </button>
         <div className="date-bar">
           <span

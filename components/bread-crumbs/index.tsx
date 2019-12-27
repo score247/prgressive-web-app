@@ -2,7 +2,7 @@ import "./style.scss";
 import React, { PureComponent } from "react";
 import { State, Props } from "./type";
 import { format, isSameDay } from "date-fns";
-import { ResourceType } from "../../common/constants"; 
+import { ResourceType, ResourceKey } from "../../common/constants"; 
 import { withTranslation } from "../../common/helpers/Localizer";
 
 class Breadcrumbs extends PureComponent<Props , State> {
@@ -34,9 +34,9 @@ class Breadcrumbs extends PureComponent<Props , State> {
           {breadcrumbs[1] && <span className="selected-sub">{breadcrumbs[1]} / </span>}
           <span className="selected-date">
             {onlyLiveMatch
-              ? t("livematch")
+              ? t(ResourceKey.LIVEMATCH)
               : isSameDay(selectedDate, this.state.currentDate)
-              ? t("today").toUpperCase()
+              ? t(ResourceKey.TODAY).toUpperCase()
               : format(selectedDate, "dd MMM yyyy")}
           </span>
         </div>

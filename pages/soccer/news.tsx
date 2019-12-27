@@ -1,10 +1,10 @@
 import * as React from "react";
 import Layout from "../../components/shared/layout/Layout";
 import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { SportsEnum } from "../../common/enums/sportenum";
+import { ResourceType, ResourceKey } from "../../common/constants";
 
 const NewsPage: LocalizedPage = ({t}) => {
-  const breadcrumbs = [t(SportsEnum.SOCCER), t("news")];
+  const breadcrumbs = [t(ResourceKey.SOCCER), t(ResourceKey.NEWS)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
@@ -15,7 +15,7 @@ const NewsPage: LocalizedPage = ({t}) => {
 
 NewsPage.getInitialProps = async () => {
   return {
-    namespacesRequired: ["esports"]
+    namespacesRequired: [ResourceType.SOCCER]
   };
 };
 

@@ -9,7 +9,7 @@ const SoccerPage: LocalizedPage<{ matches: MatchSummary[] }, {}> = ({
   matches,
   t
 }) => (
-  <Layout title="Soccer" breadcrumbs={[t(SportsEnum.SOCCER)]}>
+  <Layout title={t(SportsEnum.SOCCER)} breadcrumbs={[t(SportsEnum.SOCCER)]}>
     <h1>Soccer Page</h1>
   </Layout>
 );

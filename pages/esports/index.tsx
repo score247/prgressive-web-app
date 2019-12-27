@@ -1,22 +1,18 @@
 import * as React from "react";
 import Layout from "../../components/shared/layout/Layout";
-import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { SportsEnum } from "../../common/enums/sportenum";
-import { ResourceType } from "../../common/constants";
+import { withTranslation, LocalizedPage } from "../../common/helpers/Localizer";
+import { ResourceType, ResourceKey } from "../../common/constants";
 
-const ESportsPage: LocalizedPage = ({t}) => {
-
+const Basketball: LocalizedPage = props => {
   return (
-    <Layout title="E-Sports" breadcrumbs={[t(SportsEnum.ESPORTS)]}>
-      <h1>{t("esports")}</h1>
+    <Layout title="Basketball" breadcrumbs={[props.t(ResourceKey.BASKETBALL)]}>
+      <h1>{props.t(ResourceKey.ESPORTS)}</h1>
     </Layout>
   );
 };
 
-ESportsPage.getInitialProps = async () => {
-  return {
-    namespacesRequired: [ResourceType.ESPORTS]
-  };
-};
+Basketball.getInitialProps = () => ({
+  namespacesRequired: [ResourceType.ESPORTS]
+});
 
-export default  withTranslation()(ESportsPage);
+export default withTranslation()(Basketball);
