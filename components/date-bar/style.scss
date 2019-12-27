@@ -16,6 +16,11 @@
   .mobile & {
     padding: 0;
   }
+
+  @media (max-width: 1199px) {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }
 
 .date-bar {

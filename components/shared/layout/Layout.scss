@@ -19,6 +19,16 @@ body {
     box-sizing: border-box;
 }
 
+.wrap-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  > .container {
+    flex: 1;
+  }
+}
+
 .container {
     width: 100%;
     margin-right: auto;
@@ -110,11 +120,21 @@ body {
     .left-container {
         flex-basis: 26.7rem;
         max-width: 26.7rem;
+
+        @media (max-width: 1199px) {
+          flex-basis: 18rem;
+          max-width: 18rem;
+        }
     }
 
     .right-container {
         flex-basis: 29.2rem;
         max-width: 29.2rem;
+
+        @media (max-width: 1199px) {
+          flex-basis: 20rem;
+          max-width: 20rem;
+        }
     }
 
     .main-container {
@@ -166,7 +186,12 @@ body {
         list-style: none;
         display: inline-block;
         padding: 1.3rem 1.5rem;
-    }
+
+        @media (max-width: 1199px) {
+          padding-left: .5rem;
+          padding-right: .5rem;
+        }
+    }    
 }
 
 .banner {

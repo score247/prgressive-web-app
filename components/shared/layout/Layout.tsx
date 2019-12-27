@@ -19,7 +19,7 @@ const Layout: React.FunctionComponent<{
   const [onlyLiveMatch, setOnlyLiveMatch] = useState(false);
 
   return (
-    <>
+    <div className="wrap-page">
       <Head>
         <title>{title} | Score247</title>
       </Head>
@@ -46,7 +46,7 @@ const Layout: React.FunctionComponent<{
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
