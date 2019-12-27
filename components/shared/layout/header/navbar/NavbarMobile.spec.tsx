@@ -12,9 +12,18 @@ jest.mock("react-i18next", () => ({
 }));
 
 describe("NavBar", () => {
-  const wrapper = shallow(<NavBarMobile sport={SportsEnum.SOCCER} />);
+  it("should render correctly", () => {
+    const wrapper = shallow(<NavBarMobile sport={SportsEnum.SOCCER} />);
+    expect(wrapper).toMatchSnapshot();
+  });
 
   it("should render correctly", () => {
+    const wrapper = shallow(<NavBarMobile sport={SportsEnum.BASKETBALL} />);
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it("should render correctly", () => {
+    const wrapper = shallow(<NavBarMobile sport={SportsEnum.ESPORTS} />);
     expect(wrapper).toMatchSnapshot();
   });
 });
