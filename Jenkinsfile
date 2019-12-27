@@ -30,20 +30,24 @@ pipeline{
                  bat label: "Run Audit Json", script: "npm run lighthouse:json"
                  bat label: "Run Audit Html", script: "npm run lighthouse:html"
                  bat label: "Run Audit Report", script: "npm run lighthouse:report"
+                 
             }
 
-            // post {
-            //     always {
-            //     publishHTML (target: [
-            //         allowMissing: false,
-            //         alwaysLinkToLastBuild: false,
-            //         keepAll: true,
-            //         reportDir: '.',
-            //         reportFiles: 'lighthouse-report.html',
-            //         reportName: "Lighthouse"
-            //     ])
-            //     }
-            // }
+            post {
+                always {
+                    publishHTML (target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: '.',
+                        reportFiles: 'lighthouse-report.html',
+                        reportName: "Lighthouse"
+                    ])
+                    echo "${BUILD_URL}Lighthouse/"
+                }
+            }
+
+            
         }      
 
         stage("SonarQube Analysis"){
