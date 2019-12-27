@@ -1,4 +1,4 @@
-@import "../../../assets/styles/theme.scss";
+@import "../../assets/styles/theme.scss";
 
 html {
     font-size: 62.5%;
@@ -38,8 +38,8 @@ body {
     padding-left: 1.2rem;
 
     .mobile & {
-      padding-right: 0;
-      padding-left: 0;
+        padding-right: 0;
+        padding-left: 0;
     }
 
     @media (min-width: 1200px) {
@@ -82,18 +82,18 @@ body {
 }
 
 .show-mobile {
-  display: none !important;
+    display: none !important;
 
-  .mobile & {
-    display: block;
-  }    
+    .mobile & {
+        display: block;
+    }
 }
 
 .hide-mobile {
     display: block;
 
     .mobile & {
-      display: none;
+        display: none;
     }
 }
 
@@ -113,7 +113,7 @@ body {
         padding-left: .6rem;
 
         .mobile & {
-          padding: 0;
+            padding: 0;
         }
     }
 
@@ -147,8 +147,8 @@ body {
     }
 
     .mobile & {
-      margin-left: 0;
-      margin-right: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
 }
 

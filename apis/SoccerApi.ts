@@ -1,9 +1,7 @@
 import axios from "axios";
 import appSettings from "../app-settings";
-import { MatchSummary } from "../models/MatchSummary";
-import { MatchInfo } from "../models/MatchInfo";
-import { League } from "../models/League";
 import { decode } from "@msgpack/msgpack";
+import { MatchSummary, MatchInfo, League } from "../models";
 
 const instance = axios.create({
   baseURL: appSettings.soccerAPIBaseUrl,

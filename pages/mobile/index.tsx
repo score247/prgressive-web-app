@@ -1,5 +1,5 @@
 import * as React from "react";
-import Layout from "../../components/shared/layout/Layout";
+import Layout from "../../components/layout";
 import { LocalizedPage } from "../../common/helpers/Localizer";
 
 const MobilePage: LocalizedPage = () => {

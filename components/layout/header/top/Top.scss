@@ -1,4 +1,4 @@
-@import "../../../../../assets/styles/abstracts/variables";
+@import "../../../../assets/styles/abstracts/variables";
 
 .header-top {
   background: $headerBg;
@@ -10,7 +10,7 @@
   }
 
   .logo {
-    > img {
+    >img {
       display: inline-block;
       vertical-align: middle;
     }
@@ -19,7 +19,7 @@
       width: 15rem;
       margin-left: 1rem;
     }
-  } 
+  }
 
   .mobile & {
     display: none;
@@ -82,7 +82,7 @@
   .select__indicator {
     padding: 0;
 
-    > svg {
+    >svg {
       fill: #ff7d00;
       width: 1.6rem;
     }

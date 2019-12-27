@@ -1,4 +1,4 @@
-@import '../../../../../assets/styles//abstracts/variables';
+@import '../../../../assets/styles/abstracts/variables';
 
 .nav-menu {
   background: $functionBg;
@@ -7,7 +7,7 @@
   .container {
     display: flex;
     justify-content: space-between;
-  }  
+  }
 
   .nav-function {
     text-transform: uppercase;
@@ -20,7 +20,7 @@
     font-weight: normal;
     text-transform: uppercase;
 
-    > i {
+    >i {
       margin-right: .5rem;
     }
   }
@@ -65,7 +65,7 @@
     text-decoration: none;
     font-size: 1.1rem;
 
-    > i {
+    >i {
       display: block;
       margin-bottom: .4rem;
       font-size: 2rem;

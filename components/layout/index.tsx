@@ -1,12 +1,10 @@
-import "./Layout.scss";
-import "../icons/Icons.scss";
-
+import "./style.scss";
 import React, { useState } from "react";
 import Head from "next/head";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import DateBar from "../../date-bar";
-import Breadcrumbs from "../../bread-crumbs";
+import DateBar from "../date-bar";
+import Breadcrumbs from "../bread-crumbs";
 import LeftBar from "./left-bar/LeftBar";
 import RightBar from "./right-bar/RightBar";
 import Banner from "./banner/Banner";

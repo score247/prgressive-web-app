@@ -2,7 +2,7 @@ import React from "react";
 import "./Top.scss";
 import Select, { ValueType } from "react-select";
 import Router from "next/router";
-import { SportsEnum } from "../../../../../common/enums/sportenum";
+import { SportsEnum } from "../../../../common/enums/sportenum";
 import { filter } from "lodash";
 
 interface IProps {
@@ -55,7 +55,11 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => {
         <div className="container">
           <div className="logo">
             <img src="/static/images/Logo.png" alt="Logo" />
-            <img className="logo-text" src="/static/images/SCORE247.png" alt="Logo" />
+            <img
+              className="logo-text"
+              src="/static/images/SCORE247.png"
+              alt="Logo"
+            />
           </div>
           <div className="user-languages">
             <div className="login">Languages</div>

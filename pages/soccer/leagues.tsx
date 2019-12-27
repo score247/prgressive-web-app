@@ -1,9 +1,9 @@
 import * as React from "react";
-import Layout from "../../components/shared/layout/Layout";
+import Layout from "../../components/layout";
 import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
 
-const LeaguesPage: LocalizedPage = ({t}) => {
+const LeaguesPage: LocalizedPage = ({ t }) => {
   const breadcrumbs = [t(ResourceKey.SOCCER), t(ResourceKey.LEAGUES)];
 
   return (

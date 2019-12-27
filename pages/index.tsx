@@ -1,5 +1,5 @@
 import * as React from "react";
-import Layout from "../components/shared/layout/Layout";
+import Layout from "../components/layout";
 import { MatchSummary } from "../models/MatchSummary";
 import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
 import { SportsEnum } from "../common/enums/sportenum";

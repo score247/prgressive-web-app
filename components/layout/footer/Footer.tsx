@@ -1,9 +1,9 @@
 import * as React from "react";
 import Link from "next/link";
 import "./Footer.scss";
-import { withTranslation } from "../../../../common/helpers/Localizer";
+import { withTranslation } from "../../../common/helpers/Localizer";
 import { WithTranslation } from "next-i18next";
-import { ResourceType } from "../../../../common/constants";
+import { ResourceType } from "../../../common/constants";
 
 const Footer: React.FunctionComponent<WithTranslation> = ({ t }) => {
   return (
@@ -16,7 +16,7 @@ const Footer: React.FunctionComponent<WithTranslation> = ({ t }) => {
         <a style={linkStyle}>{props.t("aboutUs")}</a>
         </Link> */}
         <p>© 2019 Score247, Inc. All right reserved</p>
-      </div>      
+      </div>
     </footer>
   );
 };
