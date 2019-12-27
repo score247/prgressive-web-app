@@ -24,10 +24,10 @@ pipeline{
 
         stage("Run Site Audit"){
             steps{
-                bat label: "Install Package", script: "npm install",
-                bat label: "Run Audit Json", script: "npm run lighthouse:json",
-                bat label: "Run Audit Html", script: "npm run lighthouse:html",
-                bat label: "Run Audit Report", script: "npm run lighthouse:report"
+                { bat label: "Install Package", script: "npm install" },
+                { bat label: "Run Audit Json", script: "npm run lighthouse:json" },
+                { bat label: "Run Audit Html", script: "npm run lighthouse:html" },
+                { bat label: "Run Audit Report", script: "npm run lighthouse:report" }
             }
         }      
 
