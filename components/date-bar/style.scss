@@ -33,6 +33,10 @@
     text-align: center;
     border-bottom: 1px solid transparent;
     vertical-align: middle;
+
+    @media (max-width: 768px) {
+      padding: 0 .5rem;
+    }
   }
 
   .days {

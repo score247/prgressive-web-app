@@ -125,6 +125,11 @@ body {
           flex-basis: 18rem;
           max-width: 18rem;
         }
+
+        @media (max-width: 768px) {
+          flex-basis: 12rem;
+          max-width: 12rem;
+        }
     }
 
     .right-container {
@@ -134,6 +139,11 @@ body {
         @media (max-width: 1199px) {
           flex-basis: 20rem;
           max-width: 20rem;
+        }
+
+        @media (max-width: 768px) {
+          flex-basis: 15rem;
+          max-width: 15rem;
         }
     }
 
