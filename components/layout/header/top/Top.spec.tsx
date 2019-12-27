@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Top from "./Top";
-import { SportsEnum } from "../../../../../common/enums/sportenum";
+import { SportsEnum } from "../../../../common/enums/sportenum";
 import Select from "react-select";
 import Router from "next/router";
 
