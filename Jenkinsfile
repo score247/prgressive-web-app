@@ -20,7 +20,16 @@ pipeline{
                     pipelineLib.tsJest("")
                 }
             }
-        }     
+        }  
+
+        stage("Run Site Audit"){
+            steps{
+                bat label: "Install Package", script: "npm install",
+                bat label: "Run Audit Json", script: "npm run lighthouse:json",
+                bat label: "Run Audit Html", script: "npm run lighthouse:html",
+                bat label: "Run Audit Report", script: "npm run lighthouse:report"
+            }
+        }      
 
         stage("SonarQube Analysis"){
             steps{       
@@ -42,7 +51,7 @@ pipeline{
                     step([$class: 'ACIPluginPublisher', name: '*.xml', shownOnProjectPage: false])
                 }
             }
-        }
+        }  
     }
     post{
         unsuccessful{
