@@ -1,7 +1,6 @@
 import * as React from "react";
 import Layout from "../../components/layout";
 import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { SportsEnum } from "../../common/enums/sportenum";
 import { ResourceKey, ResourceType } from "../../common/constants";
 
 const NewsPage: LocalizedPage = ({ t }) => {
@@ -9,7 +8,7 @@ const NewsPage: LocalizedPage = ({ t }) => {
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <h1>E-Sports - News</h1>
+      <h1>Basketball - News</h1>
     </Layout>
   );
 };

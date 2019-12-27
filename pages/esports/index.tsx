@@ -3,16 +3,16 @@ import Layout from "../../components/layout";
 import { withTranslation, LocalizedPage } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
 
-const Basketball: LocalizedPage = props => {
+const Esports: LocalizedPage = props => {
   return (
-    <Layout title="Basketball" breadcrumbs={[props.t(ResourceKey.BASKETBALL)]}>
+    <Layout title={props.t(ResourceKey.ESPORTS)} breadcrumbs={[props.t(ResourceKey.ESPORTS)]}>
       <h1>{props.t(ResourceKey.ESPORTS)}</h1>
     </Layout>
   );
 };
 
-Basketball.getInitialProps = () => ({
+Esports.getInitialProps = () => ({
   namespacesRequired: [ResourceType.ESPORTS]
 });
 
-export default withTranslation()(Basketball);
+export default withTranslation()(Esports);

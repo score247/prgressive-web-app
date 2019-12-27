@@ -8,7 +8,7 @@ const LeaguesPage: LocalizedPage = ({ t }) => {
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <h1>Soccer - Leagues</h1>
+      <h1>Basketball - Leagues</h1>
     </Layout>
   );
 };

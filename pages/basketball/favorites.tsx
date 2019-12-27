@@ -8,14 +8,14 @@ const FavoritesPage: LocalizedPage = ({ t }) => {
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <h1>Soccer - Favorites</h1>
+      <h1>basketball - Favorites</h1>
     </Layout>
   );
 };
 
 FavoritesPage.getInitialProps = async () => {
   return {
-    namespacesRequired: [ResourceType.SOCCER]
+    namespacesRequired: [ResourceType.BASKETBALL]
   };
 };
 

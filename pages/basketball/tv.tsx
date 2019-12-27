@@ -8,7 +8,7 @@ const TVPage: LocalizedPage = ({ t }) => {
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <h1>E-Sports - TV</h1>
+      <h1>Basketball - TV</h1>
     </Layout>
   );
 };

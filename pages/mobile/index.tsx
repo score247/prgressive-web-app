@@ -1,10 +1,11 @@
 import * as React from "react";
 import Layout from "../../components/layout";
-import { LocalizedPage } from "../../common/helpers/Localizer";
+import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
+import { ResourceKey, ResourceType } from "../../common/constants";
 
-const MobilePage: LocalizedPage = () => {
+const MobilePage: LocalizedPage = ({t}) => {
   return (
-    <Layout title="Mobile">
+    <Layout title="Mobile" breadcrumbs={[t(ResourceKey.MOBILE)]}>
       <h1>Mobile Page</h1>
     </Layout>
   );
@@ -12,8 +13,8 @@ const MobilePage: LocalizedPage = () => {
 
 MobilePage.getInitialProps = async () => {
   return {
-    namespacesRequired: ["esports"]
+    namespacesRequired: [ResourceType.COMMON]
   };
 };
 
-export default MobilePage;
+export default withTranslation()(MobilePage) ;

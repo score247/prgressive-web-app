@@ -1,7 +1,6 @@
 import * as React from "react";
 import Layout from "../../components/layout";
 import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { SportsEnum } from "../../common/enums/sportenum";
 import { ResourceKey, ResourceType } from "../../common/constants";
 
 const NewsPage: LocalizedPage = ({ t }) => {
