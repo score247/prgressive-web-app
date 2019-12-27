@@ -27,9 +27,8 @@ pipeline{
         stage("Run Site Audit"){
             steps{
                  bat label: "Install Package", script: "npm install" 
-                 bat label: "Run Audit Json", script: "npm run lighthouse:json"
-                 bat label: "Run Audit Html", script: "npm run lighthouse:html"
-                 bat label: "Run Audit Report", script: "npm run lighthouse:report"
+                 bat label: "Run Audit", script: "npm run lighthouse:run"
+                 bat label: "Check Audit Report", script: "npm run lighthouse:report"
                  
             }
 
@@ -40,7 +39,7 @@ pipeline{
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
                         reportDir: '.',
-                        reportFiles: 'lighthouse-report.html',
+                        reportFiles: 'html_audit.report.html',
                         reportName: "Lighthouse"
                     ])
                     echo "${BUILD_URL}Lighthouse/"

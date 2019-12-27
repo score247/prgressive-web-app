@@ -47,5 +47,5 @@ jspm_packages
 *.orig
 *.snap
 
-lighthouse-report.json
-lighthouse-report.html
+html_audit.report.json
+html_audit.report.html

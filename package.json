@@ -15,8 +15,7 @@
     "test:coverage": "jest --coverage",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "export": "next export",
-    "lighthouse:html": "node node_modules/lighthouse/lighthouse-cli/index.js --output-path=./lighthouse-report.html --quiet --chrome-flags='--headless' https://score247-web.nexdev.net/",
-    "lighthouse:json": "node node_modules/lighthouse/lighthouse-cli/index.js --output json --output-path=./lighthouse-report.json --quiet --chrome-flags='--headless' https://score247-web.nexdev.net/",
+    "lighthouse:run": "node node_modules/lighthouse/lighthouse-cli/index.js --output json --output html --output-path ./html_audit.json --quiet --chrome-flags='--headless' https://score247-web.nexdev.net/",
     "lighthouse:report": "node ./audit.js"
   },
   "keywords": [],

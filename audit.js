@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 
-let data = JSON.parse(fs.readFileSync('lighthouse-report.json'));
+let data = JSON.parse(fs.readFileSync('html_audit.report.json'));
 
 const performanceScore = data.categories.performance.score;
 const accessibilityScore = data.categories.accessibility.score;
