@@ -1,12 +1,12 @@
 @import '../../assets/styles//abstracts/variables';
 .site-info {
-  display: none;
+  display: flex;
+  justify-content: space-between;
   padding: 2.3rem 0;
   font-size: 1.4rem;
 
-  @media (min-width: 1025px) {
-    display: flex;
-    justify-content: space-between;
+  .mobile & {
+    display: none;
   }
 
   .selected-sport, .selected-sub {

@@ -36,6 +36,7 @@
   right: 0;
   left: 0;
   background: $darkBlue;
+  display: none;
 
   .menu {
     display: flex;
@@ -71,7 +72,7 @@
     }
   }
 
-  @media (min-width: 1025px) {
-    display: none;
+  .mobile & {
+    display: block;
   }
 }

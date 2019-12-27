@@ -90,7 +90,7 @@ class DateBar extends Component<Props, State> {
         </button>
         <div className="date-bar">
           <span
-            className="show-mobile live"
+            className="live-score"
             onClick={this.handleLiveMatchChange}
           >
             <i className="icon-live" />

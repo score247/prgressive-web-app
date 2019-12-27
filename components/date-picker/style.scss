@@ -26,6 +26,11 @@
       line-height: 4.5rem;
       margin: 0;
       font-weight: normal;
+
+      .mobile & {
+        width: 3.5rem;
+        line-height: 3.5rem;
+      }
       
     }   
 

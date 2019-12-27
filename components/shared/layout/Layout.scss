@@ -21,22 +21,15 @@ body {
 
 .container {
     width: 100%;
-
     margin-right: auto;
     margin-left: auto;
     box-sizing: border-box;
+    padding-right: 1.2rem;
+    padding-left: 1.2rem;
 
-    // @media (min-width: 576) {
-    //   max-width: 540px;
-    // }
-
-    // @media (min-width: 768px) {
-    //   max-width: 720px;
-    // }
-
-    @media (min-width: 1025px) {
-        padding-right: 1.2rem;
-        padding-left: 1.2rem;
+    .mobile & {
+      padding-right: 0;
+      padding-left: 0;
     }
 
     @media (min-width: 1200px) {
@@ -79,16 +72,18 @@ body {
 }
 
 .show-mobile {
-    @media (min-width: 1025px) {
-        display: none !important;
-    }
+  display: none !important;
+
+  .mobile & {
+    display: block;
+  }    
 }
 
 .hide-mobile {
-    display: none;
+    display: block;
 
-    @media (min-width: 1025px) {
-        display: block !important;
+    .mobile & {
+      display: none;
     }
 }
 
@@ -97,16 +92,18 @@ body {
     flex: 0 1 auto;
     flex-direction: row;
     flex-wrap: wrap;
-
+    margin-right: -.5rem;
+    margin-left: -.5rem;
 
     .left-container,
     .main-container,
     .right-container {
         flex: 0 0 auto;
+        padding-right: .6rem;
+        padding-left: .6rem;
 
-        @media (min-width: 1025px) {
-            padding-right: .6rem;
-            padding-left: .6rem;
+        .mobile & {
+          padding: 0;
         }
     }
 
@@ -129,9 +126,9 @@ body {
         max-width: 100%;
     }
 
-    @media (min-width: 1025px) {
-        margin-right: -.5rem;
-        margin-left: -.5rem;
+    .mobile & {
+      margin-left: 0;
+      margin-right: 0;
     }
 }
 

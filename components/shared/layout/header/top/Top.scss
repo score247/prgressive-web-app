@@ -3,7 +3,6 @@
 .header-top {
   background: $headerBg;
   padding: 1rem 0;
-  display: none;
 
   .container {
     display: flex;
@@ -20,19 +19,19 @@
       width: 15rem;
       margin-left: 1rem;
     }
-  }
+  } 
 
-  @media (min-width: 1025px) {
-    display: block;
+  .mobile & {
+    display: none;
   }
 }
 
 .header-top-mobile {
   background: $headerBg;
   padding: 0.9rem 1.8rem;
-  display: flex;
   justify-content: space-between;
   align-items: center;
+  display: none;
 
   .icon-hambuger {
     font-size: 1.7rem;
@@ -132,7 +131,7 @@
     }
   }
 
-  @media (min-width: 1025px) {
-    display: none;
+  .mobile & {
+    display: flex;
   }
 }
