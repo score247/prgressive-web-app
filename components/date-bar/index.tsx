@@ -5,13 +5,14 @@ import { format, addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { State, Props } from "./type";
 import { ResourceType, ResourceKey } from "../../common/constants";
-import CustomDateInput from './custom-date-input';
-
+import CustomDateInput from "./custom-date-input";
 
 class DateBar extends Component<Props, State> {
   today: Date;
   minDate: Date;
   maxDate: Date;
+  afterTomorrow = 2;
+  beforeYesterday = -2;
 
   constructor(props: Props) {
     super(props);
@@ -22,11 +23,11 @@ class DateBar extends Component<Props, State> {
 
     this.state = {
       dateList: [
-        addDays(this.today, -2),
+        addDays(this.today, this.beforeYesterday),
         addDays(this.today, -1),
         this.today,
         addDays(this.today, 1),
-        addDays(this.today, 2)
+        addDays(this.today, this.afterTomorrow)
       ]
     };
   }
@@ -42,30 +43,19 @@ class DateBar extends Component<Props, State> {
   };
 
   renderDate = (date: Date) => {
-    if (isSameDay(date, this.today)) {
-      return (
-        <span
-          key={date.getDay()}
-          className={`today ${
-            isSameDay(date, this.props.selectedDate) &&
-            !this.props.onlyLiveMatch
-              ? "active"
-              : ""
-          }`}
-          onClick={() => this.handleChange(date)}
-        >
-          {this.props.t(ResourceKey.TODAY)}
-        </span>
-      );
-    }
+    const className =
+      !this.props.onlyLiveMatch && isSameDay(date, this.props.selectedDate)
+        ? "active"
+        : "";
 
     return (
       <span
         key={date.getDay()}
+        className={className}
         onClick={() => this.handleChange(date)}
-        className={isSameDay(this.props.selectedDate, date) ? "active" : ""}
       >
-        {format(date, "dd MMM")}
+        {isSameDay(date, this.today) ? this.props.t(ResourceKey.TODAY) : format(date, "iii")}
+        <div>{format(date, "dd MMM")}</div>
       </span>
     );
   };
@@ -81,7 +71,8 @@ class DateBar extends Component<Props, State> {
   render() {
     return (
       <div className="nav-date">
-        <button type="button"
+        <button
+          type="button"
           className="btn live-match hide-mobile"
           onClick={this.handleLiveMatchChange}
         >
@@ -90,7 +81,7 @@ class DateBar extends Component<Props, State> {
         </button>
         <div className="date-bar">
           <span
-            className="live-score"
+            className={`live-score ${this.props.onlyLiveMatch && "active"}`}
             onClick={this.handleLiveMatchChange}
           >
             <i className="icon-live" />
