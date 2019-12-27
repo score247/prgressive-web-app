@@ -1,7 +1,9 @@
 @Library("JenkinsPipelineLibrary") _
 
 pipeline{
-    agent any    
+    agent {
+        label 'slave105'
+    }   
 
     options{
         buildDiscarder(logRotator(numToKeepStr: '5'))    

@@ -2,8 +2,7 @@
 
 const fs = require('fs');
 
-let rawdata = fs.readFileSync('lighthouse-report.json');
-let data = JSON.parse(rawdata);
+let data = JSON.parse(fs.readFileSync('lighthouse-report.json'));
 
 const performanceScore = data.categories.performance.score;
 const accessibilityScore = data.categories.accessibility.score;
@@ -11,11 +10,11 @@ const bestPracticesScore = data.categories["best-practices"].score;
 const seoScore = data.categories.seo.score;
 const pwaScore = data.categories.pwa.score;
 
-console.log(performanceScore);
-console.log(accessibilityScore);
-console.log(bestPracticesScore);
-console.log(seoScore);
-console.log(pwaScore);
+console.log(`Performance Grade: ${performanceScore}`);
+console.log(`Accessibility Grade: ${accessibilityScore}`);
+console.log(`Best Practices Grade: ${bestPracticesScore}`);
+console.log(`SEO Grade: ${seoScore}`);
+console.log(`PWA Grade: ${pwaScore}`);
 
 process.on('exit', function(code) {
     return console.log(`About to exit with code ${code}`);
