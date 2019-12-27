@@ -19,5 +19,5 @@ const handler = app.getRequestHandler();
   );
 
   server.listen(port);
-  console.log(`> Ready on http://localhost:${port}`); // eslint-disable-line no-console
+  //console.log(`> Ready on http://localhost:${port}`); // eslint-disable-line no-console
 })();
