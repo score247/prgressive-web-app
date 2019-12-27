@@ -3,7 +3,7 @@ import appSettings from "../app-settings";
 import { MatchSummary } from "../models/MatchSummary";
 import { MatchInfo } from "../models/MatchInfo";
 import { League } from "../models/League";
-import msgPack from "msgpack-lite";
+import { decode } from "@msgpack/msgpack";
 
 const instance = axios.create({
   baseURL: appSettings.soccerAPIBaseUrl,
@@ -13,7 +13,7 @@ const instance = axios.create({
   responseType: "arraybuffer",
   transformResponse: [
     data => {
-      return msgPack.decode(new Uint8Array(data));
+      return decode(new Uint8Array(data));
     }
   ]
 });

@@ -3,8 +3,8 @@ import { MatchPeriod } from "./MatchPeriod";
 
 export interface MatchSummary {
   Id: string;
-  EventDate: Date;
-  CurrentPeriodStartTime: Date;
+  EventDate: any[];
+  CurrentPeriodStartTime: any[];
   LeagueId: string;
   LeagueName: string;
   HomeTeamId: string;
@@ -30,7 +30,7 @@ export interface MatchSummary {
   MatchPeriods: MatchPeriod[];
   CountryCode: string;
   CountryName: string;
-  ModifiedTime: Date;
+  ModifiedTime: any[];
   IsInternationalLeague: boolean;
   LeagueOrder: number;
   LeagueSeasonId: string;
@@ -38,4 +38,5 @@ export interface MatchSummary {
   LeagueRoundName: string;
   LeagueRoundNumber: number;
   LeagueRoundGroup: string;
+  EventDateServerTime: Date;
 }
