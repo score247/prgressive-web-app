@@ -14,22 +14,26 @@
   font-family: 'Roboto';
   src: url('/static/fonts/Roboto-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Roboto';
   src: url('/static/fonts/Roboto-Medium.ttf') format('truetype');
   font-weight: bold;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Montserrat';
   src: url('/static/fonts/Montserrat-Regular.ttf') format('truetype');
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Montserrat Bold';
   src: url('/static/fonts/Montserrat-Bold.ttf') format('truetype');
   font-weight: bold;
+  font-display: swap;
 }
