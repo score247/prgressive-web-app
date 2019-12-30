@@ -24,7 +24,7 @@ pipeline{
             }
         }  
 
-        stage("SonarQube Analysis"){
+        stage("SonarQube Analysis - https://sonarqube.nexdev.net/dashboard?id=score247-web-app"){
             steps{       
                 script{
                     pipelineLib.sonarScanner()
@@ -46,7 +46,7 @@ pipeline{
             }
         }
 
-        stage("Deploy to https://score247-web-test.nexdev.net/"){
+        stage("Deploy to - https://score247-web-test.nexdev.net/"){
             when {
                 allOf {
                     expression { BRANCH_NAME ==~ /^(origin\/)*\d+\-Sprint\d+$/ }
@@ -60,7 +60,7 @@ pipeline{
             }
         }
 
-        stage("Run Site Audit"){
+        stage("Run Site Audit - https://score247-web-test.nexdev.net/"){
             steps{
                  bat label: "Install Package", script: "npm install" 
                  bat label: "Run Audit", script: "npm run lighthouse:run"
