@@ -20,11 +20,11 @@ process.on('exit', function(code) {
     return console.log(`About to exit with code ${code}`);
 });
 
-if(performanceScore < 0.9
+if(performanceScore < 0.85
     || accessibilityScore < 0.9
     || bestPracticesScore < 0.9
     || seoScore < 0.9
-    || pwaScore < 0.9) {
+    || pwaScore < 0.75) {
         console.log("audit failed");
         process.exit(1);
     }

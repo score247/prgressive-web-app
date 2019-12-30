@@ -49,7 +49,6 @@ pipeline{
         stage("Deploy to https://score247-web-test.nexdev.net/"){
             when {
                 allOf {
-                    triggeredBy 'TimerTrigger'
                     expression { BRANCH_NAME ==~ /^(origin\/)*\d+\-Sprint\d+$/ }
                 }
             }
