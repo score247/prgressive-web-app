@@ -46,7 +46,7 @@ pipeline{
             }
         }
 
-        stage("Deploy to Local"){
+        stage("Deploy to https://score247-web-test.nexdev.net/"){
             when {
                 allOf {
                     triggeredBy 'TimerTrigger'
@@ -54,13 +54,11 @@ pipeline{
                 }
             }
             
-            stage("Deploy to https://score247-web-test.nexdev.net/"){
-                steps{
-                    script{
-                            pipelineLib.deployByRocketor("11635", "$BRANCH_NAME", "", "", "1c36df7007d446feb2324f405afa4cab")
-                        }
-                    }
+            steps{
+                script{
+                     pipelineLib.deployByRocketor("11635", "$BRANCH_NAME", "", "", "1c36df7007d446feb2324f405afa4cab")
                 }
+            }
         }
 
         stage("Run Site Audit"){
