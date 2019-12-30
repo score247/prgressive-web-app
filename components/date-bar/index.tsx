@@ -98,7 +98,7 @@ class DateBar extends Component<Props, State> {
             locale={this.props.i18n.language}
             showPopperArrow={false}
             className={this.getDatePickerClassName()}
-            popperPlacement="bottom-end"
+            popperPlacement="right-bottom"
           />
         </div>
       </div>

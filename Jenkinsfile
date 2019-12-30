@@ -46,6 +46,10 @@ pipeline{
             }
         }  
 
+        stage("Deploy to Local") {
+            
+        }
+
         stage("Run Site Audit"){
             steps{
                  bat label: "Install Package", script: "npm install" 
