@@ -8,7 +8,7 @@ const FavoritesPage: LocalizedPage = ({ t }) => {
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <h1>basketball - Favorites</h1>
+      <h1>basketball - Favorites [Ricky Test]</h1>
     </Layout>
   );
 };
