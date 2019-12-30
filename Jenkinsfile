@@ -24,31 +24,6 @@ pipeline{
             }
         }  
 
-        stage("Run Site Audit"){
-            steps{
-                 bat label: "Install Package", script: "npm install" 
-                 bat label: "Run Audit", script: "npm run lighthouse:run"
-                 bat label: "Check Audit Report", script: "npm run lighthouse:report"
-                 
-            }
-
-            post {
-                always {
-                    publishHTML (target: [
-                        allowMissing: false,
-                        alwaysLinkToLastBuild: false,
-                        keepAll: true,
-                        reportDir: '.',
-                        reportFiles: 'html_audit.report.html',
-                        reportName: "Lighthouse"
-                    ])
-                    echo "${BUILD_URL}Lighthouse/"
-                }
-            }
-
-            
-        }      
-
         stage("SonarQube Analysis"){
             steps{       
                 script{
@@ -70,6 +45,28 @@ pipeline{
                 }
             }
         }  
+
+        stage("Run Site Audit"){
+            steps{
+                 bat label: "Install Package", script: "npm install" 
+                 bat label: "Run Audit", script: "npm run lighthouse:run"
+                 bat label: "Check Audit Report", script: "npm run lighthouse:report"
+            }
+
+            post {
+                always {
+                    publishHTML (target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: '.',
+                        reportFiles: 'html_audit.report.html',
+                        reportName: "Lighthouse"
+                    ])
+                    echo "${BUILD_URL}Lighthouse/"
+                }
+            }
+        }
     }
     post{
         unsuccessful{
