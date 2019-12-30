@@ -36,7 +36,7 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
               sport={sport}
               href={"/esports"}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.ESPORTS)}
+              htmlText={t(ResourceKey.E_SPORTS)}
               iconClassName="icon-esports"
             />
           </ul>
@@ -52,7 +52,7 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
             <FunctionLink
               href={`/${sport}/favorites`}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.MYFAVORITES)}
+              htmlText={t(ResourceKey.MY_FAVORITES)}
               iconClassName=""
             />
             <FunctionLink
@@ -64,7 +64,7 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
             <FunctionLink
               href={`/${sport}/tv`}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.TVSCHEDULES)}
+              htmlText={t(ResourceKey.TV_SCHEDULES)}
               iconClassName=""
             />
             <FunctionLink

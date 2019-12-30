@@ -4,7 +4,7 @@ import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
 
 const TVPage: LocalizedPage = ({ t }) => {
-  const breadcrumbs = [t(ResourceKey.ESPORTS), t(ResourceKey.TVSCHEDULES)];
+  const breadcrumbs = [t(ResourceKey.E_SPORTS), t(ResourceKey.TV_SCHEDULES)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
@@ -15,7 +15,7 @@ const TVPage: LocalizedPage = ({ t }) => {
 
 TVPage.getInitialProps = async () => {
   return {
-    namespacesRequired: [ResourceType.ESPORTS]
+    namespacesRequired: [ResourceType.E_SPORTS]
   };
 };
 

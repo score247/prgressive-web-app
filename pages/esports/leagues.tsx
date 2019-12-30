@@ -4,7 +4,7 @@ import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
 
 const LeaguesPage: LocalizedPage = ({ t }) => {
-  const breadcrumbs = [t(ResourceKey.ESPORTS), t(ResourceKey.LEAGUES)];
+  const breadcrumbs = [t(ResourceKey.E_SPORTS), t(ResourceKey.LEAGUES)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
@@ -15,7 +15,7 @@ const LeaguesPage: LocalizedPage = ({ t }) => {
 
 LeaguesPage.getInitialProps = async () => {
   return {
-    namespacesRequired: [ResourceType.ESPORTS]
+    namespacesRequired: [ResourceType.E_SPORTS]
   };
 };
 

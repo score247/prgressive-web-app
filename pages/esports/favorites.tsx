@@ -4,7 +4,7 @@ import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { ResourceKey, ResourceType } from "../../common/constants";
 
 const FavoritesPage: LocalizedPage = ({ t }) => {
-  const breadcrumbs = [t(ResourceKey.ESPORTS), t(ResourceKey.FAVORITES)];
+  const breadcrumbs = [t(ResourceKey.E_SPORTS), t(ResourceKey.FAVORITES)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
@@ -15,7 +15,7 @@ const FavoritesPage: LocalizedPage = ({ t }) => {
 
 FavoritesPage.getInitialProps = async () => {
   return {
-    namespacesRequired: [ResourceType.ESPORTS]
+    namespacesRequired: [ResourceType.E_SPORTS]
   };
 };
 

@@ -1,6 +1,7 @@
 import React from "react";
 import { LocalizedPage } from "../common/helpers/Localizer";
 import { NextPageContext } from "next";
+import { HttpStatusCode } from "../common/constants";
 
 type Props = {
   statusCode: number;
@@ -21,9 +22,9 @@ Error.getInitialProps = async (context: NextPageContext) => {
     ? context.res.statusCode
     : context.err
     ? context.err.statusCode
-    : 404;
+    : HttpStatusCode.NOTFOUND;
 
-  return { namespacesRequired: ["common"], statusCode: statusCode || 500 };
+  return { namespacesRequired: ["common"], statusCode: statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR };
 };
 
 export default Error;

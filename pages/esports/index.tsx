@@ -5,14 +5,14 @@ import { ResourceType, ResourceKey } from "../../common/constants";
 
 const Esports: LocalizedPage = props => {
   return (
-    <Layout title={props.t(ResourceKey.ESPORTS)} breadcrumbs={[props.t(ResourceKey.ESPORTS)]}>
-      <h1>{props.t(ResourceKey.ESPORTS)}</h1>
+    <Layout title={props.t(ResourceKey.E_SPORTS)} breadcrumbs={[props.t(ResourceKey.E_SPORTS)]}>
+      <h1>{props.t(ResourceKey.E_SPORTS)}</h1>
     </Layout>
   );
 };
 
 Esports.getInitialProps = () => ({
-  namespacesRequired: [ResourceType.ESPORTS]
+  namespacesRequired: [ResourceType.E_SPORTS]
 });
 
 export default withTranslation()(Esports);

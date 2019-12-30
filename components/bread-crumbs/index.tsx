@@ -34,7 +34,7 @@ class Breadcrumbs extends PureComponent<Props , State> {
           {breadcrumbs[1] && <span className="selected-sub">{breadcrumbs[1]} / </span>}
           <span className="selected-date">
             {onlyLiveMatch
-              ? t(ResourceKey.LIVEMATCH)
+              ? t(ResourceKey.LIVE_MATCH)
               : isSameDay(selectedDate, this.state.currentDate)
               ? t(ResourceKey.TODAY).toUpperCase()
               : format(selectedDate, "dd MMM yyyy")}

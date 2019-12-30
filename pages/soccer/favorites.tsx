@@ -4,7 +4,7 @@ import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
 
 const FavoritesPage: LocalizedPage = ({ t }) => {
-  const breadcrumbs = [t(ResourceKey.SOCCER), t(ResourceKey.MYFAVORITES)];
+  const breadcrumbs = [t(ResourceKey.SOCCER), t(ResourceKey.MY_FAVORITES)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
