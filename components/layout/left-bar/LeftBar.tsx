@@ -6,7 +6,7 @@ import BottomAds from "../bottom-ads/BottomAds";
 
 const LeftBar: React.FunctionComponent = () => (
   <div className="left-container hide-mobile">
-    <Banner url="#" imgSrc="/static/images/ads-banner-2.png" />
+    <Banner url="#" imgSrc="/static/images/ads-banner-2" />
     <SearchBar />
     <TopEvents />
     <div className="block h-200">List of Leagues</div>

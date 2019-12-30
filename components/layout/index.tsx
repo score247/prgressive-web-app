@@ -37,7 +37,7 @@ const Layout: React.FunctionComponent<{
               onLiveMatchChange={setOnlyLiveMatch}
               onlyLiveMatch={onlyLiveMatch}
             />
-            <Banner url="#" imgSrc="/static/images/ads-banner-1.png" />
+            <Banner url="#" imgSrc="/static/images/ads-banner-1" />
             <div className="content">{children}</div>
           </div>
           <RightBar />

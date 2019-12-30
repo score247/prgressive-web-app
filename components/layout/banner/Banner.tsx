@@ -8,7 +8,11 @@ type Props = {
 const Banner: React.FunctionComponent<Props> = ({ imgSrc, url }) => (
   <div className="banner hide-mobile">
     <a href={url}>
-      <img src={imgSrc} alt="Logo" className="ads-img" />
+      <picture>
+        <source srcSet={`${imgSrc}.webp`} type="image/webp" />
+        <source srcSet={`${imgSrc}.jpg`} type="image/jpeg" />
+        <img className="ads-img" src={`${imgSrc}.jpg`} alt="Alt Text!" />
+      </picture>
     </a>
   </div>
 );
