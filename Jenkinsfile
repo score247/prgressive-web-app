@@ -2,7 +2,7 @@
 
 pipeline{
     agent {
-        label 'slaveSUN'
+        label 'slave105'
     }   
 
     options{
