@@ -9,6 +9,12 @@
       box-shadow: 0 0 0.5rem 0 #d7d7d7;
     }
 
+    .react-datepicker-popper {
+      //margin-left: -200px;
+      top: 1.2rem !important;
+      left: -15rem !important;
+    }
+
     .react-datepicker__header {
       background: #fff;
       padding-top: 2rem;
