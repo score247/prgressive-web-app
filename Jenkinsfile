@@ -44,7 +44,24 @@ pipeline{
                     step([$class: 'ACIPluginPublisher', name: '*.xml', shownOnProjectPage: false])
                 }
             }
-        }  
+        }
+
+        stage("Deploy to Local"){
+            when {
+                allOf {
+                    triggeredBy 'TimerTrigger'
+                    expression { BRANCH_NAME ==~ /^(origin\/)*\d+\-Sprint\d+$/ }
+                }
+            }
+            
+            stage("Deploy to https://score247-web-test.nexdev.net/"){
+                steps{
+                    script{
+                            pipelineLib.deployByRocketor("11635", "$BRANCH_NAME", "", "", "1c36df7007d446feb2324f405afa4cab")
+                        }
+                    }
+                }
+        }
 
         stage("Run Site Audit"){
             steps{
