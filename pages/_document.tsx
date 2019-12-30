@@ -29,7 +29,7 @@ class Score247Document extends Document<{ isMobileView: boolean }> {
 
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <meta name="theme-color" content="#F8F9FC" />
           <meta name="Description" content="Score247" />
