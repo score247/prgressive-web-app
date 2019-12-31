@@ -63,14 +63,9 @@ pipeline{
         stage("Run Site Audit - https://score247-web-test.nexdev.net/"){
             steps{
                  bat label: "Install Package", script: "npm install" 
-                 bat label: "Run Audit Desktop", script: "npm run lighthouse:run:desktop"
-                 bat label: "Run Audit Mobile", script: "npm run lighthouse:run:mobile"
-                 bat label: "Check Audit Report", script: "npm run lighthouse:report"
-            }
 
-            post {
-                always {
-                    publishHTML (target: [
+                 bat label: "Run Audit Desktop", script: "npm run lighthouse:run:desktop"
+                 publishHTML (target: [
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
@@ -78,9 +73,10 @@ pipeline{
                         reportFiles: 'html_desktop_audit.report.html',
                         reportName: "LighthouseDesktop"
                     ])
-                    echo "${BUILD_URL}LighthouseDesktop/"
+                 echo "${BUILD_URL}LighthouseDesktop/"
 
-                    publishHTML (target: [
+                 bat label: "Run Audit Mobile", script: "npm run lighthouse:run:mobile"
+                 publishHTML (target: [
                         allowMissing: false,
                         alwaysLinkToLastBuild: false,
                         keepAll: true,
@@ -88,8 +84,9 @@ pipeline{
                         reportFiles: 'html_mobile_audit.report.html',
                         reportName: "LighthouseMobile"
                     ])
-                    echo "${BUILD_URL}LighthouseMobile/"
-                }
+                 echo "${BUILD_URL}LighthouseMobile/"
+
+                 bat label: "Check Audit Report", script: "npm run lighthouse:report"
             }
         }
     }
