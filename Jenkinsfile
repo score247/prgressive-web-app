@@ -76,9 +76,9 @@ pipeline{
                         keepAll: true,
                         reportDir: '.',
                         reportFiles: 'html_desktop_audit.report.html',
-                        reportName: "Lighthouse_Desktop"
+                        reportName: "LighthouseDesktop"
                     ])
-                    echo "${BUILD_URL}Lighthouse_Desktop/"
+                    echo "${BUILD_URL}LighthouseDesktop/"
 
                     publishHTML (target: [
                         allowMissing: false,
@@ -86,9 +86,9 @@ pipeline{
                         keepAll: true,
                         reportDir: '.',
                         reportFiles: 'html_mobile_audit.report.html',
-                        reportName: "Lighthouse_Mobile"
+                        reportName: "LighthouseMobile"
                     ])
-                    echo "${BUILD_URL}Lighthouse_Mobile/"
+                    echo "${BUILD_URL}LighthouseMobile/"
                 }
             }
         }
