@@ -47,5 +47,5 @@ jspm_packages
 *.orig
 *.snap
 
-html_audit.report.json
-html_audit.report.html
+*audit.report.json
+*audit.report.html

@@ -15,7 +15,8 @@
     "test:coverage": "jest --coverage",
     "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
     "export": "next export",
-    "lighthouse:run": "node node_modules/lighthouse/lighthouse-cli/index.js --output json --output html --output-path ./html_audit.json --quiet --chrome-flags='--headless' https://score247-web-test.nexdev.net/",
+    "lighthouse:run:desktop": "node node_modules/lighthouse/lighthouse-cli/index.js --config-path _build_scripts/audit-desktop-config.js --output json --output html --output-path ./html_desktop_audit.json --chrome-flags='--headless' https://score247-web-test.nexdev.net/",
+    "lighthouse:run:mobile": "node node_modules/lighthouse/lighthouse-cli/index.js --config-path _build_scripts/audit-mobile-config.js --output json --output html --output-path ./html_mobile_audit.json --chrome-flags='--headless' https://score247-web-test.nexdev.net/",
     "lighthouse:report": "node ./audit.js"
   },
   "keywords": [],
@@ -66,6 +67,7 @@
     "jest": "^24.9.0",
     "jest-sonar-reporter": "^2.0.0",
     "lighthouse": "^5.6.0",
+    "sass-lint": "^1.13.1",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.3",
     "url-loader": "^3.0.0"
