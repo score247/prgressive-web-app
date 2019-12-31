@@ -2,6 +2,7 @@ import axios from "axios";
 import appSettings from "../app-settings";
 import { decode } from "@msgpack/msgpack";
 import { MatchSummary, MatchInfo, League } from "../models";
+import { startOfDay, endOfDay } from "date-fns";
 
 const instance = axios.create({
   baseURL: appSettings.soccerAPIBaseUrl,
@@ -18,12 +19,20 @@ const instance = axios.create({
 
 export const SoccerAPI = {
   GetMatchesByDate: async (
-    date: string,
+    date: Date,
     language = "en-US"
   ): Promise<MatchSummary[]> => {
+    const fd = startOfDay(date).toISOString();
+    const td = endOfDay(date).toISOString();
     const response = await instance.get(
-      `/soccer/${language}/matches?fd=${date}&td=${date}`
+      `/soccer/${language}/matches?fd=${fd}&td=${td}`
     );
+
+    return response.data;
+  },
+
+  GetLiveMatches: async (language = "en-US"): Promise<MatchSummary[]> => {
+    const response = await instance.get(`/soccer/${language}/matches/live`);
 
     return response.data;
   },

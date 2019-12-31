@@ -22,6 +22,8 @@ class DateBar extends Component<Props, State> {
     this.maxDate = addYears(this.today, 1);
 
     this.state = {
+      isLive: false,
+      selectedDate: new Date(),
       dateList: [
         addDays(this.today, this.beforeYesterday),
         addDays(this.today, -1),
@@ -33,18 +35,18 @@ class DateBar extends Component<Props, State> {
   }
 
   handleChange = (date: Date) => {
+    this.setState({ isLive: false, selectedDate: date });
     this.props.onDateChange(date);
-    this.props.onLiveMatchChange(false);
   };
 
   handleLiveMatchChange = () => {
-    this.props.onDateChange(this.today);
-    this.props.onLiveMatchChange(true);
+    this.setState({ isLive: true });
+    this.props.onLiveMatchChange();
   };
 
   renderDate = (date: Date) => {
     const className =
-      !this.props.onlyLiveMatch && isSameDay(date, this.props.selectedDate)
+      !this.state.isLive && isSameDay(date, this.state.selectedDate)
         ? "date-item active"
         : "date-item";
 
@@ -54,14 +56,18 @@ class DateBar extends Component<Props, State> {
         className={className}
         onClick={() => this.handleChange(date)}
       >
-        <div className="days">{isSameDay(date, this.today) ? this.props.t(ResourceKey.TODAY) : format(date, "iii")}</div>
+        <div className="days">
+          {isSameDay(date, this.today)
+            ? this.props.t(ResourceKey.TODAY)
+            : format(date, "iii")}
+        </div>
         <div>{format(date, "dd MMM")}</div>
       </div>
     );
   };
 
   getDatePickerClassName = () => {
-    if (this.state.dateList.some(d => isSameDay(d, this.props.selectedDate))) {
+    if (this.state.dateList.some(d => isSameDay(d, this.state.selectedDate))) {
       return "";
     }
 
@@ -81,7 +87,7 @@ class DateBar extends Component<Props, State> {
         </button>
         <div className="date-bar">
           <span
-            className={`date-item live-score ${this.props.onlyLiveMatch && "active"}`}
+            className={`date-item live-score ${this.state.isLive && "active"}`}
             onClick={this.handleLiveMatchChange}
           >
             <i className="icon-live" />
@@ -89,7 +95,7 @@ class DateBar extends Component<Props, State> {
           </span>
           {this.state.dateList.map(this.renderDate)}
           <DatePicker
-            selected={this.props.selectedDate}
+            selected={this.state.selectedDate}
             onChange={this.handleChange}
             customInput={<CustomDateInput />}
             dateFormat="dd MMM yyyy"
