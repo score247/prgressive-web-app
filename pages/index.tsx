@@ -2,7 +2,7 @@ import * as React from "react";
 import Layout from "../components/layout";
 import DateBar from "../components/date-bar";
 import Banner from "../components/layout/banner/Banner";
-import MatchSummary from "../models/MatchSummary";
+import { MatchSummary } from "../models";
 import { withTranslation } from "../common/helpers/Localizer";
 import { SportsEnum } from "../common/enums/sportenum";
 import { ResourceType, ResourceKey, DateTimeFormat } from "../common/constants";
@@ -82,7 +82,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
           <ul>
             {this.state.matches.map(match => (
               <li key={match.Id}>
-                {match.HomeTeamName} - {match.AwayTeamName} - {match.Time}
+                {match.HomeTeamName} - {match.AwayTeamName}
               </li>
             ))}
           </ul>

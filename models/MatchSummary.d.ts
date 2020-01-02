@@ -1,0 +1,42 @@
+import { Enumeration } from "./Enumeration";
+import { MatchPeriod } from "./MatchPeriod";
+
+export interface MatchSummary {
+  Id: string;
+  EventDate: any[];
+  CurrentPeriodStartTime: any[];
+  LeagueId: string;
+  LeagueName: string;
+  HomeTeamId: string;
+  HomeTeamName: string;
+  AwayTeamId: string;
+  AwayTeamName: string;
+  MatchStatus: Enumeration;
+  EventStatus: Enumeration;
+  HomeScore: number;
+  AwayScore: number;
+  WinnerId: string;
+  AggregateWinnerId: string;
+  AggregateHomeScore: number;
+  AggregateAwayScore: number;
+  HomeRedCards: number;
+  HomeYellowRedCards: number;
+  AwayRedCards: number;
+  AwayYellowRedCards: number;
+  MatchTime: number;
+  StoppageTime: string;
+  InjuryTimeAnnounced: number;
+  LastTimelineType: Enumeration;
+  MatchPeriods: MatchPeriod[];
+  CountryCode: string;
+  CountryName: string;
+  ModifiedTime: any[];
+  IsInternationalLeague: boolean;
+  LeagueOrder: number;
+  LeagueSeasonId: string;
+  LeagueRoundType: Enumeration;
+  LeagueRoundName: string;
+  LeagueRoundNumber: number;
+  LeagueRoundGroup: string;
+  EventDateServerTime: Date;
+}
