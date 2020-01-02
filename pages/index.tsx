@@ -2,10 +2,9 @@ import * as React from "react";
 import Layout from "../components/layout";
 import DateBar from "../components/date-bar";
 import Banner from "../components/layout/banner/Banner";
-import { MatchSummary } from "../models/MatchSummary";
+import MatchSummary from "../models/MatchSummary";
 import { withTranslation } from "../common/helpers/Localizer";
 import { SportsEnum } from "../common/enums/sportenum";
-import { ResourceType } from "../common/constants";
 import { SoccerAPI } from "../apis/SoccerApi";
 import { WithTranslation } from "next-i18next";
 
@@ -48,8 +47,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
           <ul>
             {this.state.matches.map(match => (
               <li key={match.Id}>
-                {match.HomeTeamName} - {match.AwayTeamName} -{" "}
-                {new Date(match.EventDate[0]).toLocaleString()}
+                {match.HomeTeamName} - {match.AwayTeamName} - {match.Time}
               </li>
             ))}
           </ul>
