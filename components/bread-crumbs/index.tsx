@@ -2,7 +2,7 @@ import "./style.scss";
 import React, { PureComponent } from "react";
 import { State, Props } from "./type";
 import { format, isSameDay } from "date-fns";
-import { ResourceType, ResourceKey } from "../../common/constants"; 
+import { ResourceType, ResourceKey, DateTimeFormat } from "../../common/constants"; 
 import { withTranslation } from "../../common/helpers/Localizer";
 
 class Breadcrumbs extends PureComponent<Props , State> {
@@ -25,25 +25,22 @@ class Breadcrumbs extends PureComponent<Props , State> {
     window.clearInterval(this.intervalId);
   }
 
+  renderBreadcrumbItem = (item: string, index: number) =>{
+    return  <span key={item} className="selected-sport">{item}{index < this.props.breadcrumbs.length - 1 && " / "}</span>;
+  }
+
   render() {
-    const { selectedDate, onlyLiveMatch, t, breadcrumbs } = this.props;
+    const { breadcrumbs } = this.props;
     return (
       <div className="site-info">
         <div className="breadcrumbs">
-          <span className="selected-sport">{breadcrumbs[0]} / </span>
-          {breadcrumbs[1] && <span className="selected-sub">{breadcrumbs[1]} / </span>}
-          <span className="selected-date">
-            {onlyLiveMatch
-              ? t(ResourceKey.LIVE_MATCH)
-              : isSameDay(selectedDate, this.state.currentDate)
-              ? t(ResourceKey.TODAY).toUpperCase()
-              : format(selectedDate, "dd MMM yyyy")}
-          </span>
+          {breadcrumbs.map(this.renderBreadcrumbItem)}
         </div>
-        <div className="GMT-time">{format(this.state.currentDate, "H:mm OOO")}</div>
+        <div className="GMT-time">{format(this.state.currentDate, DateTimeFormat.TIMEANDZONE)}</div>
       </div>
     );
   }
+
 }
 
 export default withTranslation(ResourceType.COMMON)(Breadcrumbs);

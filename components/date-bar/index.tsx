@@ -1,11 +1,12 @@
 import "./style.scss";
 import React, { Component } from "react";
 import DatePicker from "../date-picker";
-import { format, addDays, isSameDay, addYears } from "date-fns";
+import { addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { State, Props } from "./type";
-import { ResourceType, ResourceKey } from "../../common/constants";
+import { ResourceType, ResourceKey, DateTimeFormat } from "../../common/constants";
 import CustomDateInput from "./custom-date-input";
+import { formatDate } from "../../common/helpers/date-time-helper";
 
 class DateBar extends Component<Props, State> {
   today: Date;
@@ -22,8 +23,6 @@ class DateBar extends Component<Props, State> {
     this.maxDate = addYears(this.today, 1);
 
     this.state = {
-      isLive: false,
-      selectedDate: new Date(),
       dateList: [
         addDays(this.today, this.beforeYesterday),
         addDays(this.today, -1),
@@ -35,18 +34,16 @@ class DateBar extends Component<Props, State> {
   }
 
   handleChange = (date: Date) => {
-    this.setState({ isLive: false, selectedDate: date });
     this.props.onDateChange(date);
   };
 
   handleLiveMatchChange = () => {
-    this.setState({ isLive: true });
     this.props.onLiveMatchChange();
   };
 
   renderDate = (date: Date) => {
     const className =
-      !this.state.isLive && isSameDay(date, this.state.selectedDate)
+      !this.props.onlyLiveMatch && isSameDay(date, this.props.selectedDate)
         ? "date-item active"
         : "date-item";
 
@@ -59,15 +56,15 @@ class DateBar extends Component<Props, State> {
         <div className="days">
           {isSameDay(date, this.today)
             ? this.props.t(ResourceKey.TODAY)
-            : format(date, "iii")}
+            : formatDate(date, DateTimeFormat.WEEKDAYONLY)}
         </div>
-        <div>{format(date, "dd MMM")}</div>
+        <div>{formatDate(date, DateTimeFormat.DAYMONTHONLY)}</div>
       </div>
     );
   };
 
   getDatePickerClassName = () => {
-    if (this.state.dateList.some(d => isSameDay(d, this.state.selectedDate))) {
+    if (this.state.dateList.some(d => isSameDay(d, this.props.selectedDate))) {
       return "";
     }
 
@@ -87,7 +84,7 @@ class DateBar extends Component<Props, State> {
         </button>
         <div className="date-bar">
           <span
-            className={`date-item live-score ${this.state.isLive && "active"}`}
+            className={`date-item live-score ${this.props.onlyLiveMatch && "active"}`}
             onClick={this.handleLiveMatchChange}
           >
             <i className="icon-live" />
@@ -95,10 +92,10 @@ class DateBar extends Component<Props, State> {
           </span>
           {this.state.dateList.map(this.renderDate)}
           <DatePicker
-            selected={this.state.selectedDate}
+            selected={this.props.selectedDate}
             onChange={this.handleChange}
             customInput={<CustomDateInput />}
-            dateFormat="dd MMM yyyy"
+            dateFormat={DateTimeFormat.DATEONLY}
             minDate={this.minDate}
             maxDate={this.maxDate}
             locale={this.props.i18n.language}

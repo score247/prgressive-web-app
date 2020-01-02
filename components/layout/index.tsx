@@ -11,9 +11,6 @@ const Layout: React.FunctionComponent<{
   title?: string;
   breadcrumbs?: string[];
 }> = ({ children, title = "Home", breadcrumbs = [""] }) => {
-  const [date, setDate] = useState(new Date());
-  const [onlyLiveMatch, setOnlyLiveMatch] = useState(false);
-
   return (
     <div className="wrap-page">
       <Head>
@@ -23,8 +20,6 @@ const Layout: React.FunctionComponent<{
       <div className="container">
         <Breadcrumbs
           breadcrumbs={breadcrumbs}
-          selectedDate={date}
-          onlyLiveMatch={onlyLiveMatch}
         />
         <div className="wrap-content">
           <LeftBar />

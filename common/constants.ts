@@ -30,3 +30,11 @@ export class HttpStatusCode {
     public static readonly NOTFOUND = 404;
     public static readonly INTERNAL_SERVER_ERROR = 500;
 }
+
+
+export class DateTimeFormat {
+    public static readonly DAYMONTHONLY = "dd MMM";
+    public static readonly WEEKDAYONLY = "iii";
+    public static readonly DATEONLY = "dd MMM yyyy";
+    public static readonly TIMEANDZONE = "H:mm OOO";
+}

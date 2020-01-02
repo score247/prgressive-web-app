@@ -18,12 +18,10 @@ describe("DateBar", () => {
     };
 
     props = {
-      onlyLiveMatch: false,
-      selectedDate: new Date(),
       t: (key: string): string => key,
       i18n: instance,
       tReady: true,
-      breadcrumbs: ["soccer"]
+      breadcrumbs: ["soccer", "today"]
     };
   });
 
@@ -34,7 +32,7 @@ describe("DateBar", () => {
 
   it("should render breadcrumbs", () => {
     const wrapper = shallow(<Breadcrumbs {...props} />);
-    expect(wrapper.dive().find(".selected-sport")).toHaveLength(1);
+    expect(wrapper.dive().find(".selected-sport").length).toBeGreaterThanOrEqual(1);
   });
 
   it("should call clearInterval when unmount", () => {
