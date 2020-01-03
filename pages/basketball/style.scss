@@ -1,0 +1,83 @@
+$leagueColor: ( 0: #CD5E31, 1: #ED1B24, 2: #055888, 3: #C5822F, 4: #C03000, 5: #79A836, 6: #075B06, 7: #EDA02D, 8: #007B40, 9: #FF2255, 10: #339952);
+
+@each $name, $color in $leagueColor {
+  .league-#{$name} {
+      background: $color;
+      color: #fff;
+  }
+}
+
+.text-score {
+  color: #FF0000;
+  font-weight: bold;
+}
+
+.text-1H {
+  color: #0057FF;
+  font-weight: bold;
+}
+
+.ads-text {
+  color: #FD4549;
+  font-weight: bold;
+}
+
+.table {
+  box-shadow: 0 0 0.5rem 0 #d7d7d7;
+  border-radius: .3rem;
+  border: 1px solid #DFDFDF;
+  background: #fff;
+
+  .icon-menu-favorites {
+    color: #666;
+    font-size: 1.5rem;
+  }
+
+  .width-50 {
+    width: 5rem;
+  }
+
+  .latest-title {
+    background: #FFF282;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .text-extra {
+    color: #FEA700;
+  }
+}
+
+.match-cancel {
+  background: #1F2533;
+  color: #fff;
+}
+
+.calendar-switch {
+  padding: 1rem;
+  text-align: center;
+}
+
+.search-filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  font-size: 1.4rem;
+  color: #3A3B45;
+
+  .show-hide {
+    font-weight: bold;
+    text-transform: capitalize;
+
+    span {
+      cursor: pointer;
+      
+      &:not(:last-child):after {
+        content: "|";
+        display: inline-block;
+        padding: 0 .5rem;
+      }
+    }
+    
+  }
+}
