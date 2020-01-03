@@ -11,6 +11,7 @@ import { WithTranslation } from "next-i18next";
 import { isSameDay, addDays } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
 import DateSwitch from "../components/date-switch";
+import SoccerTable from "../components/soccer/table";
 
 type State = {
   matches: MatchSummary[];
@@ -80,13 +81,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
         />
         <Banner url="#" imgSrc="/static/images/ads-banner-1" />
         <div className="content">
-          <ul>
-            {this.state.matches.map(match => (
-              <li key={match.Id}>
-                {match.HomeTeamName} - {match.AwayTeamName}
-              </li>
-            ))}
-          </ul>
+          <SoccerTable matches={this.state.matches} />
           {!this.state.onlyLiveMatch && (
             <DateSwitch
               currentDate={this.state.selectedDate}
