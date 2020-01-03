@@ -8,12 +8,14 @@ import { SportsEnum } from "../common/enums/sportenum";
 import { ResourceType, ResourceKey, DateTimeFormat } from "../common/constants";
 import { SoccerAPI } from "../apis/SoccerApi";
 import { WithTranslation } from "next-i18next";
-import { isSameDay } from "date-fns";
+import { isSameDay, addDays } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
 
 type State = {
   matches: MatchSummary[];
   selectedDate: Date;
+  yesterday: Date;
+  tomorrow: Date;
   breadcrumbs: string[];
   onlyLiveMatch: boolean;
 };
@@ -24,9 +26,15 @@ class SoccerPage extends React.Component<WithTranslation, State> {
   constructor(props: WithTranslation) {
     super(props);
 
+    const selectedDate = new Date();
+    const yesterday = addDays(selectedDate, -1);
+    const tomorrow = addDays(selectedDate, 1);
+
     this.state = {
       matches: [],
-      selectedDate: new Date(),
+      selectedDate,
+      yesterday,
+      tomorrow,
       breadcrumbs: [props.t(SportsEnum.SOCCER), props.t(ResourceKey.TODAY)],
       onlyLiveMatch: false
     };
@@ -49,13 +57,15 @@ class SoccerPage extends React.Component<WithTranslation, State> {
     const breadcrumbs = this.state.breadcrumbs.slice();
     breadcrumbs[1] = isSameDay(this.today, date)
       ? this.props.t(ResourceKey.TODAY)
-      : formatDate(date, DateTimeFormat.DATEONLY, this.props.i18n.language);
+      : formatDate(date, DateTimeFormat.DATE_ONLY, this.props.i18n.language);
 
     this.setState({
       matches,
       selectedDate: date,
       onlyLiveMatch: false,
-      breadcrumbs
+      breadcrumbs,
+      yesterday: addDays(date, -1),
+      tomorrow: addDays(date, 1)
     });
   };
 
@@ -68,7 +78,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
   };
 
   render() {
-    const { t } = this.props;
+    const { t, i18n } = this.props;
     return (
       <Layout title={t(SportsEnum.SOCCER)} breadcrumbs={this.state.breadcrumbs}>
         <DateBar
@@ -86,6 +96,27 @@ class SoccerPage extends React.Component<WithTranslation, State> {
               </li>
             ))}
           </ul>
+
+          <div>
+            <button
+              onClick={this.handleDateChange.bind(this, this.state.yesterday)}
+            >
+              {formatDate(
+                this.state.yesterday,
+                DateTimeFormat.DATE_ONLY,
+                i18n.language
+              )}
+            </button>
+            <button
+              onClick={this.handleDateChange.bind(this, this.state.tomorrow)}
+            >
+              {formatDate(
+                this.state.tomorrow,
+                DateTimeFormat.DATE_ONLY,
+                i18n.language
+              )}
+            </button>
+          </div>
         </div>
       </Layout>
     );

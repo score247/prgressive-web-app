@@ -33,8 +33,8 @@ export class HttpStatusCode {
 
 
 export class DateTimeFormat {
-    public static readonly DAYMONTHONLY = "dd MMM";
-    public static readonly WEEKDAYONLY = "iii";
-    public static readonly DATEONLY = "dd MMM yyyy";
-    public static readonly TIMEANDZONE = "H:mm OOO";
+    public static readonly DAY_MONTH_ONLY = "dd MMM";
+    public static readonly WEEKDAY = "iii";
+    public static readonly DATE_ONLY = "dd MMM yyyy";
+    public static readonly TIME_AND_ZONE = "H:mm OOO";
 }

@@ -36,7 +36,7 @@ class Breadcrumbs extends PureComponent<Props , State> {
         <div className="breadcrumbs">
           {breadcrumbs.map(this.renderBreadcrumbItem)}
         </div>
-        <div className="GMT-time">{format(this.state.currentDate, DateTimeFormat.TIMEANDZONE)}</div>
+        <div className="GMT-time">{format(this.state.currentDate, DateTimeFormat.TIME_AND_ZONE)}</div>
       </div>
     );
   }
