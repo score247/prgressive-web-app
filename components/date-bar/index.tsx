@@ -95,7 +95,7 @@ class DateBar extends Component<Props, State> {
             selected={this.props.selectedDate}
             onChange={this.handleChange}
             customInput={<CustomDateInput />}
-            dateFormat={DateTimeFormat.DATEONLY}
+            dateFormat={DateTimeFormat.DATE_ONLY}
             minDate={this.minDate}
             maxDate={this.maxDate}
             locale={this.props.i18n.language}
