@@ -8,10 +8,11 @@ import { SportsEnum } from "../common/enums/sportenum";
 import { ResourceType, ResourceKey, DateTimeFormat } from "../common/constants";
 import { SoccerAPI } from "../apis/SoccerApi";
 import { WithTranslation } from "next-i18next";
-import { isSameDay, addDays } from "date-fns";
+import { isSameDay } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
 import DateSwitch from "../components/date-switch";
 import SoccerTable from "../components/soccer/table";
+import { DisplayMode } from "../common/constants";
 
 type State = {
   matches: MatchSummary[];

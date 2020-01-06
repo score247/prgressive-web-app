@@ -11,7 +11,7 @@ type Props = {
 };
 
 type State = {
-  displayMode: DisplayMode;
+  displayMatches: MatchSummary[];
 };
 
 class SoccerTable extends React.Component<Props, State> {
@@ -23,8 +23,12 @@ class SoccerTable extends React.Component<Props, State> {
     this.selectedIds = [];
 
     this.state = {
-      displayMode: DisplayMode.ShowAll
+      displayMatches: this.props.matches
     };
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
+    this.setState({ displayMatches: nextProps.matches });
   }
 
   handleSelectRow = (id: string) => {
@@ -41,7 +45,6 @@ class SoccerTable extends React.Component<Props, State> {
   };
 
   renderRow = (match: MatchSummary, index: number) => {
-    debugger;
     return (
       <SoccerRow
         key={match.Id}
@@ -53,33 +56,34 @@ class SoccerTable extends React.Component<Props, State> {
   };
 
   changeDisplayMode = (mode: DisplayMode) => {
-    if (mode === DisplayMode.ShowAll || this.selectedIds.length > 0) {
-      this.setState({
-        displayMode: mode
-      });
+    this.setState({ displayMatches: this.filterMatches(mode) });
+
+    this.selectedIds = [];
+  };
+
+  filterMatches = (mode: DisplayMode) => {
+    if (mode === DisplayMode.ShowAll) {
+      return this.props.matches;
+    } else {
+      const { displayMatches } = this.state;
+
+      if (this.selectedIds.length <= 0) {
+        return displayMatches;
+      }
+
+      if (mode === DisplayMode.ShowOnly) {
+        return displayMatches.filter(
+          match => this.selectedIds.indexOf(match.Id) >= 0
+        );
+      } else {
+        return displayMatches.filter(
+          match => this.selectedIds.indexOf(match.Id) < 0
+        );
+      }
     }
   };
 
   render() {
-    const { matches } = this.props;
-    const { displayMode } = this.state;
-
-    let filteredMathces = matches;
-
-    if (displayMode === DisplayMode.Hide) {
-      filteredMathces = matches.filter(
-        match => this.selectedIds.indexOf(match.Id) < 0
-      );
-    }
-
-    if (displayMode === DisplayMode.ShowOnly) {
-      filteredMathces = matches.filter(
-        match => this.selectedIds.indexOf(match.Id) >= 0
-      );
-    }
-
-    this.selectedIds = [];
-
     return (
       <Fragment>
         <div className="search-filter">
@@ -88,7 +92,7 @@ class SoccerTable extends React.Component<Props, State> {
         <div className="table">
           <table>
             <Header />
-            <tbody>{filteredMathces.map(this.renderRow)}</tbody>
+            <tbody>{this.state.displayMatches.map(this.renderRow)}</tbody>
           </table>
         </div>
       </Fragment>
