@@ -3,13 +3,33 @@ import { MatchSummary } from "../../../../models";
 
 type Props = {
   match: MatchSummary;
+  isSelected: boolean;
   onSelect: (id: string) => void;
 };
 
-class SoccerRow extends React.Component<Props> {
+type State = {
+  isSelected: boolean;
+};
+
+class SoccerRow extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
+    this.state = {
+      isSelected: false
+    };
   }
+
+  UNSAFE_componentWillReceiveProps(nextProps: Props) {
+    this.setState({
+      isSelected: nextProps.isSelected
+    });
+  }
+
+  onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    this.props.onSelect(event.target.value);
+    this.setState({ isSelected: event.target.checked });
+  };
 
   render() {
     const { match } = this.props;
@@ -27,7 +47,9 @@ class SoccerRow extends React.Component<Props> {
         <td>
           <input
             type="checkbox"
-            onChange={() => this.props.onSelect(match.Id)}
+            value={match.Id}
+            checked={this.state.isSelected}
+            onChange={this.onChange}
           />
         </td>
         <td>{time}</td>
