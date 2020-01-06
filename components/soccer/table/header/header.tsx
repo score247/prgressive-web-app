@@ -6,6 +6,7 @@ const Header = () => {
       <tr>
         <th></th>
         <th>Time</th>
+        <th>Status</th>
         <th>Home</th>
         <th>Score</th>
         <th>Away</th>

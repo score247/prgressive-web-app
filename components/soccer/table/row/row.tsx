@@ -2,6 +2,7 @@ import "./style.scss";
 import React from "react";
 import { MatchSummary, MatchPeriod } from "../../../../models";
 import { DeviceContext } from "../../../../contexts/device-context";
+import StatusCell from "../status-cell";
 
 type Props = {
   match: MatchSummary;
@@ -73,6 +74,7 @@ class SoccerRow extends React.Component<Props, State> {
           />
         </td>
         <td>{time}</td>
+        <StatusCell match={match} />
         <td>
           {this.renderRedCards(match.HomeRedCards + match.HomeYellowRedCards)}
           {this.renderYellowCards(match.HomeYellowCards)}
