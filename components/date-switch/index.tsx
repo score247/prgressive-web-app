@@ -3,11 +3,8 @@ import { addDays } from "date-fns";
 import { formatDate } from "../../common/helpers/date-time-helper";
 import { DateTimeFormat } from "../../common/constants";
 import { i18n } from "../../common/helpers/Localizer";
+import { Props } from "./type";
 
-type Props = {
-  currentDate: Date;
-  onClick(date: Date): void;
-};
 
 class DateSwitch extends PureComponent<Props> {
   render() {

@@ -8,3 +8,9 @@ export const withTranslation = function() {
     };
   };
 };
+
+export const i18n = {
+  language: "en",
+  languages: ["en", "fr"],
+  isInitialized: true
+};
