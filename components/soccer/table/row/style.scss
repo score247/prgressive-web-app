@@ -1,0 +1,8 @@
+.score {
+    .first-half-score{
+        display: none;
+        .mobile & {
+            display: block;
+        }
+    }
+}

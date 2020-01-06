@@ -40,6 +40,7 @@ class SoccerTable extends React.Component<Props, State> {
   };
 
   renderRow = (match: MatchSummary, index: number) => {
+    debugger;
     return (
       <SoccerRow
         key={match.Id}

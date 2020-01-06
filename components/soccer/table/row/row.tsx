@@ -1,3 +1,4 @@
+import "./style.scss";
 import React from "react";
 import { MatchSummary } from "../../../../models";
 
@@ -54,8 +55,13 @@ class SoccerRow extends React.Component<Props, State> {
         </td>
         <td>{time}</td>
         <td>{match.HomeTeamName}</td>
-        <td>
+        <td className="score">
           {match.HomeScore} - {match.AwayScore}
+          {match.MatchPeriods[0] && (
+            <div className="first-half-score">
+              ({match.MatchPeriods[0].HomeScore} - {match.MatchPeriods[0].AwayScore})
+            </div>
+          )}
         </td>
         <td>{match.AwayTeamName}</td>
       </tr>
