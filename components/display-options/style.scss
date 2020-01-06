@@ -1,0 +1,14 @@
+.show-hide {
+    font-weight: bold;
+    text-transform: capitalize;
+
+    span {
+        cursor: pointer;
+
+        &:not(:last-child):after {
+            content: "|";
+            display: inline-block;
+            padding: 0 .5rem;
+        }
+    }
+}

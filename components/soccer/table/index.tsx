@@ -1,3 +1,4 @@
+import "./style.scss";
 import React, { Fragment } from "react";
 import { MatchSummary } from "../../../models";
 import { DisplayMode } from "../../../common/constants";
@@ -81,7 +82,9 @@ class SoccerTable extends React.Component<Props, State> {
 
     return (
       <Fragment>
-        <DisplayOptions onClick={this.changeDisplayMode} />
+        <div className="search-filter">
+          <DisplayOptions onClick={this.changeDisplayMode} />
+        </div>
         <div className="table">
           <table>
             <Header />
