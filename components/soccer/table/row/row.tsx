@@ -27,7 +27,7 @@ class SoccerRow extends React.Component<Props, State> {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props) {
+  componentWillReceiveProps(nextProps: Props) {
     this.setState({
       isSelected: nextProps.isSelected
     });
