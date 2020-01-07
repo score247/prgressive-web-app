@@ -120,10 +120,12 @@ class SoccerTable extends React.Component<Props, State> {
             }
           }}
         </DeviceContext.Consumer>
-        <table>
-          <Header />
-          <tbody>{matches.map(this.renderRow)}</tbody>
-        </table>
+        <div className="table">
+          <table>
+            <Header />
+            <tbody>{matches.map(this.renderRow)}</tbody>
+          </table>
+        </div>
       </>
     );
   }

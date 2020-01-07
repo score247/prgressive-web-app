@@ -82,7 +82,6 @@ class SoccerPage extends React.Component<WithTranslation, State> {
         />
         <Banner url="#" imgSrc="/static/images/ads-banner-1" />
         <div className="content">
-          <div className="table">
             <SoccerTable matches={this.state.matches} />
             {!this.state.onlyLiveMatch && (
               <DateSwitch
@@ -90,7 +89,6 @@ class SoccerPage extends React.Component<WithTranslation, State> {
                 onClick={this.handleDateChange}
               />
             )}
-          </div>
         </div>
       </Layout>
     );
