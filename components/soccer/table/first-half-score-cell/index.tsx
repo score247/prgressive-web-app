@@ -2,7 +2,6 @@ import React from "react";
 import { DeviceContext } from "../../../../contexts/device-context";
 import { Props } from "./type";
 
-
 export default function FirstHalfScoreCell(props: Props) {
   const { firstHalfPeriod } = props;
   return (

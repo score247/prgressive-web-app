@@ -2,8 +2,6 @@ import React from "react";
 import { DeviceContext } from "../../../../contexts/device-context";
 import { Props } from "./type";
 
-
-
 export default function FinalScoreCell(props: Props) {
   const { firstHalfPeriod, homeScore, awayScore } = props;
   return (
