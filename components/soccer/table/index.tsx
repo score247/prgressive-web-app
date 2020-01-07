@@ -6,6 +6,7 @@ import DisplayOptions from "../../display-options";
 import SoccerRow from "./row/row";
 import Header from "./header/header";
 import SearchBar from "../../search-bar";
+import { DeviceContext } from "../../../contexts/device-context";
 
 type Props = {
   matches: MatchSummary[];
@@ -102,13 +103,24 @@ class SoccerTable extends React.Component<Props, State> {
 
     return (
       <>
-        <div className="search-filter">
-          <DisplayOptions onDisplayModeChange={this.handleDisplayModeChange} />
-          <SearchBar
-            filterText={this.state.filterText}
-            onFilterTextChange={this.handleFilterTextChange}
-          />
-        </div>
+        <DeviceContext.Consumer>
+          {({ isMobile }) => {
+            if (!isMobile) {
+              return (
+                <div className="search-filter">
+                  <DisplayOptions
+                    onDisplayModeChange={this.handleDisplayModeChange}
+                  />
+                  <SearchBar
+                    filterText={this.state.filterText}
+                    onFilterTextChange={this.handleFilterTextChange}
+                  />
+                </div>
+              );
+            }
+          }}
+        </DeviceContext.Consumer>
+
         <div className="table">
           <table>
             <Header />

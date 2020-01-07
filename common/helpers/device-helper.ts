@@ -13,6 +13,6 @@ export default class DeviceHelper {
     const userAgent =
       this.ctx.req?.headers["user-agent"] ?? navigator.userAgent;
 
-    return userAgent.match(this.mobilePattern);
+    return this.mobilePattern.test(userAgent);
   }
 }
