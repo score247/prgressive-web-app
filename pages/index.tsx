@@ -12,7 +12,6 @@ import { isSameDay } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
 import DateSwitch from "../components/date-switch";
 import SoccerTable from "../components/soccer/table";
-import { DisplayMode } from "../common/constants";
 
 type State = {
   matches: MatchSummary[];

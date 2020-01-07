@@ -5,6 +5,7 @@ import { DisplayMode } from "../../../common/constants";
 import DisplayOptions from "../../display-options";
 import SoccerRow from "./row/row";
 import Header from "./header/header";
+import SearchBar from "../../search-bar";
 
 type Props = {
   matches: MatchSummary[];
@@ -12,6 +13,7 @@ type Props = {
 
 type State = {
   displayMatches: MatchSummary[];
+  filterText: string;
 };
 
 class SoccerTable extends React.Component<Props, State> {
@@ -23,12 +25,13 @@ class SoccerTable extends React.Component<Props, State> {
     this.selectedIds = [];
 
     this.state = {
-      displayMatches: this.props.matches
+      displayMatches: [],
+      filterText: ""
     };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    this.setState({ displayMatches: nextProps.matches });
+    this.setState({ displayMatches: nextProps.matches, filterText: "" });
   }
 
   handleSelectRow = (id: string) => {
@@ -55,7 +58,7 @@ class SoccerTable extends React.Component<Props, State> {
     );
   };
 
-  changeDisplayMode = (mode: DisplayMode) => {
+  handleDisplayModeChange = (mode: DisplayMode) => {
     this.setState({ displayMatches: this.filterMatches(mode) });
 
     this.selectedIds = [];
@@ -83,19 +86,36 @@ class SoccerTable extends React.Component<Props, State> {
     }
   };
 
+  handleFilterTextChange = (filterText: string) => {
+    this.setState({ filterText: filterText });
+  };
+
   render() {
+    const { displayMatches, filterText } = this.state;
+
+    const matches = displayMatches.filter(
+      match =>
+        match.HomeTeamName.toLowerCase().search(filterText.toLowerCase()) !==
+          -1 ||
+        match.AwayTeamName.toLowerCase().search(filterText.toLowerCase()) !== -1
+    );
+
     return (
-      <Fragment>
+      <>
         <div className="search-filter">
-          <DisplayOptions onClick={this.changeDisplayMode} />
+          <DisplayOptions onDisplayModeChange={this.handleDisplayModeChange} />
+          <SearchBar
+            filterText={this.state.filterText}
+            onFilterTextChange={this.handleFilterTextChange}
+          />
         </div>
         <div className="table">
           <table>
             <Header />
-            <tbody>{this.state.displayMatches.map(this.renderRow)}</tbody>
+            <tbody>{matches.map(this.renderRow)}</tbody>
           </table>
         </div>
-      </Fragment>
+      </>
     );
   }
 }

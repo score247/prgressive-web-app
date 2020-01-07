@@ -2,15 +2,21 @@ import "./style.scss";
 import React from "react";
 import { DisplayMode } from "../../common/constants";
 type Props = {
-  onClick: (mode: DisplayMode) => void;
+  onDisplayModeChange: (mode: DisplayMode) => void;
 };
 
-const DisplayOptions: React.FunctionComponent<Props> = props => {
+const DisplayOptions: React.FC<Props> = props => {
   return (
     <div className="show-hide">
-      <span onClick={() => props.onClick(DisplayMode.ShowAll)}>Show All</span>
-      <span onClick={() => props.onClick(DisplayMode.Hide)}>Hide</span>
-      <span onClick={() => props.onClick(DisplayMode.ShowOnly)}>Show Only</span>
+      <span onClick={() => props.onDisplayModeChange(DisplayMode.ShowAll)}>
+        Show All
+      </span>
+      <span onClick={() => props.onDisplayModeChange(DisplayMode.Hide)}>
+        Hide
+      </span>
+      <span onClick={() => props.onDisplayModeChange(DisplayMode.ShowOnly)}>
+        Show Only
+      </span>
     </div>
   );
 };
