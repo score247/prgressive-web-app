@@ -3,6 +3,8 @@ import React from "react";
 import { MatchSummary, MatchPeriod } from "../../../../models";
 import { DeviceContext } from "../../../../contexts/device-context";
 import StatusCell from "../status-cell";
+import FirstHalfScoreCell from "./first-half-score-cell";
+import FinalScoreCell from "./final-score-cell";
 
 type Props = {
   match: MatchSummary;
@@ -61,7 +63,9 @@ class SoccerRow extends React.Component<Props, State> {
       }
     );
 
-    const firstHalfPeriod = match.MatchPeriods ? match.MatchPeriods.find(x => x.Number === 1) : undefined;
+    const firstHalfPeriod = match.MatchPeriods
+      ? match.MatchPeriods.find(x => x.Number === 1)
+      : undefined;
 
     return (
       <tr>
@@ -80,39 +84,23 @@ class SoccerRow extends React.Component<Props, State> {
           {this.renderYellowCards(match.HomeYellowCards)}
           {match.HomeTeamName}
         </td>
-        <td className="text-score">
-          {match.HomeScore} - {match.AwayScore}
-          {firstHalfPeriod && (
-            <div className="text-1H">
-              ({firstHalfPeriod.HomeScore} - {firstHalfPeriod.AwayScore})
-            </div>
-          )}
-        </td>
+        <FinalScoreCell
+          homeScore={match.HomeScore}
+          awayScore={match.AwayScore}
+          firstHalfPeriod={firstHalfPeriod}
+        />
         <td>
           {match.AwayTeamName}
           {this.renderYellowCards(match.AwayYellowCards)}
           {this.renderRedCards(match.AwayRedCards + match.AwayYellowRedCards)}
         </td>
-        {this.renderFirstHalfScoreColumn(firstHalfPeriod)}
+        <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
         <td>
           <i className="icon-menu-favorites"></i>
         </td>
       </tr>
     );
   }
-  renderFirstHalfScoreColumn = (firstHalfPeriod: MatchPeriod | undefined) => {
-    return (
-      <DeviceContext.Consumer>
-        {({ isMobile }) => {
-          if (!isMobile) {
-            return <td className="text-1H">{firstHalfPeriod && `${firstHalfPeriod.HomeScore} - ${firstHalfPeriod.AwayScore}`}</td>;
-          }
-
-          return null;
-        }}
-      </DeviceContext.Consumer>
-    );
-  };
 }
 
 export default SoccerRow;
