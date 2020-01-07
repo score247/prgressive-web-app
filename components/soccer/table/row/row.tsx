@@ -1,6 +1,7 @@
 import "./style.scss";
 import React from "react";
-import { MatchSummary } from "../../../../models";
+import { MatchSummary, MatchPeriod } from "../../../../models";
+import { DeviceContext } from "../../../../contexts/device-context";
 
 type Props = {
   match: MatchSummary;
@@ -59,7 +60,8 @@ class SoccerRow extends React.Component<Props, State> {
       }
     );
 
-    const firstHalfPeriod = match.MatchPeriods.find(x => x.Number === 1);
+    const firstHalfPeriod = match.MatchPeriods ? match.MatchPeriods.find(x => x.Number === 1) : undefined;
+
     return (
       <tr>
         <td>
@@ -89,13 +91,26 @@ class SoccerRow extends React.Component<Props, State> {
           {this.renderYellowCards(match.AwayYellowCards)}
           {this.renderRedCards(match.AwayRedCards + match.AwayYellowRedCards)}
         </td>
-        <td className="text-1H">
-          {firstHalfPeriod && `${firstHalfPeriod.HomeScore} - ${firstHalfPeriod.AwayScore}`}  
+        {this.renderFirstHalfScoreColumn(firstHalfPeriod)}
+        <td>
+          <i className="icon-menu-favorites"></i>
         </td>
-        <td><i className="icon-menu-favorites"></i></td>
       </tr>
     );
   }
+  renderFirstHalfScoreColumn = (firstHalfPeriod: MatchPeriod | undefined) => {
+    return (
+      <DeviceContext.Consumer>
+        {({ isMobile }) => {
+          if (!isMobile) {
+            return <td className="text-1H">{firstHalfPeriod && `${firstHalfPeriod.HomeScore} - ${firstHalfPeriod.AwayScore}`}</td>;
+          }
+
+          return null;
+        }}
+      </DeviceContext.Consumer>
+    );
+  };
 }
 
 export default SoccerRow;
