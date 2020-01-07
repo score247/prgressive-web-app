@@ -100,7 +100,7 @@ class SoccerTable extends React.Component<Props, State> {
           -1 ||
         match.AwayTeamName.toLowerCase().search(filterText.toLowerCase()) !== -1
     );
-
+      debugger;
     return (
       <>
         <DeviceContext.Consumer>

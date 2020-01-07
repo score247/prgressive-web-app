@@ -7,6 +7,7 @@ import FinalScoreCell from "../final-score-cell";
 import Checkbox from "../../../checkbox";
 import HomeTeamCell from "../home-team-cell";
 import AwayTeamCell from "../away-team-cell";
+import ExtraMatchInfoRow from "../extra-match-info-row";
 
 type Props = {
   match: MatchSummary;
@@ -40,6 +41,7 @@ class SoccerRow extends React.Component<Props, State> {
 
   render() {
     const { match } = this.props;
+    debugger;
     const time = new Date(match.EventDate[0]).toLocaleString(
       navigator.language,
       {
@@ -54,37 +56,40 @@ class SoccerRow extends React.Component<Props, State> {
       : undefined;
 
     return (
-      <tr>
-        <td>
-          <Checkbox
-            id={match.Id}
-            value={match.Id}
-            checked={this.state.isSelected}
-            onChange={this.handleSelectedChange}
+      <>
+        <tr>
+          <td>
+            <Checkbox
+              id={match.Id}
+              value={match.Id}
+              checked={this.state.isSelected}
+              onChange={this.handleSelectedChange}
+            />
+          </td>
+          <td>{time}</td>
+          <StatusCell match={match} />
+          <HomeTeamCell
+            homeTeamName={match.HomeTeamName}
+            redCards={match.HomeRedCards + match.HomeYellowRedCards}
+            yellowCards={match.HomeYellowCards}
           />
-        </td>
-        <td>{time}</td>
-        <StatusCell match={match} />
-        <HomeTeamCell
-          homeTeamName={match.HomeTeamName}
-          redCards={match.HomeRedCards + match.HomeYellowRedCards}
-          yellowCards={match.HomeYellowCards}
-        />
-        <FinalScoreCell
-          homeScore={match.HomeScore}
-          awayScore={match.AwayScore}
-          firstHalfPeriod={firstHalfPeriod}
-        />
-        <AwayTeamCell
-          awayTeamName={match.AwayTeamName}
-          redCards={match.AwayRedCards + match.AwayYellowRedCards}
-          yellowCards={match.AwayYellowCards}
-        />
-        <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
-        <td>
-          <i className="icon-menu-favorites"></i>
-        </td>
-      </tr>
+          <FinalScoreCell
+            homeScore={match.HomeScore}
+            awayScore={match.AwayScore}
+            firstHalfPeriod={firstHalfPeriod}
+          />
+          <AwayTeamCell
+            awayTeamName={match.AwayTeamName}
+            redCards={match.AwayRedCards + match.AwayYellowRedCards}
+            yellowCards={match.AwayYellowCards}
+          />
+          <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
+          <td>
+            <i className="icon-menu-favorites"></i>
+          </td>
+        </tr>
+        {match.MatchPeriods && <ExtraMatchInfoRow match={match} />}
+      </>
     );
   }
 }
