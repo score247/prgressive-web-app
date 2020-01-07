@@ -5,6 +5,8 @@ import StatusCell from "../status-cell";
 import FirstHalfScoreCell from "../first-half-score-cell";
 import FinalScoreCell from "../final-score-cell";
 import Checkbox from "../../../checkbox";
+import HomeTeamCell from "../home-team-cell";
+import AwayTeamCell from "../away-team-cell";
 
 type Props = {
   match: MatchSummary;
@@ -36,22 +38,6 @@ class SoccerRow extends React.Component<Props, State> {
     this.setState({ isSelected: event.target.checked });
   };
 
-  renderYellowCards = (yellowCards: number) => {
-    if (yellowCards > 0) {
-      return <span className="yellow-card">{yellowCards}</span>;
-    }
-
-    return null;
-  };
-
-  renderRedCards = (redCards: number) => {
-    if (redCards > 0) {
-      return <span className="red-card">{redCards}</span>;
-    }
-
-    return null;
-  };
-
   render() {
     const { match } = this.props;
     const time = new Date(match.EventDate[0]).toLocaleString(
@@ -79,21 +65,21 @@ class SoccerRow extends React.Component<Props, State> {
         </td>
         <td>{time}</td>
         <StatusCell match={match} />
-        <td>
-          {this.renderRedCards(match.HomeRedCards + match.HomeYellowRedCards)}
-          {this.renderYellowCards(match.HomeYellowCards)}
-          {match.HomeTeamName}
-        </td>
+        <HomeTeamCell
+          homeTeamName={match.HomeTeamName}
+          redCards={match.HomeRedCards + match.HomeYellowRedCards}
+          yellowCards={match.HomeYellowCards}
+        />
         <FinalScoreCell
           homeScore={match.HomeScore}
           awayScore={match.AwayScore}
           firstHalfPeriod={firstHalfPeriod}
         />
-        <td>
-          {match.AwayTeamName}
-          {this.renderYellowCards(match.AwayYellowCards)}
-          {this.renderRedCards(match.AwayRedCards + match.AwayYellowRedCards)}
-        </td>
+        <AwayTeamCell
+          awayTeamName={match.AwayTeamName}
+          redCards={match.AwayRedCards + match.AwayYellowRedCards}
+          yellowCards={match.AwayYellowCards}
+        />
         <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
         <td>
           <i className="icon-menu-favorites"></i>
