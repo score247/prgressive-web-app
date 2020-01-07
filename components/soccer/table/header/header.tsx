@@ -1,4 +1,22 @@
 import React from "react";
+import { DeviceContext } from "../../../../contexts/device-context";
+
+const renderFirstHalfColumn = () => (
+  <DeviceContext.Consumer>
+    {({ isMobile }) => {
+      if (!isMobile) {
+        return <th>1st Half</th>;
+      }
+      return null;
+    }}
+  </DeviceContext.Consumer>
+);
+
+const renderFavoriteColumn = () => (
+  <DeviceContext.Consumer>
+    {({ isMobile }) => <th>{!isMobile && "favorite"}</th>}
+  </DeviceContext.Consumer>
+);
 
 const Header = () => {
   return (
@@ -10,8 +28,8 @@ const Header = () => {
         <th>Home</th>
         <th>Score</th>
         <th>Away</th>
-        <th>1st Half</th>
-        <th>favorite</th>
+        {renderFirstHalfColumn()}
+        {renderFavoriteColumn()}
       </tr>
     </thead>
   );
