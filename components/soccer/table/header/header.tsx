@@ -9,6 +9,8 @@ const Header = () => {
         <th>Home</th>
         <th>Score</th>
         <th>Away</th>
+        <th>1st Half</th>
+        <th>favorite</th>
       </tr>
     </thead>
   );

@@ -21,8 +21,10 @@ export interface MatchSummary {
   AggregateAwayScore: number;
   HomeRedCards: number;
   HomeYellowRedCards: number;
+  HomeYellowCards: number;
   AwayRedCards: number;
   AwayYellowRedCards: number;
+  AwayYellowCards: number;
   MatchTime: number;
   StoppageTime: string;
   InjuryTimeAnnounced: number;

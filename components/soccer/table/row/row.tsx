@@ -32,6 +32,22 @@ class SoccerRow extends React.Component<Props, State> {
     this.setState({ isSelected: event.target.checked });
   };
 
+  renderYellowCards = (yellowCards: number) => {
+    if (yellowCards > 0) {
+      return <span className="yellow-card">{yellowCards}</span>;
+    }
+
+    return null;
+  };
+
+  renderRedCards = (redCards: number) => {
+    if (redCards > 0) {
+      return <span className="red-card">{redCards}</span>;
+    }
+
+    return null;
+  };
+
   render() {
     const { match } = this.props;
     const time = new Date(match.EventDate[0]).toLocaleString(
@@ -44,7 +60,6 @@ class SoccerRow extends React.Component<Props, State> {
     );
 
     const firstHalfPeriod = match.MatchPeriods.find(x => x.Number === 1);
-
     return (
       <tr>
         <td>
@@ -56,16 +71,28 @@ class SoccerRow extends React.Component<Props, State> {
           />
         </td>
         <td>{time}</td>
-        <td>{match.HomeTeamName}</td>
-        <td className="score">
+        <td>
+          {this.renderRedCards(match.HomeRedCards + match.HomeYellowRedCards)}
+          {this.renderYellowCards(match.HomeYellowCards)}
+          {match.HomeTeamName}
+        </td>
+        <td className="text-score">
           {match.HomeScore} - {match.AwayScore}
           {firstHalfPeriod && (
-            <div className="first-half-score">
+            <div className="text-1H">
               ({firstHalfPeriod.HomeScore} - {firstHalfPeriod.AwayScore})
             </div>
           )}
         </td>
-        <td>{match.AwayTeamName}</td>
+        <td>
+          {match.AwayTeamName}
+          {this.renderYellowCards(match.AwayYellowCards)}
+          {this.renderRedCards(match.AwayRedCards + match.AwayYellowRedCards)}
+        </td>
+        <td className="text-1H">
+          {firstHalfPeriod && `${firstHalfPeriod.HomeScore} - ${firstHalfPeriod.AwayScore}`}  
+        </td>
+        <td><i className="icon-menu-favorites"></i></td>
       </tr>
     );
   }
