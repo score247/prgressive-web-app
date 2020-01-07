@@ -7,6 +7,7 @@ import {
 import { differenceInMinutes } from "date-fns";
 import { EventTypes } from "../../../../common/enums/event-type";
 import { Props, periodTimes, PeriodTime } from "./types";
+import { DeviceContext } from "../../../../contexts/device-context";
 
 class StatusCell extends React.Component<Props> {
     readonly match: MatchSummary;
@@ -100,10 +101,23 @@ class StatusCell extends React.Component<Props> {
     }
 
     render() {
-        return <td className={this.buildMatchStatusClass(this.props.match)}>
-            {this.buildMatchStatus(this.props.match)}
-        </td>;
+        const statusCell = ({ isMobile }: { isMobile: boolean; }): string | JSX.Element => {
+            const matchStatus = this.buildMatchStatus(this.props.match);
+            const matchStatusClass = this.buildMatchStatusClass(this.props.match);
+
+            return isMobile
+                ? matchStatus
+                : (<td className={matchStatusClass}>
+                    {matchStatus}
+                </td>);
+        };
+
+        return <DeviceContext.Consumer>
+            {statusCell}
+        </DeviceContext.Consumer>;
     }
 }
+
+StatusCell.contextType = DeviceContext;
 
 export default StatusCell;
