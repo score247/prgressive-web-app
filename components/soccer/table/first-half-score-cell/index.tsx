@@ -1,8 +1,7 @@
 import React from "react";
-import { MatchPeriod } from "../../../../models";
 import { DeviceContext } from "../../../../contexts/device-context";
+import { Props } from "./type";
 
-type Props = { firstHalfPeriod?: MatchPeriod };
 
 export default function FirstHalfScoreCell(props: Props) {
   const { firstHalfPeriod } = props;

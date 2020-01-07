@@ -1,12 +1,8 @@
 import React from "react";
-import { MatchPeriod } from "../../../../models";
 import { DeviceContext } from "../../../../contexts/device-context";
+import { Props } from "./type";
 
-type Props = {
-  homeScore: number;
-  awayScore: number;
-  firstHalfPeriod?: MatchPeriod;
-};
+
 
 export default function FinalScoreCell(props: Props) {
   const { firstHalfPeriod, homeScore, awayScore } = props;

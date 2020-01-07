@@ -2,8 +2,8 @@ import "./style.scss";
 import React from "react";
 import { MatchSummary, MatchPeriod } from "../../../../models";
 import StatusCell from "../status-cell";
-import FirstHalfScoreCell from "./first-half-score-cell";
-import FinalScoreCell from "./final-score-cell";
+import FirstHalfScoreCell from "../first-half-score-cell";
+import FinalScoreCell from "../final-score-cell";
 import Checkbox from "../../../checkbox";
 
 type Props = {
