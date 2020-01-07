@@ -43,6 +43,8 @@ class SoccerRow extends React.Component<Props, State> {
       }
     );
 
+    const firstHalfPeriod = match.MatchPeriods.find(x => x.Number === 1);
+
     return (
       <tr>
         <td>
@@ -57,9 +59,9 @@ class SoccerRow extends React.Component<Props, State> {
         <td>{match.HomeTeamName}</td>
         <td className="score">
           {match.HomeScore} - {match.AwayScore}
-          {match.MatchPeriods[0] && (
+          {firstHalfPeriod && (
             <div className="first-half-score">
-              ({match.MatchPeriods[0].HomeScore} - {match.MatchPeriods[0].AwayScore})
+              ({firstHalfPeriod.HomeScore} - {firstHalfPeriod.AwayScore})
             </div>
           )}
         </td>
