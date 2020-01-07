@@ -1,10 +1,10 @@
 import "./style.scss";
 import React from "react";
 import { MatchSummary, MatchPeriod } from "../../../../models";
-import { DeviceContext } from "../../../../contexts/device-context";
 import StatusCell from "../status-cell";
 import FirstHalfScoreCell from "./first-half-score-cell";
 import FinalScoreCell from "./final-score-cell";
+import Checkbox from "../../../checkbox";
 
 type Props = {
   match: MatchSummary;
@@ -31,7 +31,7 @@ class SoccerRow extends React.Component<Props, State> {
     });
   }
 
-  onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  handleSelectedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.props.onSelect(event.target.value);
     this.setState({ isSelected: event.target.checked });
   };
@@ -70,11 +70,11 @@ class SoccerRow extends React.Component<Props, State> {
     return (
       <tr>
         <td>
-          <input
-            type="checkbox"
+          <Checkbox
+            id={match.Id}
             value={match.Id}
             checked={this.state.isSelected}
-            onChange={this.onChange}
+            onChange={this.handleSelectedChange}
           />
         </td>
         <td>{time}</td>

@@ -1,10 +1,27 @@
 import React from "react";
 
-const Checkbox: React.FC = () => {
+type Props = {
+  id: string;
+  checked: boolean;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+};
+
+const Checkbox: React.FC<Props> = props => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    props.onChange(event);
+  };
+
   return (
     <div className="checkbox">
-      <input id="checkbox-1" name="Checbox1" type="checkbox" />
-      <label htmlFor="checkbox-1"></label>
+      <input
+        id={props.id}
+        type="checkbox"
+        checked={props.checked}
+        value={props.value}
+        onChange={handleChange}
+      />
+      <label htmlFor={props.id}></label>
     </div>
   );
 };
