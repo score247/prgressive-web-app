@@ -24,7 +24,8 @@ class StatusCell extends React.Component<Props> {
         if (currentInjuryTime > announcementInjuryTime) {
             displayInjuryTime = announcementInjuryTime;
         }
-        return `${periodTime.endTime}+${displayInjuryTime}`;
+
+        return `${periodTime.endTime}+${displayInjuryTime}'`;
     }
 
 
@@ -34,12 +35,12 @@ class StatusCell extends React.Component<Props> {
         const periodStartTime = match.CurrentPeriodStartTime[0] as Date;
         const matchMinute = periodTime.startTime + differenceInMinutes(today, periodStartTime);
 
-        if (match.LastTimelineType?.Value === EventTypes.INJURY_TIME_SHOWN.value) {
-            const cachedInjuryTime = localStorage.getItem(`InjuryTimeAnnouncement_${match.Id}_${match.MatchStatus.DisplayName}`);
-            const injuryTime = Number(cachedInjuryTime);
-            if (injuryTime > 0) {
-                return this.buildMatchMinuteWithInjuryTime(match, matchMinute, periodTime);
-            }
+        if (match.LastTimelineType?.Value === EventTypes.INJURY_TIME_SHOWN.value
+            && match.InjuryTimeAnnounced > 0) {
+            // // const cachedInjuryTime = localStorage.getItem(`InjuryTimeAnnouncement_${match.Id}_${match.MatchStatus.DisplayName}`);
+            // // const injuryTime = Number(cachedInjuryTime);
+
+            return this.buildMatchMinuteWithInjuryTime(match, matchMinute, periodTime);
         }
 
         return this.buildMatchMinuteText(matchMinute, periodTime);
@@ -56,7 +57,7 @@ class StatusCell extends React.Component<Props> {
             matchMinute = periodTime.startTime;
         }
 
-        return `${matchMinute}`;
+        return `${matchMinute}'`;
     }
 
     buildMatchStatus(match: MatchSummary): string {
@@ -64,33 +65,38 @@ class StatusCell extends React.Component<Props> {
             return "";
         }
 
-        switch (match?.MatchStatus?.Value) {
-            case MatchStatusType.LIVE.value:
-            case MatchStatusType.FIRST_HALF.value:
-            case MatchStatusType.SECOND_HALF.value:
-            case MatchStatusType.FIRST_HALF_EXTRA.value:
-            case MatchStatusType.SECOND_HALF_EXTRA.value:
-            case MatchStatusType.OVERTIME.value:
-            case MatchStatusType.EXTRA_TIME.value:
-                return this.buildMatchMinute(match);
+        const eventNeedBeShownMinute = [
+            MatchStatusType.LIVE.value,
+            MatchStatusType.FIRST_HALF.value,
+            MatchStatusType.SECOND_HALF.value,
+            MatchStatusType.FIRST_HALF_EXTRA.value,
+            MatchStatusType.SECOND_HALF_EXTRA.value,
+            MatchStatusType.OVERTIME.value,
+            MatchStatusType.EXTRA_TIME.value
+        ];
 
-            default:
-                return MatchStatusTypeDic[match.MatchStatus.Value]?.displayName;
+        if (eventNeedBeShownMinute.find(status => match?.MatchStatus?.Value === status)) {
+            return this.buildMatchMinute(match);
         }
+
+        return MatchStatusTypeDic[match.MatchStatus.Value]?.displayName;
     }
 
     buildMatchStatusClass(match: MatchSummary) {
-        switch (match?.MatchStatus?.Value) {
-            case MatchStatusType.CANCELLED.value:
-            case MatchStatusType.POSTPONED.value:
-            case MatchStatusType.ABANDONED.value:
-            case MatchStatusType.DELAYED.value:
-            case MatchStatusType.INTERRUPTED.value:
-                return "match-cancel";
+        const cancelStatus = [
+            MatchStatusType.CANCELLED.value,
+            MatchStatusType.POSTPONED.value,
+            MatchStatusType.ABANDONED.value,
+            MatchStatusType.START_DELAYED.value,
+            MatchStatusType.DELAYED.value,
+            MatchStatusType.INTERRUPTED.value
+        ];
 
-            default:
-                return "";
+        if (cancelStatus.find(status => match?.MatchStatus?.Value === status)) {
+            return "match-cancel";
         }
+
+        return "";
     }
 
     render() {
