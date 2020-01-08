@@ -11,8 +11,8 @@ export default function HomeTeamCell(props: Props) {
   } = props;
 
   return (
-    <td>
-      {isAggegrateWinner && <i className="arrow-right" />}
+    <td className="text-right">
+      {isAggegrateWinner && <i className="icon-arrow-right" />}
       {isPenaltyWinner && <i className="icon-penalty" />}
       {redCards > 0 && <span className="red-card">{redCards}</span>}
       {yellowCards > 0 && <span className="yellow-card">{yellowCards}</span>}
