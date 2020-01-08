@@ -1,6 +1,0 @@
-
-> Score247-Web-App@1.0.0 test C:\Source\score247-web-app
-> jest "it(should render yellow card when yellowCards > 0," "()" "="
-
-  Invalid testPattern it(should render yellow card when yellowCards > 0,|()|= supplied. Running all tests instead.
-Terminate batch job (Y/N)? 
