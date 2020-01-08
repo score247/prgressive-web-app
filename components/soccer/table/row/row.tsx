@@ -41,7 +41,6 @@ class SoccerRow extends React.Component<Props, State> {
 
   render() {
     const { match } = this.props;
-    debugger;
     const time = new Date(match.EventDate[0]).toLocaleString(
       navigator.language,
       {

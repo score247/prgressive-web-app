@@ -60,7 +60,10 @@ class SoccerTable extends React.Component<Props, State> {
   };
 
   handleDisplayModeChange = (mode: DisplayMode) => {
-    this.setState({ displayMatches: this.filterMatches(mode) });
+    this.setState({
+      displayMatches: this.filterMatches(mode),
+      filterText: mode === DisplayMode.ShowAll ? "" : this.state.filterText
+    });
 
     this.selectedIds = [];
   };
@@ -100,7 +103,7 @@ class SoccerTable extends React.Component<Props, State> {
           -1 ||
         match.AwayTeamName.toLowerCase().search(filterText.toLowerCase()) !== -1
     );
-      debugger;
+
     return (
       <>
         <DeviceContext.Consumer>
