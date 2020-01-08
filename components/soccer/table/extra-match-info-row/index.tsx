@@ -18,7 +18,7 @@ const renderRegularPeriodScore = (fullTimePeriod: MatchPeriod[]) => {
 };
 
 const renderOverTimePeriodScore = (overTimePeriod?: MatchPeriod) =>
-overTimePeriod &&
+  overTimePeriod &&
   `, 120 minutes [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
 
 const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) =>
@@ -37,8 +37,7 @@ export default function ExtraMatchInfoRow(props: Props) {
     EventStatus
   } = props.match;
 
-  //render if the match has more than 2 regular periods or has aggerate score
-  if (MatchPeriods && ( MatchPeriods.length > 2 || (AggregateWinnerId && EventStatus.Value === MatchEventStatus.Closed))) { //NOSONAR
+  if (MatchPeriods) {
     const regularPeriods = MatchPeriods.filter(
       x => x.PeriodType.Value === PeriodType.Regular
     );
@@ -51,17 +50,24 @@ export default function ExtraMatchInfoRow(props: Props) {
       x => x.PeriodType.Value === PeriodType.Penalties
     );
 
-    return (
-      <tr>
-        <td className="text-extra" colSpan={9}>
-          {renderRegularPeriodScore(regularPeriods)}
-          {renderOverTimePeriodScore(overTimePeriod)}
-          {AggregateWinnerId && EventStatus.Value === MatchEventStatus.Closed &&
-            renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
-          {renderPenaltyScore(penaltyPeriod)}
-        </td>
-      </tr>
-    );
+    if (
+      overTimePeriod ||
+      penaltyPeriod ||
+      (AggregateWinnerId && EventStatus.Value === MatchEventStatus.Closed)
+    ) {
+      return (
+        <tr>
+          <td className="text-extra" colSpan={9}>
+            {renderRegularPeriodScore(regularPeriods)}
+            {renderOverTimePeriodScore(overTimePeriod)}
+            {AggregateWinnerId &&
+              EventStatus.Value === MatchEventStatus.Closed &&
+              renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
+            {renderPenaltyScore(penaltyPeriod)}
+          </td>
+        </tr>
+      );
+    }
   }
 
   return null;
