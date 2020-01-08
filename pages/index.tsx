@@ -13,26 +13,29 @@ import { isSameDay } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
 import DateSwitch from "../components/date-switch";
 import SoccerTable from "../components/soccer/table";
+import { SoccerSignalRClient } from "../apis/soccer-signalr-client";
+import appSettings from "../app-settings";
+import { MatchEvent, MatchEventSignalRMessage } from "../models/soccer/signalr-messages";
 
 type State = {
-  matches: MatchSummary[];
   selectedDate: Date;
   breadcrumbs: string[];
   onlyLiveMatch: boolean;
+  soccerSignalRClient?: SoccerSignalRClient
 };
 
 class SoccerPage extends React.Component<WithTranslation, State> {
   today: Date = new Date();
-
+  soccerTable: React.RefObject<SoccerTable>;
   constructor(props: WithTranslation) {
     super(props);
-
     this.state = {
-      matches: [],
       selectedDate: new Date(),
       breadcrumbs: [props.t(SportsEnum.SOCCER), props.t(ResourceKey.TODAY)],
-      onlyLiveMatch: false
+      onlyLiveMatch: false,
+      soccerSignalRClient: undefined
     };
+    this.soccerTable = React.createRef<SoccerTable>();
   }
 
   static async getInitialProps() {
@@ -42,33 +45,49 @@ class SoccerPage extends React.Component<WithTranslation, State> {
   }
 
   async componentDidMount() {
-    const matches = await SoccerAPI.GetMatchesByDate(new Date());
-    this.setState({ matches });
+    const client = this.setupSignalClient();
+
+    this.setState({
+      soccerSignalRClient: client,
+    }, () => {
+      client.start();
+    });
+  }
+
+  matchEventHandler = (message: MatchEventSignalRMessage) => {
+    this.soccerTable.current?.matchEventHandler(message);
   }
 
   handleDateChange = async (date: Date) => {
-    const matches = await SoccerAPI.GetMatchesByDate(date);
-
     const breadcrumbs = this.state.breadcrumbs.slice();
     breadcrumbs[1] = isSameDay(this.today, date)
       ? this.props.t(ResourceKey.TODAY)
       : formatDate(date, DateTimeFormat.DATE_ONLY, this.props.i18n.language);
 
     this.setState({
-      matches,
       selectedDate: date,
       onlyLiveMatch: false,
       breadcrumbs
     });
+
+    await this.soccerTable.current?.handleDateChange(date);
   };
 
   handleLiveButtonClick = async () => {
-    const matches = await SoccerAPI.GetLiveMatches();
     const breadcrumbs = this.state.breadcrumbs.slice();
     breadcrumbs[1] = this.props.t(ResourceKey.LIVE_MATCH);
 
-    this.setState({ matches, onlyLiveMatch: true, breadcrumbs });
+    this.setState({ onlyLiveMatch: true, breadcrumbs });
+    await this.soccerTable.current?.handleLiveButtonClick();
   };
+
+  private setupSignalClient() {
+    const eventHandlers = {
+      "MatchEvent": this.matchEventHandler
+    };
+
+    return new SoccerSignalRClient(appSettings.soccerPublisherUrl, eventHandlers);
+  }
 
   render() {
     const { t } = this.props;
@@ -82,7 +101,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
         />
         <Banner url="#" imgSrc="/static/images/ads-banner-1" />
         <div className="content">
-          <SoccerTable matches={this.state.matches} />
+          <SoccerTable ref={this.soccerTable} />
           {!this.state.onlyLiveMatch && (
             <DateSwitch
               currentDate={this.state.selectedDate}

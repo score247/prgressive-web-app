@@ -1,38 +1,70 @@
 import "./style.scss";
 import React from "react";
-import { MatchSummary } from "../../../models";
 import { DisplayMode } from "../../../common/constants";
 import DisplayOptions from "../../display-options";
 import SoccerRow from "./row/row";
 import Header from "./header/header";
 import SearchBar from "../../search-bar";
 import { DeviceContext } from "../../../contexts/device-context";
+import { MatchEventSignalRMessage } from "../../../models/soccer/signalr-messages";
+import { MatchSummary } from "../../../models/match-summary";
+import { SoccerAPI } from "../../../apis/soccer-api";
 
-type Props = {
+type State = {
+  filterText: string;
   matches: MatchSummary[];
 };
 
-type State = {
-  displayMatches: MatchSummary[];
-  filterText: string;
-};
-
-class SoccerTable extends React.Component<Props, State> {
+class SoccerTable extends React.Component<{}, State> {
   selectedIds: string[];
 
-  constructor(props: Props) {
+  constructor(props: {}) {
     super(props);
 
     this.selectedIds = [];
-
     this.state = {
-      displayMatches: [],
-      filterText: ""
+      filterText: "",
+      matches: [],
     };
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    this.setState({ displayMatches: nextProps.matches, filterText: "" });
+  async componentDidMount() {
+    await this.handleDateChange(new Date());
+  }
+
+  handleDateChange = async (date: Date) => {
+    const matches = await SoccerAPI.GetMatchesByDate(date);
+
+    this.setState({ matches: matches });
+  }
+
+  handleLiveButtonClick = async () => {
+    const matches = await SoccerAPI.GetLiveMatches();
+
+    this.setState({ matches: matches });
+  };
+
+  matchEventHandler = (message: MatchEventSignalRMessage) => {
+    const matchEvent = message?.MatchEvent;
+    const matchResult = message?.MatchEvent?.MatchResult;
+    const matches = this.state.matches.map(match => {
+      if (match.Id === matchEvent.MatchId) {
+        match.HomeScore = matchResult.HomeScore;
+        match.AwayScore = matchResult.AwayScore;
+        match.WinnerId = matchResult.WinnerId;
+        match.AggregateHomeScore = matchResult.AggregateHomeScore;
+        match.AggregateAwayScore = matchResult.AggregateAwayScore;
+        match.AggregateWinnerId = matchResult.AggregateWinnerId;
+        match.MatchPeriods = matchResult.MatchPeriods;
+        match.EventStatus = matchResult.EventStatus;
+        match.MatchStatus = matchResult.MatchStatus;
+        match.MatchTime = matchResult.MatchTime;
+      }
+
+      return match;
+    });
+
+    this.setState({ matches: matches });
   }
 
   handleSelectRow = (id: string) => {
@@ -61,7 +93,7 @@ class SoccerTable extends React.Component<Props, State> {
 
   handleDisplayModeChange = (mode: DisplayMode) => {
     this.setState({
-      displayMatches: this.filterMatches(mode),
+      matches: this.filterMatches(mode),
       filterText: mode === DisplayMode.ShowAll ? "" : this.state.filterText
     });
 
@@ -70,20 +102,20 @@ class SoccerTable extends React.Component<Props, State> {
 
   filterMatches = (mode: DisplayMode) => {
     if (mode === DisplayMode.ShowAll) {
-      return this.props.matches;
+      return this.state.matches;
     } else {
-      const { displayMatches } = this.state;
+      const { matches } = this.state;
 
       if (this.selectedIds.length <= 0) {
-        return displayMatches;
+        return matches;
       }
 
       if (mode === DisplayMode.ShowOnly) {
-        return displayMatches.filter(
+        return matches.filter(
           match => this.selectedIds.indexOf(match.Id) >= 0
         );
       } else {
-        return displayMatches.filter(
+        return matches.filter(
           match => this.selectedIds.indexOf(match.Id) < 0
         );
       }
@@ -95,12 +127,12 @@ class SoccerTable extends React.Component<Props, State> {
   };
 
   render() {
-    const { displayMatches, filterText } = this.state;
+    const { matches, filterText } = this.state;
 
-    const filteredMatches = displayMatches.filter(
+    const filteredMatches = matches.filter(
       match =>
         match.HomeTeamName.toLowerCase().search(filterText.toLowerCase()) !==
-          -1 ||
+        -1 ||
         match.AwayTeamName.toLowerCase().search(filterText.toLowerCase()) !== -1
     );
 

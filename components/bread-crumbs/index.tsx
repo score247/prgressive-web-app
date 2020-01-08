@@ -7,7 +7,7 @@ import { withTranslation } from "../../common/helpers/Localizer";
 
 class Breadcrumbs extends PureComponent<Props , State> {
   intervalId?: number;
-  intervalNumber = 1000;
+  intervalNumber = 2000;
 
   constructor(props: Props) {
     super(props);
