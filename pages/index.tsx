@@ -12,21 +12,24 @@ import { WithTranslation } from "next-i18next";
 import { isSameDay } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
 import DateSwitch from "../components/date-switch";
-import SoccerTable from "../components/soccer/table";
+import FilterSoccerTable from "../components/soccer/filter-table";
 import { SoccerSignalRClient } from "../apis/soccer-signalr-client";
 import appSettings from "../app-settings";
-import { MatchEvent, MatchEventSignalRMessage } from "../models/soccer/signalr-messages";
+import {
+  MatchEvent,
+  MatchEventSignalRMessage
+} from "../models/soccer/signalr-messages";
 
 type State = {
   selectedDate: Date;
   breadcrumbs: string[];
   onlyLiveMatch: boolean;
-  soccerSignalRClient?: SoccerSignalRClient
+  soccerSignalRClient?: SoccerSignalRClient;
 };
 
 class SoccerPage extends React.Component<WithTranslation, State> {
   today: Date = new Date();
-  soccerTable: React.RefObject<SoccerTable>;
+  soccerTable: React.RefObject<FilterSoccerTable>;
   constructor(props: WithTranslation) {
     super(props);
     this.state = {
@@ -35,7 +38,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
       onlyLiveMatch: false,
       soccerSignalRClient: undefined
     };
-    this.soccerTable = React.createRef<SoccerTable>();
+    this.soccerTable = React.createRef<FilterSoccerTable>();
   }
 
   static async getInitialProps() {
@@ -47,16 +50,19 @@ class SoccerPage extends React.Component<WithTranslation, State> {
   async componentDidMount() {
     const client = this.setupSignalClient();
 
-    this.setState({
-      soccerSignalRClient: client,
-    }, () => {
-      client.start();
-    });
+    this.setState(
+      {
+        soccerSignalRClient: client
+      },
+      () => {
+        client.start();
+      }
+    );
   }
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
     this.soccerTable.current?.matchEventHandler(message);
-  }
+  };
 
   handleDateChange = async (date: Date) => {
     const breadcrumbs = this.state.breadcrumbs.slice();
@@ -83,10 +89,13 @@ class SoccerPage extends React.Component<WithTranslation, State> {
 
   private setupSignalClient() {
     const eventHandlers = {
-      "MatchEvent": this.matchEventHandler
+      MatchEvent: this.matchEventHandler
     };
 
-    return new SoccerSignalRClient(appSettings.soccerPublisherUrl, eventHandlers);
+    return new SoccerSignalRClient(
+      appSettings.soccerPublisherUrl,
+      eventHandlers
+    );
   }
 
   render() {
@@ -101,7 +110,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
         />
         <Banner url="#" imgSrc="/static/images/ads-banner-1" />
         <div className="content">
-          <SoccerTable ref={this.soccerTable} />
+          <FilterSoccerTable ref={this.soccerTable} />
           {!this.state.onlyLiveMatch && (
             <DateSwitch
               currentDate={this.state.selectedDate}
