@@ -5,7 +5,7 @@ import { Props } from "./type";
 export default function FirstHalfScoreCell(props: Props) {
   const { firstHalfPeriod } = props;
   const { isMobile } = React.useContext(DeviceContext);
-debugger;
+  
   if(!isMobile){
     return (
       <td className="text-1H">
