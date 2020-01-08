@@ -155,12 +155,10 @@ class SoccerTable extends React.Component<{}, State> {
             }
           }}
         </DeviceContext.Consumer>
-        <div className="table">
-          <table>
-            <Header />
+        <table className="table">
+          <Header />
             <tbody>{filteredMatches.map(this.renderRow)}</tbody>
-          </table>
-        </div>
+        </table>
       </>
     );
   }
