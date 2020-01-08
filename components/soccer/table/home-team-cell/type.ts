@@ -4,4 +4,4 @@ export type Props = {
     yellowCards: number;
     isAggegrateWinner: boolean;
     isPenaltyWinner?: boolean;
-}
+};

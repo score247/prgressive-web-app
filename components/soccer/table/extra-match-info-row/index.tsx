@@ -4,7 +4,7 @@ import { PeriodType } from "../../../../common/enums/period-type";
 import { MatchEventStatus } from "../../../../common/enums/event-status";
 import { MatchPeriod } from "../../../../models";
 
-const renderRegularTimeScore = (fullTimePeriod: MatchPeriod[]) => {
+const renderRegularPeriodScore = (fullTimePeriod: MatchPeriod[]) => {
   const homeScore = fullTimePeriod.reduce(
     (total, period) => total + period.HomeScore,
     0
@@ -17,9 +17,9 @@ const renderRegularTimeScore = (fullTimePeriod: MatchPeriod[]) => {
   return `90 minutes [${homeScore} - ${awayScore}]`;
 };
 
-const renderOverTimeScore = (overTimeTimePeriod?: MatchPeriod) =>
-  overTimeTimePeriod &&
-  `, 120 minutes [${overTimeTimePeriod.HomeScore} - ${overTimeTimePeriod.AwayScore}]`;
+const renderOverTimePeriodScore = (overTimePeriod?: MatchPeriod) =>
+overTimePeriod &&
+  `, 120 minutes [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
 
 const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) =>
   `, aggregate score [${homeTeamScore} - ${awayTeamScore}]`;
@@ -54,8 +54,8 @@ export default function ExtraMatchInfoRow(props: Props) {
     return (
       <tr>
         <td className="text-extra" colSpan={9}>
-          {renderRegularTimeScore(regularPeriods)}
-          {renderOverTimeScore(overTimePeriod)}
+          {renderRegularPeriodScore(regularPeriods)}
+          {renderOverTimePeriodScore(overTimePeriod)}
           {AggregateWinnerId && EventStatus.Value === MatchEventStatus.Closed &&
             renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
           {renderPenaltyScore(penaltyPeriod)}

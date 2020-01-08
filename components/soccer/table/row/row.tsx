@@ -51,13 +51,15 @@ class SoccerRow extends React.Component<Props, State> {
       }
     );
 
-    const firstHalfPeriod = match.MatchPeriods
-      ? match.MatchPeriods.find(x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular)
-      : undefined;
+    const firstHalfPeriod =
+      match.MatchPeriods &&
+      match.MatchPeriods.find(
+        x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular
+      );
 
-    const penaltyPeriod = match.MatchPeriods
-    ? match.MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties)
-    : undefined;
+    const penaltyPeriod =
+      match.MatchPeriods &&
+      match.MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties);
 
     return (
       <>
@@ -77,7 +79,9 @@ class SoccerRow extends React.Component<Props, State> {
             redCards={match.HomeRedCards + match.HomeYellowRedCards}
             yellowCards={match.HomeYellowCards}
             isAggegrateWinner={match.HomeTeamId === match.AggregateWinnerId}
-            isPenaltyWinner={penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore}
+            isPenaltyWinner={
+              penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore
+            }
           />
           <FinalScoreCell
             homeScore={match.HomeScore}
@@ -89,7 +93,9 @@ class SoccerRow extends React.Component<Props, State> {
             redCards={match.AwayRedCards + match.AwayYellowRedCards}
             yellowCards={match.AwayYellowCards}
             isAggegrateWinner={match.AwayTeamId === match.AggregateWinnerId}
-            isPenaltyWinner={penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore}
+            isPenaltyWinner={
+              penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore
+            }
           />
           <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
           <td>
