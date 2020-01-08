@@ -1,6 +1,7 @@
 import React from "react";
 import { Props } from "./type";
 import { PeriodType } from "../../../../common/enums/period-type";
+import { MatchEventStatus } from "../../../../common/enums/event-status";
 import { MatchPeriod } from "../../../../models";
 
 const renderRegularTimeScore = (fullTimePeriod: MatchPeriod[]) => {
@@ -32,15 +33,17 @@ export default function ExtraMatchInfoRow(props: Props) {
     AggregateAwayScore,
     AggregateHomeScore,
     MatchPeriods,
-    AggregateWinnerId
+    AggregateWinnerId,
+    EventStatus
   } = props.match;
 
-  //render if the match has more than 2 regular periods
-  if (MatchPeriods.length > 2) { //NOSONAR
+  //render if the match has more than 2 regular periods or has aggerate score
+  if (MatchPeriods && ( MatchPeriods.length > 2 || (AggregateWinnerId && EventStatus.Value === MatchEventStatus.Closed))) { //NOSONAR
     const regularPeriods = MatchPeriods.filter(
       x => x.PeriodType.Value === PeriodType.Regular
     );
-    const overTimeScore = MatchPeriods.find(
+
+    const overTimePeriod = MatchPeriods.find(
       x => x.PeriodType.Value === PeriodType.Overtime
     );
 
@@ -52,8 +55,8 @@ export default function ExtraMatchInfoRow(props: Props) {
       <tr>
         <td className="text-extra" colSpan={9}>
           {renderRegularTimeScore(regularPeriods)}
-          {renderOverTimeScore(overTimeScore)}
-          {AggregateWinnerId &&
+          {renderOverTimeScore(overTimePeriod)}
+          {AggregateWinnerId && EventStatus.Value === MatchEventStatus.Closed &&
             renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
           {renderPenaltyScore(penaltyPeriod)}
         </td>

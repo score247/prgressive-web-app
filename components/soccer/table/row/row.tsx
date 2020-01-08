@@ -8,6 +8,7 @@ import Checkbox from "../../../checkbox";
 import HomeTeamCell from "../home-team-cell";
 import AwayTeamCell from "../away-team-cell";
 import ExtraMatchInfoRow from "../extra-match-info-row";
+import { PeriodType } from "../../../../common/enums/period-type";
 
 type Props = {
   match: MatchSummary;
@@ -51,8 +52,12 @@ class SoccerRow extends React.Component<Props, State> {
     );
 
     const firstHalfPeriod = match.MatchPeriods
-      ? match.MatchPeriods.find(x => x.Number === 1)
+      ? match.MatchPeriods.find(x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular)
       : undefined;
+
+    const penaltyPeriod = match.MatchPeriods
+    ? match.MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties)
+    : undefined;
 
     return (
       <>
@@ -71,6 +76,8 @@ class SoccerRow extends React.Component<Props, State> {
             homeTeamName={match.HomeTeamName}
             redCards={match.HomeRedCards + match.HomeYellowRedCards}
             yellowCards={match.HomeYellowCards}
+            isAggegrateWinner={match.HomeTeamId === match.AggregateWinnerId}
+            isPenaltyWinner={penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore}
           />
           <FinalScoreCell
             homeScore={match.HomeScore}
@@ -81,13 +88,15 @@ class SoccerRow extends React.Component<Props, State> {
             awayTeamName={match.AwayTeamName}
             redCards={match.AwayRedCards + match.AwayYellowRedCards}
             yellowCards={match.AwayYellowCards}
+            isAggegrateWinner={match.AwayTeamId === match.AggregateWinnerId}
+            isPenaltyWinner={penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore}
           />
           <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
           <td>
             <i className="icon-menu-favorites"></i>
           </td>
         </tr>
-        {match.MatchPeriods && <ExtraMatchInfoRow match={match} />}
+        <ExtraMatchInfoRow match={match} />
       </>
     );
   }
