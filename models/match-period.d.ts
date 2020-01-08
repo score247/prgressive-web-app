@@ -1,4 +1,4 @@
-import { Enumeration } from "./Enumeration";
+import { Enumeration } from "./enumeration";
 
 export interface MatchPeriod {
   HomeScore: number;

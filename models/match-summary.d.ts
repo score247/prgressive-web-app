@@ -1,5 +1,5 @@
-import { Enumeration } from "./Enumeration";
-import { MatchPeriod } from "./MatchPeriod";
+import { Enumeration } from "./enumeration";
+import { MatchPeriod } from "./match-period";
 
 export interface MatchSummary {
   Id: string;

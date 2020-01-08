@@ -7,7 +7,7 @@ import { MatchSummary } from "../models";
 import { withTranslation } from "../common/helpers/Localizer";
 import { SportsEnum } from "../common/enums/sportenum";
 import { ResourceType, ResourceKey, DateTimeFormat } from "../common/constants";
-import { SoccerAPI } from "../apis/SoccerApi";
+import { SoccerAPI } from "../apis/soccer-api";
 import { WithTranslation } from "next-i18next";
 import { isSameDay } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
@@ -82,13 +82,13 @@ class SoccerPage extends React.Component<WithTranslation, State> {
         />
         <Banner url="#" imgSrc="/static/images/ads-banner-1" />
         <div className="content">
-            <SoccerTable matches={this.state.matches} />
-            {!this.state.onlyLiveMatch && (
-              <DateSwitch
-                currentDate={this.state.selectedDate}
-                onClick={this.handleDateChange}
-              />
-            )}
+          <SoccerTable matches={this.state.matches} />
+          {!this.state.onlyLiveMatch && (
+            <DateSwitch
+              currentDate={this.state.selectedDate}
+              onClick={this.handleDateChange}
+            />
+          )}
         </div>
       </Layout>
     );

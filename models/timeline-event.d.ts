@@ -1,7 +1,7 @@
-import { Enumeration } from "./Enumeration";
-import { GoalScorer } from "./GoalScorer";
-import { Player } from "./Player";
-import { Commentary } from "./Commentary";
+import { Enumeration } from "./enumeration";
+import { GoalScorer } from "./goal-scorer";
+import { Player } from "./player";
+import { Commentary } from "./commentary";
 
 export interface TimelineEvent {
   id: string;

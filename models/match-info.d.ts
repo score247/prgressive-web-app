@@ -1,6 +1,6 @@
-import { MatchSummary } from "./MatchSummary";
-import { Venue } from "./Venue";
-import { TimelineEvent } from "./TimelineEvent";
+import { MatchSummary } from "./match-summary";
+import { Venue } from "./venue";
+import { TimelineEvent } from "./timeline-event";
 
 export interface MatchInfo {
   Match: MatchSummary;

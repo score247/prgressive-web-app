@@ -1,5 +1,5 @@
 import "./style.scss";
-import React, { Fragment } from "react";
+import React from "react";
 import { MatchSummary } from "../../../models";
 import { DisplayMode } from "../../../common/constants";
 import DisplayOptions from "../../display-options";
@@ -97,7 +97,7 @@ class SoccerTable extends React.Component<Props, State> {
   render() {
     const { displayMatches, filterText } = this.state;
 
-    const matches = displayMatches.filter(
+    const filteredMatches = displayMatches.filter(
       match =>
         match.HomeTeamName.toLowerCase().search(filterText.toLowerCase()) !==
           -1 ||
@@ -126,7 +126,7 @@ class SoccerTable extends React.Component<Props, State> {
         <div className="table">
           <table>
             <Header />
-            <tbody>{matches.map(this.renderRow)}</tbody>
+            <tbody>{filteredMatches.map(this.renderRow)}</tbody>
           </table>
         </div>
       </>
