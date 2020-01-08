@@ -4,20 +4,16 @@ import { Props } from "./type";
 
 export default function FinalScoreCell(props: Props) {
   const { firstHalfPeriod, homeScore, awayScore } = props;
+  const { isMobile } = React.useContext(DeviceContext);
+
   return (
     <td className="text-score">
       {homeScore} - {awayScore}
-      <DeviceContext.Consumer>
-        {({ isMobile }) => (
-          <>
-            {isMobile && firstHalfPeriod && (
-              <div className="text-1H">
-                ({firstHalfPeriod.HomeScore} - {firstHalfPeriod.AwayScore})
-              </div>
-            )}
-          </>
-        )}
-      </DeviceContext.Consumer>
+      {isMobile && firstHalfPeriod && (
+        <div className="text-1H">
+          ({firstHalfPeriod.HomeScore} - {firstHalfPeriod.AwayScore})
+        </div>
+      )}
     </td>
   );
 }

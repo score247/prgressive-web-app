@@ -4,20 +4,15 @@ import { Props } from "./type";
 
 export default function FirstHalfScoreCell(props: Props) {
   const { firstHalfPeriod } = props;
-  return (
-    <DeviceContext.Consumer>
-      {({ isMobile }) => {
-        if (!isMobile) {
-          return (
-            <td className="text-1H">
-              {firstHalfPeriod &&
-                `${firstHalfPeriod.HomeScore} - ${firstHalfPeriod.AwayScore}`}
-            </td>
-          );
-        }
-
-        return null;
-      }}
-    </DeviceContext.Consumer>
-  );
+  const { isMobile } = React.useContext(DeviceContext);
+debugger;
+  if(!isMobile){
+    return (
+      <td className="text-1H">
+        {firstHalfPeriod &&
+          `${firstHalfPeriod.HomeScore} - ${firstHalfPeriod.AwayScore}`}
+      </td>
+    );
+  }
+  return null;
 }

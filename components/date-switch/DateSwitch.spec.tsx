@@ -7,7 +7,7 @@ jest.mock("../../common/helpers/Localizer", () =>
   jest.requireActual("../../common/helpers/__mocks__/Localizer")
 );
 
-describe("DateBar", () => {
+describe("DateSwitch", () => {
   let props: Props;
 
   beforeEach(() => {
