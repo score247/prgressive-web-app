@@ -281,24 +281,24 @@ const Basketball: LocalizedPage = props => {
             </tr>
 
             <tr>
-              <td className="col-selected">
+              <td className="col-selected" rowSpan={2}>
                 <div className="checkbox">
                   <input id="checkbox-6" name="Checbox1" type="checkbox" />
                   <label htmlFor="checkbox-6"></label>
                 </div> 
               </td>
-              <td className="league-4">SPA T6</td>
-              <td>6:45</td>
-              <td className="col-status">AP</td>
+              <td className="league-4" rowSpan={2}>SPA T6</td>
+              <td rowSpan={2}>6:45</td>
+              <td className="col-status" rowSpan={2}>AP</td>
               <td className="text-right">Elche CF Ilicitano</td>
               <td className="text-score">1 - 1</td>
               <td className="text-left">CF Intercity</td>
               <td className="col-1st-half text-1H">1 - 1</td>
-              <td><i className="icon-menu-favorites"/></td>
+              <td rowSpan={2}><i className="icon-menu-favorites"/></td>
             </tr>
 
             <tr>
-              <td className="text-extra" colSpan={9}>90 minutes [1 - 1], 120 minutes [1 - 1], aggregate score: 3 - 3, penalty shoot-out [5 - 6]</td>
+              <td className="text-extra" colSpan={4}>90 minutes [1 - 1], 120 minutes [1 - 1], aggregate score: 3 - 3, penalty shoot-out [5 - 6]</td>
             </tr>
           </tbody>
         </table>
