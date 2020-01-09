@@ -1,13 +1,6 @@
 .text-score {
     color: #FF0000;
     font-weight: bold;
-
-    .text-1H{
-        display: none;
-        .mobile & {
-            display: block;
-        }
-    }
 }
 
 .text-1H {

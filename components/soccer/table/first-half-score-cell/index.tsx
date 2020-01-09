@@ -5,8 +5,8 @@ import { Props } from "./type";
 export default function FirstHalfScoreCell(props: Props) {
   const { firstHalfPeriod } = props;
   const { isMobile } = React.useContext(DeviceContext);
-  
-  if(!isMobile){
+
+  if (!isMobile) {
     return (
       <td className="text-1H">
         {firstHalfPeriod &&
@@ -14,5 +14,6 @@ export default function FirstHalfScoreCell(props: Props) {
       </td>
     );
   }
+  
   return null;
 }

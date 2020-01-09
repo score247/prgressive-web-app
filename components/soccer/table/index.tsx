@@ -2,7 +2,7 @@ import React from "react";
 import SoccerRow from "./row/row";
 import Header from "./header/header";
 import { MatchSummary } from "../../../models/match-summary";
-import Ads from "../../Ads";
+import Ad from "../../Ad";
 
 type Props = {
   matches: MatchSummary[];
@@ -39,17 +39,23 @@ class SoccerTable extends React.Component<Props> {
   };
 
   renderRow = (match: MatchSummary, index: number) => {
-    const renderAds = (index+1) % 5 === 0;
+    const renderAds = (index + 1) % 5 === 0;
 
     return (
       <>
-      <SoccerRow
-        key={match.Id}
-        match={match}
-        isSelected={this.selectedIds.indexOf(match.Id) >= 0}
-        onSelect={this.handleSelectRow}
-      />
-      {renderAds && <tr><td className="ads-text" colSpan={8}><Ads /></td></tr>}
+        <SoccerRow
+          key={match.Id}
+          match={match}
+          isSelected={this.selectedIds.indexOf(match.Id) >= 0}
+          onSelect={this.handleSelectRow}
+        />
+        {renderAds && (
+          <tr>
+            <td className="ads-text" colSpan={8}>
+              <Ad />
+            </td>
+          </tr>
+        )}
       </>
     );
   };
