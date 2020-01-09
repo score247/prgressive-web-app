@@ -3,11 +3,9 @@ import "./basketball/style.scss";
 import Layout from "../components/layout";
 import DateBar from "../components/date-bar";
 import Banner from "../components/layout/banner/Banner";
-import { MatchSummary } from "../models";
 import { withTranslation } from "../common/helpers/Localizer";
 import { SportsEnum } from "../common/enums/sportenum";
 import { ResourceType, ResourceKey, DateTimeFormat } from "../common/constants";
-import { SoccerAPI } from "../apis/soccer-api";
 import { WithTranslation } from "next-i18next";
 import { isSameDay } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
@@ -15,10 +13,7 @@ import DateSwitch from "../components/date-switch";
 import FilterSoccerTable from "../components/soccer/filter-table";
 import { SoccerSignalRClient } from "../apis/soccer-signalr-client";
 import appSettings from "../app-settings";
-import {
-  MatchEvent,
-  MatchEventSignalRMessage
-} from "../models/soccer/signalr-messages";
+import { MatchEventSignalRMessage } from "../models/soccer/signalr-messages";
 
 type State = {
   selectedDate: Date;
@@ -29,7 +24,7 @@ type State = {
 
 class SoccerPage extends React.Component<WithTranslation, State> {
   today: Date = new Date();
-  soccerTable: React.RefObject<FilterSoccerTable>;
+  filterSoccerTable: React.RefObject<FilterSoccerTable>;
   constructor(props: WithTranslation) {
     super(props);
     this.state = {
@@ -38,7 +33,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
       onlyLiveMatch: false,
       soccerSignalRClient: undefined
     };
-    this.soccerTable = React.createRef<FilterSoccerTable>();
+    this.filterSoccerTable = React.createRef<FilterSoccerTable>();
   }
 
   static async getInitialProps() {
@@ -61,7 +56,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
   }
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
-    this.soccerTable.current?.matchEventHandler(message);
+    this.filterSoccerTable.current?.matchEventHandler(message);
   };
 
   handleDateChange = async (date: Date) => {
@@ -76,7 +71,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
       breadcrumbs
     });
 
-    await this.soccerTable.current?.handleDateChange(date);
+    await this.filterSoccerTable.current?.handleDateChange(date);
   };
 
   handleLiveButtonClick = async () => {
@@ -84,7 +79,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
     breadcrumbs[1] = this.props.t(ResourceKey.LIVE_MATCH);
 
     this.setState({ onlyLiveMatch: true, breadcrumbs });
-    await this.soccerTable.current?.handleLiveButtonClick();
+    await this.filterSoccerTable.current?.handleLiveButtonClick();
   };
 
   private setupSignalClient() {
@@ -110,7 +105,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
         />
         <Banner url="#" imgSrc="/static/images/ads-banner-1" />
         <div className="content">
-          <FilterSoccerTable ref={this.soccerTable} />
+          <FilterSoccerTable ref={this.filterSoccerTable} />
           {!this.state.onlyLiveMatch && (
             <DateSwitch
               currentDate={this.state.selectedDate}

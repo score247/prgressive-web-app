@@ -16,14 +16,14 @@ type State = {
 };
 
 class FilterSoccerTable extends React.Component<{}, State> {
-  private selectedIds: string[];
-  private displayMatches: MatchSummary[];
+  displayMatches: MatchSummary[];
+  soccerTableRef: React.RefObject<SoccerTable>;
 
   constructor(props: {}) {
     super(props);
 
-    this.selectedIds = [];
     this.displayMatches = [];
+    this.soccerTableRef = React.createRef<SoccerTable>();
     this.state = {
       filterText: "",
       displayMode: DisplayMode.ShowAll,
@@ -36,15 +36,21 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   handleDateChange = async (date: Date) => {
-    const matches = await SoccerAPI.GetMatchesByDate(date);
+    this.displayMatches = await SoccerAPI.GetMatchesByDate(date);
 
-    this.setState({ matches: matches, displayMode: DisplayMode.ShowAll });
+    this.setState({
+      matches: this.displayMatches,
+      displayMode: DisplayMode.ShowAll
+    });
   };
 
   handleLiveButtonClick = async () => {
-    const matches = await SoccerAPI.GetLiveMatches();
+    this.displayMatches = await SoccerAPI.GetLiveMatches();
 
-    this.setState({ matches: matches, displayMode: DisplayMode.ShowAll });
+    this.setState({
+      matches: this.displayMatches,
+      displayMode: DisplayMode.ShowAll
+    });
   };
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
@@ -67,24 +73,14 @@ class FilterSoccerTable extends React.Component<{}, State> {
       return match;
     });
 
+    this.displayMatches = this.filterMatches(this.state.displayMode);
+
     this.setState({ matches: matches });
-  };
-
-  handleSelectRow = (id: string) => {
-    const index = this.selectedIds.indexOf(id);
-
-    if (index >= 0) {
-      this.selectedIds = [
-        ...this.selectedIds.slice(0, index),
-        ...this.selectedIds.slice(index + 1)
-      ];
-    } else {
-      this.selectedIds.push(id);
-    }
   };
 
   handleDisplayModeChange = (mode: DisplayMode) => {
     this.displayMatches = this.filterMatches(mode);
+    this.soccerTableRef.current?.resetSelectedIds();
 
     this.setState({
       displayMode: mode,
@@ -96,17 +92,19 @@ class FilterSoccerTable extends React.Component<{}, State> {
     if (mode === DisplayMode.ShowAll) {
       return this.state.matches;
     } else {
-      if (this.selectedIds.length <= 0) {
+      const selectedIds = this.soccerTableRef.current?.getSelectedIds();
+
+      if (!selectedIds || selectedIds.length <= 0) {
         return this.displayMatches;
       }
 
       if (mode === DisplayMode.ShowOnly) {
         return this.displayMatches.filter(
-          match => this.selectedIds.indexOf(match.Id) >= 0
+          match => selectedIds.indexOf(match.Id) >= 0
         );
       } else {
         return this.displayMatches.filter(
-          match => this.selectedIds.indexOf(match.Id) < 0
+          match => selectedIds.indexOf(match.Id) < 0
         );
       }
     }
@@ -122,12 +120,11 @@ class FilterSoccerTable extends React.Component<{}, State> {
     this.displayMatches = this.filterMatches(displayMode);
     const filteredMatches = this.displayMatches.filter(
       match =>
-        match.HomeTeamName.toLowerCase().search(filterText.toLowerCase()) !==
+        match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
           -1 ||
-        match.AwayTeamName.toLowerCase().search(filterText.toLowerCase()) !== -1
+        match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
+          -1
     );
-
-    this.selectedIds = [];
 
     return (
       <>
@@ -148,10 +145,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
             }
           }}
         </DeviceContext.Consumer>
-        <SoccerTable
-          matches={filteredMatches}
-          handleSelectRow={this.handleSelectRow}
-        />
+        <SoccerTable matches={filteredMatches} ref={this.soccerTableRef} />
       </>
     );
   }

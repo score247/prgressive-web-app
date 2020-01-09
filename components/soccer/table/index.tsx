@@ -5,16 +5,36 @@ import { MatchSummary } from "../../../models/match-summary";
 
 type Props = {
   matches: MatchSummary[];
-  handleSelectRow: (id: string) => void;
 };
 
 class SoccerTable extends React.Component<Props> {
+  private selectedIds: string[];
+
   constructor(props: Props) {
     super(props);
+
+    this.selectedIds = [];
   }
 
   handleSelectRow = (id: string) => {
-    this.props.handleSelectRow(id);
+    const index = this.selectedIds.indexOf(id);
+
+    if (index >= 0) {
+      this.selectedIds = [
+        ...this.selectedIds.slice(0, index),
+        ...this.selectedIds.slice(index + 1)
+      ];
+    } else {
+      this.selectedIds.push(id);
+    }
+  };
+
+  getSelectedIds = () => {
+    return this.selectedIds;
+  };
+
+  resetSelectedIds = () => {
+    this.selectedIds = [];
   };
 
   renderRow = (match: MatchSummary, index: number) => {
@@ -22,7 +42,7 @@ class SoccerTable extends React.Component<Props> {
       <SoccerRow
         key={match.Id}
         match={match}
-        isSelected={false}
+        isSelected={this.selectedIds.indexOf(match.Id) >= 0}
         onSelect={this.handleSelectRow}
       />
     );
