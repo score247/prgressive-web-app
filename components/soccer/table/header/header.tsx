@@ -5,7 +5,7 @@ const renderFirstHalfColumn = () => (
   <DeviceContext.Consumer>
     {({ isMobile }) => {
       if (!isMobile) {
-        return <th>1st Half</th>;
+        return <th className="width-50">1st Half</th>;
       }
       return null;
     }}

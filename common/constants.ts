@@ -34,6 +34,7 @@ export class DateTimeFormat {
   public static readonly WEEKDAY = "iii";
   public static readonly DATE_ONLY = "dd MMM yyyy";
   public static readonly TIME_AND_ZONE = "H:mm OOO";
+  public static readonly LONG_DATE = "H:mm OOO";
 }
 
 export class DisplayMode {
