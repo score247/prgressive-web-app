@@ -81,19 +81,9 @@ body {
     }
 }
 
-.show-mobile {
-    display: none !important;
-
-    .mobile & {
-        display: block;
-    }
-}
-
 .hide-mobile {
-    display: block;
-
     .mobile & {
-        display: none;
+        display: none !important;
     }
 }
 

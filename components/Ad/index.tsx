@@ -2,7 +2,7 @@ import React, { CSSProperties } from "react";
 
 type Props = {
   style?: CSSProperties;
-}
+};
 
 export default function Ad(props: Props) {
   return (
