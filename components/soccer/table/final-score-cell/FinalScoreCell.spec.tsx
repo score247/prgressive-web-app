@@ -4,6 +4,7 @@ import { Props } from "./type";
 import FinalScoreCell from "./index";
 import { PeriodType } from "../../../../common/enums/period-type";
 import { DeviceContext } from "../../../../contexts/device-context";
+import { MatchStatusType } from "../../../../common/enums/match-status-type";
 
 describe("FinalScoreCell", () => {
   let props: Props;
@@ -19,7 +20,8 @@ describe("FinalScoreCell", () => {
           DisplayName: "regular",
           Value: PeriodType.Regular
         }
-      }
+      },
+      matchStatusId: MatchStatusType.FIRST_HALF.value
     };
   });
 

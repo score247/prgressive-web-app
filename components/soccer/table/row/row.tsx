@@ -88,6 +88,7 @@ class SoccerRow extends React.Component<Props, State> {
             homeScore={match.HomeScore}
             awayScore={match.AwayScore}
             firstHalfPeriod={firstHalfPeriod}
+            matchStatusId={match.MatchStatus?.Value}
           />
           <AwayTeamCell
             awayTeamName={match.AwayTeamName}
