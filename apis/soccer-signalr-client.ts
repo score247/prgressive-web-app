@@ -19,7 +19,11 @@ export class SoccerSignalRClient {
     registerEvents() {
         for (const key in this.handlers) {
             this.hubConnection.on(key, (data) => {
-                this.handlers[key](JSON.parse(data));
+                const jsonObject = JSON.parse(data);
+
+                console.log(jsonObject); //NOSONAR
+
+                this.handlers[key](jsonObject);
             });
         }
     }

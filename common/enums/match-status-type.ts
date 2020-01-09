@@ -1,5 +1,4 @@
-
-interface MatchStatusKeyNumberValue{
+interface MatchStatusKeyNumberValue {
     [key: number]: MatchStatus
 }
 
@@ -43,4 +42,4 @@ Object.keys(MatchStatusType)
         const matchStatusKeyStringValue = MatchStatusType as any;
 
         MatchStatusTypeDic[matchStatusKeyStringValue[key].value] = matchStatusKeyStringValue[key];
- });
+    });

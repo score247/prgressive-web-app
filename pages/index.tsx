@@ -43,16 +43,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
   }
 
   async componentDidMount() {
-    const client = this.setupSignalClient();
-
-    this.setState(
-      {
-        soccerSignalRClient: client
-      },
-      () => {
-        client.start();
-      }
-    );
+    this.setupSignalClient();
   }
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
@@ -87,9 +78,18 @@ class SoccerPage extends React.Component<WithTranslation, State> {
       MatchEvent: this.matchEventHandler
     };
 
-    return new SoccerSignalRClient(
+    const client = new SoccerSignalRClient(
       appSettings.soccerPublisherUrl,
       eventHandlers
+    );
+
+    this.setState(
+      {
+        soccerSignalRClient: client
+      },
+      () => {
+        client.start();
+      }
     );
   }
 
