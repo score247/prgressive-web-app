@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import SoccerRow from "./row/row";
 import Header from "./header/header";
 import TitleRow from "./title-row/title-row";
@@ -34,6 +34,7 @@ class SoccerTable extends React.Component<Props> {
     MatchStatusType.ENDED_AFTER_PENALTIES.value
   ];
   private selectedIds: string[];
+  private renderedRow = 0;
 
   constructor(props: Props) {
     super(props);
@@ -64,12 +65,12 @@ class SoccerTable extends React.Component<Props> {
   };
 
   renderRow = (match: MatchSummary, index: number) => {
-    const renderAds = (index + 1) % appSettings.numberOfRowEveryAd === 0;
+    this.renderedRow++;
+    const renderAds = this.renderedRow % appSettings.numberOfRowEveryAd === 0;
 
     return (
-      <>
+      <Fragment key={match.Id}>
         <SoccerRow
-          key={match.Id}
           match={match}
           isSelected={this.selectedIds.indexOf(match.Id) >= 0}
           onSelect={this.handleSelectRow}
@@ -77,11 +78,11 @@ class SoccerTable extends React.Component<Props> {
         {renderAds && (
           <tr>
             <td colSpan={9}>
-              <Ad/>
+              <Ad />
             </td>
           </tr>
         )}
-      </>
+      </Fragment>
     );
   };
 
@@ -98,17 +99,17 @@ class SoccerTable extends React.Component<Props> {
   }
 
   classifyMatchRowsByStatus(matches: MatchSummary[]) {
-    const cancelMatchRows: JSX.Element[] = [];
-    const endMatchRows: JSX.Element[] = [];
-    const preMatchRows: JSX.Element[] = [];
+    const cancelMatchRows: MatchSummary[] = [];
+    const endMatchRows: MatchSummary[] = [];
+    const preMatchRows: MatchSummary[] = [];
 
     this.props.matches.forEach((match, index: number) => {
       if (this.isCancelMatch(match)) {
-        cancelMatchRows.push(this.renderRow(match, index));
+        cancelMatchRows.push(match);
       } else if (this.isEndMatch(match)) {
-        endMatchRows.push(this.renderRow(match, index));
+        endMatchRows.push(match);
       } else {
-        preMatchRows.push(this.renderRow(match, index));
+        preMatchRows.push(match);
       }
     });
 
@@ -122,10 +123,11 @@ class SoccerTable extends React.Component<Props> {
   renderBodyRows() {
     const { selectedDate, matches } = this.props;
     const classifiedRows = this.classifyMatchRowsByStatus(matches);
-
+    this.renderedRow = 0;
+    
     return (
       <>
-        {classifiedRows.preMatchRows}
+        {classifiedRows.preMatchRows.map(this.renderRow)}
         {isSameDay(selectedDate, this.today) &&
           classifiedRows.endMatchRows.length > 0 && (
             <TitleRow
@@ -135,11 +137,11 @@ class SoccerTable extends React.Component<Props> {
               )})`}
             />
           )}
-        {classifiedRows.endMatchRows}
+        {classifiedRows.endMatchRows.map(this.renderRow)}
         {classifiedRows.cancelMatchRows.length > 0 && (
           <TitleRow title="This present cancelled/postponed/abandoned/deplayed/interruped matches" />
         )}
-        {classifiedRows.cancelMatchRows}
+        {classifiedRows.cancelMatchRows.map(this.renderRow)}
       </>
     );
   }
