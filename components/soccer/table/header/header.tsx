@@ -23,6 +23,7 @@ const Header = () => {
     <thead>
       <tr>
         <th></th>
+        <th>League</th>
         <th>Time</th>
         <th>Status</th>
         <th>Home</th>

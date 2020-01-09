@@ -4,7 +4,7 @@ import { Player } from "./player";
 import { Commentary } from "./commentary";
 
 export interface TimelineEvent {
-  id: string;
+  Id: string;
   CreatedTime: Date;
   ModifiedTime: Date;
   Type: Enumeration;

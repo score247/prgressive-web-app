@@ -4,10 +4,13 @@ import { DisplayMode } from "../../../common/constants";
 import DisplayOptions from "../../display-options";
 import SearchBar from "../../search-bar";
 import { DeviceContext } from "../../../contexts/device-context";
-import { MatchEventSignalRMessage } from "../../../models/soccer/signalr-messages";
+import { MatchEventSignalRMessage, MatchEvent } from "../../../models/soccer/signalr-messages";
 import { MatchSummary } from "../../../models/match-summary";
 import { SoccerAPI } from "../../../apis/soccer-api";
 import SoccerTable from "../table";
+import { EventTypes } from "../../../common/enums/event-type";
+import { TimelineEvent } from "../../../models";
+import { MatchResult } from "../../../models/soccer/match-result";
 
 type State = {
   filterText: string;
@@ -18,11 +21,13 @@ type State = {
 class FilterSoccerTable extends React.Component<{}, State> {
   displayMatches: MatchSummary[];
   soccerTableRef: React.RefObject<SoccerTable>;
+  processedTimelineIds: string[];
 
   constructor(props: {}) {
     super(props);
 
     this.displayMatches = [];
+    this.processedTimelineIds = [];
     this.soccerTableRef = React.createRef<SoccerTable>();
     this.state = {
       filterText: "",
@@ -56,27 +61,74 @@ class FilterSoccerTable extends React.Component<{}, State> {
   matchEventHandler = (message: MatchEventSignalRMessage) => {
     const matchEvent = message?.MatchEvent;
     const matchResult = message?.MatchEvent?.MatchResult;
+    const timeline = message?.MatchEvent?.Timeline;
+    let isChanged = false;
     const matches = this.state.matches.map(match => {
-      if (match.Id === matchEvent.MatchId) {
-        match.HomeScore = matchResult.HomeScore;
-        match.AwayScore = matchResult.AwayScore;
-        match.WinnerId = matchResult.WinnerId;
-        match.AggregateHomeScore = matchResult.AggregateHomeScore;
-        match.AggregateAwayScore = matchResult.AggregateAwayScore;
-        match.AggregateWinnerId = matchResult.AggregateWinnerId;
-        match.MatchPeriods = matchResult.MatchPeriods;
-        match.EventStatus = matchResult.EventStatus;
-        match.MatchStatus = matchResult.MatchStatus;
-        match.MatchTime = matchResult.MatchTime;
+      const newMatch = this.updateMatch(match, timeline, matchEvent, matchResult);
+
+      if (newMatch != null) {
+        isChanged = true;
+        return newMatch;
       }
 
       return match;
     });
 
-    this.displayMatches = this.filterMatches(this.state.displayMode);
+    if (isChanged) {
+      this.displayMatches = this.filterMatches(this.state.displayMode);
 
-    this.setState({ matches: matches });
+      this.setState({ matches: matches });
+    }
   };
+
+  private updateCards(timeline: TimelineEvent, match: MatchSummary) {
+    if (timeline != null && !this.processedTimelineIds.includes(timeline.Id)) {
+      switch (timeline.Type.Value) {
+        case EventTypes.YELLOW_CARD.value:
+          if (timeline.IsHome) {
+            match.HomeYellowCards++;
+          }
+          else {
+            match.AwayYellowCards++;
+          }
+          this.processedTimelineIds.push(timeline.Id);
+          break;
+        case EventTypes.RED_CARD.value:
+        case EventTypes.YELLOW_RED_CARD.value:
+          if (timeline.IsHome) {
+            match.HomeRedCards++;
+          }
+          else {
+            match.AwayRedCards++;
+          }
+          this.processedTimelineIds.push(timeline.Id);
+          break;
+      }
+    }
+
+    return match;
+  }
+
+  updateMatch = (match: MatchSummary, timeline: TimelineEvent, matchEvent: MatchEvent, matchResult: MatchResult) => {
+    if (match.Id === matchEvent.MatchId) {
+      match.HomeScore = matchResult.HomeScore;
+      match.AwayScore = matchResult.AwayScore;
+      match.WinnerId = matchResult.WinnerId;
+      match.AggregateHomeScore = matchResult.AggregateHomeScore;
+      match.AggregateAwayScore = matchResult.AggregateAwayScore;
+      match.AggregateWinnerId = matchResult.AggregateWinnerId;
+      match.MatchPeriods = matchResult.MatchPeriods;
+      match.EventStatus = matchResult.EventStatus;
+      match.MatchStatus = matchResult.MatchStatus;
+      match.MatchTime = matchResult.MatchTime;
+
+      match = this.updateCards(timeline, match);
+
+      return match;
+    }
+
+    return null;
+  }
 
   handleDisplayModeChange = (mode: DisplayMode) => {
     this.displayMatches = this.filterMatches(mode);
@@ -121,9 +173,9 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const filteredMatches = this.displayMatches.filter(
       match =>
         match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-          -1 ||
+        -1 ||
         match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-          -1
+        -1
     );
 
     return (

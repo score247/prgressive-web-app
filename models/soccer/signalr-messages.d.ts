@@ -1,12 +1,13 @@
-import { TimelineEvent } from "../TimelineEvent";
+
 import { MatchResult } from "./match-result";
+import { TimelineEvent } from "../timeline-event";
 
 export interface MatchEvent {
     LeagueId: string,
     MatchId: string,
     IsLatest: boolean,
     EventDate: any[],
-    TimelineEvent: TimelineEvent,
+    Timeline: TimelineEvent,
     MatchResult: MatchResult
 }
 

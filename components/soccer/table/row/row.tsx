@@ -72,6 +72,7 @@ class SoccerRow extends React.Component<Props, State> {
               onChange={this.handleSelectedChange}
             />
           </td>
+          <td>{match.CountryCode}</td>
           <td>{time}</td>
           <StatusCell match={match} />
           <HomeTeamCell
