@@ -9,6 +9,7 @@ import HomeTeamCell from "../home-team-cell";
 import AwayTeamCell from "../away-team-cell";
 import ExtraMatchInfoRow from "../extra-match-info-row";
 import { PeriodType } from "../../../../common/enums/period-type";
+import { DeviceContextConsumer } from "../../../../contexts/device-context";
 
 type Props = {
   match: MatchSummary;
@@ -63,47 +64,55 @@ class SoccerRow extends React.Component<Props, State> {
 
     return (
       <>
-        <tr>
-          <td>
-            <Checkbox
-              id={match.Id}
-              value={match.Id}
-              checked={this.state.isSelected}
-              onChange={this.handleSelectedChange}
-            />
-          </td>
-          <td>{match.CountryCode}</td>
-          <td>{time}</td>
-          <StatusCell match={match} />
-          <HomeTeamCell
-            homeTeamName={match.HomeTeamName}
-            redCards={match.HomeRedCards + match.HomeYellowRedCards}
-            yellowCards={match.HomeYellowCards}
-            isAggegrateWinner={match.HomeTeamId === match.AggregateWinnerId}
-            isPenaltyWinner={
-              penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore
-            }
-          />
-          <FinalScoreCell
-            homeScore={match.HomeScore}
-            awayScore={match.AwayScore}
-            firstHalfPeriod={firstHalfPeriod}
-            matchStatusId={match.MatchStatus?.Value}
-          />
-          <AwayTeamCell
-            awayTeamName={match.AwayTeamName}
-            redCards={match.AwayRedCards + match.AwayYellowRedCards}
-            yellowCards={match.AwayYellowCards}
-            isAggegrateWinner={match.AwayTeamId === match.AggregateWinnerId}
-            isPenaltyWinner={
-              penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore
-            }
-          />
-          <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
-          <td>
-            <i className="icon-menu-favorites"></i>
-          </td>
-        </tr>
+        <DeviceContextConsumer>
+          {({ isMobile }) => (
+            <tr>
+              {!isMobile && (
+                <td>
+                  <Checkbox
+                    id={match.Id}
+                    value={match.Id}
+                    checked={this.state.isSelected}
+                    onChange={this.handleSelectedChange}
+                  />
+                </td>
+              )}
+              <td>{match.CountryCode}</td>
+              <td>{time}</td>
+              {!isMobile && <StatusCell match={match} />}
+              <HomeTeamCell
+                homeTeamName={match.HomeTeamName}
+                redCards={match.HomeRedCards + match.HomeYellowRedCards}
+                yellowCards={match.HomeYellowCards}
+                isAggegrateWinner={match.HomeTeamId === match.AggregateWinnerId}
+                isPenaltyWinner={
+                  penaltyPeriod &&
+                  penaltyPeriod.HomeScore > penaltyPeriod.AwayScore
+                }
+              />
+              <FinalScoreCell
+                homeScore={match.HomeScore}
+                awayScore={match.AwayScore}
+                firstHalfPeriod={firstHalfPeriod}
+                matchStatusId={match.MatchStatus?.Value}
+              />
+              <AwayTeamCell
+                awayTeamName={match.AwayTeamName}
+                redCards={match.AwayRedCards + match.AwayYellowRedCards}
+                yellowCards={match.AwayYellowCards}
+                isAggegrateWinner={match.AwayTeamId === match.AggregateWinnerId}
+                isPenaltyWinner={
+                  penaltyPeriod &&
+                  penaltyPeriod.HomeScore < penaltyPeriod.AwayScore
+                }
+              />
+              <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
+              <td>
+                <i className="icon-menu-favorites"></i>
+              </td>
+            </tr>
+          )}
+        </DeviceContextConsumer>
         <ExtraMatchInfoRow match={match} />
       </>
     );

@@ -3,8 +3,11 @@ import React from "react";
 import { DisplayMode } from "../../../common/constants";
 import DisplayOptions from "../../display-options";
 import SearchBar from "../../search-bar";
-import { DeviceContext } from "../../../contexts/device-context";
-import { MatchEventSignalRMessage, MatchEvent } from "../../../models/soccer/signalr-messages";
+import { DeviceContextConsumer } from "../../../contexts/device-context";
+import {
+  MatchEventSignalRMessage,
+  MatchEvent
+} from "../../../models/soccer/signalr-messages";
 import { MatchSummary } from "../../../models/match-summary";
 import { SoccerAPI } from "../../../apis/soccer-api";
 import SoccerTable from "../table";
@@ -67,7 +70,12 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const timeline = message?.MatchEvent?.Timeline;
     let isChanged = false;
     const matches = this.state.matches.map(match => {
-      const newMatch = this.updateMatch(match, timeline, matchEvent, matchResult);
+      const newMatch = this.updateMatch(
+        match,
+        timeline,
+        matchEvent,
+        matchResult
+      );
 
       if (newMatch != null) {
         isChanged = true;
@@ -90,8 +98,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
         case EventTypes.YELLOW_CARD.value:
           if (timeline.IsHome) {
             match.HomeYellowCards++;
-          }
-          else {
+          } else {
             match.AwayYellowCards++;
           }
           this.processedTimelineIds.push(timeline.Id);
@@ -100,8 +107,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
         case EventTypes.YELLOW_RED_CARD.value:
           if (timeline.IsHome) {
             match.HomeRedCards++;
-          }
-          else {
+          } else {
             match.AwayRedCards++;
           }
           this.processedTimelineIds.push(timeline.Id);
@@ -112,7 +118,12 @@ class FilterSoccerTable extends React.Component<{}, State> {
     return match;
   }
 
-  updateMatch = (match: MatchSummary, timeline: TimelineEvent, matchEvent: MatchEvent, matchResult: MatchResult) => {
+  updateMatch = (
+    match: MatchSummary,
+    timeline: TimelineEvent,
+    matchEvent: MatchEvent,
+    matchResult: MatchResult
+  ) => {
     if (match.Id === matchEvent.MatchId) {
       match.HomeScore = matchResult.HomeScore;
       match.AwayScore = matchResult.AwayScore;
@@ -131,7 +142,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
     }
 
     return null;
-  }
+  };
 
   handleDisplayModeChange = (mode: DisplayMode) => {
     this.displayMatches = this.filterMatches(mode);
@@ -169,6 +180,18 @@ class FilterSoccerTable extends React.Component<{}, State> {
     this.setState({ filterText: filterText });
   };
 
+  renderFilterBar() {
+    return (
+      <div className="search-filter">
+        <DisplayOptions onDisplayModeChange={this.handleDisplayModeChange} />
+        <SearchBar
+          filterText={this.state.filterText}
+          onFilterTextChange={this.handleFilterTextChange}
+        />
+      </div>
+    );
+  }
+
   render() {
     const { displayMode, filterText } = this.state;
 
@@ -176,30 +199,16 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const filteredMatches = this.displayMatches.filter(
       match =>
         match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-        -1 ||
+          -1 ||
         match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-        -1
+          -1
     );
 
     return (
       <>
-        <DeviceContext.Consumer>
-          {({ isMobile }) => {
-            if (!isMobile) {
-              return (
-                <div className="search-filter">
-                  <DisplayOptions
-                    onDisplayModeChange={this.handleDisplayModeChange}
-                  />
-                  <SearchBar
-                    filterText={this.state.filterText}
-                    onFilterTextChange={this.handleFilterTextChange}
-                  />
-                </div>
-              );
-            }
-          }}
-        </DeviceContext.Consumer>
+        <DeviceContextConsumer>
+          {({ isMobile }) => !isMobile && this.renderFilterBar()}
+        </DeviceContextConsumer>
         <SoccerTable
           matches={filteredMatches}
           ref={this.soccerTableRef}
