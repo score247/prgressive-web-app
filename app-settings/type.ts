@@ -5,4 +5,5 @@ export default interface AppSettings {
   soccerAPIBaseUrl: string;
   sentryDSN: string;
   soccerPublisherUrl: string;
+  numberOfRowEveryAd: number;
 }

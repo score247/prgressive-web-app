@@ -5,6 +5,7 @@ import TitleRow from "./title-row/title-row";
 import { MatchSummary } from "../../../models/match-summary";
 import Ad from "../../Ad";
 import { MatchStatusType } from "../../../common/enums/match-status-type";
+import appSettings from "../../../app-settings";
 import { format, isSameDay } from "date-fns";
 import { DateTimeFormat } from "../../../common/constants";
 
@@ -63,7 +64,7 @@ class SoccerTable extends React.Component<Props> {
   };
 
   renderRow = (match: MatchSummary, index: number) => {
-    const renderAds = (index + 1) % 5 === 0;
+    const renderAds = (index + 1) % appSettings.numberOfRowEveryAd === 0;
 
     return (
       <>
@@ -75,8 +76,8 @@ class SoccerTable extends React.Component<Props> {
         />
         {renderAds && (
           <tr>
-            <td className="ads-text" colSpan={9}>
-              <Ad />
+            <td colSpan={9}>
+              <Ad/>
             </td>
           </tr>
         )}

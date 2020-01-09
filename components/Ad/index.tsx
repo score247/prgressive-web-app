@@ -6,8 +6,8 @@ type Props = {
 
 export default function Ad(props: Props) {
   return (
-    <div style={props.style}>
-      BK8 - Situs resmi taruhan online | Welcome Bonus 100% | Cash Rebate 1.1%
+    <div className="ad" style={props.style}>
+      <img className="ads-img" src="/static/images/ads-banner-1.jpg" style={{width: "100%", maxHeight:"100%"}}/>
     </div>
   );
 }
