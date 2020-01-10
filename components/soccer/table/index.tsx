@@ -4,7 +4,10 @@ import Header from "./header/header";
 import TitleRow from "./title-row/title-row";
 import { MatchSummary } from "../../../models/match-summary";
 import Ad from "../../Ad";
-import { MatchStatusType } from "../../../common/enums/match-status-type";
+import {
+  EndStatus,
+  CancelStatus
+} from "../../../common/enums/match-status-type";
 import appSettings from "../../../app-settings";
 import { format, isSameDay } from "date-fns";
 import { DateTimeFormat } from "../../../common/constants";
@@ -16,23 +19,6 @@ type Props = {
 
 class SoccerTable extends React.Component<Props> {
   private readonly today: Date;
-  private readonly cancelStatus = [
-    MatchStatusType.CANCELLED.value,
-    MatchStatusType.POSTPONED.value,
-    MatchStatusType.ABANDONED.value,
-    MatchStatusType.START_DELAYED.value,
-    MatchStatusType.DELAYED.value,
-    MatchStatusType.INTERRUPTED.value
-  ];
-
-  private readonly endStatus = [
-    MatchStatusType.ENDED.value,
-    MatchStatusType.CLOSED.value,
-    MatchStatusType.FULLTIME.value,
-    MatchStatusType.ENDED.value,
-    MatchStatusType.ENDED_EXTRA_TIME.value,
-    MatchStatusType.ENDED_AFTER_PENALTIES.value
-  ];
   private selectedIds: string[];
   private renderedRow = 0;
 
@@ -91,11 +77,11 @@ class SoccerTable extends React.Component<Props> {
   };
 
   isCancelMatch(match: MatchSummary) {
-    return this.cancelStatus.includes(match.MatchStatus?.Value);
+    return CancelStatus.includes(match.MatchStatus?.Value);
   }
 
   isEndMatch(match: MatchSummary) {
-    return this.endStatus.includes(match.MatchStatus?.Value);
+    return EndStatus.includes(match.MatchStatus?.Value);
   }
 
   classifyMatchRowsByStatus(matches: MatchSummary[]) {
@@ -124,7 +110,7 @@ class SoccerTable extends React.Component<Props> {
     const { selectedDate, matches } = this.props;
     const classifiedRows = this.classifyMatchRowsByStatus(matches);
     this.renderedRow = 0;
-    
+
     return (
       <>
         {classifiedRows.preMatchRows.map(this.renderRow)}

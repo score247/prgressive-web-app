@@ -14,6 +14,7 @@ import SoccerTable from "../table";
 import { EventTypes } from "../../../common/enums/event-type";
 import { TimelineEvent } from "../../../models";
 import { MatchResult } from "../../../models/soccer/match-result";
+import { createSorter } from "../../../common/utils/sort";
 
 type State = {
   filterText: string;
@@ -46,7 +47,9 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   handleDateChange = async (date: Date) => {
-    this.displayMatches = await SoccerAPI.GetMatchesByDate(date);
+    this.displayMatches = this.parseData(
+      await SoccerAPI.GetMatchesByDate(date)
+    );
 
     this.setState({
       matches: this.displayMatches,
@@ -56,13 +59,23 @@ class FilterSoccerTable extends React.Component<{}, State> {
   };
 
   handleLiveButtonClick = async () => {
-    this.displayMatches = await SoccerAPI.GetLiveMatches();
+    this.displayMatches = this.parseData(await SoccerAPI.GetLiveMatches());
 
     this.setState({
       matches: this.displayMatches,
       displayMode: DisplayMode.ShowAll
     });
   };
+
+  parseData(data: MatchSummary[]) {
+    const sorters = [{ property: "EventDate" }];
+
+    if (data && data.length) {
+      data.sort(createSorter(...sorters));
+    }
+
+    return data;
+  }
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
     const matchEvent = message?.MatchEvent;
