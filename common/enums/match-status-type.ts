@@ -35,6 +35,25 @@ export const MatchStatusType = {
     ENDED_AFTER_PENALTIES: new MatchStatus(25, "AP")//NOSONAR
 };
 
+export const eventNeedBeShownMinute = [
+    MatchStatusType.LIVE.value,
+    MatchStatusType.FIRST_HALF.value,
+    MatchStatusType.SECOND_HALF.value,
+    MatchStatusType.FIRST_HALF_EXTRA.value,
+    MatchStatusType.SECOND_HALF_EXTRA.value,
+    MatchStatusType.OVERTIME.value,
+    MatchStatusType.EXTRA_TIME.value
+];
+
+export const cancelStatus = [
+    MatchStatusType.CANCELLED.value,
+    MatchStatusType.POSTPONED.value,
+    MatchStatusType.ABANDONED.value,
+    MatchStatusType.START_DELAYED.value,
+    MatchStatusType.DELAYED.value,
+    MatchStatusType.INTERRUPTED.value
+];
+
 export const MatchStatusTypeDic: MatchStatusKeyNumberValue = {};
 
 Object.keys(MatchStatusType)

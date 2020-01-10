@@ -1,8 +1,9 @@
 import * as React from "react";
 import { MatchSummary } from "../../../../models";
 import {
-    MatchStatusType,
-    MatchStatusTypeDic
+    MatchStatusTypeDic,
+    cancelStatus,
+    eventNeedBeShownMinute
 } from "../../../../common/enums/match-status-type";
 import { differenceInMinutes } from "date-fns";
 import { EventTypes } from "../../../../common/enums/event-type";
@@ -66,16 +67,6 @@ class StatusCell extends React.Component<Props> {
             return "";
         }
 
-        const eventNeedBeShownMinute = [
-            MatchStatusType.LIVE.value,
-            MatchStatusType.FIRST_HALF.value,
-            MatchStatusType.SECOND_HALF.value,
-            MatchStatusType.FIRST_HALF_EXTRA.value,
-            MatchStatusType.SECOND_HALF_EXTRA.value,
-            MatchStatusType.OVERTIME.value,
-            MatchStatusType.EXTRA_TIME.value
-        ];
-
         if (eventNeedBeShownMinute.find(status => match?.MatchStatus?.Value === status)) {
             return this.buildMatchMinute(match);
         }
@@ -84,15 +75,6 @@ class StatusCell extends React.Component<Props> {
     }
 
     buildMatchStatusClass(match: MatchSummary) {
-        const cancelStatus = [
-            MatchStatusType.CANCELLED.value,
-            MatchStatusType.POSTPONED.value,
-            MatchStatusType.ABANDONED.value,
-            MatchStatusType.START_DELAYED.value,
-            MatchStatusType.DELAYED.value,
-            MatchStatusType.INTERRUPTED.value
-        ];
-
         if (cancelStatus.find(status => match?.MatchStatus?.Value === status)) {
             return "match-cancel";
         }
