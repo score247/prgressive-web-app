@@ -19,7 +19,7 @@ type State = {
   filterText: string;
   displayMode: DisplayMode;
   matches: MatchSummary[];
-  seletedDate: Date;
+  selectedDate: Date;
 };
 
 class FilterSoccerTable extends React.Component<{}, State> {
@@ -37,7 +37,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
       filterText: "",
       displayMode: DisplayMode.ShowAll,
       matches: [],
-      seletedDate: new Date()
+      selectedDate: new Date()
     };
   }
 
@@ -51,7 +51,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
     this.setState({
       matches: this.displayMatches,
       displayMode: DisplayMode.ShowAll,
-      seletedDate: date
+      selectedDate: date
     });
   };
 
@@ -212,7 +212,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
         <SoccerTable
           matches={filteredMatches}
           ref={this.soccerTableRef}
-          selectedDate={this.state.seletedDate}
+          selectedDate={this.state.selectedDate}
         />
       </>
     );
