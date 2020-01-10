@@ -12,8 +12,6 @@ import { PeriodType } from "../../../../common/enums/period-type";
 import { DeviceContextConsumer } from "../../../../contexts/device-context";
 import LeagueCell from "../league-cell";
 import FavoriteCell from "../favorite-cell";
-import { format } from "date-fns";
-import { DateTimeFormat } from "../../../../common/constants";
 
 type Props = {
   match: MatchSummary;
