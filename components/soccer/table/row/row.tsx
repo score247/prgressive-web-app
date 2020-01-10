@@ -76,41 +76,38 @@ class SoccerRow extends React.Component<Props, State> {
         x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular
       );
 
-    const {
-      homeTeamCellProps,
-      awayTeamCellProps
-    } = this.createTeamCellProps();
+    const { homeTeamCellProps, awayTeamCellProps } = this.createTeamCellProps();
+
+    const selectCell = ({ isMobile }: { isMobile: boolean }) => {
+      return isMobile ? null : (
+        <td>
+          <Checkbox
+            id={match.Id}
+            value={match.Id}
+            checked={this.state.isSelected}
+            onChange={this.handleSelectedChange}
+          />
+        </td>
+      );
+    };
 
     return (
       <>
-        <DeviceContextConsumer>
-          {({ isMobile }) => (
-            <tr>
-              {!isMobile && (
-                <td>
-                  <Checkbox
-                    id={match.Id}
-                    value={match.Id}
-                    checked={this.state.isSelected}
-                    onChange={this.handleSelectedChange}
-                  />
-                </td>
-              )}
-              <LeagueCell match={match} />
-              <TimeAndStatusCell match={match} />
-              <HomeTeamCell {...homeTeamCellProps} />
-              <FinalScoreCell
-                homeScore={match.HomeScore}
-                awayScore={match.AwayScore}
-                firstHalfPeriod={firstHalfPeriod}
-                matchStatusId={match.MatchStatus?.Value}
-              />
-              <AwayTeamCell {...awayTeamCellProps} />
-              <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
-              <FavoriteCell />
-            </tr>
-          )}
-        </DeviceContextConsumer>
+        <tr>
+          <DeviceContextConsumer>{selectCell}</DeviceContextConsumer>
+          <LeagueCell match={match} />
+          <TimeAndStatusCell match={match} />
+          <HomeTeamCell {...homeTeamCellProps} />
+          <FinalScoreCell
+            homeScore={match.HomeScore}
+            awayScore={match.AwayScore}
+            firstHalfPeriod={firstHalfPeriod}
+            matchStatusId={match.MatchStatus?.Value}
+          />
+          <AwayTeamCell {...awayTeamCellProps} />
+          <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
+          <FavoriteCell />
+        </tr>
         <ExtraMatchInfoRow match={match} />
       </>
     );
