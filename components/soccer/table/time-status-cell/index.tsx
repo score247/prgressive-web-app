@@ -10,7 +10,7 @@ import { EventTypes } from "../../../../common/enums/event-type";
 import { Props, periodTimes, PeriodTime } from "./types";
 import { DeviceContext } from "../../../../contexts/device-context";
 
-class StatusCell extends React.Component<Props> {
+class TimeAndStatusCell extends React.Component<Props> {
   readonly match: MatchSummary;
 
   constructor(props: Props) {
@@ -95,6 +95,15 @@ class StatusCell extends React.Component<Props> {
   }
 
   render() {
+    const time = new Date(this.match.EventDate[0]).toLocaleString(
+      navigator.language,
+      {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false
+      }
+    );
+
     const statusCell = ({
       isMobile
     }: {
@@ -104,9 +113,16 @@ class StatusCell extends React.Component<Props> {
       const matchStatusClass = this.buildMatchStatusClass(this.props.match);
 
       return isMobile ? (
-        matchStatus
+        <td>
+          {time}
+          <br />
+          {matchStatus}
+        </td>
       ) : (
-        <td className={matchStatusClass}>{matchStatus}</td>
+        <>
+          <td>{time}</td>
+          <td className={matchStatusClass}>{matchStatus}</td>
+        </>
       );
     };
 
@@ -114,6 +130,6 @@ class StatusCell extends React.Component<Props> {
   }
 }
 
-StatusCell.contextType = DeviceContext;
+TimeAndStatusCell.contextType = DeviceContext;
 
-export default StatusCell;
+export default TimeAndStatusCell;

@@ -1,7 +1,7 @@
 import "./style.scss";
 import React from "react";
 import { MatchSummary } from "../../../../models";
-import StatusCell from "../status-cell";
+import TimeAndStatusCell from "../time-status-cell";
 import FirstHalfScoreCell from "../first-half-score-cell";
 import FinalScoreCell from "../final-score-cell";
 import Checkbox from "../../../checkbox";
@@ -11,6 +11,7 @@ import ExtraMatchInfoRow from "../extra-match-info-row";
 import { PeriodType } from "../../../../common/enums/period-type";
 import { DeviceContextConsumer } from "../../../../contexts/device-context";
 import LeagueCell from "../league-cell";
+import FavoriteCell from "../favorite-cell";
 
 type Props = {
   match: MatchSummary;
@@ -44,15 +45,6 @@ class SoccerRow extends React.Component<Props, State> {
 
   render() {
     const { match } = this.props;
-    const time = new Date(match.EventDate[0]).toLocaleString(
-      navigator.language,
-      {
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: false
-      }
-    );
-
     const firstHalfPeriod =
       match.MatchPeriods &&
       match.MatchPeriods.find(
@@ -79,8 +71,7 @@ class SoccerRow extends React.Component<Props, State> {
                 </td>
               )}
               <LeagueCell match={match} />
-              <td>{time}</td>
-              {!isMobile && <StatusCell match={match} />}
+              <TimeAndStatusCell match={match} />
               <HomeTeamCell
                 homeTeamName={match.HomeTeamName}
                 redCards={match.HomeRedCards + match.HomeYellowRedCards}
@@ -108,9 +99,7 @@ class SoccerRow extends React.Component<Props, State> {
                 }
               />
               <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
-              <td>
-                <i className="icon-menu-favorites"></i>
-              </td>
+              <FavoriteCell />
             </tr>
           )}
         </DeviceContextConsumer>
