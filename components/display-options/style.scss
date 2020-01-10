@@ -1,6 +1,8 @@
 .show-hide {
     font-weight: bold;
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
 
     span {
         cursor: pointer;
