@@ -45,7 +45,7 @@ class SoccerRow extends React.Component<Props, State> {
     this.setState({ isSelected: event.target.checked });
   };
 
-  createHomeTeamCellProps = () => {
+  createTeamCellProps = () => {
     const { match } = this.props;
     const penaltyPeriod =
       match.MatchPeriods &&
@@ -67,12 +67,11 @@ class SoccerRow extends React.Component<Props, State> {
         isAggregateWinner: match.AwayTeamId === match.AggregateWinnerId,
         isPenaltyWinner:
           penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore
+      }
     };
   };
-
   render() {
     const { match } = this.props;
-    const time = format(new Date(match.EventDate[0]), DateTimeFormat.TIME);
     const firstHalfPeriod =
       match.MatchPeriods &&
       match.MatchPeriods.find(
@@ -82,7 +81,7 @@ class SoccerRow extends React.Component<Props, State> {
     const {
       homeTeamCellProps,
       awayTeamCellProps
-    } = this.createHomeTeamCellProps();
+    } = this.createTeamCellProps();
 
     return (
       <>
