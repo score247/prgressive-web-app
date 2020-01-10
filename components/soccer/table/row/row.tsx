@@ -10,6 +10,7 @@ import AwayTeamCell from "../away-team-cell";
 import ExtraMatchInfoRow from "../extra-match-info-row";
 import { PeriodType } from "../../../../common/enums/period-type";
 import { DeviceContextConsumer } from "../../../../contexts/device-context";
+import LeagueCell from "../league-cell";
 
 type Props = {
   match: MatchSummary;
@@ -77,7 +78,7 @@ class SoccerRow extends React.Component<Props, State> {
                   />
                 </td>
               )}
-              <td>{match.CountryCode}</td>
+              <LeagueCell match={match} />
               <td>{time}</td>
               {!isMobile && <StatusCell match={match} />}
               <HomeTeamCell
