@@ -1,10 +1,10 @@
 import React from "react";
 import Advertisement from "../../../advertisement";
-import { DeviceContext } from "../../../../contexts/device-context";
+import { useDeviceContext } from "../../../../contexts/device-context";
 import { Props } from "./type";
 
 export default function AdvertisementRow(props: Props) {
-  const { isMobile } = React.useContext(DeviceContext);
+  const { isMobile } = useDeviceContext();
   const colSpan = isMobile ? 6 : 9; //NOSONAR
   const { href, imageSrc, ...rest } = props;
 
