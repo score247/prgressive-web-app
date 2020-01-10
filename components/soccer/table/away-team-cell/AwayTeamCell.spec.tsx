@@ -10,7 +10,7 @@ describe("AwayTeamCell", () => {
         awayTeamName:"name",
         redCards: 0,
         yellowCards: 1,
-        isAggegrateWinner: true
+        isAggregateWinner: true
       };
   
     const wrapper = shallow(<AwayTeamCell {...props} />);
@@ -22,7 +22,7 @@ describe("AwayTeamCell", () => {
         awayTeamName:"name",
         redCards: 1,
         yellowCards: 0,
-        isAggegrateWinner: true
+        isAggregateWinner: true
       };
   
     const wrapper = shallow(<AwayTeamCell {...props} />);

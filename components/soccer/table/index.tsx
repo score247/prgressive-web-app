@@ -3,7 +3,6 @@ import SoccerRow from "./row/row";
 import Header from "./header/header";
 import TitleRow from "./title-row/title-row";
 import { MatchSummary } from "../../../models/match-summary";
-import Ad from "../../Ad";
 import {
   EndStatus,
   CancelStatus
@@ -11,6 +10,8 @@ import {
 import appSettings from "../../../app-settings";
 import { format, isSameDay } from "date-fns";
 import { DateTimeFormat } from "../../../common/constants";
+import AdvertisementRow from "./advertisement-row";
+import advertisements from "../../../advertisement";
 
 type Props = {
   matches: MatchSummary[];
@@ -21,6 +22,7 @@ class SoccerTable extends React.Component<Props> {
   private readonly today: Date;
   private selectedIds: string[];
   private renderedRow = 0;
+  private displayedAdvertisements = advertisements.slice();
 
   constructor(props: Props) {
     super(props);
@@ -50,9 +52,25 @@ class SoccerTable extends React.Component<Props> {
     this.selectedIds = [];
   };
 
+  renderAdvertisement = () => {
+    if (this.displayedAdvertisements.length === 0) {
+      this.displayedAdvertisements = advertisements.slice();
+    }
+
+    const advertisement = this.displayedAdvertisements[0];
+    this.displayedAdvertisements.shift();
+
+    return (
+      <AdvertisementRow
+        href={advertisement.href}
+        imageSrc={advertisement.imageSrc}
+      />
+    );
+  };
+
   renderRow = (match: MatchSummary, index: number) => {
     this.renderedRow++;
-    const renderAds = this.renderedRow % appSettings.numberOfRowEveryAd === 0;
+    const renderAd = this.renderedRow % appSettings.numberOfRowEveryAd === 0;
 
     return (
       <Fragment key={match.Id}>
@@ -61,13 +79,7 @@ class SoccerTable extends React.Component<Props> {
           isSelected={this.selectedIds.indexOf(match.Id) >= 0}
           onSelect={this.handleSelectRow}
         />
-        {renderAds && (
-          <tr>
-            <td colSpan={9}>
-              <Ad />
-            </td>
-          </tr>
-        )}
+        {renderAd && this.renderAdvertisement()}
       </Fragment>
     );
   };
@@ -110,6 +122,7 @@ class SoccerTable extends React.Component<Props> {
     const { selectedDate, matches } = this.props;
     const classifiedRows = this.classifyMatchRowsByStatus(matches);
     this.renderedRow = 0;
+    this.displayedAdvertisements = advertisements.slice();
 
     return (
       <>

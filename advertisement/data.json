@@ -1,0 +1,15 @@
+[
+    {
+        "href": "#",
+        "imageSrc": "/static/images/ads-banner-1.jpg"
+    },
+    {
+        "href": "#",
+        "imageSrc": "/static/images/ads-banner-2.jpg"
+    },
+    {
+        "href": "#",
+        "imageSrc": "/static/images/ads-banner-3.jpg"
+    }
+
+]
