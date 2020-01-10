@@ -103,7 +103,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
           onlyLiveMatch={this.state.onlyLiveMatch}
           selectedDate={this.state.selectedDate}
         />
-        <Banner url="#" imgSrc="/static/images/ads-banner-1" />
+        <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
         <div className="content">
           <FilterSoccerTable ref={this.filterSoccerTable} />
           {!this.state.onlyLiveMatch && (
