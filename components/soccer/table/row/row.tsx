@@ -12,6 +12,8 @@ import { PeriodType } from "../../../../common/enums/period-type";
 import { DeviceContextConsumer } from "../../../../contexts/device-context";
 import LeagueCell from "../league-cell";
 import FavoriteCell from "../favorite-cell";
+import { format } from "date-fns";
+import { DateTimeFormat } from "../../../../common/constants";
 
 type Props = {
   match: MatchSummary;
@@ -43,17 +45,44 @@ class SoccerRow extends React.Component<Props, State> {
     this.setState({ isSelected: event.target.checked });
   };
 
+  createHomeTeamCellProps = () => {
+    const { match } = this.props;
+    const penaltyPeriod =
+      match.MatchPeriods &&
+      match.MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties);
+
+    return {
+      homeTeamCellProps: {
+        homeTeamName: match.HomeTeamName,
+        redCards: match.HomeRedCards + match.HomeYellowRedCards,
+        yellowCards: match.HomeYellowCards,
+        isAggregateWinner: match.HomeTeamId === match.AggregateWinnerId,
+        isPenaltyWinner:
+          penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore
+      },
+      awayTeamCellProps: {
+        awayTeamName: match.AwayTeamName,
+        redCards: match.AwayRedCards + match.AwayYellowRedCards,
+        yellowCards: match.AwayYellowCards,
+        isAggregateWinner: match.AwayTeamId === match.AggregateWinnerId,
+        isPenaltyWinner:
+          penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore
+    };
+  };
+
   render() {
     const { match } = this.props;
+    const time = format(new Date(match.EventDate[0]), DateTimeFormat.TIME);
     const firstHalfPeriod =
       match.MatchPeriods &&
       match.MatchPeriods.find(
         x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular
       );
 
-    const penaltyPeriod =
-      match.MatchPeriods &&
-      match.MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties);
+    const {
+      homeTeamCellProps,
+      awayTeamCellProps
+    } = this.createHomeTeamCellProps();
 
     return (
       <>
@@ -72,32 +101,14 @@ class SoccerRow extends React.Component<Props, State> {
               )}
               <LeagueCell match={match} />
               <TimeAndStatusCell match={match} />
-              <HomeTeamCell
-                homeTeamName={match.HomeTeamName}
-                redCards={match.HomeRedCards + match.HomeYellowRedCards}
-                yellowCards={match.HomeYellowCards}
-                isAggregateWinner={match.HomeTeamId === match.AggregateWinnerId}
-                isPenaltyWinner={
-                  penaltyPeriod &&
-                  penaltyPeriod.HomeScore > penaltyPeriod.AwayScore
-                }
-              />
+              <HomeTeamCell {...homeTeamCellProps} />
               <FinalScoreCell
                 homeScore={match.HomeScore}
                 awayScore={match.AwayScore}
                 firstHalfPeriod={firstHalfPeriod}
                 matchStatusId={match.MatchStatus?.Value}
               />
-              <AwayTeamCell
-                awayTeamName={match.AwayTeamName}
-                redCards={match.AwayRedCards + match.AwayYellowRedCards}
-                yellowCards={match.AwayYellowCards}
-                isAggregateWinner={match.AwayTeamId === match.AggregateWinnerId}
-                isPenaltyWinner={
-                  penaltyPeriod &&
-                  penaltyPeriod.HomeScore < penaltyPeriod.AwayScore
-                }
-              />
+              <AwayTeamCell {...awayTeamCellProps} />
               <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
               <FavoriteCell />
             </tr>

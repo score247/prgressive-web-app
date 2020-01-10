@@ -33,8 +33,9 @@ export class DateTimeFormat {
   public static readonly DAY_MONTH_ONLY = "dd MMM";
   public static readonly WEEKDAY = "iii";
   public static readonly DATE_ONLY = "dd MMM yyyy";
-  public static readonly TIME_AND_ZONE = "H:mm OOO";
-  public static readonly LONG_DATE = "H:mm OOO";
+  public static readonly TIME_AND_ZONE = "HH:mm OOO";
+  public static readonly TIME = "HH:mm";
+  public static readonly LONG_DATE = "HH:mm OOO";
   public static readonly UTC_ISO = "yyyy-MM-dd'T'HH:mm:ss'Z'";
 }
 
