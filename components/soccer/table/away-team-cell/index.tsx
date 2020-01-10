@@ -6,7 +6,7 @@ export default function AwayTeamCell(props: Props) {
     awayTeamName,
     redCards,
     yellowCards,
-    isAggegrateWinner,
+    isAggregateWinner,
     isPenaltyWinner
   } = props;
   return (
@@ -15,7 +15,7 @@ export default function AwayTeamCell(props: Props) {
       {yellowCards > 0 && <span className="yellow-card">{yellowCards}</span>}
       {redCards > 0 && <span className="red-card">{redCards}</span>}
       {isPenaltyWinner && <i className="icon-penalty" />}
-      {isAggegrateWinner && <i className="icon-arrow-right" />}
+      {isAggregateWinner && <i className="icon-arrow-right" />}
     </td>
   );
 }

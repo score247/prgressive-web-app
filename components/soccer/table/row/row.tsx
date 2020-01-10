@@ -84,7 +84,7 @@ class SoccerRow extends React.Component<Props, State> {
                 homeTeamName={match.HomeTeamName}
                 redCards={match.HomeRedCards + match.HomeYellowRedCards}
                 yellowCards={match.HomeYellowCards}
-                isAggegrateWinner={match.HomeTeamId === match.AggregateWinnerId}
+                isAggregateWinner={match.HomeTeamId === match.AggregateWinnerId}
                 isPenaltyWinner={
                   penaltyPeriod &&
                   penaltyPeriod.HomeScore > penaltyPeriod.AwayScore
@@ -100,7 +100,7 @@ class SoccerRow extends React.Component<Props, State> {
                 awayTeamName={match.AwayTeamName}
                 redCards={match.AwayRedCards + match.AwayYellowRedCards}
                 yellowCards={match.AwayYellowCards}
-                isAggegrateWinner={match.AwayTeamId === match.AggregateWinnerId}
+                isAggregateWinner={match.AwayTeamId === match.AggregateWinnerId}
                 isPenaltyWinner={
                   penaltyPeriod &&
                   penaltyPeriod.HomeScore < penaltyPeriod.AwayScore

@@ -23,8 +23,8 @@ export const SoccerAPI = {
     date: Date,
     language = "en-US"
   ): Promise<MatchSummary[]> => {
-    const fd = format(startOfDay(date), DateTimeFormat.ISO);
-    const td = format(endOfDay(date), DateTimeFormat.ISO);
+    const fd = format(startOfDay(date), DateTimeFormat.UTC_ISO);
+    const td = format(endOfDay(date), DateTimeFormat.UTC_ISO);
 
     const response = await instance.get(
       `/soccer/${language}/matches?fd=${fd}&td=${td}`
