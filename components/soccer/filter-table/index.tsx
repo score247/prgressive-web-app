@@ -54,7 +54,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
     this.setState({
       matches: this.displayMatches,
       displayMode: DisplayMode.ShowAll,
-      selectedDate: date
+      selectedDate: date,
+      filterText: ""
     });
   };
 
@@ -63,7 +64,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
     this.setState({
       matches: this.displayMatches,
-      displayMode: DisplayMode.ShowAll
+      displayMode: DisplayMode.ShowAll,
+      filterText: ""
     });
   };
 
