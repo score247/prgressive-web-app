@@ -1,8 +1,12 @@
 import { MatchSummary } from "../../../../models";
 import { MatchStatus, MatchStatusType } from "../../../../common/enums/match-status-type";
 
-export type Props = {
+export type TimeStatusCellProps = {
     match: MatchSummary;
+};
+
+export type TimeStatusCellState = {
+    matchStatusText: string;
 };
 
 export class PeriodTime {

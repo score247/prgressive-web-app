@@ -3,23 +3,25 @@ import { MatchSummary, Enumeration } from "../../../../models";
 import {
   MatchStatusTypeDic,
   CancelStatus,
-  EventNeedBeShownMinute,
-  MatchStatus
+  EventNeedBeShownMinute
 } from "../../../../common/enums/match-status-type";
 import { differenceInMinutes } from "date-fns";
 import { EventTypes } from "../../../../common/enums/event-type";
-import { Props, periodTimes, PeriodTime } from "./types";
+import { TimeStatusCellProps, periodTimes, PeriodTime, TimeStatusCellState } from "./types";
 import { DeviceContext } from "../../../../contexts/device-context";
 
-class TimeAndStatusCell extends React.Component<Props> {
+class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusCellState> {
   readonly countMinuteInterval: number = 10000;
   readonly match: MatchSummary;
   private timerId = 0;
 
-  constructor(props: Props) {
+  constructor(props: TimeStatusCellProps) {
     super(props);
 
     this.match = props.match;
+    this.state = {
+      matchStatusText: this.buildMatchStatus(this.props.match)
+    };
   }
 
   private buildMatchMinuteWithInjuryTime(
@@ -36,7 +38,7 @@ class TimeAndStatusCell extends React.Component<Props> {
     return `${periodTime.endTime}+${displayInjuryTime}'`;
   }
 
-  isEventNeedBeShowmMinute(matchStatus?: Enumeration): boolean {
+  isEventNeedBeShownMinute(matchStatus?: Enumeration): boolean {
     if (matchStatus == null) {
       return false;
     }
@@ -46,9 +48,13 @@ class TimeAndStatusCell extends React.Component<Props> {
 
   componentDidMount() {
     if (this.match != null
-      && this.isEventNeedBeShowmMinute(this.match?.MatchStatus)) {
+      && this.isEventNeedBeShownMinute(this.match?.MatchStatus)) {
       this.timerId = window.setInterval(
-        () => this.buildMatchMinute(this.match),
+        () => {
+          this.setState({
+            matchStatusText: this.buildMatchMinute(this.match)
+          });
+        },
         this.countMinuteInterval
       );
     }
@@ -137,8 +143,9 @@ class TimeAndStatusCell extends React.Component<Props> {
 
     const statusCell = ({ isMobile }: { isMobile: boolean }) => {
       const matchStatusClass = this.buildMatchStatusClass(this.props.match);
-      let matchStatus = this.buildMatchStatus(this.props.match);
-      matchStatus = (isMobile && matchStatus) === "-" ? "" : matchStatus;
+      const matchStatus = (isMobile && this.state.matchStatusText) === "-" 
+        ? "" 
+        : this.state.matchStatusText;
 
       return isMobile ? (
         <td>
