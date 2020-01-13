@@ -1,11 +1,9 @@
 import "./style.scss";
 import React from "react";
 import { DisplayMode } from "../../common/constants";
-type Props = {
-  onDisplayModeChange: (mode: DisplayMode) => void;
-};
+import { DisplayOptionsProps } from "./type";
 
-const DisplayOptions: React.FC<Props> = props => {
+const DisplayOptions: React.FC<DisplayOptionsProps> = props => {
   return (
     <div className="show-hide">
       <span onClick={() => props.onDisplayModeChange(DisplayMode.ShowAll)}>
