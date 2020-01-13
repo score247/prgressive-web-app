@@ -68,6 +68,7 @@ class SoccerRow extends React.Component<Props, State> {
       }
     };
   };
+
   render() {
     const { match } = this.props;
     const firstHalfPeriod =
