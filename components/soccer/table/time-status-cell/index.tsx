@@ -143,7 +143,7 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
 
     const statusCell = ({ isMobile }: { isMobile: boolean }) => {
       const matchStatusClass = this.buildMatchStatusClass(this.props.match);
-      const matchStatus = (isMobile && this.state.matchStatusText) === "-" 
+      const matchStatus = isMobile && this.state.matchStatusText === "-"
         ? "" 
         : this.state.matchStatusText;
 
