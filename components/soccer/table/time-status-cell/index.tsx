@@ -24,6 +24,12 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
     };
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps: TimeStatusCellProps) {
+    this.setState({
+      matchStatusText: this.buildMatchStatus(nextProps.match)
+    });
+  }
+
   private buildMatchMinuteWithInjuryTime(
     match: MatchSummary,
     matchMinute: number,
