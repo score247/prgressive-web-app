@@ -11,7 +11,7 @@ import { TimeStatusCellProps, periodTimes, PeriodTime, TimeStatusCellState } fro
 import { DeviceContext } from "../../../../contexts/device-context";
 
 class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusCellState> {
-  readonly countMinuteInterval: number = 100000;
+  readonly countMinuteInterval: number = 15000;
   readonly match: MatchSummary;
   private timerId = 0;
 
