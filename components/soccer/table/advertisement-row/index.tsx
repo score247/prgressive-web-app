@@ -10,7 +10,7 @@ export default function AdvertisementRow(props: Props) {
 
   return (
     <tr {...rest}>
-      <td colSpan={colSpan}>
+      <td colSpan={colSpan} className="advertisement-row">
         <Advertisement href={href} imageSrc={imageSrc} />
       </td>
     </tr>

@@ -10,7 +10,7 @@ export default function AwayTeamCell(props: Props) {
     isPenaltyWinner
   } = props;
   return (
-    <td className="text-left">
+    <td className="text-left col-away">
       {awayTeamName}
       {yellowCards > 0 && <span className="yellow-card">{yellowCards}</span>}
       {redCards > 0 && <span className="red-card">{redCards}</span>}

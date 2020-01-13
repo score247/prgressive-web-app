@@ -112,8 +112,7 @@ class TimeAndStatusCell extends React.Component<Props> {
       return isMobile ? (
         <td>
           {time}
-          <br />
-          {matchStatus}
+          <span className="match-status">{matchStatus}</span>
         </td>
       ) : (
         <>

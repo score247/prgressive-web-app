@@ -34,3 +34,26 @@
     background-color: #ffd600;
 }
 
+.table td.advertisement-row {
+    padding: 0;
+}
+
+.table  .advertisement-wrapper {
+    height: 3.8rem;
+}
+
+.col-home, .col-away {
+    width: 19rem;
+}
+
+.mobile {
+    .col-home, .col-away {
+        width: 10rem;
+    }
+}
+
+.match-status {
+    display: block;
+    padding-top: .4rem;
+}
+
