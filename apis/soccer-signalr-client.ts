@@ -21,8 +21,6 @@ export class SoccerSignalRClient {
             this.hubConnection.on(key, (data) => {
                 const jsonObject = JSON.parse(data);
 
-                console.log(jsonObject); //NOSONAR
-
                 this.handlers[key](jsonObject);
             });
         }
