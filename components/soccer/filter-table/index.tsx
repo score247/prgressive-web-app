@@ -101,8 +101,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
     });
 
     if (isChanged) {
-      this.displayMatches = this.filterMatches(this.state.displayMode);
-
+      this.displayMatches = matches;
       this.setState({ matches: matches });
     }
   };
