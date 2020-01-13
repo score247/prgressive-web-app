@@ -9,28 +9,33 @@
 .combo-search {
     display: flex;
 }
+
 .search-section {
     position: relative;
 }
+
 .search-box {
     background-color: #fff;
     border: 1px solid #CED4DA;
     border-radius: 4px;
+
     .txt-search {
         height: 3.4rem;
         width: 15rem;
         border: none;
         margin-right: .4rem;
+
         &:focus {
             outline: none;
         }
     }
-    
+
     .icon-search {
         font-size: 1.8rem;
         padding: 0 .4rem;
         position: relative;
         top: .3rem;
+
         &:before {
             color: #6D757D;
         }
@@ -48,12 +53,13 @@
     box-shadow: 0 0 3px rgba(102, 102, 102, 0.5);
     top: 3.8rem;
     min-width: 18rem;
+
     .history-item {
         padding: .8rem;
     }
 }
 
-.fiter-event {
+.filter-event {
     border-radius: .4rem;
     background-color: #1B3464;
     color: #fff;

@@ -1,11 +1,7 @@
 import React from "react";
+import { SearchBarProps } from "./type";
 
-type Props = {
-  filterText: string;
-  onFilterTextChange: (filterText: string) => void;
-};
-
-const SearchBar: React.FC<Props> = props => {
+const SearchBar: React.FC<SearchBarProps> = props => {
   const handleFilterTextChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -14,7 +10,7 @@ const SearchBar: React.FC<Props> = props => {
 
   return (
     <div className="combo-search">
-      <div className="fiter-event">Filter by League/Event</div>
+      <div className="filter-event">Filter by League/Event</div>
       <div className="search-section">
         <div className="search-box">
           <span className="icon-search"></span>
@@ -22,7 +18,8 @@ const SearchBar: React.FC<Props> = props => {
             type="text"
             placeholder="Search"
             value={props.filterText}
-            onChange={handleFilterTextChange} className="txt-search"
+            onChange={handleFilterTextChange}
+            className="txt-search"
           />
         </div>
         <ul className="search-history">

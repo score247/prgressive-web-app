@@ -94,6 +94,11 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
       if (updatedMatch != null) {
         isChanged = true;
+        const index = this.displayMatches.findIndex(
+          displayMatch => displayMatch.Id === matchEvent.MatchId
+        );
+        this.displayMatches[index] = updatedMatch;
+
         return updatedMatch;
       }
 
@@ -101,7 +106,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
     });
 
     if (isChanged) {
-      this.displayMatches = matches;
       this.setState({ matches: matches });
     }
   };
