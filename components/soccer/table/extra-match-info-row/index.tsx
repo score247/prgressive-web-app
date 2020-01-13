@@ -58,12 +58,14 @@ export default function ExtraMatchInfoRow(props: Props) {
       return (
         <tr>
           <td className="text-extra" colSpan={9}>
-            {renderRegularPeriodScore(regularPeriods)}
-            {renderOverTimePeriodScore(overTimePeriod)}
-            {AggregateWinnerId &&
-              EventStatus.Value === MatchStatusType.CLOSED.value &&
-              renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
-            {renderPenaltyScore(penaltyPeriod)}
+            <span className="icon-link-match"></span>
+            <span className="extra-match-info">{renderRegularPeriodScore(regularPeriods)}
+              {renderOverTimePeriodScore(overTimePeriod)}
+              {AggregateWinnerId &&
+                EventStatus.Value === MatchStatusType.CLOSED.value &&
+                renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
+              {renderPenaltyScore(penaltyPeriod)}
+            </span>
           </td>
         </tr>
       );

@@ -44,8 +44,13 @@ $leagueColor: ( 0: #CD5E31, 1: #ED1B24, 2: #055888, 3: #C5822F, 4: #C03000, 5: #
   }
 
   .text-extra {
-    color: #FEA700;
     font-size: 1.1rem;
+    position: relative;
+    color: #000;
+    .icon-link-match {
+      position: absolute;
+      left: .8rem;
+    }
   }
 
   .advertisement-wrapper {
@@ -104,6 +109,23 @@ $leagueColor: ( 0: #CD5E31, 1: #ED1B24, 2: #055888, 3: #C5822F, 4: #C03000, 5: #
     border: .005rem solid #DFDFDF;
     padding: 0.4rem;
   }
+  .table .text-extra {
+    position: relative;
+    .icon-link-match {
+      position: absolute;
+      left: .8rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .extra-match-info {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 3rem;
+    }
+
+  }
+
   .col-selected, .col-status, .col-1st-half {
     display: none;
   }
