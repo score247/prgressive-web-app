@@ -25,8 +25,8 @@ const Header = () => {
         <th>Home</th>
         <th>Score</th>
         <th>Away</th>
-        <th className="width-50">1st Half</th>
-        <th>favorite</th>
+        <th className="width-50">1H</th>
+        <th></th>
       </tr>
     </thead>
   );
