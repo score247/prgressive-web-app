@@ -85,16 +85,16 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const timeline = message?.MatchEvent?.Timeline;
     let isChanged = false;
     const matches = this.state.matches.map(match => {
-      const newMatch = this.updateMatch(
+      const updatedMatch = this.updateMatch(
         match,
         timeline,
         matchEvent,
         matchResult
       );
 
-      if (newMatch != null) {
+      if (updatedMatch != null) {
         isChanged = true;
-        return newMatch;
+        return updatedMatch;
       }
 
       return match;

@@ -1,9 +1,10 @@
 import * as React from "react";
-import { MatchSummary } from "../../../../models";
+import { MatchSummary, Enumeration } from "../../../../models";
 import {
   MatchStatusTypeDic,
   CancelStatus,
-  EventNeedBeShownMinute
+  EventNeedBeShownMinute,
+  MatchStatus
 } from "../../../../common/enums/match-status-type";
 import { differenceInMinutes } from "date-fns";
 import { EventTypes } from "../../../../common/enums/event-type";
@@ -35,11 +36,22 @@ class TimeAndStatusCell extends React.Component<Props> {
     return `${periodTime.endTime}+${displayInjuryTime}'`;
   }
 
+  isEventNeedBeShowmMinute(matchStatus?: Enumeration): boolean {
+    if (matchStatus == null) {
+      return false;
+    }
+
+    return EventNeedBeShownMinute.find(status => matchStatus?.Value === status) !== undefined;
+  }
+
   componentDidMount() {
-    this.timerId = window.setInterval(
-      () => this.buildMatchMinute(this.match),
-      this.countMinuteInterval
-    );
+    if (this.match != null
+      && this.isEventNeedBeShowmMinute(this.match?.MatchStatus)) {
+      this.timerId = window.setInterval(
+        () => this.buildMatchMinute(this.match),
+        this.countMinuteInterval
+      );
+    }
   }
 
   componentWillUnmount() {
@@ -50,6 +62,11 @@ class TimeAndStatusCell extends React.Component<Props> {
 
   buildMatchMinute(match: MatchSummary): string {
     const periodTime = periodTimes[match.MatchStatus.Value];
+
+    if (periodTime == null) {
+      return "";
+    }
+
     const today = new Date();
     const periodStartTime = match.CurrentPeriodStartTime[0] as Date;
     const matchMinute =
@@ -59,8 +76,8 @@ class TimeAndStatusCell extends React.Component<Props> {
       match.LastTimelineType?.Value === EventTypes.INJURY_TIME_SHOWN.value &&
       match.InjuryTimeAnnounced > 0
     ) {
-      // // const cachedInjuryTime = localStorage.getItem(`InjuryTimeAnnouncement_${match.Id}_${match.MatchStatus.DisplayName}`);
-      // // const injuryTime = Number(cachedInjuryTime);
+      //// const cachedInjuryTime = localStorage.getItem(`InjuryTimeAnnouncement_${match.Id}_${match.MatchStatus.DisplayName}`);
+      //// const injuryTime = Number(cachedInjuryTime);
 
       return this.buildMatchMinuteWithInjuryTime(
         match,

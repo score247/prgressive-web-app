@@ -1,3 +1,4 @@
+import "./league-cell.scss";
 import * as React from "react";
 import { MatchSummary } from "../../../../models";
 
@@ -11,7 +12,7 @@ const LeagueCell: React.FC<{ match: MatchSummary }> = ({ match }) => {
         : `${match.CountryName} ${match.LeagueName}`;
 
 
-    return <td title={leagueTitle} >{league}</td>;
+    return <td className={`league ${match.LeagueRegion}`} title={leagueTitle}>{league}</td>;
 }
 
 export default LeagueCell;

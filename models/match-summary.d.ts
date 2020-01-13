@@ -42,4 +42,5 @@ export interface MatchSummary {
   LeagueRoundGroup: string;
   EventDateServerTime: Date;
   LeagueAbbreviation: string;
+  LeagueRegion: string;
 }
