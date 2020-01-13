@@ -11,7 +11,9 @@ import { Props, periodTimes, PeriodTime } from "./types";
 import { DeviceContext } from "../../../../contexts/device-context";
 
 class TimeAndStatusCell extends React.Component<Props> {
+  readonly countMinuteInterval: number = 10000;
   readonly match: MatchSummary;
+  private timerId = 0;
 
   constructor(props: Props) {
     super(props);
@@ -22,8 +24,7 @@ class TimeAndStatusCell extends React.Component<Props> {
   private buildMatchMinuteWithInjuryTime(
     match: MatchSummary,
     matchMinute: number,
-    periodTime: PeriodTime
-  ) {
+    periodTime: PeriodTime) {
     const announcementInjuryTime = match.InjuryTimeAnnounced;
     const currentInjuryTime = matchMinute - periodTime.endTime;
     let displayInjuryTime = currentInjuryTime <= 0 ? 1 : currentInjuryTime;
@@ -32,6 +33,19 @@ class TimeAndStatusCell extends React.Component<Props> {
     }
 
     return `${periodTime.endTime}+${displayInjuryTime}'`;
+  }
+
+  componentDidMount() {
+    this.timerId = window.setInterval(
+      () => this.buildMatchMinute(this.match),
+      this.countMinuteInterval
+    );
+  }
+
+  componentWillUnmount() {
+    if (this.timerId !== 0) {
+      window.clearInterval(this.timerId);
+    }
   }
 
   buildMatchMinute(match: MatchSummary): string {
@@ -115,11 +129,11 @@ class TimeAndStatusCell extends React.Component<Props> {
           <span className="match-status">{matchStatus}</span>
         </td>
       ) : (
-        <>
-          <td>{time}</td>
-          <td className={matchStatusClass}>{matchStatus}</td>
-        </>
-      );
+          <>
+            <td>{time}</td>
+            <td className={matchStatusClass}>{matchStatus}</td>
+          </>
+        );
     };
 
     return <DeviceContext.Consumer>{statusCell}</DeviceContext.Consumer>;
