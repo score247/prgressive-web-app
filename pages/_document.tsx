@@ -31,6 +31,7 @@ class Score247Document extends Document<{ isMobileView: boolean }> {
         <Head>
           <meta name="theme-color" content="#F8F9FC" />
           <meta name="Description" content="Score247" />
+          <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"></meta>
           <link rel="manifest" href="/manifest.json" />
           <link rel="icon" href="/favicon.ico" />
           <link

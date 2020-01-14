@@ -8,12 +8,12 @@ const Header = () => {
     <thead>
       <tr>
         {!isMobile && <th></th>}
-        <th>League</th>
-        <th>Time</th>
+        <th className="col-league">League</th>
+        <th className="col-time">Time</th>
         {!isMobile && <th>Status</th>}
-        <th>Home</th>
-        <th>Score</th>
-        <th>Away</th>
+        <th className="col-home">Home</th>
+        <th className="col-score">Score</th>
+        <th className="col-away">Away</th>
         {!isMobile && <th className="width-50">1H</th>}
         <th></th>
       </tr>
