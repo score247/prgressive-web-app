@@ -1,5 +1,6 @@
 import React from "react";
 import { DeviceContextConsumer } from "../../../../contexts/device-context";
+import "./title-row.scss";
 
 const TitleRow: React.FC<{ title: string }> = ({ title }) => {
   const mobileColSpan = 8;

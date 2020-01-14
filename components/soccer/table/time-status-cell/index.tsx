@@ -6,10 +6,19 @@ import {
 } from "../../../../common/enums/match-status-type";
 import { differenceInMinutes } from "date-fns";
 import { EventTypes } from "../../../../common/enums/event-type";
-import { TimeStatusCellProps, periodTimes, PeriodTime, TimeStatusCellState } from "./types";
+import {
+  TimeStatusCellProps,
+  periodTimes,
+  PeriodTime,
+  TimeStatusCellState
+} from "./types";
 import { DeviceContext } from "../../../../contexts/device-context";
+import "./style.scss";
 
-class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusCellState> {
+class TimeAndStatusCell extends React.Component<
+  TimeStatusCellProps,
+  TimeStatusCellState
+> {
   readonly countMinuteInterval: number = 15000;
   readonly match: MatchSummary;
   private timerId = 0;
@@ -32,7 +41,8 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
   private buildMatchMinuteWithInjuryTime(
     match: MatchSummary,
     matchMinute: number,
-    periodTime: PeriodTime) {
+    periodTime: PeriodTime
+  ) {
     const announcementInjuryTime = match.InjuryTimeAnnounced;
     const currentInjuryTime = matchMinute - periodTime.endTime;
     let displayInjuryTime = currentInjuryTime <= 0 ? 1 : currentInjuryTime;
@@ -44,20 +54,19 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
   }
 
   componentDidMount() {
-    if (this.match != null
-      && MatchStatusHelper.isMatchNotEndOrCancel(this.match?.MatchStatus)) {
+    if (
+      this.match != null &&
+      MatchStatusHelper.isMatchNotEndOrCancel(this.match?.MatchStatus)
+    ) {
       if (this.timerId !== 0) {
         window.clearInterval(this.timerId);
       }
 
-      this.timerId = window.setInterval(
-        () => {
-          this.setState({
-            matchStatusText: this.buildMatchStatus(this.match)
-          });
-        },
-        this.countMinuteInterval
-      );
+      this.timerId = window.setInterval(() => {
+        this.setState({
+          matchStatusText: this.buildMatchStatus(this.match)
+        });
+      }, this.countMinuteInterval);
     }
   }
 
@@ -121,8 +130,8 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
   }
 
   buildMatchStatusClass(match: MatchSummary) {
-    return MatchStatusHelper.isCancelStatus(match?.MatchStatus) 
-      ? "match-cancel" 
+    return MatchStatusHelper.isCancelStatus(match?.MatchStatus)
+      ? "match-cancel"
       : "";
   }
 
@@ -138,9 +147,10 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
 
     const statusCell = ({ isMobile }: { isMobile: boolean }) => {
       const matchStatusClass = this.buildMatchStatusClass(this.props.match);
-      const matchStatus = isMobile && this.state.matchStatusText === "-"
-        ? ""
-        : this.state.matchStatusText;
+      const matchStatus =
+        isMobile && this.state.matchStatusText === "-"
+          ? ""
+          : this.state.matchStatusText;
 
       return isMobile ? (
         <td>
@@ -148,11 +158,11 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
           <span className="match-status">{matchStatus}</span>
         </td>
       ) : (
-          <>
-            <td>{time}</td>
-            <td className={matchStatusClass}>{matchStatus}</td>
-          </>
-        );
+        <>
+          <td>{time}</td>
+          <td className={matchStatusClass}>{matchStatus}</td>
+        </>
+      );
     };
 
     return <DeviceContext.Consumer>{statusCell}</DeviceContext.Consumer>;

@@ -2,6 +2,7 @@ import React from "react";
 import Advertisement from "../../../advertisement";
 import { useDeviceContext } from "../../../../contexts/device-context";
 import { Props } from "./type";
+import "./style.scss";
 
 export default function AdvertisementRow(props: Props) {
   const { isMobile } = useDeviceContext();

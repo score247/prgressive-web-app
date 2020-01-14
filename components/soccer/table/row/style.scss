@@ -6,9 +6,10 @@
 .text-1H {
     color: #0057FF;
     font-weight: bold;
-  }
+}
 
-.icon-arrow-right, .icon-penalty {
+.icon-arrow-right,
+.icon-penalty {
     color: #000;
     margin-right: .4rem;
 }
@@ -34,26 +35,19 @@
     background-color: #ffd600;
 }
 
-.table td.advertisement-row {
-    padding: 0;
-}
-
-.table  .advertisement-wrapper {
-    height: 3.8rem;
-}
-
-.col-home, .col-away {
+.col-home,
+.col-away {
     width: 19rem;
 }
 
 .mobile {
-    .col-home, .col-away {
+    td {
+        border: .005rem solid #DFDFDF;
+        padding: 0.4rem;
+    }
+
+    .col-home,
+    .col-away {
         width: 10rem;
     }
 }
-
-.match-status {
-    display: block;
-    padding-top: .4rem;
-}
-

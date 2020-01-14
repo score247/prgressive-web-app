@@ -1,0 +1,31 @@
+.text-extra {
+    font-size: 1.1rem;
+    position: relative;
+    color: #000;
+
+    .icon-link-match {
+        position: absolute;
+        left: .8rem;
+    }
+}
+
+.mobile {
+    .text-extra {
+        position: relative;
+
+        .icon-link-match {
+            position: absolute;
+            left: .8rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .extra-match-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 3rem;
+        }
+
+    }
+}

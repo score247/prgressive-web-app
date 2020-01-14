@@ -12,6 +12,7 @@ import { format, isSameDay } from "date-fns";
 import { DateTimeFormat } from "../../../common/constants";
 import AdvertisementRow from "./advertisement-row";
 import advertisements from "../../../advertisement";
+import "./style.scss";
 
 type Props = {
   matches: MatchSummary[];

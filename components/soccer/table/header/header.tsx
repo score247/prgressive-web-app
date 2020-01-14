@@ -1,5 +1,6 @@
 import React from "react";
 import { DeviceContextConsumer } from "../../../../contexts/device-context";
+import "./header.scss";
 
 const Header = () => {
   const header = ({ isMobile }: { isMobile: boolean }) => (
