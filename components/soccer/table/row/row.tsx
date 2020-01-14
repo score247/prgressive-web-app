@@ -12,6 +12,7 @@ import { PeriodType } from "../../../../common/enums/period-type";
 import { DeviceContextConsumer } from "../../../../contexts/device-context";
 import LeagueCell from "../league-cell";
 import FavoriteCell from "../favorite-cell";
+import { DeviceContextType } from "../../../../contexts/device-context-type";
 
 type Props = {
   match: MatchSummary;
@@ -79,7 +80,7 @@ class SoccerRow extends React.Component<Props, State> {
 
     const { homeTeamCellProps, awayTeamCellProps } = this.createTeamCellProps();
 
-    const selectCell = ({ isMobile }: { isMobile: boolean }) => {
+    const selectCell = ({ isMobile }: DeviceContextType) => {
       return isMobile ? null : (
         <td>
           <Checkbox

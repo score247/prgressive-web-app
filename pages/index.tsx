@@ -13,6 +13,8 @@ import FilterSoccerTable from "../components/soccer/filter-table";
 import { SoccerSignalRClient } from "../apis/soccer-signalr-client";
 import appSettings from "../app-settings";
 import { MatchEventSignalRMessage } from "../models/soccer/signalr-messages";
+import { DeviceContextConsumer } from "../contexts/device-context";
+import { DeviceContextType } from "../contexts/device-context-type";
 
 type State = {
   selectedDate: Date;
@@ -92,6 +94,17 @@ class SoccerPage extends React.Component<WithTranslation, State> {
     );
   }
 
+  renderDateSwitch = ({ isMobile }: DeviceContextType) => (
+    <>
+      {!this.state.onlyLiveMatch && !isMobile && (
+        <DateSwitch
+          currentDate={this.state.selectedDate}
+          onClick={this.handleDateChange}
+        />
+      )}
+    </>
+  );
+
   render() {
     const { t } = this.props;
     return (
@@ -105,12 +118,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
         <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
         <div className="content">
           <FilterSoccerTable ref={this.filterSoccerTable} />
-          {!this.state.onlyLiveMatch && (
-            <DateSwitch
-              currentDate={this.state.selectedDate}
-              onClick={this.handleDateChange}
-            />
-          )}
+          <DeviceContextConsumer>{this.renderDateSwitch}</DeviceContextConsumer>
         </div>
       </Layout>
     );

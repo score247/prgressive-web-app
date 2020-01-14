@@ -1,9 +1,10 @@
 import React from "react";
 import { DeviceContextConsumer } from "../../../../contexts/device-context";
+import { DeviceContextType } from "../../../../contexts/device-context-type";
 import "./header.scss";
 
 const Header = () => {
-  const header = ({ isMobile }: { isMobile: boolean }) => (
+  const header = ({ isMobile }: DeviceContextType) => (
     <thead>
       <tr>
         {!isMobile && <th></th>}

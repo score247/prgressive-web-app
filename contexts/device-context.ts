@@ -1,6 +1,7 @@
 import React from "react";
+import { DeviceContextType } from "./device-context-type";
 
-export const DeviceContext = React.createContext({
+export const DeviceContext = React.createContext<DeviceContextType>({
   isMobile: false
 });
 
