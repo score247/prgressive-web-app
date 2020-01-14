@@ -3,6 +3,10 @@ import { Props } from "./type";
 import { PeriodType } from "../../../../common/enums/period-type";
 import { MatchPeriod } from "../../../../models";
 import { MatchStatusType } from "../../../../common/enums/match-status-type";
+import { useDeviceContext } from "../../../../contexts/device-context";
+
+const colSpanOnMobile = 6;
+const colSpanOnDesktop = 9;
 
 const renderRegularPeriodScore = (fullTimePeriod: MatchPeriod[]) => {
   const homeScore = fullTimePeriod.reduce(
@@ -37,6 +41,9 @@ export default function ExtraMatchInfoRow(props: Props) {
     EventStatus
   } = props.match;
 
+  const { isMobile } = useDeviceContext();
+  const colSpan = isMobile ? colSpanOnMobile : colSpanOnDesktop;
+
   if (MatchPeriods) {
     const regularPeriods = MatchPeriods.filter(
       x => x.PeriodType.Value === PeriodType.Regular
@@ -57,9 +64,10 @@ export default function ExtraMatchInfoRow(props: Props) {
     ) {
       return (
         <tr>
-          <td className="text-extra" colSpan={9}>
+          <td className="text-extra" colSpan={colSpan}>
             <span className="icon-link-match"></span>
-            <span className="extra-match-info">{renderRegularPeriodScore(regularPeriods)}
+            <span className="extra-match-info">
+              {renderRegularPeriodScore(regularPeriods)}
               {renderOverTimePeriodScore(overTimePeriod)}
               {AggregateWinnerId &&
                 EventStatus.Value === MatchStatusType.CLOSED.value &&
