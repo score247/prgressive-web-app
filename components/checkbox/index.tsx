@@ -1,13 +1,7 @@
 import React from "react";
+import { CheckboxProps } from "./type";
 
-type Props = {
-  id: string;
-  checked: boolean;
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-};
-
-const Checkbox: React.FC<Props> = props => {
+const Checkbox: React.FC<CheckboxProps> = props => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onChange(event);
   };
