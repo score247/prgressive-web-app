@@ -1,7 +1,7 @@
 import React from "react";
 import { Props } from "./type";
 import { PeriodType } from "../../../../common/enums/period-type";
-import { MatchPeriod } from "../../../../models";
+import { MatchPeriod, Enumeration } from "../../../../models";
 import { MatchStatusType } from "../../../../common/enums/match-status-type";
 import { useDeviceContext } from "../../../../contexts/device-context";
 import "./style.scss";
@@ -58,11 +58,10 @@ export default function ExtraMatchInfoRow(props: Props) {
       x => x.PeriodType.Value === PeriodType.Penalties
     );
 
-    if (
-      overTimePeriod ||
-      penaltyPeriod ||
-      (AggregateWinnerId && EventStatus.Value === MatchStatusType.CLOSED.value)
-    ) {
+    const showAggregateScore =
+      AggregateWinnerId && EventStatus.Value === MatchStatusType.CLOSED.value;
+
+    if (overTimePeriod || penaltyPeriod || showAggregateScore) {
       return (
         <tr>
           <td className="text-extra" colSpan={colSpan}>
@@ -70,8 +69,7 @@ export default function ExtraMatchInfoRow(props: Props) {
             <span className="extra-match-info">
               {renderRegularPeriodScore(regularPeriods)}
               {renderOverTimePeriodScore(overTimePeriod)}
-              {AggregateWinnerId &&
-                EventStatus.Value === MatchStatusType.CLOSED.value &&
+              {showAggregateScore &&
                 renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
               {renderPenaltyScore(penaltyPeriod)}
             </span>
