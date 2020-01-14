@@ -4,6 +4,7 @@ import { PeriodType } from "../../../../common/enums/period-type";
 import { MatchPeriod } from "../../../../models";
 import { MatchStatusType } from "../../../../common/enums/match-status-type";
 import { useDeviceContext } from "../../../../contexts/device-context";
+import "./style.scss";
 
 const colSpanOnMobile = 6;
 const colSpanOnDesktop = 9;
