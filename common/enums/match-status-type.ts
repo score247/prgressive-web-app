@@ -1,3 +1,5 @@
+import { Enumeration } from "../../models";
+
 interface MatchStatusKeyNumberValue {
   [key: number]: MatchStatus;
 }
@@ -6,7 +8,7 @@ export class MatchStatus {
   constructor(
     public readonly value: number,
     public readonly displayName: string
-  ) {}
+  ) { }
 }
 
 export const MatchStatusType = {
@@ -65,9 +67,32 @@ export const EndStatus = [
   MatchStatusType.ENDED_AFTER_PENALTIES.value
 ];
 
+export class MatchStatusHelper {
+  static isMatchNotEndOrCancel(matchStatus: Enumeration): boolean {
+    if (EndStatus.find(status => matchStatus?.Value === status)
+      || CancelStatus.find(status => matchStatus?.Value === status)) {
+      return false;
+    }
+
+    return true;
+  }
+
+  static isEventNeedBeShownMinute(matchStatus?: Enumeration): boolean {
+    if (matchStatus == null) {
+      return false;
+    }
+
+    return EventNeedBeShownMinute.find(status => matchStatus?.Value === status) !== undefined;
+  }
+
+  static isCancelStatus(matchStatus?: Enumeration) : boolean {
+    return CancelStatus.find(status => matchStatus?.Value === status) !== undefined;
+  }
+}
+
 export const MatchStatusTypeDic: MatchStatusKeyNumberValue = {};
 
-Object.keys(MatchStatusType).forEach(function(key) {
+Object.keys(MatchStatusType).forEach(function (key) {
   const matchStatusKeyStringValue = MatchStatusType as any;
 
   MatchStatusTypeDic[matchStatusKeyStringValue[key].value] =

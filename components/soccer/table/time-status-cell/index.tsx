@@ -2,8 +2,7 @@ import * as React from "react";
 import { MatchSummary, Enumeration } from "../../../../models";
 import {
   MatchStatusTypeDic,
-  CancelStatus,
-  EventNeedBeShownMinute
+  MatchStatusHelper
 } from "../../../../common/enums/match-status-type";
 import { differenceInMinutes } from "date-fns";
 import { EventTypes } from "../../../../common/enums/event-type";
@@ -44,17 +43,13 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
     return `${periodTime.endTime}+${displayInjuryTime}'`;
   }
 
-  isEventNeedBeShownMinute(matchStatus?: Enumeration): boolean {
-    if (matchStatus == null) {
-      return false;
-    }
-
-    return EventNeedBeShownMinute.find(status => matchStatus?.Value === status) !== undefined;
-  }
-
   componentDidMount() {
     if (this.match != null
-      && this.isEventNeedBeShownMinute(this.match?.MatchStatus)) {
+      && MatchStatusHelper.isMatchNotEndOrCancel(this.match?.MatchStatus)) {
+      if (this.timerId !== 0) {
+        window.clearInterval(this.timerId);
+      }
+
       this.timerId = window.setInterval(
         () => {
           this.setState({
@@ -118,11 +113,7 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
       return "";
     }
 
-    if (
-      EventNeedBeShownMinute.find(
-        status => match?.MatchStatus?.Value === status
-      )
-    ) {
+    if (MatchStatusHelper.isEventNeedBeShownMinute(match.MatchStatus)) {
       return this.buildMatchMinute(match);
     }
 
@@ -130,11 +121,9 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
   }
 
   buildMatchStatusClass(match: MatchSummary) {
-    if (CancelStatus.find(status => match?.MatchStatus?.Value === status)) {
-      return "match-cancel";
-    }
-
-    return "";
+    return MatchStatusHelper.isCancelStatus(match?.MatchStatus) 
+      ? "match-cancel" 
+      : "";
   }
 
   render() {
@@ -150,7 +139,7 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
     const statusCell = ({ isMobile }: { isMobile: boolean }) => {
       const matchStatusClass = this.buildMatchStatusClass(this.props.match);
       const matchStatus = isMobile && this.state.matchStatusText === "-"
-        ? "" 
+        ? ""
         : this.state.matchStatusText;
 
       return isMobile ? (
