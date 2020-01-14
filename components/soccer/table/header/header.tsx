@@ -10,16 +10,12 @@ const Header = () => {
         {!isMobile && <th></th>}
         <th>League</th>
         <th>Time</th>
-        <th>Status</th>
+        {!isMobile && <th>Status</th>}
         <th>Home</th>
         <th>Score</th>
         <th>Away</th>
-        {!isMobile && (
-          <>
-            <th className="width-50">1H</th>
-            <th></th>
-          </>
-        )}
+        {!isMobile && <th className="width-50">1H</th>}
+        <th></th>
       </tr>
     </thead>
   );
