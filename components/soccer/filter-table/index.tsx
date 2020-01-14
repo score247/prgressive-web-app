@@ -161,12 +161,21 @@ class FilterSoccerTable extends React.Component<{}, State> {
       match.MatchTime = matchResult.MatchTime;
 
       match = this.updateCards(timeline, match);
+      match = this.updateInjuryTimeShown(timeline, match);
 
       return match;
     }
 
     return null;
   };
+
+  private updateInjuryTimeShown(timeline: TimelineEvent, match: MatchSummary) {
+    if (timeline.Type.Value === EventTypes.INJURY_TIME_SHOWN.value && timeline.InjuryTimeAnnounced > 0) {
+      match.InjuryTimeAnnounced = timeline.InjuryTimeAnnounced;
+    }
+
+    return match;
+  }
 
   handleDisplayModeChange = (mode: DisplayMode) => {
     this.displayMatches = this.filterMatches(mode);
