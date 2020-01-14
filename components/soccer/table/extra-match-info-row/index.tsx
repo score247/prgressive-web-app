@@ -14,19 +14,19 @@ const renderRegularPeriodScore = (fullTimePeriod: MatchPeriod[]) => {
     0
   );
 
-  return `90 minutes [${homeScore} - ${awayScore}]`;
+  return `90' [${homeScore} - ${awayScore}]`;
 };
 
 const renderOverTimePeriodScore = (overTimePeriod?: MatchPeriod) =>
   overTimePeriod &&
-  `, 120 minutes [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
+  `, 120' [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
 
 const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) =>
   `, aggregate score [${homeTeamScore} - ${awayTeamScore}]`;
 
 const renderPenaltyScore = (penaltyPeriod?: MatchPeriod) =>
   penaltyPeriod &&
-  `, penalty shoot-out [${penaltyPeriod.HomeScore} - ${penaltyPeriod.AwayScore}]`;
+  `, Pen [${penaltyPeriod.HomeScore} - ${penaltyPeriod.AwayScore}]`;
 
 export default function ExtraMatchInfoRow(props: Props) {
   const {
