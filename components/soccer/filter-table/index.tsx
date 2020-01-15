@@ -80,8 +80,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
-    if(message != null)
-    {
+    if (message != null) {
       console.log(`${message.MatchEvent.MatchId} - ${message.MatchEvent.MatchResult.MatchStatus.DisplayName} - ${message.MatchEvent.Timeline.Type.DisplayName}`);
       console.log(message);
     }
@@ -89,6 +88,14 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const matchEvent = message?.MatchEvent;
     const matchResult = message?.MatchEvent?.MatchResult;
     const timeline = message?.MatchEvent?.Timeline;
+
+    if (matchEvent == null 
+      || timeline == null 
+      || this.processedTimelineIds.includes(timeline.Id)) {
+      return;
+    }
+    this.processedTimelineIds.push(timeline.Id);
+    
     let isChanged = false;
     const matches = this.state.matches.map(match => {
       const updatedMatch = this.updateMatch(
@@ -117,7 +124,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
   };
 
   private updateCards(timeline: TimelineEvent, match: MatchSummary) {
-    if (timeline != null && !this.processedTimelineIds.includes(timeline.Id)) {
+    if (timeline != null) {
       switch (timeline.Type.Value) {
         case EventTypes.YELLOW_CARD.value:
           if (timeline.IsHome) {
@@ -125,7 +132,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
           } else {
             match.AwayYellowCards++;
           }
-          this.processedTimelineIds.push(timeline.Id);
           break;
         case EventTypes.RED_CARD.value:
         case EventTypes.YELLOW_RED_CARD.value:
@@ -134,7 +140,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
           } else {
             match.AwayRedCards++;
           }
-          this.processedTimelineIds.push(timeline.Id);
           break;
       }
     }
@@ -232,9 +237,9 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const filteredMatches = this.displayMatches.filter(
       match =>
         match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-          -1 ||
+        -1 ||
         match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-          -1
+        -1
     );
 
     return (
