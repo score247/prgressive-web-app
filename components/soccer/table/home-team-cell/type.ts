@@ -4,4 +4,5 @@ export type Props = {
     yellowCards: number;
     isAggregateWinner: boolean;
     isPenaltyWinner?: boolean;
+    eventStatusId: number;
 };

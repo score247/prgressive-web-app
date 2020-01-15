@@ -1,5 +1,6 @@
 import React from "react";
 import { Props } from "./type";
+import { MatchStatusType } from "../../../../common/enums/match-status-type";
 
 export default function HomeTeamCell(props: Props) {
   const {
@@ -7,13 +8,16 @@ export default function HomeTeamCell(props: Props) {
     redCards,
     yellowCards,
     isAggregateWinner,
-    isPenaltyWinner
+    isPenaltyWinner,
+    eventStatusId
   } = props;
+
+  const isMatchClosed = eventStatusId === MatchStatusType.CLOSED.value;
 
   return (
     <td className="text-right col-home">
-      {isAggregateWinner && <i className="icon-arrow-right" />}
-      {isPenaltyWinner && <i className="icon-penalty" />}
+      {isMatchClosed && isAggregateWinner && <i className="icon-arrow-right" />}
+      {isMatchClosed && isPenaltyWinner && <i className="icon-penalty" />}
       {redCards > 0 && <span className="red-card">{redCards}</span>}
       {yellowCards > 0 && <span className="yellow-card">{yellowCards}</span>}
       {homeTeamName}

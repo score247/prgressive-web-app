@@ -22,16 +22,36 @@ const renderRegularPeriodScore = (fullTimePeriod: MatchPeriod[]) => {
   return `90' [${homeScore} - ${awayScore}]`;
 };
 
-const renderOverTimePeriodScore = (overTimePeriod?: MatchPeriod) =>
-  overTimePeriod &&
-  `, 120' [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
+const renderOverTimePeriodScore = (
+  overTimePeriod?: MatchPeriod,
+  matchStatus?: Enumeration
+) => {
+  if (
+    overTimePeriod &&
+    matchStatus &&
+    matchStatus.Value !== MatchStatusType.AWAITING_EXTRA_TIME.value
+  ) {
+    return `, overtime [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
+  }
+
+  return null;
+};
 
 const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) =>
   `, aggregate score [${homeTeamScore} - ${awayTeamScore}]`;
 
-const renderPenaltyScore = (penaltyPeriod?: MatchPeriod) =>
-  penaltyPeriod &&
-  `, Pen [${penaltyPeriod.HomeScore} - ${penaltyPeriod.AwayScore}]`;
+const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumeration) =>{
+  if (
+    penaltyPeriod &&
+    matchStatus &&
+    matchStatus.Value !== MatchStatusType.AWAITING_PENALTIES.value
+  ) {
+    return `, Pen [${penaltyPeriod.HomeScore} - ${penaltyPeriod.AwayScore}]`;
+  }
+
+  return null;
+}
+  
 
 export default function ExtraMatchInfoRow(props: Props) {
   const {
@@ -39,7 +59,8 @@ export default function ExtraMatchInfoRow(props: Props) {
     AggregateHomeScore,
     MatchPeriods,
     AggregateWinnerId,
-    EventStatus
+    EventStatus,
+    MatchStatus
   } = props.match;
 
   const { isMobile } = useDeviceContext();
@@ -68,7 +89,7 @@ export default function ExtraMatchInfoRow(props: Props) {
             <span className="icon-link-match"></span>
             <span className="extra-match-info">
               {renderRegularPeriodScore(regularPeriods)}
-              {renderOverTimePeriodScore(overTimePeriod)}
+              {renderOverTimePeriodScore(overTimePeriod, MatchStatus)}
               {showAggregateScore &&
                 renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
               {renderPenaltyScore(penaltyPeriod)}

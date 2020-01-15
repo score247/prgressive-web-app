@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import {  Props } from "./type";
 import HomeTeamCell from "./index";
+import { MatchStatusType } from "../../../../common/enums/match-status-type";
 
 
 describe("HomeTeamCell", () => {
@@ -10,7 +11,8 @@ describe("HomeTeamCell", () => {
         homeTeamName:"name",
         redCards: 0,
         yellowCards: 1,
-        isAggregateWinner: true
+        isAggregateWinner: true,
+        eventStatusId: MatchStatusType.CLOSED.value
       };
   
     const wrapper = shallow(<HomeTeamCell {...props} />);
@@ -22,7 +24,8 @@ describe("HomeTeamCell", () => {
         homeTeamName:"name",
         redCards: 1,
         yellowCards: 0,
-        isAggregateWinner: true
+        isAggregateWinner: true,
+        eventStatusId: MatchStatusType.CLOSED.value
       };
   
     const wrapper = shallow(<HomeTeamCell {...props} />);

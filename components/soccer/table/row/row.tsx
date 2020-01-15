@@ -50,6 +50,8 @@ class SoccerRow extends React.Component<Props, State> {
       match.MatchPeriods &&
       match.MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties);
 
+    const { EventStatus } = match;
+
     return {
       homeTeamCellProps: {
         homeTeamName: match.HomeTeamName,
@@ -57,7 +59,8 @@ class SoccerRow extends React.Component<Props, State> {
         yellowCards: match.HomeYellowCards,
         isAggregateWinner: match.HomeTeamId === match.AggregateWinnerId,
         isPenaltyWinner:
-          penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore
+          penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore,
+        eventStatusId: EventStatus.Value
       },
       awayTeamCellProps: {
         awayTeamName: match.AwayTeamName,
@@ -65,7 +68,8 @@ class SoccerRow extends React.Component<Props, State> {
         yellowCards: match.AwayYellowCards,
         isAggregateWinner: match.AwayTeamId === match.AggregateWinnerId,
         isPenaltyWinner:
-          penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore
+          penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore,
+        eventStatusId: EventStatus.Value
       }
     };
   };
