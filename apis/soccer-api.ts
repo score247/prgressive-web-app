@@ -3,7 +3,7 @@ import appSettings from "../app-settings";
 import { decode } from "@msgpack/msgpack";
 import { MatchSummary, MatchInfo, League } from "../models";
 import { startOfDay, endOfDay } from "date-fns";
-import { DateTimeFormat } from "../common/constants";
+import { covertToUTC } from "../common/helpers/date-time-helper";
 
 const instance = axios.create({
   baseURL: appSettings.soccerAPIBaseUrl,
@@ -23,8 +23,8 @@ export const SoccerAPI = {
     date: Date,
     language = "en-US"
   ): Promise<MatchSummary[]> => {
-    const fd = startOfDay(date).toISOString();
-    const td = endOfDay(date).toISOString();
+    const fd = covertToUTC(startOfDay(date));
+    const td = covertToUTC(endOfDay(date));
 
     const response = await instance.get(
       `/soccer/${language}/matches?fd=${fd}&td=${td}`
