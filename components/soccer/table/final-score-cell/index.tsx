@@ -25,8 +25,7 @@ function renderFirstHalfScore(
 ) {
   const matchStatusesToNotShow = [
     ...preMatchStatuses,
-    MatchStatusType.FIRST_HALF,
-    MatchStatusType.FIRST_HALF_EXTRA
+    MatchStatusType.FIRST_HALF
   ];
   
   if (
