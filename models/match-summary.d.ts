@@ -43,4 +43,5 @@ export interface MatchSummary {
   EventDateServerTime: Date;
   LeagueAbbreviation: string;
   LeagueRegion: string;
+  InjuryTimes: InjuryTimes;
 }

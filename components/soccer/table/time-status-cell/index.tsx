@@ -18,7 +18,7 @@ import "./style.scss";
 class TimeAndStatusCell extends React.Component<
   TimeStatusCellProps,
   TimeStatusCellState
-> {
+  > {
   readonly countMinuteInterval: number = 15000;
   readonly match: MatchSummary;
   private timerId = 0;
@@ -84,17 +84,11 @@ class TimeAndStatusCell extends React.Component<
     }
 
     const today = new Date();
-    const periodStartTime = match.CurrentPeriodStartTime[0] as Date;
+    const periodStartTime = new Date(match.CurrentPeriodStartTime[0]);
     const matchMinute =
       periodTime.startTime + differenceInMinutes(today, periodStartTime);
 
-    if (
-      match.LastTimelineType?.Value === EventTypes.INJURY_TIME_SHOWN.value &&
-      match.InjuryTimeAnnounced > 0
-    ) {
-      //// const cachedInjuryTime = localStorage.getItem(`InjuryTimeAnnouncement_${match.Id}_${match.MatchStatus.DisplayName}`);
-      //// const injuryTime = Number(cachedInjuryTime);
-
+    if (match.InjuryTimeAnnounced > 0) {
       return this.buildMatchMinuteWithInjuryTime(
         match,
         matchMinute,
@@ -158,11 +152,11 @@ class TimeAndStatusCell extends React.Component<
           <span className="match-status">{matchStatus}</span>
         </td>
       ) : (
-        <>
-          <td>{time}</td>
-          <td className={matchStatusClass}>{matchStatus}</td>
-        </>
-      );
+          <>
+            <td>{time}</td>
+            <td className={matchStatusClass}>{matchStatus}</td>
+          </>
+        );
     };
 
     return <DeviceContext.Consumer>{statusCell}</DeviceContext.Consumer>;

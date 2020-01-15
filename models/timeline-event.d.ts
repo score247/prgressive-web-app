@@ -8,7 +8,7 @@ export interface TimelineEvent {
   CreatedTime: Date;
   ModifiedTime: Date;
   Type: Enumeration;
-  Time: Date;
+  Time: any[];
   MatchTime: number;
   StoppageTime: string;
   Team: string;

@@ -89,13 +89,13 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const matchResult = message?.MatchEvent?.MatchResult;
     const timeline = message?.MatchEvent?.Timeline;
 
-    if (matchEvent == null 
-      || timeline == null 
+    if (matchEvent == null
+      || timeline == null
       || this.processedTimelineIds.includes(timeline.Id)) {
       return;
     }
     this.processedTimelineIds.push(timeline.Id);
-    
+
     let isChanged = false;
     const matches = this.state.matches.map(match => {
       const updatedMatch = this.updateMatch(
@@ -165,6 +165,10 @@ class FilterSoccerTable extends React.Component<{}, State> {
       match.MatchStatus = matchResult.MatchStatus;
       match.MatchTime = matchResult.MatchTime;
 
+      if (timeline.Type.Value === EventTypes.PERIOD_START.value) {
+        match.CurrentPeriodStartTime = timeline.Time;
+      }
+
       match = this.updateCards(timeline, match);
       match = this.updateInjuryTimeShown(timeline, match);
 
@@ -175,7 +179,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
   };
 
   private updateInjuryTimeShown(timeline: TimelineEvent, match: MatchSummary) {
-    if (timeline.Type.Value === EventTypes.INJURY_TIME_SHOWN.value && timeline.InjuryTimeAnnounced > 0) {
+    if (timeline.Type.Value === EventTypes.INJURY_TIME_SHOWN.value 
+      && timeline.InjuryTimeAnnounced > 0) {
       match.InjuryTimeAnnounced = timeline.InjuryTimeAnnounced;
     }
 
