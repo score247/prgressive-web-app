@@ -31,7 +31,7 @@ const renderOverTimePeriodScore = (
     matchStatus &&
     matchStatus.Value !== MatchStatusType.AWAITING_EXTRA_TIME.value
   ) {
-    return `, 120' [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
+    return `, overtime [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
   }
 
   return null;
