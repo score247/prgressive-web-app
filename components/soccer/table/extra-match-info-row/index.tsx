@@ -19,7 +19,7 @@ const renderRegularPeriodScore = (fullTimePeriod: MatchPeriod[]) => {
     0
   );
 
-  return `90' [${homeScore} - ${awayScore}]`;
+  return `FT [${homeScore} - ${awayScore}]`;
 };
 
 const renderOverTimePeriodScore = (
@@ -31,14 +31,14 @@ const renderOverTimePeriodScore = (
     matchStatus &&
     matchStatus.Value !== MatchStatusType.AWAITING_EXTRA_TIME.value
   ) {
-    return `, overtime [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
+    return `, ET [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
   }
 
   return null;
 };
 
 const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) =>
-  `, aggregate score [${homeTeamScore} - ${awayTeamScore}]`;
+  `, Aggregate score [${homeTeamScore} - ${awayTeamScore}]`;
 
 const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumeration) =>{
   if (
