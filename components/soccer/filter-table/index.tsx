@@ -81,11 +81,11 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
     if (message != null) {
-      console.log([
+      console.log([//NOSONAR
         message.MatchEvent.MatchId, 
         message.MatchEvent.MatchResult.MatchStatus.DisplayName,
         message.MatchEvent.Timeline.Type.DisplayName,
-        message.MatchEvent.Timeline.Id].join(" - "));//NOSONAR
+        message.MatchEvent.Timeline.Id].join(" - "));
       console.log(message);//NOSONAR
     }
 
