@@ -93,7 +93,7 @@ export class MatchStatusHelper {
 export const MatchStatusTypeDic: MatchStatusKeyNumberValue = {};
 
 Object.keys(MatchStatusType).forEach(function (key) {
-  const matchStatusKeyStringValue = MatchStatusType as any;
+  const matchStatusKeyStringValue = MatchStatusType as any;//NOSONAR
 
   MatchStatusTypeDic[matchStatusKeyStringValue[key].value] =
     matchStatusKeyStringValue[key];

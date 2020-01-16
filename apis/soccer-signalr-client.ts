@@ -1,7 +1,7 @@
 import * as signalR from "@microsoft/signalr";
 
 export interface IHandlers {
-    [key: string]: (data: any) => void
+    [key: string]: (data: any) => void//NOSONAR
 }
 
 export class SoccerSignalRClient {
