@@ -92,7 +92,7 @@ export default function ExtraMatchInfoRow(props: Props) {
               {renderOverTimePeriodScore(overTimePeriod, MatchStatus)}
               {showAggregateScore &&
                 renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
-              {renderPenaltyScore(penaltyPeriod)}
+              {renderPenaltyScore(penaltyPeriod, MatchStatus)}
             </span>
           </td>
         </tr>
