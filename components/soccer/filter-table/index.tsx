@@ -81,21 +81,27 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
     if (message != null) {
-      console.log([//NOSONAR
-        message.MatchEvent.MatchId, 
-        message.MatchEvent.MatchResult.MatchStatus.DisplayName,
-        message.MatchEvent.Timeline.Type.DisplayName,
-        message.MatchEvent.Timeline.Id].join(" - "));
-      console.log(message);//NOSONAR
+      console.log(
+        [
+          //NOSONAR
+          message.MatchEvent.MatchId,
+          message.MatchEvent.MatchResult.MatchStatus.DisplayName,
+          message.MatchEvent.Timeline.Type.DisplayName,
+          message.MatchEvent.Timeline.Id
+        ].join(" - ")
+      );
+      console.log(message); //NOSONAR
     }
 
     const matchEvent = message?.MatchEvent;
     const matchResult = message?.MatchEvent?.MatchResult;
     const timeline = message?.MatchEvent?.Timeline;
 
-    if (matchEvent == null
-      || timeline == null
-      || this.processedTimelineIds.includes(timeline.Id)) {
+    if (
+      matchEvent == null ||
+      timeline == null ||
+      this.processedTimelineIds.includes(timeline.Id)
+    ) {
       return;
     }
     this.processedTimelineIds.push(timeline.Id);
@@ -183,8 +189,10 @@ class FilterSoccerTable extends React.Component<{}, State> {
   };
 
   private updateInjuryTimeShown(timeline: TimelineEvent, match: MatchSummary) {
-    if (timeline.Type.Value === EventTypes.INJURY_TIME_SHOWN.value 
-      && timeline.InjuryTimeAnnounced > 0) {
+    if (
+      timeline.Type.Value === EventTypes.INJURY_TIME_SHOWN.value &&
+      timeline.InjuryTimeAnnounced > 0
+    ) {
       match.InjuryTimeAnnounced = timeline.InjuryTimeAnnounced;
     }
 
@@ -240,15 +248,14 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   render() {
-    const { displayMode, filterText } = this.state;
+    const { filterText } = this.state;
 
-    this.displayMatches = this.filterMatches(displayMode);
     const filteredMatches = this.displayMatches.filter(
       match =>
         match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-        -1 ||
+          -1 ||
         match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-        -1
+          -1
     );
 
     return (
