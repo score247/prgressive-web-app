@@ -15,6 +15,7 @@ import { EventTypes } from "../../../common/enums/event-type";
 import { TimelineEvent } from "../../../models";
 import { MatchResult } from "../../../models/soccer/match-result";
 import { createSorter } from "../../../common/utils/sort";
+import lscache from "lscache";
 
 type State = {
   filterText: string;
@@ -26,13 +27,11 @@ type State = {
 class FilterSoccerTable extends React.Component<{}, State> {
   displayMatches: MatchSummary[];
   soccerTableRef: React.RefObject<SoccerTable>;
-  processedTimelineIds: string[];
 
   constructor(props: {}) {
     super(props);
 
     this.displayMatches = [];
-    this.processedTimelineIds = [];
     this.soccerTableRef = React.createRef<SoccerTable>();
     this.state = {
       filterText: "",
@@ -97,14 +96,18 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const matchResult = message?.MatchEvent?.MatchResult;
     const timeline = message?.MatchEvent?.Timeline;
 
-    if (
-      matchEvent == null ||
-      timeline == null ||
-      this.processedTimelineIds.includes(timeline.Id)
-    ) {
+    if (matchEvent == null || timeline == null) {
       return;
     }
-    this.processedTimelineIds.push(timeline.Id);
+
+    const processedTimelineIds: string[] =
+      lscache.get(matchEvent.MatchId) ?? [];
+    if (processedTimelineIds.includes(timeline.Id)) {
+      return;
+    }
+
+    processedTimelineIds.push(timeline.Id);
+    lscache.set(matchEvent.MatchId, processedTimelineIds, 120);
 
     let isChanged = false;
     const matches = this.state.matches.map(match => {
