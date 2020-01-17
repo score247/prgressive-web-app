@@ -139,7 +139,7 @@ class SoccerTable extends React.Component<Props> {
           )}
         {classifiedRows.endMatchRows.map(this.renderRow)}
         {classifiedRows.cancelMatchRows.length > 0 && (
-          <TitleRow title="This present cancelled/postponed/abandoned/deplayed/interruped matches" />
+          <TitleRow title="Cancelled/postponed/abandoned/delayed/interrupted matches" />
         )}
         {classifiedRows.cancelMatchRows.map(this.renderRow)}
       </>
