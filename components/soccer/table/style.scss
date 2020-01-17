@@ -4,8 +4,14 @@
     border: 1px solid #DFDFDF;
     background: #fff;
     table-layout: fixed;
+    th {
+        background-color: #F7F7F7;
+    }
     .mobile & {
         margin-top: 4.6rem;
+        th {
+            background-color: #FFF;
+        }
     }
 }
 

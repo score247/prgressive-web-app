@@ -45,7 +45,7 @@
 }
 
 .col-time, .col-status {
-    width: 6rem;
+    width: 7rem;
 }
 
 .col-league {
@@ -67,13 +67,16 @@
 
 @media screen and (max-device-width: 480px) {
     .col-league {
-        width: 6rem;
-    }
-    .col-time, .col-status, .col-score {
         width: 5rem;
     }
-    .col-favorites {
+    .col-time, .col-status {
         width: 4rem;
+    }
+    .col-favorites {
+        width: 3rem;
+    } 
+    .col-score {
+        width: 4.5rem;
     } 
 
 }
