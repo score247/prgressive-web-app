@@ -6,47 +6,16 @@ const dirMap = {
   lt: lessThan
 };
 
-const doSort = (A: any, B: any, property: string, direction = "ASC") => {
-  const a = A[property];
-  const b = B[property];
+export function sortArray<T, K extends keyof T>(values: T[], property: K, direction = "ASC") {
+  return values.sort((A: T, B: T) => {
+    if (A[property] < B[property]) {
+      return dirMap.lt[direction.toLowerCase()];
+    }
 
-  if (a < b) {
-    return dirMap.lt[direction.toLowerCase()];
-  }
-  if (a > b) {
-    return dirMap.gt[direction.toLowerCase()];
-  }
-  return 0;
-};
+    if (A[property] > B[property]) {
+      return dirMap.gt[direction.toLowerCase()];
+    }
 
-const createSorter = (...args: any[]) => {
-  if (typeof args[0] === "string") {
-    args = [
-      {
-        direction: args[1],
-        property: args[0]
-      }
-    ];
-  }
-
-  return (A: any, B: any) => {
-    let ret = 0;
-
-    args.some(sorter => {
-      const { property, direction = "ASC" } = sorter;
-      const value = doSort(A, B, property, direction);
-
-      if (value === 0) {
-        return false;
-      } else {
-        ret = value;
-
-        return true;
-      }
-    });
-
-    return ret;
-  };
-};
-
-export { createSorter };
+    return 0;
+  });
+}

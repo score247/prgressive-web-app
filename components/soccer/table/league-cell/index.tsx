@@ -13,6 +13,6 @@ const LeagueCell: React.FC<{ match: MatchSummary }> = ({ match }) => {
 
 
     return <td className={`league ${match.LeagueRegion}`} title={leagueTitle}>{league}</td>;
-}
+};
 
 export default LeagueCell;

@@ -40,7 +40,7 @@ const renderOverTimePeriodScore = (
 const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) =>
   `, AGGR [${homeTeamScore} - ${awayTeamScore}]`;
 
-const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumeration) =>{
+const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumeration) => {
   if (
     penaltyPeriod &&
     matchStatus &&
@@ -50,8 +50,8 @@ const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumerati
   }
 
   return null;
-}
-  
+};
+
 
 export default function ExtraMatchInfoRow(props: Props) {
   const {

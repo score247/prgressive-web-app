@@ -1,21 +1,18 @@
 import "./style.scss";
 import React from "react";
-import { DisplayMode } from "../../../common/constants";
+import lscache from "lscache";
 import DisplayOptions from "../../display-options";
 import SearchBar from "../../search-bar";
+import SoccerTable from "../table";
+import { DisplayMode } from "../../../common/constants";
 import { DeviceContextConsumer } from "../../../contexts/device-context";
-import {
-  MatchEventSignalRMessage,
-  MatchEvent
-} from "../../../models/soccer/signalr-messages";
+import { MatchEventSignalRMessage, MatchEvent } from "../../../models/soccer/signalr-messages";
 import { MatchSummary } from "../../../models/match-summary";
 import { SoccerAPI } from "../../../apis/soccer-api";
-import SoccerTable from "../table";
 import { EventTypes } from "../../../common/enums/event-type";
 import { TimelineEvent } from "../../../models";
 import { MatchResult } from "../../../models/soccer/match-result";
-import { createSorter } from "../../../common/utils/sort";
-import lscache from "lscache";
+import { sortArray } from "../../../common/utils/sort";
 
 type State = {
   filterText: string;
@@ -26,6 +23,7 @@ type State = {
 
 class FilterSoccerTable extends React.Component<{}, State> {
   private readonly cacheExpiryTimeInMinutes = 120;
+  private readonly defaultSortProperty = "EventDate";
   displayMatches: MatchSummary[];
   soccerTableRef: React.RefObject<SoccerTable>;
 
@@ -70,10 +68,9 @@ class FilterSoccerTable extends React.Component<{}, State> {
   };
 
   parseData(data: MatchSummary[]) {
-    const sorters = [{ property: "EventDate" }];
 
     if (data && data.length) {
-      data.sort(createSorter(...sorters));
+      return sortArray(data, this.defaultSortProperty);
     }
 
     return data;
@@ -81,9 +78,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
     if (message != null) {
-      console.log(
+      console.log(//NOSONAR
         [
-          //NOSONAR
           message.MatchEvent.MatchId,
           message.MatchEvent.MatchResult.MatchStatus.DisplayName,
           message.MatchEvent.Timeline.Type.DisplayName,
