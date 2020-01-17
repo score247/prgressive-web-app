@@ -25,6 +25,7 @@ type State = {
 };
 
 class FilterSoccerTable extends React.Component<{}, State> {
+  private readonly cacheExpiryTimeInMinutes = 120;
   displayMatches: MatchSummary[];
   soccerTableRef: React.RefObject<SoccerTable>;
 
@@ -100,14 +101,17 @@ class FilterSoccerTable extends React.Component<{}, State> {
       return;
     }
 
-    const processedTimelineIds: string[] =
-      lscache.get(matchEvent.MatchId) ?? [];
+    const processedTimelineIds: string[] = lscache.get(matchEvent.MatchId) ?? [];
     if (processedTimelineIds.includes(timeline.Id)) {
       return;
     }
 
     processedTimelineIds.push(timeline.Id);
-    lscache.set(matchEvent.MatchId, processedTimelineIds, 120);
+    lscache.set(
+      matchEvent.MatchId,
+      processedTimelineIds,
+      this.cacheExpiryTimeInMinutes
+    );
 
     let isChanged = false;
     const matches = this.state.matches.map(match => {
@@ -256,9 +260,9 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const filteredMatches = this.displayMatches.filter(
       match =>
         match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-          -1 ||
+        -1 ||
         match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-          -1
+        -1
     );
 
     return (
