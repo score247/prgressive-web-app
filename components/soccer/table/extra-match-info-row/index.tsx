@@ -38,7 +38,7 @@ const renderOverTimePeriodScore = (
 };
 
 const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) =>
-  `, Aggregate score [${homeTeamScore} - ${awayTeamScore}]`;
+  `, AGGR [${homeTeamScore} - ${awayTeamScore}]`;
 
 const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumeration) =>{
   if (
