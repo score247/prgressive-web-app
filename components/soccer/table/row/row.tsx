@@ -71,18 +71,12 @@ class SoccerRow extends React.Component<Props, State> {
   render() {
     const { match } = this.props;
     const firstHalfPeriod = match.MatchPeriods && match.MatchPeriods.find(x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular);
-
     const { homeTeamCellProps, awayTeamCellProps } = this.createTeamCellProps();
 
     const selectCell = ({ isMobile }: DeviceContextType) => {
       return isMobile ? null : (
         <td>
-          <Checkbox
-            id={match.Id}
-            value={match.Id}
-            checked={this.state.isSelected}
-            onChange={this.handleSelectedChange}
-          />
+          <Checkbox id={match.Id} value={match.Id} checked={this.state.isSelected} onChange={this.handleSelectedChange} />
         </td>
       );
     };
@@ -94,12 +88,7 @@ class SoccerRow extends React.Component<Props, State> {
           <LeagueCell match={match} />
           <TimeAndStatusCell match={match} />
           <HomeTeamCell {...homeTeamCellProps} />
-          <FinalScoreCell
-            homeScore={match.HomeScore}
-            awayScore={match.AwayScore}
-            firstHalfPeriod={firstHalfPeriod}
-            matchStatusId={match.MatchStatus?.Value}
-          />
+          <FinalScoreCell homeScore={match.HomeScore} awayScore={match.AwayScore} firstHalfPeriod={firstHalfPeriod} matchStatusId={match.MatchStatus?.Value} />
           <AwayTeamCell {...awayTeamCellProps} />
           <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
           <FavoriteCell />

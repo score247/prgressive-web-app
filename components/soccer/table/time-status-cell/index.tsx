@@ -11,10 +11,7 @@ import {
 import { DeviceContext } from "../../../../contexts/device-context";
 import "./style.scss";
 
-class TimeAndStatusCell extends React.Component<
-  TimeStatusCellProps,
-  TimeStatusCellState
-  > {
+class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusCellState> {
   readonly countMinuteInterval: number = 15000;
   readonly match: MatchSummary;
   private timerId = 0;
@@ -23,15 +20,11 @@ class TimeAndStatusCell extends React.Component<
     super(props);
 
     this.match = props.match;
-    this.state = {
-      matchStatusText: this.buildMatchStatus(this.props.match)
-    };
+    this.state = { matchStatusText: this.buildMatchStatus(this.props.match) };
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: TimeStatusCellProps) {
-    this.setState({
-      matchStatusText: this.buildMatchStatus(nextProps.match)
-    });
+    this.setState({ matchStatusText: this.buildMatchStatus(nextProps.match) });
   }
 
   private buildMatchMinuteWithInjuryTime(match: MatchSummary, matchMinute: number, periodTime: PeriodTime) {
@@ -46,10 +39,7 @@ class TimeAndStatusCell extends React.Component<
   }
 
   componentDidMount() {
-    if (
-      this.match != null &&
-      MatchStatusHelper.isMatchNotEndOrCancel(this.match?.MatchStatus)
-    ) {
+    if (this.match != null && MatchStatusHelper.isMatchNotEndOrCancel(this.match?.MatchStatus)) {
       if (this.timerId !== 0) {
         window.clearInterval(this.timerId);
       }
@@ -75,8 +65,7 @@ class TimeAndStatusCell extends React.Component<
 
     const today = new Date();
     const periodStartTime = new Date(match.CurrentPeriodStartTime[0]);
-    const matchMinute =
-      periodTime.startTime + differenceInMinutes(today, periodStartTime);
+    const matchMinute = periodTime.startTime + differenceInMinutes(today, periodStartTime);
 
     if (match.InjuryTimeAnnounced > 0) {
       return this.buildMatchMinuteWithInjuryTime(match, matchMinute, periodTime);
@@ -127,17 +116,9 @@ class TimeAndStatusCell extends React.Component<
       const matchStatusClass = this.buildMatchStatusClass(this.props.match);
       const matchStatus = isMobile && this.state.matchStatusText === "-" ? "" : this.state.matchStatusText;
 
-      return isMobile ? (
-        <td>
-          {time}
-          <span className="match-status">{matchStatus}</span>
-        </td>
-      ) : (
-          <>
-            <td>{time}</td>
-            <td className={matchStatusClass}>{matchStatus}</td>
-          </>
-        );
+      return isMobile
+        ? (<td>{time}<span className="match-status">{matchStatus}</span></td>)
+        : (<><td>{time}</td><td className={matchStatusClass}>{matchStatus}</td></>);
     };
 
     return <DeviceContext.Consumer>{statusCell}</DeviceContext.Consumer>;

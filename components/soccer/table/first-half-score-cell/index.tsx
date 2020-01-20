@@ -7,9 +7,7 @@ export default function FirstHalfScoreCell(props: Props) {
   const { isMobile } = React.useContext(DeviceContext);
 
   if (!isMobile) {
-    const displayScore = firstHalfPeriod
-      ? `${firstHalfPeriod.HomeScore} - ${firstHalfPeriod.AwayScore}`
-      : "-";
+    const displayScore = firstHalfPeriod ? `${firstHalfPeriod.HomeScore} - ${firstHalfPeriod.AwayScore}` : "-";
     return <td className="text-1H">{displayScore}</td>;
   }
 

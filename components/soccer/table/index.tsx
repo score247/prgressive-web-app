@@ -42,9 +42,7 @@ class SoccerTable extends React.Component<Props> {
     }
   };
 
-  getSelectedIds = () => {
-    return this.selectedIds;
-  };
+  getSelectedIds = () => (this.selectedIds);
 
   resetSelectedIds = () => {
     this.selectedIds = [];
@@ -59,10 +57,7 @@ class SoccerTable extends React.Component<Props> {
     this.displayedAdvertisements.shift();
 
     return (
-      <AdvertisementRow
-        href={advertisement.href}
-        imageSrc={advertisement.imageSrc}
-      />
+      <AdvertisementRow href={advertisement.href} imageSrc={advertisement.imageSrc} />
     );
   };
 
@@ -72,11 +67,7 @@ class SoccerTable extends React.Component<Props> {
 
     return (
       <Fragment key={match.Id}>
-        <SoccerRow
-          match={match}
-          isSelected={this.selectedIds.indexOf(match.Id) >= 0}
-          onSelect={this.handleSelectRow}
-        />
+        <SoccerRow match={match} isSelected={this.selectedIds.indexOf(match.Id) >= 0} onSelect={this.handleSelectRow} />
         {renderAd && this.renderAdvertisement()}
       </Fragment>
     );
@@ -99,7 +90,7 @@ class SoccerTable extends React.Component<Props> {
     const endMatchRows: MatchSummary[] = [];
     const preMatchRows: MatchSummary[] = [];
 
-    this.props.matches.forEach((match, index: number) => {
+    matches.forEach((match, index: number) => {
       if (this.isCancelMatch(match)) {
         cancelMatchRows.push(match);
       } else if (this.isEndMatch(match)) {
@@ -125,19 +116,11 @@ class SoccerTable extends React.Component<Props> {
     return (
       <>
         {classifiedRows.preMatchRows.map(this.renderRow)}
-        {isSameDay(selectedDate, this.today) &&
-          classifiedRows.endMatchRows.length > 0 && (
-            <TitleRow
-              title={`Last Results (${format(
-                this.props.selectedDate,
-                DateTimeFormat.LONG_DATE
-              )})`}
-            />
-          )}
+        {isSameDay(selectedDate, this.today)
+          && classifiedRows.endMatchRows.length > 0
+          && (<TitleRow title={`Last Results (${format(this.props.selectedDate, DateTimeFormat.LONG_DATE)})`} />)}
         {classifiedRows.endMatchRows.map(this.renderRow)}
-        {classifiedRows.cancelMatchRows.length > 0 && (
-          <TitleRow title="Cancelled/postponed/abandoned/delayed/interrupted matches" />
-        )}
+        {classifiedRows.cancelMatchRows.length > 0 && (<TitleRow title="Cancelled/postponed/abandoned/delayed/interrupted matches" />)}
         {classifiedRows.cancelMatchRows.map(this.renderRow)}
       </>
     );
@@ -147,12 +130,10 @@ class SoccerTable extends React.Component<Props> {
     const bodyRows = this.renderBodyRows();
 
     return (
-      <>
-        <table className="table">
-          <Header />
-          <tbody>{bodyRows}</tbody>
-        </table>
-      </>
+      <table className="table">
+        <Header />
+        <tbody>{bodyRows}</tbody>
+      </table>
     );
   }
 }

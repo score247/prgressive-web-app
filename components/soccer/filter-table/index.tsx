@@ -45,9 +45,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   handleDateChange = async (date: Date) => {
-    this.displayMatches = this.parseData(
-      await SoccerAPI.GetMatchesByDate(date)
-    );
+    this.displayMatches = this.parseData(await SoccerAPI.GetMatchesByDate(date));
 
     this.setState({
       matches: this.displayMatches,
@@ -68,7 +66,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
   };
 
   parseData(data: MatchSummary[]) {
-
     if (data && data.length) {
       return sortArray(data, this.defaultSortProperty);
     }
@@ -77,18 +74,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   matchEventHandler = (message: MatchEventSignalRMessage) => {
-    if (message != null) {
-      console.log(//NOSONAR
-        [
-          message.MatchEvent.MatchId,
-          message.MatchEvent.MatchResult.MatchStatus.DisplayName,
-          message.MatchEvent.Timeline.Type.DisplayName,
-          message.MatchEvent.Timeline.Id
-        ].join(" - ")
-      );
-      console.log(message); //NOSONAR
-    }
-
     const matchEvent = message?.MatchEvent;
     const matchResult = message?.MatchEvent?.MatchResult;
     const timeline = message?.MatchEvent?.Timeline;
@@ -149,12 +134,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
     return match;
   }
 
-  updateMatch = (
-    match: MatchSummary,
-    timeline: TimelineEvent,
-    matchEvent: MatchEvent,
-    matchResult: MatchResult
-  ) => {
+  updateMatch = (match: MatchSummary, timeline: TimelineEvent, matchEvent: MatchEvent, matchResult: MatchResult) => {
     if (match.Id === matchEvent.MatchId) {
       match.HomeScore = matchResult.HomeScore;
       match.AwayScore = matchResult.AwayScore;
@@ -182,10 +162,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
   };
 
   private updateInjuryTimeShown(timeline: TimelineEvent, match: MatchSummary) {
-    if (
-      timeline.Type.Value === EventTypes.INJURY_TIME_SHOWN.value &&
-      timeline.InjuryTimeAnnounced > 0
-    ) {
+    if (timeline.Type.Value === EventTypes.INJURY_TIME_SHOWN.value && timeline.InjuryTimeAnnounced > 0) {
       match.InjuryTimeAnnounced = timeline.InjuryTimeAnnounced;
     }
 
@@ -207,7 +184,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
       return this.state.matches;
     } else {
       const selectedIds = this.soccerTableRef.current?.getSelectedIds();
-
       if (!selectedIds || selectedIds.length <= 0) {
         return this.displayMatches;
       }
