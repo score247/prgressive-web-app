@@ -58,7 +58,7 @@
     font-size: 1.4rem;
     cursor: pointer;
     text-align: center;
-    border-bottom: 1px solid transparent;
+    border-bottom: 0.2rem solid transparent;
     vertical-align: middle;
 
     @media (max-width: 768px) {
@@ -71,8 +71,8 @@
   }
 
   .active {
-    color: #3a3b45;
-    border-bottom-color: #3a3b45;
+    color: #E70C12;
+    border-bottom-color: #E70C12;
     font-weight: bold;
   }
 

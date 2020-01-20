@@ -1,5 +1,14 @@
-.latest-title {
-    background: #FFF282;
+
+[class*="title"] {
     font-weight: bold;
     text-align: left;
+    color: #3A3B45;
+}
+
+.latest-title {
+    background: #FFFEEB;   
+}
+
+.cancel-title {
+    background-color: #DEE2E6;
 }
