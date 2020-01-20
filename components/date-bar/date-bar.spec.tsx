@@ -40,4 +40,14 @@ describe("DateBar", () => {
       .simulate("click");
     expect(props.onLiveMatchChange).toBeCalled();
   });
+
+  it("should call onDateChange when clicking on date button", () => {
+    const wrapper = shallow(<DateBar {...props} />);
+    wrapper
+      .dive()
+      .find("div.date-item")
+      .at(0)
+      .simulate("click");
+    expect(props.onDateChange).toBeCalled();
+  });
 });

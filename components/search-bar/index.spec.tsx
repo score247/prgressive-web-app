@@ -17,4 +17,11 @@ describe("SearchBar", () => {
     const wrapper = shallow(<SearchBar {...props} />);
     expect(wrapper).toMatchSnapshot();
   });
+
+  it("should trigger onFilterTextChange when input change", () => {
+    const wrapper = shallow(<SearchBar {...props} />);
+    wrapper.find(".txt-search").simulate("change", { target: { value: "Test" } });
+    expect(props.onFilterTextChange).toBeCalledTimes(1);
+    expect(props.onFilterTextChange).toBeCalledWith("Test");
+  });
 });
