@@ -3,10 +3,7 @@ import SoccerRow from "./row/row";
 import Header from "./header/header";
 import TitleRow from "./title-row/title-row";
 import { MatchSummary } from "../../../models/match-summary";
-import {
-  EndStatus,
-  CancelStatus
-} from "../../../common/enums/match-status-type";
+import { EndStatus, CancelStatus } from "../../../common/enums/match-status-type";
 import appSettings from "../../../app-settings";
 import { format, isSameDay } from "date-fns";
 import { DateTimeFormat } from "../../../common/constants";

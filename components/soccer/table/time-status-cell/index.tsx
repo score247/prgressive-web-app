@@ -1,11 +1,7 @@
 import * as React from "react";
-import { MatchSummary, Enumeration } from "../../../../models";
-import {
-  MatchStatusTypeDic,
-  MatchStatusHelper
-} from "../../../../common/enums/match-status-type";
+import { MatchSummary } from "../../../../models";
+import { MatchStatusTypeDic, MatchStatusHelper } from "../../../../common/enums/match-status-type";
 import { differenceInMinutes } from "date-fns";
-import { EventTypes } from "../../../../common/enums/event-type";
 import {
   TimeStatusCellProps,
   periodTimes,
@@ -38,11 +34,7 @@ class TimeAndStatusCell extends React.Component<
     });
   }
 
-  private buildMatchMinuteWithInjuryTime(
-    match: MatchSummary,
-    matchMinute: number,
-    periodTime: PeriodTime
-  ) {
+  private buildMatchMinuteWithInjuryTime(match: MatchSummary, matchMinute: number, periodTime: PeriodTime) {
     const announcementInjuryTime = match.InjuryTimeAnnounced;
     const currentInjuryTime = matchMinute - periodTime.endTime;
     let displayInjuryTime = currentInjuryTime <= 0 ? 1 : currentInjuryTime;
@@ -63,9 +55,7 @@ class TimeAndStatusCell extends React.Component<
       }
 
       this.timerId = window.setInterval(() => {
-        this.setState({
-          matchStatusText: this.buildMatchStatus(this.match)
-        });
+        this.setState({ matchStatusText: this.buildMatchStatus(this.match) });
       }, this.countMinuteInterval);
     }
   }
@@ -89,11 +79,7 @@ class TimeAndStatusCell extends React.Component<
       periodTime.startTime + differenceInMinutes(today, periodStartTime);
 
     if (match.InjuryTimeAnnounced > 0) {
-      return this.buildMatchMinuteWithInjuryTime(
-        match,
-        matchMinute,
-        periodTime
-      );
+      return this.buildMatchMinuteWithInjuryTime(match, matchMinute, periodTime);
     }
 
     return this.buildMatchMinuteText(matchMinute, periodTime);
@@ -124,9 +110,7 @@ class TimeAndStatusCell extends React.Component<
   }
 
   buildMatchStatusClass(match: MatchSummary) {
-    return MatchStatusHelper.isCancelStatus(match?.MatchStatus)
-      ? "match-cancel"
-      : "";
+    return MatchStatusHelper.isCancelStatus(match?.MatchStatus) ? "match-cancel" : "";
   }
 
   render() {
@@ -141,10 +125,7 @@ class TimeAndStatusCell extends React.Component<
 
     const statusCell = ({ isMobile }: { isMobile: boolean }) => {
       const matchStatusClass = this.buildMatchStatusClass(this.props.match);
-      const matchStatus =
-        isMobile && this.state.matchStatusText === "-"
-          ? ""
-          : this.state.matchStatusText;
+      const matchStatus = isMobile && this.state.matchStatusText === "-" ? "" : this.state.matchStatusText;
 
       return isMobile ? (
         <td>

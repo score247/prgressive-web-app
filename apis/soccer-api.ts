@@ -1,8 +1,9 @@
 import appSettings from "../app-settings";
-import { MatchSummary, MatchInfo, League } from "../models";
+import { MatchSummary, MatchInfo, League, MatchCommentary, MatchLineups } from "../models";
 import { startOfDay, endOfDay } from "date-fns";
 import { covertToUTC } from "../common/helpers/date-time-helper";
 import API from "../common/helpers/api-helper";
+import { MatchStatistic } from "../models/match-statistic";
 
 
 export const SoccerAPI = {
@@ -23,8 +24,26 @@ export const SoccerAPI = {
     return response.data;
   },
 
-  GetMatch: async (id: string, language = "en-US"): Promise<MatchInfo> => {
-    const response = await API.get(`${appSettings.soccerAPIBaseUrl}/soccer/${language}/matches/${id}`);
+  GetMatch: async (matchId: string, language = "en-US"): Promise<MatchInfo> => {
+    const response = await API.get(`${appSettings.soccerAPIBaseUrl}/${language}/matches/${matchId}`);
+
+    return response.data;
+  },
+
+  GetMatchCommentaries: async (matchId: string, eventDate: Date, language = "en-US"): Promise<MatchCommentary[]> => {
+    const response = await API.get(`${appSettings.soccerAPIBaseUrl}/${language}/matches/${matchId}/commentaries?eventDate=${eventDate}`);
+
+    return response.data;
+  },
+
+  GetMatchStatistic: async (matchId: string, eventDate: Date, language = "en-US"): Promise<MatchStatistic> => {
+    const response = await API.get(`${appSettings.soccerAPIBaseUrl}/${language}/matches/${matchId}/statistic?eventDate=${eventDate}`);
+
+    return response.data;
+  },
+
+  GetMatchLineups: async (matchId: string, eventDate: Date, language = "en-US"): Promise<MatchLineups> => {
+    const response = await API.get(`${appSettings.soccerAPIBaseUrl}/${language}/matches/${matchId}/lineups?eventDate=${eventDate}`);
 
     return response.data;
   },

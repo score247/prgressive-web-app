@@ -103,26 +103,15 @@ class FilterSoccerTable extends React.Component<{}, State> {
     }
 
     processedTimelineIds.push(timeline.Id);
-    lscache.set(
-      matchEvent.MatchId,
-      processedTimelineIds,
-      this.cacheExpiryTimeInMinutes
-    );
+    lscache.set(matchEvent.MatchId, processedTimelineIds, this.cacheExpiryTimeInMinutes);
 
     let isChanged = false;
     const matches = this.state.matches.map(match => {
-      const updatedMatch = this.updateMatch(
-        match,
-        timeline,
-        matchEvent,
-        matchResult
-      );
+      const updatedMatch = this.updateMatch(match, timeline, matchEvent, matchResult);
 
       if (updatedMatch != null) {
         isChanged = true;
-        const index = this.displayMatches.findIndex(
-          displayMatch => displayMatch.Id === matchEvent.MatchId
-        );
+        const index = this.displayMatches.findIndex(displayMatch => displayMatch.Id === matchEvent.MatchId);
         this.displayMatches[index] = updatedMatch;
 
         return updatedMatch;
@@ -222,15 +211,9 @@ class FilterSoccerTable extends React.Component<{}, State> {
         return this.displayMatches;
       }
 
-      if (mode === DisplayMode.ShowOnly) {
-        return this.displayMatches.filter(
-          match => selectedIds.indexOf(match.Id) >= 0
-        );
-      } else {
-        return this.displayMatches.filter(
-          match => selectedIds.indexOf(match.Id) < 0
-        );
-      }
+      return this.displayMatches.filter(match =>
+        (mode === DisplayMode.ShowOnly && selectedIds.indexOf(match.Id) >= 0) ||
+        (mode === DisplayMode.Hide && selectedIds.indexOf(match.Id) < 0));
     }
   };
 
@@ -253,13 +236,9 @@ class FilterSoccerTable extends React.Component<{}, State> {
   render() {
     const { filterText } = this.state;
 
-    const filteredMatches = this.displayMatches.filter(
-      match =>
-        match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-        -1 ||
-        match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-        -1
-    );
+    const filteredMatches = this.displayMatches.filter(match =>
+      match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !== -1 ||
+      match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !== -1);
 
     return (
       <>

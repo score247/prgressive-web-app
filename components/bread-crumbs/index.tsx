@@ -26,13 +26,8 @@ class Breadcrumbs extends PureComponent<Props, State> {
   }
 
   renderBreadcrumbItem = (item: string, index: number) => {
-    return (
-      <span key={item} className="selected-sport">
-        {item}
-        {index < this.props.breadcrumbs.length - 1 && " / "}
-      </span>
-    );
-  };
+    return <span key={item} className="selected-sport">{item}{index < this.props.breadcrumbs.length - 1 && " / "}</span>;
+  }
 
   render() {
     const { breadcrumbs } = this.props;

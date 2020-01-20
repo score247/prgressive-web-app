@@ -34,9 +34,7 @@ class SoccerRow extends React.Component<Props, State> {
   }
 
   UNSAFE_componentWillReceiveProps(nextProps: Props) {
-    this.setState({
-      isSelected: nextProps.isSelected
-    });
+    this.setState({ isSelected: nextProps.isSelected });
   }
 
   handleSelectedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,9 +44,7 @@ class SoccerRow extends React.Component<Props, State> {
 
   createTeamCellProps = () => {
     const { match } = this.props;
-    const penaltyPeriod =
-      match.MatchPeriods &&
-      match.MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties);
+    const penaltyPeriod = match.MatchPeriods && match.MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties);
 
     const { EventStatus } = match;
 
@@ -58,8 +54,7 @@ class SoccerRow extends React.Component<Props, State> {
         redCards: match.HomeRedCards + match.HomeYellowRedCards,
         yellowCards: match.HomeYellowCards,
         isAggregateWinner: match.HomeTeamId === match.AggregateWinnerId,
-        isPenaltyWinner:
-          penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore,
+        isPenaltyWinner: penaltyPeriod && penaltyPeriod.HomeScore > penaltyPeriod.AwayScore,
         eventStatusId: EventStatus.Value
       },
       awayTeamCellProps: {
@@ -67,8 +62,7 @@ class SoccerRow extends React.Component<Props, State> {
         redCards: match.AwayRedCards + match.AwayYellowRedCards,
         yellowCards: match.AwayYellowCards,
         isAggregateWinner: match.AwayTeamId === match.AggregateWinnerId,
-        isPenaltyWinner:
-          penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore,
+        isPenaltyWinner: penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore,
         eventStatusId: EventStatus.Value
       }
     };
@@ -76,11 +70,7 @@ class SoccerRow extends React.Component<Props, State> {
 
   render() {
     const { match } = this.props;
-    const firstHalfPeriod =
-      match.MatchPeriods &&
-      match.MatchPeriods.find(
-        x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular
-      );
+    const firstHalfPeriod = match.MatchPeriods && match.MatchPeriods.find(x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular);
 
     const { homeTeamCellProps, awayTeamCellProps } = this.createTeamCellProps();
 

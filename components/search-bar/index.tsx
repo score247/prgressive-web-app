@@ -2,9 +2,7 @@ import React from "react";
 import { SearchBarProps } from "./type";
 
 const SearchBar: React.FC<SearchBarProps> = props => {
-  const handleFilterTextChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFilterTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onFilterTextChange(event.target.value);
   };
 
