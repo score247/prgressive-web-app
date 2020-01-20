@@ -41,6 +41,7 @@
   left: 0;
   background: $darkBlue;
   display: none;
+  z-index: 100;
 
   .menu {
     display: flex;
