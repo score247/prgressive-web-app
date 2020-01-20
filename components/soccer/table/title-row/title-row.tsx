@@ -6,7 +6,7 @@ import "./title-row.scss";
 type Props = {
   title: string;
   className: string;
-}
+};
 
 const TitleRow: React.FC<Props> = (props) => {
   const mobileColSpan = 8;

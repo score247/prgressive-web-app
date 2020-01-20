@@ -24,7 +24,7 @@ export const SoccerAPI = {
     return response.data;
   },
 
-  GetMatch: async (matchId: string, language = "en-US"): Promise<MatchInfo> => {
+  GetMatch: async (matchId: string | string[], language = "en-US"): Promise<MatchInfo> => {
     const response = await API.get(`${appSettings.soccerAPIBaseUrl}/${language}/matches/${matchId}`);
 
     return response.data;
