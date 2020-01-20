@@ -3,7 +3,12 @@ import { DeviceContextConsumer } from "../../../../contexts/device-context";
 import { DeviceContextType } from "../../../../contexts/device-context-type";
 import "./title-row.scss";
 
-const TitleRow: React.FC<{ title: string }> = ({ title }) => {
+type Props = {
+  title: string;
+  className: string;
+}
+
+const TitleRow: React.FC<Props> = (props) => {
   const mobileColSpan = 8;
   const desktopColSpan = 9;
 
@@ -12,8 +17,8 @@ const TitleRow: React.FC<{ title: string }> = ({ title }) => {
 
     return (
       <tr>
-        <td className="latest-title" colSpan={colSpan}>
-          {title}
+        <td className={props.className} colSpan={colSpan}>
+          {props.title}
         </td>
       </tr>
     );

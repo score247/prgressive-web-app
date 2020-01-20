@@ -118,9 +118,9 @@ class SoccerTable extends React.Component<Props> {
         {classifiedRows.preMatchRows.map(this.renderRow)}
         {isSameDay(selectedDate, this.today)
           && classifiedRows.endMatchRows.length > 0
-          && (<TitleRow title={`Last Results (${format(this.props.selectedDate, DateTimeFormat.LONG_DATE)})`} />)}
+          && (<TitleRow className="latest-title" title={`Last Results (${format(this.props.selectedDate, DateTimeFormat.LONG_DATE)})`} />)}
         {classifiedRows.endMatchRows.map(this.renderRow)}
-        {classifiedRows.cancelMatchRows.length > 0 && (<TitleRow title="Cancelled/postponed/abandoned/delayed/interrupted matches" />)}
+        {classifiedRows.cancelMatchRows.length > 0 && (<TitleRow className="cancel-title" title="Cancelled/postponed/abandoned/delayed/interrupted matches" />)}
         {classifiedRows.cancelMatchRows.map(this.renderRow)}
       </>
     );
