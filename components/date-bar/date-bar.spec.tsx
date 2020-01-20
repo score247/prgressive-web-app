@@ -3,9 +3,7 @@ import { shallow, render } from "enzyme";
 import { State, Props } from "./type";
 import DateBar from "./index";
 
-jest.mock("../../common/helpers/Localizer", () =>
-  jest.requireActual("../../common/helpers/__mocks__/Localizer")
-);
+jest.mock("../../common/helpers/Localizer", () => jest.requireActual("../../common/helpers/__mocks__/Localizer"));
 
 describe("DateBar", () => {
   let props: Props;
@@ -35,7 +33,11 @@ describe("DateBar", () => {
 
   it("should call onLiveMatchChange when clicking on live match button", () => {
     const wrapper = shallow(<DateBar {...props} />);
-    wrapper.dive().find(".live-match").at(0).simulate("click");
+    wrapper
+      .dive()
+      .find(".live-match")
+      .at(0)
+      .simulate("click");
     expect(props.onLiveMatchChange).toBeCalled();
   });
 });

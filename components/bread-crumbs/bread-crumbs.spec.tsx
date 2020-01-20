@@ -2,10 +2,10 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import { Props } from "./type";
 import Breadcrumbs from "./index";
+import { format } from "date-fns";
+import { DateTimeFormat } from "../../common/constants";
 
-jest.mock("../../common/helpers/Localizer", () =>
-  jest.requireActual("../../common/helpers/__mocks__/Localizer")
-);
+jest.mock("../../common/helpers/Localizer", () => jest.requireActual("../../common/helpers/__mocks__/Localizer"));
 
 describe("DateBar", () => {
   let props: Props;
