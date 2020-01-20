@@ -169,6 +169,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
       if (timeline.Type.Value === EventTypes.PERIOD_START.value) {
         match.CurrentPeriodStartTime[0] = timeline.Time;
+        match.InjuryTimeAnnounced = 0;
       }
 
       match = this.updateCards(timeline, match);
