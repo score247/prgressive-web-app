@@ -52,7 +52,6 @@ export default function ExtraMatchInfoRow(props: Props) {
     return (
       <tr>
         <td className="text-extra" colSpan={colSpan}>
-          <span className="icon-link-match"></span>
           <span className="extra-match-info">
             {renderRegularPeriodScore(regularPeriods)}
             {renderOverTimePeriodScore(overTimePeriod, MatchStatus)}
