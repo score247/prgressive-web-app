@@ -81,19 +81,9 @@ body {
     }
 }
 
-.show-mobile {
-    display: none !important;
-
-    .mobile & {
-        display: block;
-    }
-}
-
 .hide-mobile {
-    display: block;
-
     .mobile & {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -118,8 +108,8 @@ body {
     }
 
     .left-container {
-        flex-basis: 26.7rem;
-        max-width: 26.7rem;
+        flex-basis: 26rem;
+        max-width: 26rem;
 
         @media (max-width: 1199px) {
           flex-basis: 18rem;
@@ -133,8 +123,8 @@ body {
     }
 
     .right-container {
-        flex-basis: 29.2rem;
-        max-width: 29.2rem;
+        flex-basis: 29rem;
+        max-width: 29rem;
 
         @media (max-width: 1199px) {
           flex-basis: 20rem;

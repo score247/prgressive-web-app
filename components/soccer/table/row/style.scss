@@ -1,0 +1,82 @@
+.text-score {
+    color: #FF0000;
+    font-weight: bold;
+}
+
+.text-1H {
+    color: #0057FF;
+    font-weight: bold;
+}
+
+.icon-arrow-right,
+.icon-penalty {
+    color: #000;
+    margin-right: .4rem;
+}
+
+[class$="card"] {
+    border-radius: .3rem;
+    color: #000;
+    height: 1.6rem;
+    line-height: 1.8rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+    display: inline-block;
+    margin: 0 .4rem;
+    padding: 0 .4rem;
+    text-align: center;
+}
+
+.red-card {
+    background-color: #FF0000;
+}
+
+.yellow-card {
+    background-color: #ffd600;
+}
+
+.col-home,
+.col-away {
+    width: 100%;
+}
+
+.col-favorites, .col-score {
+    width: 5rem;
+}
+
+.col-time, .col-status {
+    width: 7rem;
+}
+
+.col-league {
+    width: 7rem;
+}
+
+.col-check {
+    width: 3rem;
+}
+
+
+
+.mobile {
+    td {
+        border: .005rem solid #DFDFDF;
+        padding: 0.4rem;
+    }
+}
+
+@media screen and (max-device-width: 480px) {
+    .col-league {
+        width: 5rem;
+    }
+    .col-time, .col-status {
+        width: 4rem;
+    }
+    .col-favorites {
+        width: 3rem;
+    } 
+    .col-score {
+        width: 4.5rem;
+    } 
+
+}

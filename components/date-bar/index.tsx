@@ -1,11 +1,12 @@
 import "./style.scss";
 import React, { Component } from "react";
 import DatePicker from "../date-picker";
-import { format, addDays, isSameDay, addYears } from "date-fns";
+import { addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { State, Props } from "./type";
-import { ResourceType, ResourceKey } from "../../common/constants";
+import { ResourceType, ResourceKey, DateTimeFormat } from "../../common/constants";
 import CustomDateInput from "./custom-date-input";
+import { formatDate } from "../../common/helpers/date-time-helper";
 
 class DateBar extends Component<Props, State> {
   today: Date;
@@ -34,12 +35,10 @@ class DateBar extends Component<Props, State> {
 
   handleChange = (date: Date) => {
     this.props.onDateChange(date);
-    this.props.onLiveMatchChange(false);
   };
 
   handleLiveMatchChange = () => {
-    this.props.onDateChange(this.today);
-    this.props.onLiveMatchChange(true);
+    this.props.onLiveMatchChange();
   };
 
   renderDate = (date: Date) => {
@@ -54,8 +53,12 @@ class DateBar extends Component<Props, State> {
         className={className}
         onClick={() => this.handleChange(date)}
       >
-        <div className="days">{isSameDay(date, this.today) ? this.props.t(ResourceKey.TODAY) : format(date, "iii")}</div>
-        <div>{format(date, "dd MMM")}</div>
+        <div className="days">
+          {isSameDay(date, this.today)
+            ? this.props.t(ResourceKey.TODAY)
+            : formatDate(date, DateTimeFormat.WEEKDAY)}
+        </div>
+        <div>{formatDate(date, DateTimeFormat.DAY_MONTH_ONLY)}</div>
       </div>
     );
   };
@@ -92,7 +95,7 @@ class DateBar extends Component<Props, State> {
             selected={this.props.selectedDate}
             onChange={this.handleChange}
             customInput={<CustomDateInput />}
-            dateFormat="dd MMM yyyy"
+            dateFormat={DateTimeFormat.DATE_ONLY}
             minDate={this.minDate}
             maxDate={this.maxDate}
             locale={this.props.i18n.language}

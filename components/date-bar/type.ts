@@ -4,9 +4,9 @@ export type State = {
   dateList: Array<Date>;
 };
 
- export type Props = {
-  selectedDate: Date;
-  onlyLiveMatch: boolean;
+export type Props = {
   onDateChange: (date: Date) => void;
-  onLiveMatchChange: (onlyLiveMatch: boolean) => void;
-} & WithTranslation ;
+  onLiveMatchChange: () => void;
+  selectedDate: Date;
+  onlyLiveMatch: boolean
+} & WithTranslation;

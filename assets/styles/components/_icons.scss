@@ -14,6 +14,19 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-link-match:before {
+    content: "\e90d";
+    color: #474747;
+}
+
+.icon-arrow-right:before {
+    content: "\e90b";
+}
+
+.icon-penalty:before {
+    content: "\e90c";
+}
+
 .icon-live:before {
     content: "\e90a";
     color: #9193a1;
@@ -53,7 +66,6 @@
 
 .icon-menu-favorites:before {
     content: "\e907";
-    color: #fff;
 }
 
 .icon-menu-leagues:before {

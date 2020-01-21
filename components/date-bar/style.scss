@@ -1,7 +1,29 @@
+@import '../../assets/styles/abstracts/variables';
+
 @mixin circle($circleSize) {
   width: $circleSize;
   height: $circleSize;
   border-radius: $circleSize/2;
+}
+
+.btn {
+  &.live-match {
+    background: #fd4549;
+    color: $white;
+    font-size: 1.4rem;
+    padding: 0.8rem 2.5rem;
+    &:hover {
+      background-color: #FD6366;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.25);
+    }
+
+    @media (max-width: 1199px) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    display: inline-block;
+  }
 }
 
 .nav-date {
@@ -9,12 +31,17 @@
   justify-content: space-between;
   background: #fff;
   padding: 1.8rem 2.2rem;
-  
-  border-radius: .4rem .4rem 0 0;
-  box-shadow: 0 .2rem .2rem 0 rgba(0, 0, 0, 0.14), 0 .3rem .2rem -0.5rem rgba(0, 0, 0, 0.2), 0 .1rem .5rem 0 rgba(0, 0, 0, 0.12);   
+
+  border-radius: 0.4rem 0.4rem 0 0;
+  box-shadow: 0 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.14),
+    0 0.3rem 0.2rem -0.5rem rgba(0, 0, 0, 0.2),
+    0 0.1rem 0.5rem 0 rgba(0, 0, 0, 0.12);
 
   .mobile & {
     padding: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
   }
 
   @media (max-width: 1199px) {
@@ -27,15 +54,15 @@
   .date-item {
     display: inline-block;
     padding: 0 1rem;
-    color: #6E707A;
+    color: #6e707a;
     font-size: 1.4rem;
-    cursor: pointer;    
+    cursor: pointer;
     text-align: center;
-    border-bottom: 1px solid transparent;
+    border-bottom: 0.2rem solid transparent;
     vertical-align: middle;
 
     @media (max-width: 768px) {
-      padding: 0 .5rem;
+      padding: 0 0.5rem;
     }
   }
 
@@ -44,8 +71,8 @@
   }
 
   .active {
-    color: #3A3B45;    
-    border-bottom-color: #3A3B45;
+    color: #E70C12;
+    border-bottom-color: #E70C12;
     font-weight: bold;
   }
 
@@ -59,19 +86,19 @@
   }
 
   .has-live {
-    @include circle(7px);    
+    @include circle(7px);
     position: absolute;
     top: 10px;
     left: 50%;
     transform: translateX(6px);
-    background: #FC1923;
+    background: #fc1923;
     display: block;
 
     &:before,
     &:after {
       content: "";
       @include circle(7px);
-      background-color:#FC1923;
+      background-color: #fc1923;
       position: absolute;
       top: 0;
       right: 0;
@@ -100,7 +127,7 @@
       border-bottom: 0;
 
       .icon-calendar::before {
-        color: #3A3B45;
+        color: #3a3b45;
       }
     }
 
@@ -108,17 +135,18 @@
       font-size: 2rem;
       display: inline-block;
       vertical-align: middle;
-    }    
-  } 
+    }
+  }
 
   .mobile & {
     display: flex;
     flex: 0 1 auto;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 100%;  
-    
-    .icon-live, .icon-calendar {
+    width: 100%;
+
+    .icon-live,
+    .icon-calendar {
       display: block;
       height: 4.5rem;
       line-height: 4.5rem;
@@ -130,22 +158,22 @@
       font-size: 1.1rem;
     }
 
-    .date-item, .datepicker-wrapper {    
+    .date-item,
+    .datepicker-wrapper {
       flex-grow: 1;
       flex-basis: 0;
       max-width: 100%;
       text-align: center;
-      padding: 0;      
+      padding: 0;
       vertical-align: middle;
-      font-size: .9rem;
-    }   
-    
+      font-size: 0.9rem;
+    }
+
     > span {
       line-height: 3.3;
     }
   }
 }
-
 
 @keyframes pulse-me {
   0% {

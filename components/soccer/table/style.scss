@@ -1,0 +1,19 @@
+.table {
+    box-shadow: 0 0 0.5rem 0 #d7d7d7;
+    border-radius: .3rem;
+    border: 1px solid #DFDFDF;
+    background: #fff;
+    table-layout: fixed;
+    .mobile & {
+        margin-top: 4.6rem;
+    }
+}
+
+.mobile {
+    padding: 4.3rem 0 5rem;
+    .header-top-mobile {
+        position: fixed;
+        width: 100%;
+        top: 0;
+    }
+}

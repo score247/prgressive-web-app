@@ -15,7 +15,7 @@ const NextI18NextInstance = new NextI18Next({
   }
 });
 
-export const { withTranslation, appWithTranslation, Link } = NextI18NextInstance;
+export const { withTranslation, appWithTranslation, Link, i18n } = NextI18NextInstance;
 
 export const useTranslation = originalUseTranslation;
 

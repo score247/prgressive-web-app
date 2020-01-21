@@ -4,4 +4,6 @@ export default interface AppSettings {
   secretKey: string;
   soccerAPIBaseUrl: string;
   sentryDSN: string;
+  soccerPublisherUrl: string;
+  numberOfRowEveryAd: number;
 }
