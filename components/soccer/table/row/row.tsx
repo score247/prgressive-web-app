@@ -13,6 +13,7 @@ import { DeviceContextConsumer } from "../../../../contexts/device-context";
 import LeagueCell from "../league-cell";
 import FavoriteCell from "../favorite-cell";
 import { DeviceContextType } from "../../../../contexts/device-context-type";
+import Router from "next/router";
 
 type Props = {
   match: MatchSummary;
@@ -40,6 +41,11 @@ class SoccerRow extends React.Component<Props, State> {
   handleSelectedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.props.onSelect(event.target.value);
     this.setState({ isSelected: event.target.checked });
+  };
+
+  handleClick = (event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
+    event.preventDefault();
+    window.open(`/soccer/${this.props.match.Id}`);
   };
 
   createTeamCellProps = () => {
@@ -83,7 +89,7 @@ class SoccerRow extends React.Component<Props, State> {
 
     return (
       <>
-        <tr>
+        <tr className="match-row" onClick={this.handleClick}>
           <DeviceContextConsumer>{selectCell}</DeviceContextConsumer>
           <LeagueCell match={match} />
           <TimeAndStatusCell match={match} />

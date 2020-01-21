@@ -1,30 +1,19 @@
 import React from "react";
-import { useRouter } from "next/router";
 import { ResourceType } from "../../common/constants";
 import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { MatchInfo } from "../../models";
 import { SoccerAPI } from "../../apis/soccer-api";
+import SoccerMatchDetail from "../../components/soccer/match-detail";
 
 type Props = {
     matchInfo: MatchInfo
 };
 
-const MatchDetailPage: LocalizedPage<Props> = (props) => {
-    const { matchInfo } = props;
-    const match = matchInfo.Match;
-
-    return (
-        <div>
-            <span>{match.HomeTeamName}</span>
-            <span>{match.HomeScore}</span>
-            <span>-</span>
-            <span>{match.AwayScore}</span>
-            <span>{match.AwayTeamName}</span>
-        </div>
-    );
+const SoccerMatchDetailPage: LocalizedPage<Props> = (props) => {
+    return (<SoccerMatchDetail matchInfo={props.matchInfo} />);
 };
 
-MatchDetailPage.getInitialProps = async ({ query }) => {
+SoccerMatchDetailPage.getInitialProps = async ({ query }) => {
     const { id } = query;
     const matchInfo = await SoccerAPI.GetMatch(id);
 
@@ -34,4 +23,4 @@ MatchDetailPage.getInitialProps = async ({ query }) => {
     };
 };
 
-export default withTranslation()(MatchDetailPage);
+export default withTranslation()(SoccerMatchDetailPage);
