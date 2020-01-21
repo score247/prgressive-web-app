@@ -109,13 +109,13 @@ class SoccerPage extends React.Component<WithTranslation, State> {
     const { t } = this.props;
     return (
       <Layout title={t(SportsEnum.SOCCER)} breadcrumbs={this.state.breadcrumbs}>
+        <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
         <DateBar
           onDateChange={this.handleDateChange}
           onLiveMatchChange={this.handleLiveButtonClick}
           onlyLiveMatch={this.state.onlyLiveMatch}
           selectedDate={this.state.selectedDate}
         />
-        <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
         <div className="content">
           <FilterSoccerTable ref={this.filterSoccerTable} />
           <DeviceContextConsumer>{this.renderDateSwitch}</DeviceContextConsumer>

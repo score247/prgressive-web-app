@@ -74,14 +74,6 @@ class DateBar extends Component<Props, State> {
   render() {
     return (
       <div className="nav-date">
-        <button
-          type="button"
-          className="btn live-match hide-mobile"
-          onClick={this.handleLiveMatchChange}
-        >
-          <span className="badge-label">2 </span>
-          <span>{this.props.t(ResourceKey.LIVE_MATCH)}</span>
-        </button>
         <div className="date-bar">
           <span
             className={`date-item live-score ${this.props.onlyLiveMatch && "active"}`}
