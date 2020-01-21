@@ -11,7 +11,7 @@ import AdvertisementRow from "./advertisement-row";
 import advertisements from "../../../advertisement";
 import "./style.scss";
 
-type Props = {
+export type Props = {
   matches: MatchSummary[];
   selectedDate: Date;
 };
