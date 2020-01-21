@@ -117,8 +117,12 @@ class TimeAndStatusCell extends React.Component<TimeStatusCellProps, TimeStatusC
       const matchStatus = isMobile && this.state.matchStatusText === "-" ? "" : this.state.matchStatusText;
 
       return isMobile
-        ? (<td>{time}<span className="match-status">{matchStatus}</span></td>)
-        : (<><td>{time}</td><td className={matchStatusClass}>{matchStatus}</td></>);
+        ? (<td rowSpan={this.props.rowSpan}>{time}<span className="match-status">{matchStatus}</span></td>)
+        : (
+          <>
+            <td rowSpan={this.props.rowSpan}>{time}</td>
+            <td rowSpan={this.props.rowSpan} className={matchStatusClass}>{matchStatus}</td>
+          </>);
     };
 
     return <DeviceContext.Consumer>{statusCell}</DeviceContext.Consumer>;

@@ -13,7 +13,6 @@ import { DeviceContextConsumer } from "../../../../contexts/device-context";
 import LeagueCell from "../league-cell";
 import FavoriteCell from "../favorite-cell";
 import { DeviceContextType } from "../../../../contexts/device-context-type";
-import Router from "next/router";
 
 type Props = {
   match: MatchSummary;
@@ -26,6 +25,8 @@ type State = {
 };
 
 class SoccerRow extends React.Component<Props, State> {
+  private readonly rowSpan = 2;
+
   constructor(props: Props) {
     super(props);
 
@@ -81,7 +82,7 @@ class SoccerRow extends React.Component<Props, State> {
 
     const selectCell = ({ isMobile }: DeviceContextType) => {
       return isMobile ? null : (
-        <td>
+        <td rowSpan={this.rowSpan}>
           <Checkbox id={match.Id} value={match.Id} checked={this.state.isSelected} onChange={this.handleSelectedChange} />
         </td>
       );
@@ -91,13 +92,13 @@ class SoccerRow extends React.Component<Props, State> {
       <>
         <tr className="match-row" onClick={this.handleClick}>
           <DeviceContextConsumer>{selectCell}</DeviceContextConsumer>
-          <LeagueCell match={match} />
-          <TimeAndStatusCell match={match} />
+          <LeagueCell rowSpan={this.rowSpan} match={match} />
+          <TimeAndStatusCell rowSpan={this.rowSpan} match={match} />
           <HomeTeamCell {...homeTeamCellProps} />
           <FinalScoreCell homeScore={match.HomeScore} awayScore={match.AwayScore} firstHalfPeriod={firstHalfPeriod} matchStatusId={match.MatchStatus?.Value} />
           <AwayTeamCell {...awayTeamCellProps} />
-          <FirstHalfScoreCell firstHalfPeriod={firstHalfPeriod} />
-          <FavoriteCell />
+          <FirstHalfScoreCell rowSpan={this.rowSpan} firstHalfPeriod={firstHalfPeriod} />
+          <FavoriteCell rowSpan={this.rowSpan} />
         </tr>
         <ExtraMatchInfoRow match={match} />
       </>

@@ -3,6 +3,7 @@ import { MatchStatus, MatchStatusType } from "../../../../common/enums/match-sta
 
 export type TimeStatusCellProps = {
     match: MatchSummary;
+    rowSpan: number;
 };
 
 export type TimeStatusCellState = {
