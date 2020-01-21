@@ -13,6 +13,7 @@ import { DeviceContextConsumer } from "../../../../contexts/device-context";
 import LeagueCell from "../league-cell";
 import FavoriteCell from "../favorite-cell";
 import { DeviceContextType } from "../../../../contexts/device-context-type";
+import { MatchStatusType } from "../../../../common/enums/match-status-type";
 
 type Props = {
   match: MatchSummary;
@@ -25,7 +26,7 @@ type State = {
 };
 
 class SoccerRow extends React.Component<Props, State> {
-  private readonly rowSpan = 2;
+  private readonly hasExtraInfoRowSpan = 2;
 
   constructor(props: Props) {
     super(props);
@@ -79,10 +80,14 @@ class SoccerRow extends React.Component<Props, State> {
     const { match } = this.props;
     const firstHalfPeriod = match.MatchPeriods && match.MatchPeriods.find(x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular);
     const { homeTeamCellProps, awayTeamCellProps } = this.createTeamCellProps();
+    const hasAggregateScore = match.AggregateWinnerId && match.EventStatus.Value === MatchStatusType.CLOSED.value;
+    const isShowExtraInfoRow = hasAggregateScore
+      || match.MatchPeriods?.some(period => period.PeriodType.Value === PeriodType.Overtime || period.PeriodType.Value === PeriodType.Penalties);
+    const rowSpan = isShowExtraInfoRow ? this.hasExtraInfoRowSpan : undefined;
 
     const selectCell = ({ isMobile }: DeviceContextType) => {
       return isMobile ? null : (
-        <td rowSpan={this.rowSpan}>
+        <td rowSpan={rowSpan}>
           <Checkbox id={match.Id} value={match.Id} checked={this.state.isSelected} onChange={this.handleSelectedChange} />
         </td>
       );
@@ -92,15 +97,15 @@ class SoccerRow extends React.Component<Props, State> {
       <>
         <tr className="match-row" onClick={this.handleClick}>
           <DeviceContextConsumer>{selectCell}</DeviceContextConsumer>
-          <LeagueCell rowSpan={this.rowSpan} match={match} />
-          <TimeAndStatusCell rowSpan={this.rowSpan} match={match} />
+          <LeagueCell rowSpan={rowSpan} match={match} />
+          <TimeAndStatusCell rowSpan={rowSpan} match={match} />
           <HomeTeamCell {...homeTeamCellProps} />
           <FinalScoreCell homeScore={match.HomeScore} awayScore={match.AwayScore} firstHalfPeriod={firstHalfPeriod} matchStatusId={match.MatchStatus?.Value} />
           <AwayTeamCell {...awayTeamCellProps} />
-          <FirstHalfScoreCell rowSpan={this.rowSpan} firstHalfPeriod={firstHalfPeriod} />
-          <FavoriteCell rowSpan={this.rowSpan} />
+          <FirstHalfScoreCell rowSpan={rowSpan} firstHalfPeriod={firstHalfPeriod} />
+          <FavoriteCell rowSpan={rowSpan} />
         </tr>
-        <ExtraMatchInfoRow match={match} />
+        {isShowExtraInfoRow && <ExtraMatchInfoRow match={match} />}
       </>
     );
   }
