@@ -12,8 +12,10 @@ module.exports = {
     ],
     globals: {
       "ts-jest": {
-        useBabelrc: true,
-        tsConfigFile: "jest.tsconfig.json"
+        babelConfig: {
+          "plugins": ["@babel/plugin-proposal-optional-chaining"]
+        },
+        tsConfig: "jest.tsconfig.json"
       }
     },
     coveragePathIgnorePatterns: [
