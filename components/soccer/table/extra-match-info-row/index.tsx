@@ -35,6 +35,7 @@ const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumerati
 
 export default function ExtraMatchInfoRow(props: Props) {
   const {
+    Id,
     AggregateAwayScore,
     AggregateHomeScore,
     MatchPeriods,
@@ -50,7 +51,7 @@ export default function ExtraMatchInfoRow(props: Props) {
     const showAggregateScore = AggregateWinnerId && EventStatus.Value === MatchStatusType.CLOSED.value;
 
     return (
-      <tr>
+      <tr data-match-id={Id}>
         <td className="text-extra" colSpan={colSpan}>
           <span className="extra-match-info">
             {renderRegularPeriodScore(regularPeriods)}
