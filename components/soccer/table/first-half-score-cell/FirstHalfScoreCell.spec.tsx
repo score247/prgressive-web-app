@@ -17,7 +17,8 @@ describe("FirstHalfScoreCell", () => {
           DisplayName: "regular",
           Value: PeriodType.Regular
         }
-      }
+      },
+      rowSpan: 2
     };
   });
 

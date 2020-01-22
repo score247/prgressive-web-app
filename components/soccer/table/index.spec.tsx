@@ -5,6 +5,12 @@ import SoccerTable from "./index";
 
 jest.mock("../../../app-settings",  () => jest.requireActual("../../../app-settings/__mocks__/"));
 
+jest.mock("next/config", () => () => ({
+    publicRuntimeConfig: {}
+}));
+
+jest.mock("../../../advertisement/data.json", () => () => { });
+
 describe("<SoccerTable />", () => {
     let props: Props;
     let wrapper: ShallowWrapper;
