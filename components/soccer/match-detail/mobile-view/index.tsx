@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import GeneralInfo from "../general-info";
 import { MatchInfo } from "../../../../models/match-info";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import SwipeableViews from "react-swipeable-views";
 
 type Props = {
   matchInfo: MatchInfo;

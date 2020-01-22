@@ -7,21 +7,22 @@ import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { MatchInfo } from "../../models";
 import { SoccerAPI } from "../../apis/soccer-api";
 import { SportsEnum } from "../../common/enums/sport-enum";
-import Layout from "../../components/layout";
-import Banner from "../../components/layout/banner/Banner";
 
 type Props = {
   matchInfo: MatchInfo;
 };
 
 const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
-    const { t, matchInfo } = props;
-    return (
-        <Layout title={t(SportsEnum.SOCCER)} breadcrumbs={[t(SportsEnum.SOCCER), "Match info"]}>
-            <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
-            <SoccerMatchDetail matchInfo={matchInfo} />
-        </Layout>
-    );
+  const { t, matchInfo } = props;
+  return (
+    <Layout
+      title={t(SportsEnum.SOCCER)}
+      breadcrumbs={[t(SportsEnum.SOCCER), "Match info"]}
+    >
+      <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
+      <div className="content">
+        <SoccerMatchDetail matchInfo={matchInfo} />
+      </div>
     </Layout>
   );
 };
