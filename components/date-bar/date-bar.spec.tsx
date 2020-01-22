@@ -35,7 +35,7 @@ describe("DateBar", () => {
     const wrapper = shallow(<DateBar {...props} />);
     wrapper
       .dive()
-      .find(".live-match")
+      .find(".live-score")
       .at(0)
       .simulate("click");
     expect(props.onLiveMatchChange).toBeCalled();

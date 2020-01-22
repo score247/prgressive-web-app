@@ -1,12 +1,12 @@
 import React from "react";
 import { render } from "enzyme";
-import { Props } from "./type";
+import { FirstHalfScoreCellProps } from "./type";
 import FirstHalfScoreCell from "./index";
 import { PeriodType } from "../../../../common/enums/period-type";
 import { DeviceContext } from "../../../../contexts/device-context";
 
 describe("FirstHalfScoreCell", () => {
-  let props: Props;
+  let props: FirstHalfScoreCellProps;
   beforeEach(() => {
     props = {
       firstHalfPeriod: {
