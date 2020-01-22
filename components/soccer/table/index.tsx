@@ -73,10 +73,6 @@ class SoccerTable extends React.Component<Props> {
     );
   };
 
-  handleFilterTextChange = (filterText: string) => {
-    this.setState({ filterText: filterText });
-  };
-
   isCancelMatch(match: MatchSummary) {
     return CancelStatus.includes(match.MatchStatus?.Value);
   }

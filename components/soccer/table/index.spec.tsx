@@ -3,13 +3,9 @@ import { shallow, ShallowWrapper } from "enzyme";
 import { Props } from "./index";
 import SoccerTable from "./index";
 
-jest.mock("../../../app-settings",  () => jest.requireActual("../../../app-settings/__mocks__/"));
-
 jest.mock("next/config", () => () => ({
     publicRuntimeConfig: {}
 }));
-
-jest.mock("../../../advertisement/data.json", () => () => { });
 
 describe("<SoccerTable />", () => {
     let props: Props;
@@ -26,5 +22,4 @@ describe("<SoccerTable />", () => {
     it("should render correctly", () => {
         expect(wrapper).toMatchSnapshot();
     });
-
 });
