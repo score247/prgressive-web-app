@@ -7,12 +7,14 @@ import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { MatchInfo } from "../../models";
 import { SoccerAPI } from "../../apis/soccer-api";
 import { SportsEnum } from "../../common/enums/sport-enum";
+import Layout from "../../components/layout";
+import Banner from "../../components/layout/banner/Banner";
 
 type Props = {
-    matchInfo: MatchInfo
+  matchInfo: MatchInfo;
 };
 
-const SoccerMatchDetailPage: LocalizedPage<Props> = (props) => {
+const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
     const { t, matchInfo } = props;
     return (
         <Layout title={t(SportsEnum.SOCCER)} breadcrumbs={[t(SportsEnum.SOCCER), "Match info"]}>
@@ -20,16 +22,18 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = (props) => {
             <SoccerMatchDetail matchInfo={matchInfo} />
         </Layout>
     );
+    </Layout>
+  );
 };
 
 SoccerMatchDetailPage.getInitialProps = async ({ query }) => {
-    const { id } = query;
-    const matchInfo = await SoccerAPI.GetMatch(id);
+  const { id } = query;
+  const matchInfo = await SoccerAPI.GetMatch(id);
 
-    return {
-        matchInfo,
-        namespacesRequired: [ResourceType.SOCCER]
-    };
+  return {
+    matchInfo,
+    namespacesRequired: [ResourceType.SOCCER]
+  };
 };
 
 export default withTranslation()(SoccerMatchDetailPage);

@@ -8,6 +8,7 @@ const GeneralInfo: React.FC<Props> = (props) => {
     const { match } = props;
     return (
         <div>
+            <h3>General Info</h3>
             <span>{match.HomeTeamName}</span>
             <span>{match.HomeScore}</span>
             <span>-</span>
