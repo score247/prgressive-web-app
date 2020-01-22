@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import SportLink from "./index";
-import { SportsEnum } from "../../common/enums/sportenum";
+import { SportsEnum } from "../../common/enums/sport-enum";
 import Link from "next/link";
 
 jest.mock("next/router", () => ({

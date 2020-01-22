@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import SoccerRow from "./row/row";
+import SoccerRow from "./row";
 import Header from "./header/header";
 import TitleRow from "./title-row/title-row";
 import { MatchSummary } from "../../../models/match-summary";
@@ -71,6 +71,10 @@ class SoccerTable extends React.Component<Props> {
         {renderAd && this.renderAdvertisement()}
       </Fragment>
     );
+  };
+
+  handleFilterTextChange = (filterText: string) => {
+    this.setState({ filterText: filterText });
   };
 
   isCancelMatch(match: MatchSummary) {
