@@ -1,7 +1,5 @@
 import "./style.scss";
-
 import React, { PureComponent } from "react";
-
 import DatePicker, {
   ReactDatePickerProps,
   registerLocale,
@@ -22,7 +20,7 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps> {
 
     return (
       <div className={`datepicker-wrapper ${className}`}>
-        <DatePicker {...rest}/>
+        <DatePicker {...rest} />
       </div>
     );
   }

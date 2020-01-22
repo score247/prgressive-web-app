@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import DateBar from "../components/date-bar";
 import Banner from "../components/layout/banner/Banner";
 import { withTranslation } from "../common/helpers/Localizer";
-import { SportsEnum } from "../common/enums/sportenum";
+import { SportsEnum } from "../common/enums/sport-enum";
 import { ResourceType, ResourceKey, DateTimeFormat } from "../common/constants";
 import { WithTranslation } from "next-i18next";
 import { isSameDay } from "date-fns";

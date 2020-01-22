@@ -2,7 +2,7 @@ import React from "react";
 import "./Navbar.scss";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../common/helpers/Localizer";
-import { SportsEnum } from "../../../../common/enums/sportenum";
+import { SportsEnum } from "../../../../common/enums/sport-enum";
 import FunctionLink from "../../../function-link";
 import { ResourceType, ResourceKey } from "../../../../common/constants";
 
@@ -18,8 +18,8 @@ const NavbarMobile: React.FunctionComponent<IProps> = ({
     sport === SportsEnum.SOCCER
       ? "icon-soccer"
       : sport === SportsEnum.BASKETBALL
-      ? "icon-basketball"
-      : "icon-esports";
+        ? "icon-basketball"
+        : "icon-esports";
   const activeClass = "active";
 
   return (

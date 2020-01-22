@@ -6,13 +6,14 @@ type Props = {
 };
 
 const OtherInfo: React.FC<Props> = (props) => {
-    const { Referee, Venue } = props.matchInfo;
+    const { Referee, Venue, Attendance } = props.matchInfo;
+
     return (
         <div>
             <div>Other Info</div>
             <div><span>Referee:</span> {Referee}</div>
             <div><span>Venue:</span> {Venue.Name}</div>
-            <div><span>Spectators:</span> {Venue.Capacity}</div>
+            <div><span>Spectators:</span> {Attendance.toLocaleString()}</div>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { SportsEnum } from "../../common/enums/sportenum";
+import { SportsEnum } from "../../common/enums/sport-enum";
 import Link from "next/link";
 
 interface IProps {

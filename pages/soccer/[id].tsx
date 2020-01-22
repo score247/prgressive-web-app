@@ -1,16 +1,25 @@
 import React from "react";
+import SoccerMatchDetail from "../../components/soccer/match-detail";
+import Layout from "../../components/layout";
+import Banner from "../../components/layout/banner/Banner";
 import { ResourceType } from "../../common/constants";
 import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { MatchInfo } from "../../models";
 import { SoccerAPI } from "../../apis/soccer-api";
-import SoccerMatchDetail from "../../components/soccer/match-detail";
+import { SportsEnum } from "../../common/enums/sport-enum";
 
 type Props = {
     matchInfo: MatchInfo
 };
 
 const SoccerMatchDetailPage: LocalizedPage<Props> = (props) => {
-    return (<SoccerMatchDetail matchInfo={props.matchInfo} />);
+    const { t, matchInfo } = props;
+    return (
+        <Layout title={t(SportsEnum.SOCCER)} breadcrumbs={[t(SportsEnum.SOCCER), "Match info"]}>
+            <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
+            <SoccerMatchDetail matchInfo={matchInfo} />
+        </Layout>
+    );
 };
 
 SoccerMatchDetailPage.getInitialProps = async ({ query }) => {

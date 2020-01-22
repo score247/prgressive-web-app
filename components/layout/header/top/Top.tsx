@@ -2,7 +2,7 @@ import React from "react";
 import "./Top.scss";
 import Select, { ValueType } from "react-select";
 import Router from "next/router";
-import { SportsEnum } from "../../../../common/enums/sportenum";
+import { SportsEnum } from "../../../../common/enums/sport-enum";
 import { filter } from "lodash";
 
 interface IProps {
