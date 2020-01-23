@@ -4,6 +4,16 @@ import SoccerRow from "./index";
 import { PeriodType } from '../../../../common/enums/period-type';
 import { MatchStatusType } from '../../../../common/enums/match-status-type';
 
+declare global {
+    namespace NodeJS {
+        interface Global {
+            document: Document;
+            window: Window;
+            navigator: Navigator;
+        }
+    }
+}
+
 describe("<SoccerRow />", () => {
     const props: any = {
         match: {
@@ -68,5 +78,13 @@ describe("<SoccerRow />", () => {
 
     it("should render correctly", () => {
         expect(wrapper).toMatchSnapshot();
+    });
+
+    it("should open new window when clicking row", () => {
+        const globalAny: any = global;
+        const preventDefault = jest.fn();
+        globalAny.open = jest.fn();
+        wrapper.find(".match-row").simulate("click", { preventDefault });
+        expect(globalAny.open).toBeCalled();
     });
 });
