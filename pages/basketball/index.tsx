@@ -22,18 +22,18 @@ const Basketball: LocalizedPage = props => {
         </thead>
         <tbody>
           <tr>
-            <td rowSpan={2}>checkbox</td>
-            <td rowSpan={2}>AUS D1</td>
-            <td rowSpan={2}>03:30</td>
-            <td rowSpan={2}></td>
-            <td>Sepidrood Rasht</td>
+            <td rowSpan={2}>checkbox</td>//NOSONAR
+            <td rowSpan={2}>AUS D1</td>//NOSONAR
+            <td rowSpan={2}>03:30</td>//NOSONAR
+            <td rowSpan={2}></td>//NOSONAR
+            <td>Sepidrood Rasht</td>//NOSONAR
             <td> 2 - 2</td>
             <td>Baderan Tehran FC</td>
-            <td rowSpan={2}></td>
-            <td rowSpan={2}></td>
+            <td rowSpan={2}></td>//NOSONAR
+            <td rowSpan={2}></td>//NOSONAR
           </tr>
           <tr>
-            <td colSpan={3}>FT[1 - 1], AET[1 - 1], AGG[3 - 3], PEN[5 - 4]</td>
+            <td colSpan={3}>FT[1 - 1], AET[1 - 1], AGG[3 - 3], PEN[5 - 4]</td>//NOSONAR
           </tr>
         </tbody>
       </table>
