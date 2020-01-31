@@ -43,6 +43,7 @@ class SoccerRow extends React.Component<Props, State> {
   handleSelectedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     this.props.onSelect(event.target.value);
     this.setState({ isSelected: event.target.checked });
+    event.stopPropagation();
   };
 
   handleClick = (event: React.MouseEvent<HTMLTableRowElement, MouseEvent>) => {
@@ -87,7 +88,7 @@ class SoccerRow extends React.Component<Props, State> {
 
     const selectCell = ({ isMobile }: DeviceContextType) => {
       return isMobile ? null : (
-        <td rowSpan={rowSpan}>
+        <td rowSpan={rowSpan} onClick={(event => { event.stopPropagation(); })}>
           <Checkbox id={match.Id} value={match.Id} checked={this.state.isSelected} onChange={this.handleSelectedChange} />
         </td>
       );

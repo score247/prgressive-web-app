@@ -4,6 +4,8 @@ import Sentry from "../common/helpers/sentry";
 import { appWithTranslation } from "../common/helpers/Localizer";
 import DeviceHelper from "../common/helpers/device-helper";
 import { DeviceContext } from "../contexts/device-context";
+import { AuthenticateAPI } from "../apis/authenticate-api";
+import lscache from "lscache";
 
 interface CustomErrorInfo extends React.ErrorInfo {
   [key: string]: string;

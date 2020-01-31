@@ -1,10 +1,10 @@
 import axios from "axios";
 import { decode } from "@msgpack/msgpack";
+import { AuthenticateAPI } from "../../apis/authenticate-api";
+
 
 export default axios.create({
-    headers: {
-        accept: "application/x-msgpack"
-    },
+    headers: AuthenticateAPI.getAuthentication(),
     responseType: "arraybuffer",
     transformResponse: [
         data => {
