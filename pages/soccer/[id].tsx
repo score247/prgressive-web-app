@@ -7,6 +7,7 @@ import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { MatchInfo } from "../../models";
 import { SoccerAPI } from "../../apis/soccer-api";
 import { SportsEnum } from "../../common/enums/sport-enum";
+import MatchLineups from "../../components/soccer/match-detail/lineups";
 
 type Props = {
   matchInfo: MatchInfo;
@@ -21,6 +22,7 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
     >
       <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
       <div className="content">
+        {/* <MatchLineups matchId={matchInfo.Match.Id} /> */}
         <SoccerMatchDetail matchInfo={matchInfo} />
       </div>
     </Layout>

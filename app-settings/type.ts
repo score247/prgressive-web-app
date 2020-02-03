@@ -6,4 +6,7 @@ export default interface AppSettings {
   sentryDSN: string;
   soccerPublisherUrl: string;
   numberOfRowEveryAd: number;
+  authenticateUrl: string;
+  encryptKey: string;
+  salt: string;
 }
