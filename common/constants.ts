@@ -45,3 +45,8 @@ export class DisplayMode {
   public static readonly Hide = 1;
   public static readonly ShowOnly = 2;
 }
+
+export class ViewMode {
+  public static readonly Desktop = "Desktop";
+  public static readonly Mobile = "Mobile";
+}

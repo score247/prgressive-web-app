@@ -3,7 +3,6 @@ import App, { AppContext } from "next/app";
 import Sentry from "../common/helpers/sentry";
 import { appWithTranslation } from "../common/helpers/Localizer";
 import DeviceHelper from "../common/helpers/device-helper";
-import { DeviceContext } from "../contexts/device-context";
 
 interface CustomErrorInfo extends React.ErrorInfo {
   [key: string]: string;
@@ -11,12 +10,11 @@ interface CustomErrorInfo extends React.ErrorInfo {
 
 class Score247App extends App<{ isMobile: boolean }> {
   static async getInitialProps({ Component, ctx }: AppContext) {
-    let pageProps = {};
-    let isMobile = false;
+    const isMobile = new DeviceHelper(ctx).isMobile();
 
+    let pageProps = {};
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
-      isMobile = new DeviceHelper(ctx).isMobile();
     }
 
     return { pageProps, isMobile };
@@ -35,12 +33,12 @@ class Score247App extends App<{ isMobile: boolean }> {
   }
 
   render() {
-    const { Component, pageProps, isMobile } = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
-      <DeviceContext.Provider value={{ isMobile: isMobile }}>
-        <Component {...pageProps} />
-      </DeviceContext.Provider>
+      // <DeviceContext.Provider value={{ isMobile: isMobile }}>
+      <Component {...pageProps} />
+      // </DeviceContext.Provider>
     );
   }
 }

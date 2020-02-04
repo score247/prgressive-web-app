@@ -15,6 +15,7 @@ import appSettings from "../app-settings";
 import { MatchEventSignalRMessage } from "../models/soccer/signalr-messages";
 import { DeviceContextConsumer } from "../contexts/device-context";
 import { DeviceContextType } from "../contexts/device-context-type";
+import { withLoadingPage } from "../hoc/with-loading-page";
 
 type State = {
   selectedDate: Date;
