@@ -1,14 +1,46 @@
 import React from "react";
 import { SearchBarProps } from "./type";
+import Select, { ValueType } from "react-select";
+import { filter } from "lodash";
+
+interface SortOption {
+  value: number,
+  label: string
+}
+
+const sortOptions = [
+  {
+    value: 1,
+    label: "Kick off time"
+  },
+  {
+    value: 2,
+    label: "League"
+  }
+];
 
 const SearchBar: React.FC<SearchBarProps> = props => {
   const handleFilterTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onFilterTextChange(event.target.value);
   };
 
+  const onSortChange = (selectedOption: ValueType<SortOption>) => {
+    const option = selectedOption as SortOption;
+    props.onSortChange(option.value);
+  };
+
   return (
     <div className="combo-search">
-      <div className="filter-event">Filter by League/Event</div>
+      <div className="filter-event">Filter by League</div>
+      <Select
+        className="sort-dropdown"
+        classNamePrefix="select"
+        options={sortOptions}
+        isSearchable={false}
+        value={filter(sortOptions, { value: props.sortByValue })}
+        onChange={onSortChange}
+        placeholder="Sort by"
+      />
       <div className="search-section">
         <div className="search-box">
           <span className="icon-search"></span>
