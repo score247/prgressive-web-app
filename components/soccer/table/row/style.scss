@@ -39,9 +39,10 @@
     background-color: #ffd600;
 }
 
-.col-home, .text-score {
-    border-right: none;
-    border-bottom: none;
+.col-home, .text-score, .col-away {
+    border-right: none !important;
+    border-bottom: none !important;
+    border-left: none !important;
 }
 .col-home,
 .col-away {
@@ -70,7 +71,7 @@
 
 .mobile {
     td {
-        border: .005rem solid #DFDFDF;
+        border: .005rem solid #DEDEDE;
         padding: 0.4rem;
     }
 }
