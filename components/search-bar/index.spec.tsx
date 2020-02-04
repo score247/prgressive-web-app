@@ -9,7 +9,9 @@ describe("SearchBar", () => {
   beforeEach(() => {
     props = {
       filterText: "abc",
-      onFilterTextChange: jest.fn()
+      onFilterTextChange: jest.fn(),
+      onSortChange: jest.fn(),
+      sortByValue: 1
     };
   });
 
@@ -23,5 +25,15 @@ describe("SearchBar", () => {
     wrapper.find(".txt-search").simulate("change", { target: { value: "Test" } });
     expect(props.onFilterTextChange).toBeCalledTimes(1);
     expect(props.onFilterTextChange).toBeCalledWith("Test");
+  });
+
+  it("should trigger onSortChange when sort", () => {
+    const wrapper = shallow(<SearchBar {...props} />);
+    wrapper.find(".sort-dropdown").simulate("change", {
+      value: 2,
+      label: "Kick off time"
+    });
+    expect(props.onSortChange).toBeCalledTimes(1);
+    expect(props.onSortChange).toBeCalledWith(2);
   });
 });
