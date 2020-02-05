@@ -1,16 +1,11 @@
 import React from "react";
 import { Props } from "./type";
-import { MatchStatusHelper, MatchStatusTypeDic } from "../../../../../common/enums/match-status-type";
-import { differenceInMinutes } from "date-fns";
+import { buildMatchStatus } from "../../../match-status-builder";
 
 const Status: React.FC<Props> = props => {
   const { match } = props;
 
-  return (
-    <div>
-
-    </div>
-  );
+  return <div>{buildMatchStatus(match)}</div>;
 };
 
 export default Status;

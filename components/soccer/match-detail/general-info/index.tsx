@@ -5,8 +5,7 @@ import { Props } from "./type";
 import HomeTeam from "./home-team";
 import AwayTeam from "./away-team";
 import Score from "./score";
-
-
+import Status from "./status";
 
 const GeneralInfo: React.FC<Props> = props => {
   const { match } = props;
@@ -19,10 +18,11 @@ const GeneralInfo: React.FC<Props> = props => {
       </div>
 
       <div>
-          <HomeTeam match={match} />
-          <Score match={match} />
-          <AwayTeam match={match} />
+        <HomeTeam match={match} />
+        <Score match={match} />
+        <AwayTeam match={match} />
       </div>
+      <Status match={match} />
     </div>
   );
 };

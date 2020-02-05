@@ -11,9 +11,11 @@ const Desktop: React.FC<Props> = props => {
   const [selectedTabIndex, setTab] = useState(0);
 
   return (
+    <>
+      <GeneralInfo match={props.matchInfo.Match} />
+
       <Tabs selectedIndex={selectedTabIndex} onSelect={setTab}>
         <div>
-
           <TabList>
             <Tab>Info</Tab>
             <Tab>Commentary</Tab>
@@ -22,15 +24,13 @@ const Desktop: React.FC<Props> = props => {
             <Tab>Table</Tab>
           </TabList>
         </div>
-        <TabPanel>
-          <GeneralInfo match={props.matchInfo.Match} />
-        </TabPanel>
+        <TabPanel></TabPanel>
         <TabPanel>Commentary</TabPanel>
         <TabPanel>Statistics</TabPanel>
         <TabPanel>H2H</TabPanel>
         <TabPanel>Table</TabPanel>
       </Tabs>
-
+    </>
   );
 };
 
