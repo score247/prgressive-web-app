@@ -1,0 +1,36 @@
+sudo npm i -g pm2
+
+npm install
+npm run build:production
+
+pm2 start npm --name "score247web" -- start
+
+chmod a+rx /var/www/score247-web/main/
+
+pm2 start npm --name "{app_name}" -- run {script_name}
+sudo pm2 start npm --name "score247-web-test" -- run start:test
+
+perl -p -i -e "s/\r//g" script.sh
+
+
+.\keytool -importcert –alias "nexdevnet" -file "C:\Users\ricky.nguyen\Desktop\nexdevnet.cer" -keystore "C:\Program Files\Java\jdk1.8.0_11\jre\lib\security\cacerts" -storepass changit
+
+        // // stage("Deploy to Local"){
+        // //     steps{
+        // //         script{
+        // //             pipelineLib.deployByRocketor("11156,11095,11114", "$BRANCH_NAME", "", "", "86c94ed8b8ed4fad95da4c9961992ff7")
+        // //         }
+        // //     }
+        // // }
+
+        
+
+		
+		
+		
+		.\keytool -importcert –alias "nexdevnet" -file "C:\Users\ricky.nguyen\Desktop\nexdevnet.cer" -keystore "C:\Program Files\Java\jdk1.8.0_11\jre\lib\security\cacerts" -storepass changit
+
+
+
+
+cd /var/www/score247-web/ && find ./test -mindepth 1 ! -regex '^./test/node_modules\(/.*\)?' -delete
