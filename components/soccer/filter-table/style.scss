@@ -63,8 +63,23 @@
     border-radius: .4rem;
     background-color: #1B3464;
     color: #fff;
-    padding: .9rem 2rem;
+    padding: 0 2rem;
     text-align: center;
     align-self: center;
     margin-right: 1.2rem;
+    height: 3.6rem;
+    line-height: 3.6rem;
+}
+
+.sort-dropdown {
+    height: 3.6rem;
+    min-width: 13rem;
+    margin-right: 1.2rem;
+    .select__indicator-separator {
+        display: none;
+    }
+    .select__control {
+        min-height: unset;
+        height: 100%;
+    }
 }
