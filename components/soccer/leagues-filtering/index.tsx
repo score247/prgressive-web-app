@@ -1,27 +1,50 @@
 import React from "react";
-import FavoriteCell from '../table/favorite-cell';
-import Checkbox from '../../checkbox';
+import LeagueRow from '../league-row';
 
 interface Props {
     leagues: string[];
 }
 
-const renderLeagueRow = (league: string) => {
-    return (
-        <div className="league-row" key={league}>
-            <Checkbox id={league} checked={true} value={league} onChange={() => { }} />
-            <span>{league}</span>
-            <FavoriteCell />
-        </div>
-    );
+interface State {
+    selectedLeagueIds: string[];
 }
 
-const LeaguesFilteringTable: React.FunctionComponent<Props> = props => {
-    return (
-        <div>
-            {props.leagues.map(league => renderLeagueRow(league))}
-        </div>
-    );
+class LeaguesFilteringTable extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+
+        this.state = {
+            selectedLeagueIds: props.leagues
+        };
+    }
+
+    handleSelectLeague = (id: string) => {
+        let { selectedLeagueIds } = this.state;
+        const index = selectedLeagueIds.indexOf(id);
+
+        if (index >= 0) {
+            selectedLeagueIds = [
+                ...selectedLeagueIds.slice(0, index),
+                ...selectedLeagueIds.slice(index + 1)
+            ];
+        } else {
+            selectedLeagueIds.push(id);
+        }
+
+        this.setState({
+            selectedLeagueIds
+        });
+    }
+
+    render() {
+
+        return (
+            <div>
+                {this.props.leagues.map(league => <LeagueRow isSelected={this.state.selectedLeagueIds.indexOf(league) >= 0} league={league} onSelect={this.handleSelectLeague} />)}
+            </div >
+        );
+    }
+
 };
 
 export default LeaguesFilteringTable;

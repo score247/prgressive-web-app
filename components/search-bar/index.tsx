@@ -2,6 +2,7 @@ import React from "react";
 import { SearchBarProps } from "./type";
 import Select, { ValueType } from "react-select";
 import { filter } from "lodash";
+import LeaguesFilteringTable from '../soccer/leagues-filtering';
 
 interface SortOption {
   value: number,
@@ -58,6 +59,7 @@ const SearchBar: React.FC<SearchBarProps> = props => {
           <li className="history-item">Manchester City</li>
         </ul>
       </div>
+      <LeaguesFilteringTable leagues={props.leagues} />
     </div>
   );
 };
