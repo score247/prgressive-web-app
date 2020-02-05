@@ -38,6 +38,7 @@ export class DateTimeFormat {
   public static readonly TIME = "HH:mm";
   public static readonly LONG_DATE = "iiii dd/MM/yyyy";
   public static readonly UTC_ISO = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+  public static readonly DATE_TIME = "dd/MM/yyyy HH:mm";
 }
 
 export class DisplayMode {

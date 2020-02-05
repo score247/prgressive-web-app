@@ -13,7 +13,6 @@ const Desktop: React.FC<Props> = props => {
   return (
       <Tabs selectedIndex={selectedTabIndex} onSelect={setTab}>
         <div>
-          <div>Kick off: time</div>
 
           <TabList>
             <Tab>Info</Tab>

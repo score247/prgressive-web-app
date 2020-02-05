@@ -67,6 +67,13 @@ export const EndStatus = [
   MatchStatusType.ENDED_AFTER_PENALTIES.value
 ];
 
+export const PreMatchStatuses = [
+  MatchStatusType.NOT_STARTED.value,
+  MatchStatusType.POSTPONED.value,
+  MatchStatusType.START_DELAYED.value,
+  MatchStatusType.CANCELLED.value
+];
+
 export class MatchStatusHelper {
   static isMatchNotEndOrCancel(matchStatus: Enumeration): boolean {
     if (EndStatus.find(status => matchStatus?.Value === status)

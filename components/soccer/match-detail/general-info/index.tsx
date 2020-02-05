@@ -1,21 +1,30 @@
 import React from "react";
-import { MatchSummary } from "../../../../models";
-type Props = {
-    match: MatchSummary;
-};
+import { DateTimeFormat } from "../../../../common/constants";
+import { format } from "date-fns";
+import { Props } from "./type";
+import HomeTeam from "./home-team";
+import AwayTeam from "./away-team";
+import Score from "./score";
 
-const GeneralInfo: React.FC<Props> = (props) => {
-    const { match } = props;
-    return (
-        <div>
-            <h3>General Info</h3>
-            <span>{match.HomeTeamName}</span>
-            <span>{match.HomeScore}</span>
-            <span>-</span>
-            <span>{match.AwayScore}</span>
-            <span>{match.AwayTeamName}</span>
-        </div>
-    );
+
+
+const GeneralInfo: React.FC<Props> = props => {
+  const { match } = props;
+  return (
+    <div>
+      <div>{match.LeagueName}</div>
+      <div>
+        Kick-off time:{" "}
+        {format(new Date(match.EventDate[0]), DateTimeFormat.DATE_TIME)}
+      </div>
+
+      <div>
+          <HomeTeam match={match} />
+          <Score match={match} />
+          <AwayTeam match={match} />
+      </div>
+    </div>
+  );
 };
 
 export default GeneralInfo;
