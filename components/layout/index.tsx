@@ -6,29 +6,39 @@ import Footer from "./footer/Footer";
 import Breadcrumbs from "../bread-crumbs";
 import LeftBar from "./left-bar/LeftBar";
 import RightBar from "./right-bar/RightBar";
+import { DeviceContextConsumer } from "../../contexts/device-context";
 
-const Layout: React.FunctionComponent<{
+type Props = {
   title?: string;
   breadcrumbs?: string[];
-}> = ({ children, title = "Home", breadcrumbs = [""] }) => {
+};
+
+const Layout: React.FunctionComponent<Props> = ({ children, title = "Home", breadcrumbs = [""] }) => {
+  const className = (isMobile: boolean) => {
+    return isMobile ? "wrap-page mobile" : "wrap-page";
+  };
+
   return (
-    <div className="wrap-page">
-      <Head>
-        <title>{title} | Score247</title>
-      </Head>
-      <Header />
-      <div className="container">
-        <Breadcrumbs
-          breadcrumbs={breadcrumbs}
-        />
-        <div className="wrap-content">
-          <LeftBar />
-          <div className="main-container">{children}</div>
-          <RightBar />
+    <DeviceContextConsumer>
+      {({ isMobile }) => (
+        <div className={className(isMobile)}>
+          <Head>
+            <title>{title} | Score247</title>
+          </Head>
+          <Header />
+          <div className="container">
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            <div className="wrap-content">
+              <LeftBar />
+              <div className="main-container">{children}</div>
+              <RightBar />
+            </div>
+          </div>
+          <Footer />
         </div>
-      </div>
-      <Footer />
-    </div>
+      )}
+    </DeviceContextConsumer>
+
   );
 };
 

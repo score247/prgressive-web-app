@@ -1,7 +1,6 @@
 import React from "react";
 import cookies from "next-cookies";
 import DeviceHelper from "../common/helpers/device-helper";
-import { redirectToLoading } from "../common/helpers/redirect-to-loading";
 import { NextPageContext } from "next";
 import { DeviceContextProvider } from "../contexts/device-context";
 import { ViewMode } from "../common/constants";
@@ -14,17 +13,18 @@ type Props = {
 export function withLoadingPage(WrappedComponent: any) {
     return class extends React.Component<Props> {
         static async getInitialProps(ctx: NextPageContext) {
+            const loadingUrl = "/loading";
             const isMobile = new DeviceHelper(ctx).isMobile();
             const viewMode = cookies(ctx)["ViewMode"];
+            const { res } = ctx;
 
             if (isMobile && !viewMode) {
-                if (ctx.res) {
-                    ctx.res.writeHead(302, { Location: "/loading" });
-                    ctx.res.end();
+                if (res) {
+                    res.writeHead(302, { Location: loadingUrl });
+                    res.end();
                 } else {
-                    Router.push("/loading");
+                    Router.push(loadingUrl);
                 }
-                redirectToLoading(ctx.res);
             }
 
             return { viewMode };

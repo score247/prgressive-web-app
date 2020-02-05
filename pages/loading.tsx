@@ -3,17 +3,19 @@ import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
 import cookie from 'js-cookie';
 import Router from 'next/router';
 import { ViewMode, ResourceType } from "../common/constants";
-import { Button } from "../components/basic/button";
-import NavTest from "../components/layout/header/navbar/navtest";
+import Button from "../components/basic/button";
 
 const LoadingPage: LocalizedPage = () => {
 
-    const handleClick = () => {
-        cookie.set("ViewMode", ViewMode.Mobile);
+    const handleClick = (viewMode: string) => {
+        cookie.set("ViewMode", viewMode);
         Router.push("/");
     };
     return (
-        <NavTest onClick={handleClick} />
+        <div>
+            <Button text="Desktop Mode" onClick={() => handleClick(ViewMode.Desktop)} />
+            <Button text="Mobile Mode" onClick={() => handleClick(ViewMode.Mobile)} />
+        </div>
     );
 };
 
