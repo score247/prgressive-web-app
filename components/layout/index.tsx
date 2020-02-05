@@ -24,6 +24,7 @@ const Layout: React.FunctionComponent<Props> = ({ children, title = "Home", brea
         <div className={className(isMobile)}>
           <Head>
             <title>{title} | Score247</title>
+            {!isMobile && <meta name="viewport" content="width=device-width, initial-scale=0" />}
           </Head>
           <Header />
           <div className="container">

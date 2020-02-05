@@ -25,9 +25,10 @@ export class ResourceKey {
 }
 
 export class HttpStatusCode {
+  public static readonly FOUND = 302;
+  public static readonly UNAUTHORIZED = 401;
   public static readonly NOTFOUND = 404;
   public static readonly INTERNAL_SERVER_ERROR = 500;
-  public static readonly UNAUTHORIZED = 401;
 }
 
 export class DateTimeFormat {

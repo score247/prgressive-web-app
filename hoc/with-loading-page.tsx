@@ -3,15 +3,15 @@ import cookies from "next-cookies";
 import DeviceHelper from "../common/helpers/device-helper";
 import { NextPageContext } from "next";
 import { DeviceContextProvider } from "../contexts/device-context";
-import { ViewMode } from "../common/constants";
+import { ViewMode, HttpStatusCode } from "../common/constants";
 import Router from "next/router";
 
-type Props = {
+type WithLoadingProps = {
     viewMode: string;
 };
 
-export function withLoadingPage(WrappedComponent: any) {
-    return class extends React.Component<Props> {
+const withLoadingPage = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
+    return class extends React.Component<P & WithLoadingProps> {
         static async getInitialProps(ctx: NextPageContext) {
             const loadingUrl = "/loading";
             const isMobile = new DeviceHelper(ctx).isMobile();
@@ -20,7 +20,7 @@ export function withLoadingPage(WrappedComponent: any) {
 
             if (isMobile && !viewMode) {
                 if (res) {
-                    res.writeHead(302, { Location: loadingUrl });
+                    res.writeHead(HttpStatusCode.FOUND, { Location: loadingUrl });
                     res.end();
                 } else {
                     Router.push(loadingUrl);
@@ -39,4 +39,6 @@ export function withLoadingPage(WrappedComponent: any) {
             );
         }
     };
-}
+};
+
+export default withLoadingPage;
