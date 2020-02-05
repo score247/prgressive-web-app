@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { MatchSummary } from "../../../../models";
 import { MatchStatusHelper } from "../../../../common/enums/match-status-type";
 import { TimeStatusCellProps, TimeStatusCellState } from "./types";
