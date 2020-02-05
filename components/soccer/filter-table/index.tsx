@@ -14,6 +14,7 @@ import { TimelineEvent } from "../../../models";
 import { MatchResult } from "../../../models/soccer/match-result";
 import { sortArray } from "../../../common/utils/sort";
 import { SoccerSortOptions } from '../../../common/enums/soccer-sort-option';
+import { union } from "lodash";
 
 type State = {
   filterText: string;
@@ -28,12 +29,15 @@ class FilterSoccerTable extends React.Component<{}, State> {
   private readonly defaultSortProperty = "EventDate";
   displayMatches: MatchSummary[];
   soccerTableRef: React.RefObject<SoccerTable>;
+  displayLeagues: string[];
 
   constructor(props: {}) {
     super(props);
 
     this.displayMatches = [];
     this.soccerTableRef = React.createRef<SoccerTable>();
+    this.displayLeagues = [];
+
     this.state = {
       filterText: "",
       displayMode: DisplayMode.ShowAll,
@@ -47,10 +51,15 @@ class FilterSoccerTable extends React.Component<{}, State> {
     await this.handleDateChange(new Date());
   }
 
+  onlyUnique = (value: string, index: number, self: string[]) => {
+    return self.indexOf(value) === index;
+  }
+
   handleDateChange = async (date: Date) => {
     const matches = await SoccerAPI.GetMatchesByDate(date);
 
     this.displayMatches = this.parseData(matches);
+    this.displayLeagues = union(matches.map(match => match.LeagueName).sort());
 
     this.setState({
       matches: matches,
@@ -64,6 +73,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const matches = await SoccerAPI.GetLiveMatches();
 
     this.displayMatches = this.parseData(matches);
+    this.displayLeagues = union(matches.map(match => match.LeagueName).sort());
 
     this.setState({
       matches: matches,
@@ -226,6 +236,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
           onFilterTextChange={this.handleFilterTextChange}
           sortByValue={this.state.sortByValue}
           onSortChange={this.handleSortChange}
+          leagues={this.displayLeagues}
         />
       </div>
     );

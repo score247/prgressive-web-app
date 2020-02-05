@@ -3,4 +3,5 @@ export type SearchBarProps = {
   onFilterTextChange: (filterText: string) => void;
   sortByValue: number;
   onSortChange: (sortValue: number) => void;
+  leagues: string[];
 };
