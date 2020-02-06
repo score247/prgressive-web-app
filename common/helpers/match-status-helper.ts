@@ -3,8 +3,8 @@ import {
   MatchStatusType,
   MatchStatusTypeDic,
   MatchStatusHelper
-} from "../../../common/enums/match-status-type";
-import { MatchSummary } from "../../../models";
+} from "../enums/match-status-type";
+import { MatchSummary } from "../../models";
 import { differenceInMinutes } from "date-fns";
 
 class PeriodTime {

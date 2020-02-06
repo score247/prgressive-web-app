@@ -1,4 +1,4 @@
-import NextI18Next, { WithTranslation,  } from "next-i18next";
+import NextI18Next, { WithTranslation } from "next-i18next";
 import { NextPage } from "next";
 import { useTranslation as originalUseTranslation } from "react-i18next";
 const NextI18NextInstance = new NextI18Next({
@@ -15,7 +15,12 @@ const NextI18NextInstance = new NextI18Next({
   }
 });
 
-export const { withTranslation, appWithTranslation, Link, i18n } = NextI18NextInstance;
+export const {
+  withTranslation,
+  appWithTranslation,
+  Link,
+  i18n
+} = NextI18NextInstance;
 
 export const useTranslation = originalUseTranslation;
 

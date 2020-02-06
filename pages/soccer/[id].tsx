@@ -10,11 +10,11 @@ import { SportsEnum } from "../../common/enums/sport-enum";
 import MatchLineups from "../../components/soccer/match-detail/lineups";
 
 type Props = {
-  matchInfo: MatchInfo;
+  matchId: string | string[];
 };
 
 const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
-  const { t, matchInfo } = props;
+  const { t, matchId } = props;
   return (
     <Layout
       title={t(SportsEnum.SOCCER)}
@@ -23,7 +23,7 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
       <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
       <div className="content">
         {/* <MatchLineups matchId={matchInfo.Match.Id} /> */}
-        <SoccerMatchDetail matchInfo={matchInfo} />
+        <SoccerMatchDetail matchId={matchId} />
       </div>
     </Layout>
   );
@@ -31,10 +31,9 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
 
 SoccerMatchDetailPage.getInitialProps = async ({ query }) => {
   const { id } = query;
-  const matchInfo = await SoccerAPI.GetMatch(id);
 
   return {
-    matchInfo,
+    matchId: id,
     namespacesRequired: [ResourceType.SOCCER]
   };
 };

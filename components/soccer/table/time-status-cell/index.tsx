@@ -4,7 +4,7 @@ import { MatchStatusHelper } from "../../../../common/enums/match-status-type";
 import { TimeStatusCellProps, TimeStatusCellState } from "./types";
 import { DeviceContext } from "../../../../contexts/device-context";
 import "./style.scss";
-import { buildMatchStatus } from "../../match-status-builder";
+import { buildMatchStatus } from "../../../../common/helpers/match-status-helper";
 
 class TimeAndStatusCell extends React.Component<
   TimeStatusCellProps,
