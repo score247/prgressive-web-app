@@ -19,7 +19,7 @@ export const {
   withTranslation,
   appWithTranslation,
   Link,
-  i18n
+  i18n,
 } = NextI18NextInstance;
 
 export const useTranslation = originalUseTranslation;

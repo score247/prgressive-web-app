@@ -22,6 +22,7 @@ export class ResourceKey {
   public static readonly NEWS = "news";
   public static readonly MOBILE = "mobile";
   public static readonly FAVORITES = "favorites";
+  public static readonly MATCHINFO = "matchinfo";
 }
 
 export class HttpStatusCode {
