@@ -1,5 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import LeagueRow from '../league-row';
+import Checkbox from '../../checkbox';
+
+interface League {
+    id: string;
+    name: string;
+}
 
 interface Props {
     leagues: string[];
@@ -16,6 +22,12 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         this.state = {
             selectedLeagueIds: props.leagues
         };
+    }
+
+    componentWillReceiveProps(nextProps: Props) {
+        if (nextProps.leagues !== this.props.leagues) {
+            this.setState({ selectedLeagueIds: nextProps.leagues });
+        }
     }
 
     handleSelectLeague = (id: string) => {
@@ -36,12 +48,49 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         });
     }
 
-    render() {
+    handleSelectAll = () => {
+        let selectedLeagueIds: string[];
 
+        if (this.state.selectedLeagueIds.length === this.props.leagues.length) {
+            selectedLeagueIds = [];
+
+        } else {
+            selectedLeagueIds = this.props.leagues;
+        }
+
+        this.setState({
+            selectedLeagueIds
+        });
+    }
+
+    onClickSubmitFilter = () => {
+
+    }
+
+    onClickCancelFilter = () => {
+
+    }
+
+    render() {
         return (
-            <div>
-                {this.props.leagues.map(league => <LeagueRow isSelected={this.state.selectedLeagueIds.indexOf(league) >= 0} league={league} onSelect={this.handleSelectLeague} />)}
-            </div >
+            <Fragment>
+                <div>
+                    <span>Check all</span>
+                    <Checkbox id="all" checked={this.state.selectedLeagueIds.length === this.props.leagues.length} value="all" onChange={() => this.handleSelectAll()} />
+                </div>
+                <div>
+                    {this.props.leagues.map(league => <LeagueRow
+                        key={league}
+                        isSelected={this.state.selectedLeagueIds.indexOf(league) >= 0}
+                        league={league}
+                        onSelect={this.handleSelectLeague} />)}
+                </div >
+                <div>
+                    <button onClick={() => this.onClickSubmitFilter()}>OK</button>
+                    <button onClick={() => this.onClickCancelFilter()}>Cancel</button>
+                </div>
+            </Fragment>
+
         );
     }
 

@@ -3,6 +3,7 @@ import Checkbox from '../../checkbox';
 import FavoriteCell from '../table/favorite-cell';
 
 interface Props {
+    key: string;
     isSelected: boolean;
     league: string;
     onSelect: (league: string) => void;
@@ -12,29 +13,16 @@ interface State {
     isSelected: boolean;
 }
 
-class LeagueRow extends React.Component<Props, State> {
-    constructor(props: Props) {
-        super(props);
+const LeagueRow: React.FunctionComponent<Props> = (props) => {
+    const { league, isSelected } = props;
+    return (
 
-        this.state = {
-            isSelected: true
-        };
-    }
-
-    handleSelectRow = () => {
-
-    }
-
-    render() {
-        const { league, isSelected } = this.props;
-        return (
-            <div className="league-row" key={league}>
-                <Checkbox id={league} checked={isSelected} value={league} onChange={() => this.props.onSelect(league)} />
-                <span>{league}</span>
-                <FavoriteCell />
-            </div>
-        );
-    }
-}
+        <div className="league-row" key={league}>
+            <Checkbox id={league} checked={isSelected} value={league} onChange={() => props.onSelect(league)} />
+            <span>{league}</span>
+            <i className="icon-menu-favorites"></i>
+        </div>
+    );
+};
 
 export default LeagueRow;
