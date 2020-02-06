@@ -106,7 +106,7 @@ class SoccerRow extends React.Component<Props, State> {
           <FirstHalfScoreCell rowSpan={rowSpan} firstHalfPeriod={firstHalfPeriod} />
           <FavoriteCell rowSpan={rowSpan} />
         </tr>
-        {isShowExtraInfoRow && <ExtraMatchInfoRow match={match} />}
+        {isShowExtraInfoRow && <ExtraMatchInfoRow match={match} onClick={this.handleClick} />}
       </>
     );
   }
