@@ -22,7 +22,6 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
     >
       <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
       <div className="content">
-        {/* <MatchLineups matchId={matchInfo.Match.Id} /> */}
         <SoccerMatchDetail matchId={matchId} />
       </div>
     </Layout>

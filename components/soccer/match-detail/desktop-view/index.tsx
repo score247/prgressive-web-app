@@ -3,6 +3,7 @@ import { MatchInfo } from "../../../../models/match-info";
 import GeneralInfo from "../general-info";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.scss";
+import MatchInfoTab from "../tabs/match-info-tab";
 type Props = {
   matchInfo: MatchInfo;
 };
@@ -24,7 +25,9 @@ const Desktop: React.FC<Props> = props => {
             <Tab>Table</Tab>
           </TabList>
         </div>
-        <TabPanel></TabPanel>
+        <TabPanel>
+          <MatchInfoTab matchId={props.matchInfo.Match.Id} />
+        </TabPanel>
         <TabPanel>Commentary</TabPanel>
         <TabPanel>Statistics</TabPanel>
         <TabPanel>H2H</TabPanel>

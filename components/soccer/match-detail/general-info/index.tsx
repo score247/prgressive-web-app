@@ -11,7 +11,7 @@ const GeneralInfo: React.FC<Props> = props => {
   const { match } = props;
   return (
     <div>
-      <div>{match.LeagueName}</div>
+      <div>{match?.LeagueName}</div>
       <div>
         Kick-off time:{" "}
         {format(new Date(match.EventDate[0]), DateTimeFormat.DATE_TIME)}

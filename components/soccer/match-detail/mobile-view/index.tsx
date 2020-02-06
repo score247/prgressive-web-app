@@ -3,6 +3,7 @@ import GeneralInfo from "../general-info";
 import { MatchInfo } from "../../../../models/match-info";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import SwipeableViews from "react-swipeable-views";
+import MatchInfoTab from "../tabs/match-info-tab";
 
 type Props = {
   matchInfo: MatchInfo;
@@ -41,7 +42,7 @@ const Mobile: React.FC<Props> = props => {
         </TabList>
         <SwipeableViews index={selectedTabIndex} onChangeIndex={setTab} enableMouseEvents>
           <TabPanel style={Object.assign({}, styles.slide, styles.slide1)}>
-            Info
+            <MatchInfoTab matchId={props.matchInfo.Match.Id} />
           </TabPanel>
           <TabPanel style={Object.assign({}, styles.slide, styles.slide2)}>
             Tracker
