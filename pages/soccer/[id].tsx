@@ -8,6 +8,7 @@ import { MatchInfo } from "../../models";
 import { SoccerAPI } from "../../apis/soccer-api";
 import { SportsEnum } from "../../common/enums/sport-enum";
 import MatchLineups from "../../components/soccer/match-detail/lineups";
+import withLoadingPage from "../../hoc/with-loading-page";
 
 type Props = {
   matchId: string | string[];
@@ -38,4 +39,4 @@ SoccerMatchDetailPage.getInitialProps = async ({ query }) => {
   };
 };
 
-export default withTranslation()(SoccerMatchDetailPage);
+export default withTranslation()(withLoadingPage(SoccerMatchDetailPage));

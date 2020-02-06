@@ -2,6 +2,7 @@ import * as React from "react";
 import Layout from "../../components/layout";
 import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
+import withLoadingPage from "../../hoc/with-loading-page";
 
 const TVPage: LocalizedPage = ({ t }) => {
   const breadcrumbs = [t(ResourceKey.BASKETBALL), t(ResourceKey.TV_SCHEDULES)];
@@ -19,4 +20,4 @@ TVPage.getInitialProps = async () => {
   };
 };
 
-export default withTranslation()(TVPage);
+export default withTranslation()(withLoadingPage(TVPage));

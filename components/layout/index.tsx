@@ -1,5 +1,5 @@
 import "./style.scss";
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";

@@ -2,8 +2,9 @@ import * as React from "react";
 import Layout from "../../components/layout";
 import { withTranslation, LocalizedPage } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
+import withLoadingPage from "../../hoc/with-loading-page";
 
-const Esports: LocalizedPage = props => {
+const ESports: LocalizedPage = props => {
   return (
     <Layout title={props.t(ResourceKey.E_SPORTS)} breadcrumbs={[props.t(ResourceKey.E_SPORTS)]}>
       <h1>{props.t(ResourceKey.E_SPORTS)}</h1>
@@ -11,8 +12,8 @@ const Esports: LocalizedPage = props => {
   );
 };
 
-Esports.getInitialProps = () => ({
+ESports.getInitialProps = () => ({
   namespacesRequired: [ResourceType.E_SPORTS]
 });
 
-export default withTranslation()(Esports);
+export default withTranslation()(withLoadingPage(ESports));

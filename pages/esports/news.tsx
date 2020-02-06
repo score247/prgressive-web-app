@@ -2,6 +2,7 @@ import * as React from "react";
 import Layout from "../../components/layout";
 import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
 import { ResourceKey, ResourceType } from "../../common/constants";
+import withLoadingPage from "../../hoc/with-loading-page";
 
 const NewsPage: LocalizedPage = ({ t }) => {
   const breadcrumbs = [t(ResourceKey.E_SPORTS), t(ResourceKey.NEWS)];
@@ -19,4 +20,4 @@ NewsPage.getInitialProps = async () => {
   };
 };
 
-export default withTranslation()(NewsPage);
+export default withTranslation()(withLoadingPage(NewsPage));
