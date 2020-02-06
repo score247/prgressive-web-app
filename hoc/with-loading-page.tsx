@@ -1,5 +1,5 @@
 import React from "react";
-import { NextPageContext } from "next";
+import { NextPageContext, NextComponentType } from "next";
 import Router from "next/router";
 import cookies from "next-cookies";
 import DeviceHelper from "../common/helpers/device-helper";
@@ -10,35 +10,36 @@ type WithLoadingProps = {
     viewMode: string;
 };
 
-const withLoadingPage = <P extends object>(WrappedComponent: React.ComponentType<P>) => {
-    return class extends React.Component<P & WithLoadingProps> {
-        static async getInitialProps(ctx: NextPageContext) {
-            const loadingUrl = "/loading";
-            const isMobile = new DeviceHelper(ctx).isMobile();
-            const viewMode = cookies(ctx)[CookieName.VIEW_MODE];
-            const { res } = ctx;
-
-            if (isMobile && !viewMode) {
-                if (res) {
-                    res.writeHead(HttpStatusCode.FOUND, { Location: loadingUrl });
-                    res.end();
-                } else {
-                    Router.push(loadingUrl);
-                }
-            }
-
-            return { viewMode };
-        }
-
-        render() {
-            const { viewMode } = this.props;
-            return (
-                <DeviceContextProvider value={{ isMobile: viewMode === ViewMode.MOBILE }}>
-                    <WrappedComponent {...this.props} />
-                </DeviceContextProvider>
-            );
-        }
+const withLoadingPage = <P extends object>(WrappedComponent: NextComponentType<NextPageContext, {}, P>) => {
+    const Wrapper = (props: P & WithLoadingProps) => {
+        return (
+            <DeviceContextProvider value={{ isMobile: props.viewMode === ViewMode.MOBILE }}>
+                <WrappedComponent {...props} />
+            </DeviceContextProvider>
+        );
     };
+
+    Wrapper.getInitialProps = async (ctx: NextPageContext) => {
+        const loadingUrl = "/loading";
+        const isMobile = new DeviceHelper(ctx).isMobile();
+        const viewMode = cookies(ctx)[CookieName.VIEW_MODE];
+        const { res } = ctx;
+
+        if (isMobile && !viewMode) {
+            if (res) {
+                res.writeHead(HttpStatusCode.FOUND, { Location: loadingUrl });
+                res.end();
+            } else {
+                Router.push(loadingUrl);
+            }
+        }
+
+        const componentProps = WrappedComponent.getInitialProps && (await WrappedComponent.getInitialProps(ctx));
+
+        return { ...componentProps, viewMode };
+    };
+
+    return Wrapper;
 };
 
 export default withLoadingPage;
