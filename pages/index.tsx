@@ -126,4 +126,4 @@ class SoccerPage extends React.Component<WithTranslation, State> {
   }
 }
 
-export default withTranslation()(withLoadingPage(SoccerPage));
+export default withLoadingPage(SoccerPage);

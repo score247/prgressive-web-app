@@ -1,6 +1,6 @@
 import * as React from "react";
 import Layout from "../../components/layout";
-import { withTranslation, LocalizedPage } from "../../common/helpers/Localizer";
+import { LocalizedPage } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
 import withLoadingPage from "../../hoc/with-loading-page";
 
@@ -16,4 +16,4 @@ ESports.getInitialProps = () => ({
   namespacesRequired: [ResourceType.E_SPORTS]
 });
 
-export default withTranslation()(withLoadingPage(ESports));
+export default withLoadingPage(ESports);

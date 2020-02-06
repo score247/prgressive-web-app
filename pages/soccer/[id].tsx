@@ -3,7 +3,7 @@ import SoccerMatchDetail from "../../components/soccer/match-detail";
 import Layout from "../../components/layout";
 import Banner from "../../components/layout/banner/Banner";
 import { ResourceType, ResourceKey } from "../../common/constants";
-import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
+import { LocalizedPage } from "../../common/helpers/Localizer";
 import withLoadingPage from "../../hoc/with-loading-page";
 
 type Props = {
@@ -38,4 +38,4 @@ SoccerMatchDetailPage.getInitialProps = async ({ query }) => {
   };
 };
 
-export default withTranslation()(withLoadingPage(SoccerMatchDetailPage));
+export default withLoadingPage(SoccerMatchDetailPage);

@@ -1,7 +1,7 @@
 import "./style.scss";
 import * as React from "react";
 import Layout from "../../components/layout";
-import { withTranslation, LocalizedPage } from "../../common/helpers/Localizer";
+import { LocalizedPage } from "../../common/helpers/Localizer";
 import { ResourceType, ResourceKey } from "../../common/constants";
 import withLoadingPage from "../../hoc/with-loading-page";
 
@@ -46,4 +46,4 @@ Basketball.getInitialProps = () => ({
   namespacesRequired: [ResourceType.BASKETBALL]
 });
 
-export default withTranslation()(withLoadingPage(Basketball));
+export default withLoadingPage(Basketball);

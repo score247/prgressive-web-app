@@ -1,6 +1,6 @@
 import * as React from "react";
 import Layout from "../../components/layout";
-import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
+import { LocalizedPage } from "../../common/helpers/Localizer";
 import { ResourceKey, ResourceType } from "../../common/constants";
 import withLoadingPage from "../../hoc/with-loading-page";
 
@@ -20,4 +20,4 @@ SettingPage.getInitialProps = async () => {
   };
 };
 
-export default withTranslation()(withLoadingPage(SettingPage));
+export default withLoadingPage(SettingPage);

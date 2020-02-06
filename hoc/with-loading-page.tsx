@@ -5,13 +5,15 @@ import cookies from "next-cookies";
 import DeviceHelper from "../common/helpers/device-helper";
 import { DeviceContextProvider } from "../contexts/device-context";
 import { ViewMode, HttpStatusCode, CookieName } from "../common/constants";
+import { withTranslation } from "../common/helpers/Localizer";
+import { WithTranslation } from "next-i18next";
 
 type WithLoadingProps = {
     viewMode: string;
 };
 
-const withLoadingPage = <P extends object>(WrappedComponent: NextComponentType<NextPageContext, {}, P>) => {
-    const Wrapper = (props: P & WithLoadingProps) => {
+const withLoadingPage = <P extends object, IP = P>(WrappedComponent: NextComponentType<NextPageContext, IP, P>) => {
+    const Wrapper = (props: P & WithLoadingProps & WithTranslation) => {
         return (
             <DeviceContextProvider value={{ isMobile: props.viewMode === ViewMode.MOBILE }}>
                 <WrappedComponent {...props} />
@@ -39,7 +41,7 @@ const withLoadingPage = <P extends object>(WrappedComponent: NextComponentType<N
         return { ...componentProps, viewMode };
     };
 
-    return Wrapper;
+    return withTranslation()(Wrapper);
 };
 
 export default withLoadingPage;
