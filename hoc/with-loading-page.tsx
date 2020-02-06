@@ -1,10 +1,10 @@
 import React from "react";
+import { NextPageContext } from "next";
+import Router from "next/router";
 import cookies from "next-cookies";
 import DeviceHelper from "../common/helpers/device-helper";
-import { NextPageContext } from "next";
 import { DeviceContextProvider } from "../contexts/device-context";
-import { ViewMode, HttpStatusCode } from "../common/constants";
-import Router from "next/router";
+import { ViewMode, HttpStatusCode, CookieName } from "../common/constants";
 
 type WithLoadingProps = {
     viewMode: string;
@@ -15,7 +15,7 @@ const withLoadingPage = <P extends object>(WrappedComponent: React.ComponentType
         static async getInitialProps(ctx: NextPageContext) {
             const loadingUrl = "/loading";
             const isMobile = new DeviceHelper(ctx).isMobile();
-            const viewMode = cookies(ctx)["ViewMode"];
+            const viewMode = cookies(ctx)[CookieName.VIEW_MODE];
             const { res } = ctx;
 
             if (isMobile && !viewMode) {
@@ -33,7 +33,7 @@ const withLoadingPage = <P extends object>(WrappedComponent: React.ComponentType
         render() {
             const { viewMode } = this.props;
             return (
-                <DeviceContextProvider value={{ isMobile: viewMode === ViewMode.Mobile }}>
+                <DeviceContextProvider value={{ isMobile: viewMode === ViewMode.MOBILE }}>
                     <WrappedComponent {...this.props} />
                 </DeviceContextProvider>
             );

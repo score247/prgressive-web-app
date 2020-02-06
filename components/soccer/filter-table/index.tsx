@@ -40,7 +40,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
     this.state = {
       filterText: "",
-      displayMode: DisplayMode.ShowAll,
+      displayMode: DisplayMode.SHOW_ALL,
       matches: [],
       selectedDate: new Date(),
       sortByValue: SoccerSortOptions.KICKOFFTIME
@@ -63,7 +63,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
     this.setState({
       matches: matches,
-      displayMode: DisplayMode.ShowAll,
+      displayMode: DisplayMode.SHOW_ALL,
       selectedDate: date,
       filterText: ""
     });
@@ -77,7 +77,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
     this.setState({
       matches: matches,
-      displayMode: DisplayMode.ShowAll,
+      displayMode: DisplayMode.SHOW_ALL,
       filterText: ""
     });
   };
@@ -192,12 +192,12 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
     this.setState({
       displayMode: mode,
-      filterText: mode === DisplayMode.ShowAll ? "" : this.state.filterText
+      filterText: mode === DisplayMode.SHOW_ALL ? "" : this.state.filterText
     });
   };
 
   filterMatches = (mode: DisplayMode) => {
-    if (mode === DisplayMode.ShowAll) {
+    if (mode === DisplayMode.SHOW_ALL) {
       return this.state.matches;
     } else {
       const selectedIds = this.soccerTableRef.current?.getSelectedIds();
@@ -206,8 +206,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
       }
 
       return this.displayMatches.filter(match =>
-        (mode === DisplayMode.ShowOnly && selectedIds.indexOf(match.Id) >= 0) ||
-        (mode === DisplayMode.Hide && selectedIds.indexOf(match.Id) < 0));
+        (mode === DisplayMode.SHOW_ONLY && selectedIds.indexOf(match.Id) >= 0) ||
+        (mode === DisplayMode.HIDE && selectedIds.indexOf(match.Id) < 0));
     }
   };
 

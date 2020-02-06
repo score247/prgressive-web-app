@@ -43,12 +43,20 @@ export class DateTimeFormat {
 }
 
 export class DisplayMode {
-  public static readonly ShowAll = 0;
-  public static readonly Hide = 1;
-  public static readonly ShowOnly = 2;
+  public static readonly SHOW_ALL = 0;
+  public static readonly HIDE = 1;
+  public static readonly SHOW_ONLY = 2;
 }
 
 export class ViewMode {
-  public static readonly Desktop = "Desktop";
-  public static readonly Mobile = "Mobile";
+  public static readonly DESKTOP = "desktop";
+  public static readonly MOBILE = "mobile";
+}
+
+export class CookieName {
+  public static readonly VIEW_MODE = "viewmode";
+}
+
+export class MobileAppUrl {
+  public static readonly APP_STORE = "https://apps.apple.com/us/app/score247/id1490241313?ls=1";
 }

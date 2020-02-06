@@ -8,7 +8,7 @@ class MatchLineups extends React.Component<Props> {
     componentDidMount() {
         const script = document.createElement("script");
 
-        script.src = "https://widgets.sir.sportradar.com/sportradar/widgetloader";
+        script.src = "https://widgets.sir.sportradar.com/549fbd108dfa14a21c701dc45cd9b73a/widgetloader";
         script.async = true;
 
         document.body.appendChild(script);

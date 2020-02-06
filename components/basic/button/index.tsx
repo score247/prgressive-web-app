@@ -1,15 +1,18 @@
 import React from "react";
+
 type Props = {
-    text: string;
-    onClick: () => void;
+    children?: React.ReactNode;
+    className?: string;
+    onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+    disabled?: boolean;
 };
 
 const Button: React.FunctionComponent<Props> = props => {
-    const handleClick = () => {
-        props.onClick();
-    };
-
-    return <input type="button" value={props.text} onClick={handleClick} />;
+    return (
+        <button className={props.className} onClick={props.onClick} disabled={props.disabled}>
+            {props.children}
+        </button>
+    );
 };
 
 export default Button;

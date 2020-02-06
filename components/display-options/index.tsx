@@ -6,13 +6,13 @@ import { DisplayOptionsProps } from "./type";
 const DisplayOptions: React.FC<DisplayOptionsProps> = props => {
   return (
     <div className="show-hide">
-      <span className="show-all" onClick={() => props.onDisplayModeChange(DisplayMode.ShowAll)}>
+      <span className="show-all" onClick={() => props.onDisplayModeChange(DisplayMode.SHOW_ALL)}>
         Show All
       </span>
-      <span className="hide" onClick={() => props.onDisplayModeChange(DisplayMode.Hide)}>
+      <span className="hide" onClick={() => props.onDisplayModeChange(DisplayMode.HIDE)}>
         Hide
       </span>
-      <span className="show-only" onClick={() => props.onDisplayModeChange(DisplayMode.ShowOnly)}>
+      <span className="show-only" onClick={() => props.onDisplayModeChange(DisplayMode.SHOW_ONLY)}>
         Show Only
       </span>
     </div>
