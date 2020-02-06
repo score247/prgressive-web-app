@@ -32,7 +32,7 @@ const LoadingPage: LocalizedPage = () => {
                 <Button className="btn btn-primary-outline btn-desktop" onClick={handleDesktopViewClick}>Desktop website</Button>
                 <div className="divide">or mobile application</div>
                 <Button className="btn btn-download" onClick={handleAppStoreClick}>Download from app store</Button>
-                <div className="icon-logo"></div>
+                <div className="logo"> <img src="/static/images/score247.svg" alt="Logo" /></div>
             </div>
             <div className="footer">
                 <span className="icon-copy-right"></span>2019 Score247, Inc. All right reserved

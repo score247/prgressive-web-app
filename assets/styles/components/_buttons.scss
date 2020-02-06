@@ -4,12 +4,13 @@
   border: 0;
   border-radius: .4rem;
   text-transform: capitalize;
-  cursor: pointer;
+  cursor: pointer;  
+  height: 3.6rem;
+  line-height: 3.6rem;
 }
 
 .btn-primary-outline {
   color: $darkBlue;
-  padding: 1rem 1.5rem;
   background: #fff;
   border: 1px solid $darkBlue;
   margin: 0 .5rem;
