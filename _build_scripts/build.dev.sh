@@ -1,4 +1,4 @@
 cd /var/www/score247-web/dev/
 sudo npm install
-sudo npm run build:production
+sudo npm run build
 sudo pm2 restart score247-web-dev
