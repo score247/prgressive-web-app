@@ -41,7 +41,7 @@ const Mobile: React.FC<Props> = props => {
           <Tab>Table</Tab>
         </TabList>
         <SwipeableViews index={selectedTabIndex} onChangeIndex={setTab} enableMouseEvents>
-          <TabPanel style={Object.assign({}, styles.slide, styles.slide1)}>
+          <TabPanel forceRender={true} style={Object.assign({}, styles.slide, styles.slide1)}>
             <MatchInfoTab matchId={props.matchInfo.Match.Id} />
           </TabPanel>
           <TabPanel style={Object.assign({}, styles.slide, styles.slide2)}>
