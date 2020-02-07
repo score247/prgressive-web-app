@@ -84,14 +84,23 @@
     background-color: #1B3464;
     .react-tabs__tab-list {
         border-bottom: none;
+        display: flex;
+        flex: 0 1 auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 100%;
     }
     .react-tabs__tab {
-        padding: 1.2rem;
         border: none;
         bottom: 0;
         color: #fff;
         font-size: 1.4rem;
         text-transform: uppercase;
+        flex-grow: 1;
+        flex-basis: 0;
+        max-width: 100%;
+        text-align: center;
+        padding: 1rem 0 1.1rem;
     }
     .react-tabs__tab--selected {
         border-radius: 0;
