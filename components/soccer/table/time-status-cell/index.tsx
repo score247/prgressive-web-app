@@ -11,13 +11,11 @@ class TimeAndStatusCell extends React.Component<
   TimeStatusCellState
 > {
   readonly countMinuteInterval: number = 15000;
-  readonly match: MatchSummary;
   private timerId = 0;
 
   constructor(props: TimeStatusCellProps) {
     super(props);
 
-    this.match = props.match;
     this.state = { matchStatusText: buildMatchStatus(this.props.match) };
   }
 
@@ -27,15 +25,15 @@ class TimeAndStatusCell extends React.Component<
 
   componentDidMount() {
     if (
-      this.match != null &&
-      MatchStatusHelper.isMatchNotEndOrCancel(this.match?.MatchStatus)
+      this.props.match != null &&
+      MatchStatusHelper.isMatchNotEndOrCancel(this.props.match?.MatchStatus)
     ) {
       if (this.timerId !== 0) {
         window.clearInterval(this.timerId);
       }
 
       this.timerId = window.setInterval(() => {
-        this.setState({ matchStatusText: buildMatchStatus(this.match) });
+        this.setState({ matchStatusText: buildMatchStatus(this.props.match) });
       }, this.countMinuteInterval);
     }
   }
@@ -52,7 +50,7 @@ class TimeAndStatusCell extends React.Component<
   }
 
   render() {
-    const time = new Date(this.match.EventDate[0]).toLocaleString(
+    const time = new Date(this.props.match.EventDate[0]).toLocaleString(
       navigator.language,
       {
         hour: "2-digit",
