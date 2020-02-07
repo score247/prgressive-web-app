@@ -20,10 +20,7 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
         t(ResourceKey.MATCHINFO, { ns: ResourceType.SOCCER })
       ]}
     >
-      {/* <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" /> */}
-      <div className="content">
-        <SoccerMatchDetail matchId={matchId} />
-      </div>
+      <SoccerMatchDetail matchId={matchId} />
     </Layout>
   );
 };

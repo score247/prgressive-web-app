@@ -141,11 +141,11 @@ class SoccerMatchDetail extends React.Component<Props, State> {
 
   render() {
     return (
-      <>
+      <div className="content">
         {this.state.matchInfo && (
           <DesktopView matchInfo={this.state.matchInfo} />
         )}
-      </>
+      </div>
     );
   }
 }
