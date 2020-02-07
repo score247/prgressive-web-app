@@ -49,11 +49,11 @@ const LeaguesFilteringTable: React.FC<Props> = (props) => {
 
     const onClickSubmitFilter = () => {
         props.onSubmitFilterLeagues();
-    }
+    };
 
     const onClickCancelFilter = () => {
 
-    }
+    };
 
     return (
         <Fragment>

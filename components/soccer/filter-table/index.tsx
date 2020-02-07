@@ -10,7 +10,7 @@ import { TimelineEvent } from "../../../models";
 import { MatchResult } from "../../../models/soccer/match-result";
 import { sortArray } from "../../../common/utils/sort";
 import { SoccerSortOptions } from '../../../common/enums/soccer-sort-option';
-import { union } from "lodash";
+import { union, findIndex } from "lodash";
 import SoccerFilterBar from "../filter-bar";
 
 type State = {
@@ -69,7 +69,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
       displayMode: DisplayMode.SHOW_ALL,
       selectedDate: date,
       filterText: "",
-      selectedLeagues: this.displayLeagues
+      selectedLeagues: this.displayLeagues,
+      filteredMatchByLeagues: matches
     });
   };
 
@@ -83,7 +84,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
       matches: matches,
       displayMode: DisplayMode.SHOW_ALL,
       filterText: "",
-      selectedLeagues: this.displayLeagues
+      selectedLeagues: this.displayLeagues,
+      filteredMatchByLeagues: matches
     });
   };
 
@@ -203,7 +205,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
   filterMatches = (mode: DisplayMode) => {
     if (mode === DisplayMode.SHOW_ALL) {
-      return this.state.matches;
+      return this.state.filteredMatchByLeagues;
     } else {
       const selectedIds = this.soccerTableRef.current?.getSelectedIds();
       if (!selectedIds || selectedIds.length <= 0) {
@@ -238,7 +240,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
     let filteredMatches: MatchSummary[] = [];
 
     if (sortByValue === SoccerSortOptions.LEAGUE) {
-      filteredMatches = this.state.filteredMatchByLeagues;
+      filteredMatches = this.state.filteredMatchByLeagues.filter(match => findIndex(this.displayMatches, match) >= 0);
     } else {
       filteredMatches = sortArray(this.displayMatches, this.defaultSortProperty);
     }
