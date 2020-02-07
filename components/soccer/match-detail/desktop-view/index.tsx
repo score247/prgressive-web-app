@@ -25,7 +25,7 @@ const Desktop: React.FC<Props> = props => {
             <Tab>Table</Tab>
           </TabList>
         </div>
-        <TabPanel forceRender={true} >
+        <TabPanel forceRender={true}>
           <MatchInfoTab matchId={props.matchInfo.Match.Id} />
         </TabPanel>
         <TabPanel>Commentary</TabPanel>

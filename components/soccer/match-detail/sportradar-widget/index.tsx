@@ -1,4 +1,5 @@
 import React from "react";
+import appSetting from "../../../../app-settings";
 
 type Props = {
     matchId: string,
@@ -10,7 +11,7 @@ class SportRadarWidget extends React.Component<Props> {
     componentDidMount() {
         const script = document.createElement("script");
 
-        script.src = "https://widgets.sir.sportradar.com/sportradar/widgetloader";
+        script.src = `https://widgets.sir.sportradar.com/${appSetting.sportRadarWidgetKey}/widgetloader`;
         script.async = true;
 
         document.body.appendChild(script);
