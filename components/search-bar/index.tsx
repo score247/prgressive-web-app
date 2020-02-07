@@ -75,11 +75,11 @@ const SearchBar: React.FC<SearchBarProps> = props => {
           <li className="history-item">Manchester City</li>
         </ul>
       </div>
-      <LeaguesFilteringTable
+      {/* <LeaguesFilteringTable
         leagues={props.leagues}
         selectedLeagues={props.selectedLeagues}
         onSelectLeague={props.onSelectLeague}
-        onSubmitFilterLeagues={props.onSubmitFilterLeagues} />
+        onSubmitFilterLeagues={props.onSubmitFilterLeagues} /> */}
     </div>
   );
 };

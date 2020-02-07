@@ -224,19 +224,11 @@ class FilterSoccerTable extends React.Component<{}, State> {
   };
 
   handleSortChange = (sortValue: number) => {
-    const { matches } = this.state;
-
-    if (sortValue === SoccerSortOptions.LEAGUE) {
-      this.displayMatches = this.filteredAndSortedMatchByLeague;
-    } else {
-      this.displayMatches = sortArray(this.displayMatches, this.defaultSortProperty);
-    }
-
     this.setState({ sortByValue: sortValue });
   }
 
   handleSelectLeague = (selectedLeagues: string[]) => {
-    this.filteredAndSortedMatchByLeague = this.state.matches.filter(match => selectedLeagues.indexOf(match.LeagueName) >= 0);
+    // this.filteredAndSortedMatchByLeague = this.state.matches.filter(match => selectedLeagues.indexOf(match.LeagueName) >= 0);
     this.setState({ selectedLeagues: selectedLeagues });
   }
 
@@ -264,10 +256,16 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   render() {
-    const { filterText } = this.state;
+    const { filterText, sortByValue } = this.state;
+    let filteredMatches: MatchSummary[] = [];
 
-    // SORT RIGHT AT THIS TIME
-    const filteredMatches = this.displayMatches.filter(match =>
+    if (sortByValue === SoccerSortOptions.LEAGUE) {
+      filteredMatches = this.state.filteredMatchByLeagues;
+    } else {
+      filteredMatches = sortArray(this.displayMatches, this.defaultSortProperty);
+    }
+
+    filteredMatches = filteredMatches.filter(match =>
       match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !== -1 ||
       match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !== -1);
 

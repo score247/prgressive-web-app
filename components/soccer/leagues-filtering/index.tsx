@@ -15,10 +15,6 @@ interface Props {
     onSubmitFilterLeagues: () => void;
 }
 
-interface State {
-    selectedLeagueIds: string[];
-}
-
 const LeaguesFilteringTable: React.FC<Props> = (props) => {
 
     const handleSelectLeague = (id: string) => {
