@@ -78,7 +78,7 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => {
           onChange={onChangeSportMobile}
           isSearchable={false}
         />
-        <i className="icon-search" />
+        {/* <i className="icon-search" /> */}
       </div>
     </>
   );

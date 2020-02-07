@@ -1,0 +1,14 @@
+.sort-dropdown {
+    height: 3.6rem;
+    min-width: 13rem;
+    margin-right: 1.2rem;
+
+    .select__indicator-separator {
+        display: none;
+    }
+
+    .select__control {
+        min-height: unset;
+        height: 100%;
+    }
+}

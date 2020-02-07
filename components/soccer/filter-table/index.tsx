@@ -1,4 +1,3 @@
-import "./style.scss";
 import React from "react";
 import lscache from "lscache";
 import SoccerTable from "../table";

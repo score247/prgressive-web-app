@@ -3,6 +3,8 @@ import DisplayOptions from "../../display-options";
 import { DisplayMode } from "../../../common/constants";
 import SoccerSortOption from "../sort-option";
 import SearchBar from "../../search-bar";
+import { DeviceContextConsumer } from "../../../contexts/device-context";
+import "./style.scss";
 
 type Props = {
     onDisplayModeChange: (mode: DisplayMode) => void;
@@ -10,19 +12,21 @@ type Props = {
     onSortChange: (sortValue: number) => void;
     filterText: string;
     onFilterTextChange: (filterText: string) => void;
-}
+};
 
 const SoccerFilterBar: React.FC<Props> = props => {
-    return (
+    const filterBar = ({ isMobile }: { isMobile: boolean }) => (
         <div className="search-filter">
-            <DisplayOptions onDisplayModeChange={props.onDisplayModeChange} />
+            {!isMobile && <DisplayOptions onDisplayModeChange={props.onDisplayModeChange} />}
             <div className="combo-search">
-                <div className="filter-event">Filter by League</div>
-                <SoccerSortOption sortByValue={props.sortByValue} onSortChange={props.onSortChange} />
+                {!isMobile && <div className="filter-event">Filter by League</div>}
+                {!isMobile && <SoccerSortOption sortByValue={props.sortByValue} onSortChange={props.onSortChange} />}
                 <SearchBar filterText={props.filterText} onFilterTextChange={props.onFilterTextChange} />
             </div>
         </div>
     );
+
+    return <DeviceContextConsumer>{filterBar}</DeviceContextConsumer>;
 };
 
 export default SoccerFilterBar;

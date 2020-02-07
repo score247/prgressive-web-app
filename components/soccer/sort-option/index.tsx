@@ -1,6 +1,7 @@
 import React from "react";
 import Select, { ValueType } from "react-select";
 import { filter } from "lodash";
+import "./style.scss";
 
 interface SortOption {
     value: number,
@@ -40,7 +41,7 @@ const SoccerSortOption: React.FC<Props> = props => {
     const handleSortChange = (selectedOption: ValueType<SortOption>) => {
         const option = selectedOption as SortOption;
         props.onSortChange(option.value);
-    }
+    };
 
     return (<Select
         className="sort-dropdown"
