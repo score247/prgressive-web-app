@@ -1,10 +1,6 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import { MatchInfo, MatchSummary, TimelineEvent } from "../../../models";
-import GeneralInfo from "./general-info";
-import OtherInfo from "./other-info";
-import { useDeviceContext } from "../../../contexts/device-context";
-import { render } from "react-dom";
 import { SoccerAPI } from "../../../apis/soccer-api";
 import { SoccerSignalRClient } from "../../../apis/soccer-signalr-client";
 import appSettings from "../../../app-settings";
@@ -53,9 +49,7 @@ class SoccerMatchDetail extends React.Component<Props, State> {
       {
         soccerSignalRClient: client
       },
-      () => {
-        client.start();
-      }
+      () => client.start()
     );
   }
 
