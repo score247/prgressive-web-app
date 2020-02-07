@@ -257,6 +257,10 @@ class FilterSoccerTable extends React.Component<{}, State> {
           onSortChange={this.handleSortChange}
           filterText={this.state.filterText}
           onFilterTextChange={this.handleFilterTextChange}
+          leagues={this.displayLeagues}
+          onSelectLeague={this.handleSelectLeague}
+          onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
+          selectedLeagues={this.state.selectedLeagues}
         />
         <SoccerTable
           matches={filteredMatches}

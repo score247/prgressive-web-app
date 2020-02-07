@@ -5,6 +5,12 @@ import SoccerSortOption from "../sort-option";
 import SearchBar from "../../search-bar";
 import { DeviceContextConsumer } from "../../../contexts/device-context";
 import "./style.scss";
+import Modal from 'react-modal';
+import LeaguesFilteringTable from '../leagues-filtering';
+
+type State = {
+    isLeaguesFilteringPopupOpen: boolean;
+};
 
 type Props = {
     onDisplayModeChange: (mode: DisplayMode) => void;
@@ -12,19 +18,56 @@ type Props = {
     onSortChange: (sortValue: number) => void;
     filterText: string;
     onFilterTextChange: (filterText: string) => void;
+    leagues: string[];
+    selectedLeagues: string[];
+    onSelectLeague: (selectedLeagues: string[]) => void;
+    onSubmitFilterLeagues: () => void;
 };
 
-const SoccerFilterBar: React.FC<Props> = props => {
-    const filterBar = ({ isMobile }: { isMobile: boolean }) => (
-        <div className="search-filter">
+class SoccerFilterBar extends React.Component<Props, State> {
+    constructor(props: Props) {
+        super(props);
+
+        this.state = {
+            isLeaguesFilteringPopupOpen: false
+        };
+    }
+
+    togglePopup = () => {
+        this.setState({
+            isLeaguesFilteringPopupOpen: !this.state.isLeaguesFilteringPopupOpen
+        });
+    }
+
+    handleSubmitFilterLeagues = () => {
+        this.props.onSubmitFilterLeagues();
+        this.setState({
+            isLeaguesFilteringPopupOpen: !this.state.isLeaguesFilteringPopupOpen
+        });
+    }
+
+    render() {
+        return (
+            <div className="search-filter">
             {!isMobile && <DisplayOptions onDisplayModeChange={props.onDisplayModeChange} />}
-            <div className="combo-search">
+                <div className="combo-search">
                 {!isMobile && <div className="filter-event">Filter by League</div>}
                 {!isMobile && <SoccerSortOption sortByValue={props.sortByValue} onSortChange={props.onSortChange} />}
-                <SearchBar filterText={props.filterText} onFilterTextChange={props.onFilterTextChange} />
+                        isOpen={this.state.isLeaguesFilteringPopupOpen}
+                        ariaHideApp={false}
+                    >
+                        <LeaguesFilteringTable
+                            leagues={this.props.leagues}
+                            selectedLeagues={this.props.selectedLeagues}
+                            onSelectLeague={this.props.onSelectLeague}
+                            onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
+                            onCancel={this.togglePopup} />
+                    </Modal>
+                    <SoccerSortOption sortByValue={this.props.sortByValue} onSortChange={this.props.onSortChange} />
+                    <SearchBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} />
+                </div>
             </div>
-        </div>
-    );
+        );
 
     return <DeviceContextConsumer>{filterBar}</DeviceContextConsumer>;
 };

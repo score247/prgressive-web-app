@@ -13,6 +13,7 @@ interface Props {
     selectedLeagues: string[];
     onSelectLeague: (selectedLeagues: string[]) => void;
     onSubmitFilterLeagues: () => void;
+    onCancel: () => void;
 }
 
 const LeaguesFilteringTable: React.FC<Props> = (props) => {
@@ -47,19 +48,12 @@ const LeaguesFilteringTable: React.FC<Props> = (props) => {
         props.onSelectLeague(selectedLeagues);
     };
 
-    const onClickSubmitFilter = () => {
-        props.onSubmitFilterLeagues();
-    };
-
-    const onClickCancelFilter = () => {
-
-    };
-
     return (
         <Fragment>
             <div>
                 <span>Check all</span>
                 <Checkbox id="all" checked={props.selectedLeagues.length === props.leagues.length} value="all" onChange={handleSelectAll} />
+                <input className="league-search" placeholder="Find leagues"></input>
             </div>
             <div>
                 {props.leagues.map(league => <LeagueRow
@@ -70,7 +64,7 @@ const LeaguesFilteringTable: React.FC<Props> = (props) => {
             </div >
             <div>
                 <button onClick={props.onSubmitFilterLeagues}>OK</button>
-                <button onClick={onClickCancelFilter}>Cancel</button>
+                <button onClick={props.onCancel}>Cancel</button>
             </div>
         </Fragment>
 
