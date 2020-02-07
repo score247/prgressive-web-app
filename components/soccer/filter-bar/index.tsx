@@ -47,12 +47,13 @@ class SoccerFilterBar extends React.Component<Props, State> {
     }
 
     render() {
-        return (
+        const filterBar = ({ isMobile }: { isMobile: boolean }) => (
             <div className="search-filter">
-            {!isMobile && <DisplayOptions onDisplayModeChange={props.onDisplayModeChange} />}
+                {!isMobile && <DisplayOptions onDisplayModeChange={this.props.onDisplayModeChange} />}
                 <div className="combo-search">
-                {!isMobile && <div className="filter-event">Filter by League</div>}
-                {!isMobile && <SoccerSortOption sortByValue={props.sortByValue} onSortChange={props.onSortChange} />}
+                    {!isMobile && <div className="filter-event" onClick={this.togglePopup}>Filter by League</div>}
+                    {!isMobile && <SoccerSortOption sortByValue={this.props.sortByValue} onSortChange={this.props.onSortChange} />}
+                    <Modal
                         isOpen={this.state.isLeaguesFilteringPopupOpen}
                         ariaHideApp={false}
                     >
@@ -63,13 +64,12 @@ class SoccerFilterBar extends React.Component<Props, State> {
                             onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
                             onCancel={this.togglePopup} />
                     </Modal>
-                    <SoccerSortOption sortByValue={this.props.sortByValue} onSortChange={this.props.onSortChange} />
                     <SearchBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} />
                 </div>
             </div>
         );
-
-    return <DeviceContextConsumer>{filterBar}</DeviceContextConsumer>;
-};
+        return <DeviceContextConsumer>{filterBar}</DeviceContextConsumer>;
+    }
+}
 
 export default SoccerFilterBar;
