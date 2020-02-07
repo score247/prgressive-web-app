@@ -21,7 +21,7 @@ class SportRadarWidget extends React.Component<Props> {
         const secondIndex = 2;
         const id = this.props.matchId.split(":")[secondIndex];
 
-        return (<div id={this.props.widgetId} data-sr-widget={this.props.widgetName} data-sr-match-id={id}></div>);
+        return (<div className="ball-tracker-content" id={this.props.widgetId} data-sr-widget={this.props.widgetName} data-sr-match-id={id}></div>);
     }
 }
 

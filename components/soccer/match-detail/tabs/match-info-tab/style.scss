@@ -1,0 +1,12 @@
+.display-none {
+    display: none;
+}
+
+.collapse, .expand {
+    display: inline-block;
+    float: right;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
