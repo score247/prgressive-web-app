@@ -1,8 +1,7 @@
 import * as React from "react";
 import Layout from "../components/layout";
 import DateBar from "../components/date-bar";
-import Banner from "../components/layout/banner/Banner";
-import { withTranslation } from "../common/helpers/Localizer";
+import Banner from "../components/banner";
 import { SportsEnum } from "../common/enums/sport-enum";
 import { ResourceType, ResourceKey, DateTimeFormat } from "../common/constants";
 import { WithTranslation } from "next-i18next";
@@ -16,6 +15,8 @@ import { MatchEventSignalRMessage } from "../models/soccer/signalr-messages";
 import { DeviceContextConsumer } from "../contexts/device-context";
 import { DeviceContextType } from "../contexts/device-context-type";
 import withLoadingPage from "../hoc/with-loading-page";
+import LeftBar from "../components/left-bar";
+import RightBar from "../components/right-bar";
 
 type State = {
   selectedDate: Date;
@@ -110,17 +111,20 @@ class SoccerPage extends React.Component<WithTranslation, State> {
     const { t } = this.props;
     return (
       <Layout title={t(SportsEnum.SOCCER)} breadcrumbs={this.state.breadcrumbs}>
-        <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
-        <DateBar
-          onDateChange={this.handleDateChange}
-          onLiveMatchChange={this.handleLiveButtonClick}
-          onlyLiveMatch={this.state.onlyLiveMatch}
-          selectedDate={this.state.selectedDate}
-        />
-        <div className="content">
-          <FilterSoccerTable ref={this.filterSoccerTable} />
-          <DeviceContextConsumer>{this.renderDateSwitch}</DeviceContextConsumer>
+        <LeftBar />
+        <div className="main-container"><Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
+          <DateBar
+            onDateChange={this.handleDateChange}
+            onLiveMatchChange={this.handleLiveButtonClick}
+            onlyLiveMatch={this.state.onlyLiveMatch}
+            selectedDate={this.state.selectedDate}
+          />
+          <div className="content">
+            <FilterSoccerTable ref={this.filterSoccerTable} />
+            <DeviceContextConsumer>{this.renderDateSwitch}</DeviceContextConsumer>
+          </div>
         </div>
+        <RightBar />
       </Layout>
     );
   }

@@ -4,8 +4,6 @@ import Head from "next/head";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import Breadcrumbs from "../bread-crumbs";
-import LeftBar from "./left-bar/LeftBar";
-import RightBar from "./right-bar/RightBar";
 import { DeviceContextConsumer } from "../../contexts/device-context";
 
 type Props = {
@@ -30,9 +28,10 @@ const Layout: React.FunctionComponent<Props> = ({ children, title = "Home", brea
           <div className="container">
             <Breadcrumbs breadcrumbs={breadcrumbs} />
             <div className="wrap-content">
-              <LeftBar />
+              {children}
+              {/* <LeftBar />
               <div className="main-container">{children}</div>
-              <RightBar />
+              <RightBar /> */}
             </div>
           </div>
           <Footer />

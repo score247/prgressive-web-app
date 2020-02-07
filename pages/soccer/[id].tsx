@@ -1,7 +1,7 @@
 import React from "react";
 import SoccerMatchDetail from "../../components/soccer/match-detail";
 import Layout from "../../components/layout";
-import Banner from "../../components/layout/banner/Banner";
+import Banner from "../../components/banner";
 import { ResourceType, ResourceKey } from "../../common/constants";
 import { LocalizedPage } from "../../common/helpers/Localizer";
 import withLoadingPage from "../../hoc/with-loading-page";
@@ -20,7 +20,7 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
         t(ResourceKey.MATCHINFO, { ns: ResourceType.SOCCER })
       ]}
     >
-      <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" />
+      {/* <Banner url="#" imgSrc="/static/images/ads-banner-1.jpg" /> */}
       <div className="content">
         <SoccerMatchDetail matchId={matchId} />
       </div>

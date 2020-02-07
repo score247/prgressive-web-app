@@ -1,5 +1,5 @@
 import React from "react";
-import Advertisement from "../../advertisement";
+import Advertisement from "../advertisement";
 
 type Props = {
   imgSrc: string;

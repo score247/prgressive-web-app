@@ -1,7 +1,7 @@
 import React from "react";
-import Banner from "../banner/Banner";
-import BottomAds from "../bottom-ads/BottomAds";
-import LeagueTable from "../league-table/LeagueTable";
+import Banner from "../banner";
+import BottomAds from "../bottom-ads";
+import LeagueTable from "./league-table";
 
 const RightBar: React.FunctionComponent = () => (
   <div className="right-container hide-mobile">
