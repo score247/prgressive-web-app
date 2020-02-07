@@ -21,7 +21,7 @@ function renderFirstHalfScore(
     MatchStatusType.FIRST_HALF.value
   ];
 
-  if (isMobile && firstHalfPeriod !== undefined && !matchStatusesToNotShow.some(x => x === matchStatusId)) {
+  if (isMobile && firstHalfPeriod && !matchStatusesToNotShow.some(x => x === matchStatusId)) {
     return (
       <div className="text-1H">
         ({firstHalfPeriod.HomeScore} - {firstHalfPeriod.AwayScore})
