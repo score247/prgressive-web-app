@@ -20,6 +20,17 @@ const sortOptions = [
   }
 ];
 
+
+const prefix = () => ({
+  alignItems: 'center',
+  display: 'flex',
+
+  ':before': {
+    content: '"Sort by: "',
+  },
+});
+
+
 const SearchBar: React.FC<SearchBarProps> = props => {
   const handleFilterTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     props.onFilterTextChange(event.target.value);
@@ -28,6 +39,10 @@ const SearchBar: React.FC<SearchBarProps> = props => {
   const onSortChange = (selectedOption: ValueType<SortOption>) => {
     const option = selectedOption as SortOption;
     props.onSortChange(option.value);
+  };
+
+  const colourStyles = {
+    singleValue: (styles: any) => ({ ...styles, ...prefix() }),
   };
 
   return (
@@ -41,6 +56,7 @@ const SearchBar: React.FC<SearchBarProps> = props => {
         value={filter(sortOptions, { value: props.sortByValue })}
         onChange={onSortChange}
         placeholder="Sort by"
+        styles={colourStyles}
       />
       <div className="search-section">
         <div className="search-box">
@@ -59,7 +75,11 @@ const SearchBar: React.FC<SearchBarProps> = props => {
           <li className="history-item">Manchester City</li>
         </ul>
       </div>
-      <LeaguesFilteringTable leagues={props.leagues} />
+      <LeaguesFilteringTable
+        leagues={props.leagues}
+        selectedLeagues={props.selectedLeagues}
+        onSelectLeague={props.onSelectLeague}
+        onSubmitFilterLeagues={props.onSubmitFilterLeagues} />
     </div>
   );
 };

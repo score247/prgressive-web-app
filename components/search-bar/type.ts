@@ -4,4 +4,7 @@ export type SearchBarProps = {
   sortByValue: number;
   onSortChange: (sortValue: number) => void;
   leagues: string[];
+  selectedLeagues: string[];
+  onSelectLeague: (selectedLeagues: string[]) => void;
+  onSubmitFilterLeagues: () => void;
 };
