@@ -1,11 +1,8 @@
 import "./style.scss";
 import React from "react";
 import lscache from "lscache";
-import DisplayOptions from "../../display-options";
-import SearchBar from "../../search-bar";
 import SoccerTable from "../table";
 import { DisplayMode } from "../../../common/constants";
-import { DeviceContextConsumer } from "../../../contexts/device-context";
 import { MatchEventSignalRMessage, MatchEvent } from "../../../models/soccer/signalr-messages";
 import { MatchSummary } from "../../../models/match-summary";
 import { SoccerAPI } from "../../../apis/soccer-api";
@@ -15,6 +12,7 @@ import { MatchResult } from "../../../models/soccer/match-result";
 import { sortArray } from "../../../common/utils/sort";
 import { SoccerSortOptions } from '../../../common/enums/soccer-sort-option';
 import { union } from "lodash";
+import SoccerFilterBar from "../filter-bar";
 
 type State = {
   filterText: string;
@@ -228,31 +226,12 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   handleSelectLeague = (selectedLeagues: string[]) => {
-    // this.filteredAndSortedMatchByLeague = this.state.matches.filter(match => selectedLeagues.indexOf(match.LeagueName) >= 0);
     this.setState({ selectedLeagues: selectedLeagues });
   }
 
   handleSubmitFilterLeagues = () => {
     this.displayMatches = this.state.matches.filter(match => this.state.selectedLeagues.indexOf(match.LeagueName) >= 0);
     this.setState({ filteredMatchByLeagues: this.displayMatches });
-  }
-
-  renderFilterBar() {
-    return (
-      <div className="search-filter">
-        <DisplayOptions onDisplayModeChange={this.handleDisplayModeChange} />
-        <SearchBar
-          filterText={this.state.filterText}
-          onFilterTextChange={this.handleFilterTextChange}
-          sortByValue={this.state.sortByValue}
-          onSortChange={this.handleSortChange}
-          leagues={this.displayLeagues}
-          selectedLeagues={this.state.selectedLeagues}
-          onSelectLeague={this.handleSelectLeague}
-          onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
-        />
-      </div>
-    );
   }
 
   render() {
@@ -271,9 +250,13 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
     return (
       <>
-        <DeviceContextConsumer>
-          {({ isMobile }) => !isMobile && this.renderFilterBar()}
-        </DeviceContextConsumer>
+        <SoccerFilterBar
+          onDisplayModeChange={this.handleDisplayModeChange}
+          sortByValue={this.state.sortByValue}
+          onSortChange={this.handleSortChange}
+          filterText={this.state.filterText}
+          onFilterTextChange={this.handleFilterTextChange}
+        />
         <SoccerTable
           matches={filteredMatches}
           ref={this.soccerTableRef}
