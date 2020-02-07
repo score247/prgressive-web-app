@@ -1,3 +1,4 @@
+import "./style.scss";
 import React from "react";
 import { DateTimeFormat } from "../../../../common/constants";
 import { format } from "date-fns";
@@ -5,7 +6,6 @@ import { Props } from "./type";
 import HomeTeam from "./home-team";
 import AwayTeam from "./away-team";
 import Score from "./score";
-import Status from "./status";
 
 const GeneralInfo: React.FC<Props> = props => {
   const { match } = props;
