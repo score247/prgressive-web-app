@@ -63,6 +63,7 @@
       text-align: center;
       vertical-align: middle;
       padding: 1.8rem;
+      cursor: pointer;
 
       .mobile & {        
         font-size: 0.9rem;
@@ -76,8 +77,11 @@
 
   .active {
     color: #E70C12;
-    border-bottom: 2px solid #E70C12;
+    border-bottom: 0.2rem solid #E70C12;
     font-weight: bold;
+    .mobile & {
+      border-bottom: 0.1rem solid #E70C12;
+    }
   }
 
   .live-score {

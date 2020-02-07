@@ -5,7 +5,7 @@ import { buildMatchStatus } from "../../../../../common/helpers/match-status-hel
 const Status: React.FC<Props> = props => {
   const { match } = props;
 
-  return <div>{buildMatchStatus(match)}</div>;
+  return <div className="status">{buildMatchStatus(match)}</div>;
 };
 
 export default Status;

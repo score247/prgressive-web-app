@@ -21,12 +21,14 @@ const AwayTeam: React.FC<Props> = props => {
       penaltyPeriod && penaltyPeriod.HomeScore < penaltyPeriod.AwayScore;
 
   return (
-    <div>
-      {awayTeamName}
-      {yellowCards > 0 && <span className="yellow-card">{yellowCards}</span>}
-      {redCards > 0 && <span className="red-card">{redCards}</span>}
-      {isMatchClosed && isPenaltyWinner && <i className="icon-penalty" />}
-      {isMatchClosed && isAggregateWinner && <i className="icon-arrow-right" />}
+    <div className="away-section">
+      <div className="away-name">{awayTeamName}</div>
+      <div className="reference-info">
+        {yellowCards > 0 && <span className="yellow-card">{yellowCards}</span>}
+        {redCards > 0 && <span className="red-card">{redCards}</span>}
+        {isMatchClosed && isPenaltyWinner && <i className="icon-penalty" />}
+        {isMatchClosed && isAggregateWinner && <i className="icon-arrow-right" />}
+      </div>
     </div>
   );
 };

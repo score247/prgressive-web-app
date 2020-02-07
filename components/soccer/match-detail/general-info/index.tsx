@@ -10,19 +10,19 @@ import Status from "./status";
 const GeneralInfo: React.FC<Props> = props => {
   const { match } = props;
   return (
-    <div>
-      <div>{match?.LeagueName}</div>
-      <div>
-        Kick-off time:{" "}
-        {format(new Date(match.EventDate[0]), DateTimeFormat.DATE_TIME)}
+    <div className="general-info">
+      <div className="extra-info">
+          <div className="league-name">{match?.LeagueName}</div>
+          <div className="kick-off-time">
+            Kick-off time:{" "}
+            {format(new Date(match.EventDate[0]), DateTimeFormat.DATE_TIME)}
+          </div>
       </div>
-
-      <div>
-        <HomeTeam match={match} />
-        <Score match={match} />
-        <AwayTeam match={match} />
+      <div className="main-info">
+          <HomeTeam match={match} />
+          <Score match={match} />
+          <AwayTeam match={match} />
       </div>
-      <Status match={match} />
     </div>
   );
 };

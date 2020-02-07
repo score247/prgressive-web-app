@@ -6,6 +6,7 @@ import {
   PreMatchStatuses
 } from "../../../../../common/enums/match-status-type";
 import { MatchSummary } from "../../../../../models";
+import Status from "../status";
 
 function isPreMatch(matchStatusId?: number): boolean {
   return !matchStatusId || PreMatchStatuses.some(x => x === matchStatusId);
@@ -35,13 +36,17 @@ const Score: React.FC<Props> = props => {
   const { match } = props;
   const matchStatusId = match.MatchStatus?.Value;
   const displayScore = isPreMatch(matchStatusId)
-    ? "-"
-    : `${match.HomeScore} - ${match.AwayScore}`;
+    ? null
+    : (<div className="full-score">
+      <div className="home-score">{match.HomeScore}</div>
+      <Status match={match} />
+      <div className="away-score">{match.AwayScore}</div>
+    </div>);
 
   return (
-    <div>
-      <span>{displayScore}</span>
-      {renderFirstHalfScore(match)}
+    <div className="score">
+      {displayScore}
+      <div className="half-score">{renderFirstHalfScore(match)}</div>
     </div>
   );
 };
