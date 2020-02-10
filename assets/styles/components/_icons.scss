@@ -13,12 +13,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.icon-sort:before {
+    content: "\e911";
+    color: #fff;
+  }
 .icon-arrow-down:before {
     content: "\e910";
 }
 .icon-close:before {
     content: "\e90e";
-    color: #c8ceda;
 }
 .icon-copy-right:before {
     content: "\e90f";

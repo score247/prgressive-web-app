@@ -1,12 +1,19 @@
 .loading-page {
     margin: auto;
     text-align: center;  
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     .title {
       text-align: center;
       color: #1B3464;
       font-weight: bold;
       font-size: 2rem;
       margin-top: 10rem;
+
+      @media screen and (orientation: landscape) {
+        margin-top: 4rem;
+      }
     }
   
     .note {
@@ -18,7 +25,8 @@
     .content {
       text-align: center;
       width: 31.1rem;
-      margin: auto;
+      margin: 0 auto;
+      flex: 1;
     }
     
     [class *="btn"] {
@@ -70,12 +78,8 @@
   }
 
   .footer {
-      position: absolute;
-      bottom: 1.2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100%;
       color: #86888A;
+      padding: .8rem 0;
       .icon-copy-right {
           padding-right: 0.8rem;
       }

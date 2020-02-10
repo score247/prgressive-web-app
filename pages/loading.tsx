@@ -26,7 +26,7 @@ const LoadingPage: LocalizedPage = () => {
     return (
         <div className="loading-page">
             <div className="title">Score247 Official Website</div>
-            <div className="note">You are using a smart device. Please select one of the following browsing mode that's compatible with your device</div>
+            <div className="note">You are using a smart device. Please select one of the following browsing mode that's compatible with your device.</div>
             <div className="content">
                 <Button className="btn btn-mobile" onClick={handleMobileViewClick}>Mobile website</Button>
                 <Button className="btn btn-primary-outline btn-desktop" onClick={handleDesktopViewClick}>Desktop website</Button>

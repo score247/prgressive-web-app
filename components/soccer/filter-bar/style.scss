@@ -24,16 +24,57 @@
 
 .mobile {
     .search-filter {
-        top: 4rem;
-        right: 0;
-        left: 0;
-        z-index: 999;
-        position: fixed;
-        padding: 0.9rem 1.8rem;
-        background-color: #1B3464;
+        // top: 4rem;
+        // right: 0;
+        // left: 0;
+        // z-index: 999;
+        // position: fixed;
+        // padding: 0.9rem 1.8rem;
+        // background-color: #1B3464;
     }
 
     .combo-search {
-        width: 100%;
+        //width: 100%;
+    }
+}
+
+.ReactModal__Content {
+    width: 72rem;
+    height: 48rem;
+    margin: auto;
+    padding: 0 !important;
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.25);
+    border: none;
+}
+.header-filter {
+    display: flex;
+    justify-content: space-between;
+    padding: 1.2rem;
+    border-bottom: .1rem solid #DEE2E6;
+    .text-header {
+        text-transform: uppercase;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+    .icon-close {
+        align-self: center;
+    }
+}
+
+.list-league {
+    padding : 1.2rem;
+}
+
+.league-search-section {
+    padding: .8rem;
+    background-color: #ebebeb;
+    border-radius: .4rem;
+    .checkbox {
+        display: inline-block;
+    }
+    .league-search {
+        height: 3.9rem;
+        border-radius: .4rem;
+        border: .1rem solid #CED4DA;
     }
 }

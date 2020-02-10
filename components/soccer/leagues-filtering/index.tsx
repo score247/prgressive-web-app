@@ -97,22 +97,23 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
             this.props.leagues;
         return (
             <Fragment>
-                <div>
-                    <span>Check all</span>
-                    <Checkbox id="all"
-                        checked={this.state.selectedLeagues.length > 0 && this.state.selectedLeagues.length === this.displayLeagues.length}
-                        value="all"
-                        onChange={this.handleSelectAll} />
-                    <SearchBar filterText={this.props.leaguesFilterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.props.onResetLeaguesFilterText} />
-                </div>
-                <div>
+            <div className="header-filter">
+                <div className="text-header">League filtering</div>
+                <span className="icon-close"></span>
+            </div>
+            <div className="list-league">
+                <div className="league-search-section">
+                    <Checkbox id="all" checked={props.selectedLeagues.length === props.leagues.length} value="all" onChange={handleSelectAll} />
+                    <span>Check all</span>                    
+                    <input className="league-search" placeholder="Search leagues"></input>
+                </div>                
                     {this.displayLeagues.map(league => <LeagueRow
                         key={league}
                         isSelected={this.state.selectedLeagues.indexOf(league) >= 0}
                         league={league}
                         onSelect={this.handleSelectLeague} />)}
                 </div >
-                <div>
+            <div className="btn-group">
                     <button onClick={this.handleSubmitFilterLeagues}>OK</button>
                     <button onClick={this.props.onCancel}>Cancel</button>
                 </div>
