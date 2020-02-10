@@ -8,10 +8,7 @@ import { MatchEventSignalRMessage } from "../../../models/soccer/signalr-message
 import { MatchResult } from "../../../models/soccer/match-result";
 import { EventTypes } from "../../../common/enums/event-type";
 import { PeriodType } from "../../../common/enums/period-type";
-import {
-  useDeviceContext,
-  DeviceContextConsumer
-} from "../../../contexts/device-context";
+import { DeviceContextConsumer } from "../../../contexts/device-context";
 import { DeviceContextType } from "../../../contexts/device-context-type";
 
 const MobileView = dynamic(() => import("./mobile-view"));
