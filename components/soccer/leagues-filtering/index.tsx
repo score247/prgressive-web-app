@@ -100,24 +100,23 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
             this.props.leagues;
         return (
             <Fragment>
-            <div className="header-filter">
-                <div className="text-header">League filtering</div>
-                <span className="icon-close"></span>
-            </div>
-            <div className="list-league">
-                <div className="league-search-section">
-                    <Checkbox id="all" checked={props.selectedLeagues.length === props.leagues.length} value="all" onChange={handleSelectAll} />
-                    <span>Check all</span>                    
-                    <input className="league-search" placeholder="Search leagues"></input>
-                    <SearchBar filterText={this.state.filterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.props.onResetLeaguesFilterText} />
-                </div>                
+                <div className="header-filter">
+                    <div className="text-header">League filtering</div>
+                    <span className="icon-close"></span>
+                </div>
+                <div className="list-league">
+                    <div className="league-search-section">
+                        <Checkbox id="all" checked={this.state.selectedLeagues.length === this.props.leagues.length} value="all" onChange={this.handleSelectAll} />
+                        <span>Check all</span>
+                        <SearchBar filterText={this.state.filterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.props.onResetLeaguesFilterText} />
+                    </div>
                     {this.displayLeagues.map(league => <LeagueRow
                         key={league}
                         isSelected={this.state.selectedLeagues.indexOf(league) >= 0}
                         league={league}
                         onSelect={this.handleSelectLeague} />)}
                 </div >
-            <div className="btn-group">
+                <div className="btn-group">
                     <button onClick={this.handleSubmitFilterLeagues}>OK</button>
                     <button onClick={this.props.onCancel}>Cancel</button>
                 </div>
