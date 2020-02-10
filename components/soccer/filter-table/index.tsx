@@ -242,6 +242,10 @@ class FilterSoccerTable extends React.Component<{}, State> {
     this.setState({ filterText: "" });
   }
 
+  handleResetLeaguesFilterText = () => {
+    this.setState({ leaguesFilterText: "" });
+  }
+
   render() {
     const { filterText, sortByValue } = this.state;
     let filteredMatches: MatchSummary[] = [];
@@ -264,6 +268,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
           onSortChange={this.handleSortChange}
           filterText={this.state.filterText}
           onResetFilterText={this.handleResetFilterText}
+          onResetLeaguesFilterText={this.handleResetLeaguesFilterText}
           onFilterTextChange={this.handleFilterTextChange}
           leagues={this.displayLeagues}
           onSubmitFilterLeagues={this.handleSubmitFilterLeagues}

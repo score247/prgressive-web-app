@@ -22,6 +22,7 @@ interface Props {
     onCancel: () => void;
     leaguesFilterText: string;
     onLeaguesFilterTextChange: (text: string) => void;
+    onResetLeaguesFilterText: () => void;
 }
 
 class LeaguesFilteringTable extends React.Component<Props, State> {
@@ -102,7 +103,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                         checked={this.state.selectedLeagues.length > 0 && this.state.selectedLeagues.length === this.displayLeagues.length}
                         value="all"
                         onChange={this.handleSelectAll} />
-                    <SearchBar filterText={this.props.leaguesFilterText} onFilterTextChange={this.handleFilterLeaguesChange} />
+                    <SearchBar filterText={this.props.leaguesFilterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.props.onResetLeaguesFilterText} />
                 </div>
                 <div>
                     {this.displayLeagues.map(league => <LeagueRow
