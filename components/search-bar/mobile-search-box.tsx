@@ -27,12 +27,9 @@ class MobileSearchBox extends React.Component<SearchBarProps, State> {
         const { openSearch } = this.state;
 
         return (
-            <div className="search-section">
-                {openSearch
-                    ? (<><SearchBox {...this.props} /><span className="btn-cancel" onClick={this.handleCancelClick}>Cancel</span></>)
-                    : <span className="icon-search" onClick={this.handleSearchClick}></span>
-                }
-            </div>
+            openSearch
+                ? (<><SearchBox {...this.props} /><span className="btn-cancel" onClick={this.handleCancelClick}>Cancel</span></>)
+                : <span className="icon-search" onClick={this.handleSearchClick}></span>
         );
     }
 }
