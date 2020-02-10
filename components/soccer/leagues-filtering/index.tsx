@@ -34,7 +34,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         this.displayLeagues = [];
         this.state = {
             selectedLeagues: props.selectedLeagues,
-            filterText: ""
+            filterText: props.leaguesFilterText
         };
     }
 
@@ -84,16 +84,19 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         if (this.state.selectedLeagues.length !== 0 && this.state.selectedLeagues.length === this.props.leagues.length) {
             this.clearAllSelectedLeagues();
         }
-        this.props.onLeaguesFilterTextChange(text);
+        this.setState({
+            filterText: text
+        });
     };
 
     handleSubmitFilterLeagues = () => {
+        this.props.onLeaguesFilterTextChange(this.state.filterText);
         this.props.onSubmitFilterLeagues(this.state.selectedLeagues);
     }
 
     render() {
         this.displayLeagues = this.props.leaguesFilterText !== "" ?
-            this.props.leagues.filter(league => league.toLowerCase().includes(this.props.leaguesFilterText.toLowerCase())) :
+            this.props.leagues.filter(league => league.toLowerCase().includes(this.state.filterText.toLowerCase())) :
             this.props.leagues;
         return (
             <Fragment>
@@ -106,6 +109,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                     <Checkbox id="all" checked={props.selectedLeagues.length === props.leagues.length} value="all" onChange={handleSelectAll} />
                     <span>Check all</span>                    
                     <input className="league-search" placeholder="Search leagues"></input>
+                    <SearchBar filterText={this.state.filterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.props.onResetLeaguesFilterText} />
                 </div>                
                     {this.displayLeagues.map(league => <LeagueRow
                         key={league}
