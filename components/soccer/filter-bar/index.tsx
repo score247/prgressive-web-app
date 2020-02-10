@@ -8,6 +8,7 @@ import "./style.scss";
 import Modal from 'react-modal';
 import LeaguesFilteringTable from '../leagues-filtering';
 import MobileFilterBar from "./mobile-filter-bar";
+import { League } from '../filter-table/type';
 
 type State = {
     isLeaguesFilteringPopupOpen: boolean;
@@ -20,7 +21,7 @@ type Props = {
     filterText: string;
     onResetFilterText: () => void;
     onFilterTextChange: (filterText: string) => void;
-    leagues: string[];
+    leagues: League[];
     selectedLeagues: string[];
     onSubmitFilterLeagues: (selectedLeagues: string[]) => void;
 };

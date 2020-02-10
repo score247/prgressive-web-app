@@ -10,8 +10,9 @@ import { TimelineEvent } from "../../../models";
 import { MatchResult } from "../../../models/soccer/match-result";
 import { sortArray } from "../../../common/utils/sort";
 import { SoccerSortOptions } from '../../../common/enums/soccer-sort-option';
-import { union, findIndex } from "lodash";
+import { findIndex, uniqBy, sortedUniqBy } from "lodash";
 import SoccerFilterBar from "../filter-bar";
+import { League } from './type';
 
 type State = {
   filterText: string;
@@ -28,7 +29,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
   private readonly defaultSortProperty = "EventDate";
   displayMatches: MatchSummary[];
   soccerTableRef: React.RefObject<SoccerTable>;
-  displayLeagues: string[];
+  displayLeagues: League[];
   filteredAndSortedMatchByLeague: MatchSummary[];
 
   constructor(props: {}) {
@@ -58,14 +59,17 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const matches = await SoccerAPI.GetMatchesByDate(date);
 
     this.displayMatches = this.parseData(matches);
-    this.displayLeagues = union(matches.map(match => match.LeagueName).sort());
+    this.displayLeagues = uniqBy(matches.map(match => ({
+      name: match.LeagueName,
+      id: match.LeagueId
+    })), "id").sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
     this.setState({
       matches: matches,
       displayMode: DisplayMode.SHOW_ALL,
       selectedDate: date,
       filterText: "",
-      selectedLeagues: this.displayLeagues,
+      selectedLeagues: this.displayLeagues.map(match => match.id),
       filteredMatchByLeagues: matches,
     });
   };
@@ -74,13 +78,16 @@ class FilterSoccerTable extends React.Component<{}, State> {
     const matches = await SoccerAPI.GetLiveMatches();
 
     this.displayMatches = this.parseData(matches);
-    this.displayLeagues = union(matches.map(match => match.LeagueName).sort());
+    this.displayLeagues = uniqBy(matches.map(match => ({
+      name: match.LeagueName,
+      id: match.LeagueId
+    })), "id").sort((a, b) => (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0));
 
     this.setState({
       matches: matches,
       displayMode: DisplayMode.SHOW_ALL,
       filterText: "",
-      selectedLeagues: this.displayLeagues,
+      selectedLeagues: this.displayLeagues.map(match => match.id),
       filteredMatchByLeagues: matches,
     });
   };
@@ -223,7 +230,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
   }
 
   handleSubmitFilterLeagues = (selectedLeagues: string[]) => {
-    this.displayMatches = this.state.matches.filter(match => selectedLeagues.indexOf(match.LeagueName) >= 0);
+    this.displayMatches = this.state.matches.filter(match => selectedLeagues.indexOf(match.LeagueId) >= 0);
     this.setState({
       filteredMatchByLeagues: this.displayMatches,
       selectedLeagues: selectedLeagues

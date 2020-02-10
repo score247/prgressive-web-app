@@ -3,11 +3,7 @@ import LeagueRow from '../league-row';
 import Checkbox from '../../checkbox';
 import { cloneDeep } from "lodash";
 import SearchBar from '../../search-bar';
-
-interface League {
-    id: string;
-    name: string;
-}
+import { League } from '../filter-table/type';
 
 type State = {
     selectedLeagues: string[];
@@ -15,14 +11,14 @@ type State = {
 };
 
 type Props = {
-    leagues: string[];
+    leagues: League[];
     selectedLeagues: string[];
     onSubmitFilterLeagues: (selectedLeagues: string[]) => void;
     onCancel: () => void;
-}
+};
 
 class LeaguesFilteringTable extends React.Component<Props, State> {
-    displayLeagues: string[] = [];
+    displayLeagues: League[] = [];
 
     constructor(props: Props) {
         super(props);
@@ -62,7 +58,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
             selectedLeagues = [];
 
         } else {
-            selectedLeagues = this.displayLeagues;
+            selectedLeagues = this.displayLeagues.map(league => league.id);
         }
 
         this.setState({
@@ -97,7 +93,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
 
     render() {
         this.displayLeagues = this.state.filterText !== "" ?
-            this.props.leagues.filter(league => league.toLowerCase().includes(this.state.filterText.toLowerCase())) :
+            this.props.leagues.filter(league => league.name.toLowerCase().includes(this.state.filterText.toLowerCase())) :
             this.props.leagues;
         return (
             <Fragment>
@@ -112,8 +108,8 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                         <SearchBar filterText={this.state.filterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.onResetLeaguesFilterText} />
                     </div>
                     {this.displayLeagues.map(league => <LeagueRow
-                        key={league}
-                        isSelected={this.state.selectedLeagues.indexOf(league) >= 0}
+                        key={league.id}
+                        isSelected={this.state.selectedLeagues.indexOf(league.id) >= 0}
                         league={league}
                         onSelect={this.handleSelectLeague} />)}
                 </div >

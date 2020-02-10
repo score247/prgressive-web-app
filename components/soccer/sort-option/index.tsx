@@ -44,6 +44,7 @@ const SoccerSortOption: React.FC<Props> = props => {
     };
 
     return (<Select
+        instanceId={props.sortByValue}
         className="sort-dropdown"
         classNamePrefix="select"
         options={sortOptions}

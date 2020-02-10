@@ -1,25 +1,19 @@
 import React from "react";
 import Checkbox from '../../checkbox';
-import FavoriteCell from '../table/favorite-cell';
+import { League } from '../filter-table/type';
 
-interface Props {
-    key: string;
+type Props = {
     isSelected: boolean;
-    league: string;
+    league: League;
     onSelect: (league: string) => void;
-}
-
-interface State {
-    isSelected: boolean;
-}
+};
 
 const LeagueRow: React.FunctionComponent<Props> = (props) => {
     const { league, isSelected } = props;
     return (
-
-        <div className="league-row" key={league}>
-            <Checkbox id={league} checked={isSelected} value={league} onChange={() => props.onSelect(league)} />
-            <span>{league}</span>
+        <div className="league-row">
+            <Checkbox id={league.id} checked={isSelected} value={league.id} onChange={() => props.onSelect(league.id)} />
+            <span>{league.name}</span>
             <i className="icon-menu-favorites"></i>
         </div>
     );
