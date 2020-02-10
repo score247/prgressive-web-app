@@ -1,4 +1,3 @@
-
 import React from "react";
 import dynamic from "next/dynamic";
 import { MatchInfo, MatchSummary, TimelineEvent } from "../../../models";
@@ -9,6 +8,11 @@ import { MatchEventSignalRMessage } from "../../../models/soccer/signalr-message
 import { MatchResult } from "../../../models/soccer/match-result";
 import { EventTypes } from "../../../common/enums/event-type";
 import { PeriodType } from "../../../common/enums/period-type";
+import {
+  useDeviceContext,
+  DeviceContextConsumer
+} from "../../../contexts/device-context";
+import { DeviceContextType } from "../../../contexts/device-context-type";
 
 const MobileView = dynamic(() => import("./mobile-view"));
 const DesktopView = dynamic(() => import("./desktop-view"));
@@ -140,12 +144,21 @@ class SoccerMatchDetail extends React.Component<Props, State> {
     }
   };
 
+  renderMatchDetail = (value: DeviceContextType) => {
+    if (this.state.matchInfo) {
+      if (value.isMobile) {
+        return <MobileView matchInfo={this.state.matchInfo} />;
+      }
+      return <DesktopView matchInfo={this.state.matchInfo} />;
+    }
+
+    return null;
+  };
+
   render() {
     return (
       <div className="content">
-        {this.state.matchInfo && (
-          <DesktopView matchInfo={this.state.matchInfo} />
-        )}
+        <DeviceContextConsumer>{this.renderMatchDetail}</DeviceContextConsumer>
       </div>
     );
   }
