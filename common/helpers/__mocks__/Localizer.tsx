@@ -14,3 +14,8 @@ export const i18n = {
   languages: ["en", "fr"],
   isInitialized: true
 };
+
+export const useTranslation = () => ({
+  t: (key: string): string => key,
+  i18n
+});

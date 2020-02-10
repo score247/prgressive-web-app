@@ -1,3 +1,6 @@
+
+jest.mock("../../../../common/helpers/Localizer", () => jest.requireActual("../../../../common/helpers/__mocks__/Localizer"));
+
 import React from "react";
 import { shallow } from "enzyme";
 import GeneralInfo from "./index";
@@ -9,7 +12,8 @@ describe("<GeneralInfo />", () => {
                 HomeTeamName: "home",
                 HomeScore: 1,
                 AwayTeamName: "away",
-                AwayScore: 1
+                AwayScore: 1,
+                EventDate: [new Date()]
             }
         };
 

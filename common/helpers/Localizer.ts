@@ -1,6 +1,5 @@
 import NextI18Next, { WithTranslation } from "next-i18next";
 import { NextPage } from "next";
-import { useTranslation as originalUseTranslation } from "react-i18next";
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: "en",
   otherLanguages: ["vi", "id", "ms", "th", "zh"],
@@ -20,9 +19,8 @@ export const {
   appWithTranslation,
   Link,
   i18n,
+  useTranslation
 } = NextI18NextInstance;
-
-export const useTranslation = originalUseTranslation;
 
 export type LocalizedPage<P = {}, IP = P> = NextPage<
   P & WithTranslation,
