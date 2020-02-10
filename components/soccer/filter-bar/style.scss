@@ -24,7 +24,7 @@
 
 .mobile {
     .search-filter {
-        // top: 4rem;
+        top: 0;
         // right: 0;
         // left: 0;
         // z-index: 999;
@@ -33,8 +33,13 @@
         // background-color: #1B3464;
     }
 
-    .combo-search {
-        //width: 100%;
+    .search-section {
+        top: 4rem;
+        left: 0;
+        right: 0;
+        position: fixed;
+        background-color: #1B3464;
+        z-index: 999;
     }
 }
 

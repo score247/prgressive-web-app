@@ -7,6 +7,7 @@ import { DeviceContextConsumer } from "../../../contexts/device-context";
 import "./style.scss";
 import Modal from 'react-modal';
 import LeaguesFilteringTable from '../leagues-filtering';
+import MobileFilterBar from "./mobile-filter-bar";
 
 type State = {
     isLeaguesFilteringPopupOpen: boolean;
@@ -49,13 +50,13 @@ class SoccerFilterBar extends React.Component<Props, State> {
         });
     }
 
-    render() {
-        const filterBar = ({ isMobile }: { isMobile: boolean }) => (
+    desktopFilterBar = () => {
+        return (
             <div className="search-filter">
-                {!isMobile && <DisplayOptions onDisplayModeChange={this.props.onDisplayModeChange} />}
+                <DisplayOptions onDisplayModeChange={this.props.onDisplayModeChange} />
                 <div className="combo-search">
-                    {!isMobile && <div className="filter-event" onClick={this.togglePopup}>Filter by League</div>}
-                    {!isMobile && <SoccerSortOption sortByValue={this.props.sortByValue} onSortChange={this.props.onSortChange} />}
+                    <div className="filter-event" onClick={this.togglePopup}>Filter by League</div>
+                    <SoccerSortOption sortByValue={this.props.sortByValue} onSortChange={this.props.onSortChange} />
                     <Modal
                         isOpen={this.state.isLeaguesFilteringPopupOpen}
                         ariaHideApp={false}
@@ -73,6 +74,15 @@ class SoccerFilterBar extends React.Component<Props, State> {
                 </div>
             </div>
         );
+    }
+
+    render() {
+        const filterBar = ({ isMobile }: { isMobile: boolean }) => (
+            isMobile
+                ? <MobileFilterBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} onReset={this.props.onResetFilterText} />
+                : this.desktopFilterBar()
+        );
+
         return <DeviceContextConsumer>{filterBar}</DeviceContextConsumer>;
     }
 }

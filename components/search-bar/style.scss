@@ -63,6 +63,7 @@
         width: 80%;
         border-radius: 2rem;
         position: relative;
+
         .icon-close {
             position: absolute;
             right: 1.2rem;
@@ -72,6 +73,9 @@
 
     .btn-cancel {
         color: #fff;
-        cursor: pointer;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 }
