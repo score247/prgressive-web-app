@@ -11,7 +11,7 @@ interface SortOption {
 type Props = {
     sortByValue: number;
     onSortChange: (sortValue: number) => void;
-}
+};
 
 const sortOptions = [
     {
@@ -53,6 +53,6 @@ const SoccerSortOption: React.FC<Props> = props => {
         placeholder="Sort by"
         styles={colourStyles}
     />);
-}
+};
 
 export default SoccerSortOption;

@@ -16,7 +16,7 @@ const SearchBox: React.FC<SearchBarProps> = props => {
                 onChange={handleFilterTextChange}
                 className="txt-search"
             />
-            <span className="icon-search" onClick={props.onReset}></span>
+            <span className="icon-close" onClick={props.onReset}></span>
         </div>
     );
 };
