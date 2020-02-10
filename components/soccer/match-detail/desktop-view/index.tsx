@@ -1,9 +1,7 @@
-import "./style.scss";
 import React, { useState } from "react";
 import { MatchInfo } from "../../../../models/match-info";
 import GeneralInfo from "../general-info";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.scss";
 import MatchInfoTab from "../tabs/match-info-tab";
 import Advertisement from "../../../advertisement";
 

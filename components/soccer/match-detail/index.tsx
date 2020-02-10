@@ -1,3 +1,4 @@
+import "./style.scss";
 import React from "react";
 import dynamic from "next/dynamic";
 import { MatchInfo, MatchSummary, TimelineEvent } from "../../../models";
