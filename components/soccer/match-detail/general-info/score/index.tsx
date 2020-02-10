@@ -18,11 +18,18 @@ function renderFirstHalfScore(match: MatchSummary) {
     MatchStatusType.FIRST_HALF.value
   ];
 
-  const firstHalfPeriod = match.MatchPeriods && match.MatchPeriods.find(x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular);
+  const firstHalfPeriod =
+    match.MatchPeriods &&
+    match.MatchPeriods.find(
+      x => x.Number === 1 && x.PeriodType.Value === PeriodType.Regular
+    );
 
-  if (firstHalfPeriod && !matchStatusesToNotShow.some(x => x === match.MatchStatus?.Value)) {
+  if (
+    firstHalfPeriod &&
+    !matchStatusesToNotShow.some(x => x === match.MatchStatus?.Value)
+  ) {
     return (
-      <div>
+      <div className="half-score">
         ({firstHalfPeriod.HomeScore} - {firstHalfPeriod.AwayScore})
       </div>
     );
@@ -30,7 +37,6 @@ function renderFirstHalfScore(match: MatchSummary) {
 
   return null;
 }
-
 
 const Score: React.FC<Props> = props => {
   const { match } = props;
@@ -40,11 +46,11 @@ const Score: React.FC<Props> = props => {
   return (
     <div className="score">
       <div className="full-score">
-      <div className="home-score">{renderScore && match.HomeScore}</div>
-      <Status match={match} />
-      <div className="away-score">{renderScore && match.AwayScore}</div>
-    </div>
-      <div className="half-score">{renderFirstHalfScore(match)}</div>
+        <div className="home-score">{renderScore && match.HomeScore}</div>
+        <Status match={match} />
+        <div className="away-score">{renderScore && match.AwayScore}</div>
+      </div>
+      {renderFirstHalfScore(match)}
     </div>
   );
 };
