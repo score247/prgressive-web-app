@@ -21,7 +21,6 @@ type State = {
   sortByValue: number;
   selectedLeagues: string[];
   filteredMatchByLeagues: MatchSummary[];
-  leaguesFilterText: string;
 };
 
 class FilterSoccerTable extends React.Component<{}, State> {
@@ -48,7 +47,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
       sortByValue: SoccerSortOptions.KICK_OFF_TIME,
       selectedLeagues: [],
       filteredMatchByLeagues: [],
-      leaguesFilterText: ""
     };
   }
 
@@ -69,7 +67,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
       filterText: "",
       selectedLeagues: this.displayLeagues,
       filteredMatchByLeagues: matches,
-      leaguesFilterText: ""
     });
   };
 
@@ -85,7 +82,6 @@ class FilterSoccerTable extends React.Component<{}, State> {
       filterText: "",
       selectedLeagues: this.displayLeagues,
       filteredMatchByLeagues: matches,
-      leaguesFilterText: ""
     });
   };
 
@@ -234,16 +230,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
     });
   }
 
-  handleLeaguesFilterTextChange = (filterLeaguesText: string) => {
-    this.setState({ leaguesFilterText: filterLeaguesText });
-  };
-
   handleResetFilterText = () => {
     this.setState({ filterText: "" });
-  }
-
-  handleResetLeaguesFilterText = () => {
-    this.setState({ leaguesFilterText: "" });
   }
 
   render() {
@@ -268,13 +256,10 @@ class FilterSoccerTable extends React.Component<{}, State> {
           onSortChange={this.handleSortChange}
           filterText={this.state.filterText}
           onResetFilterText={this.handleResetFilterText}
-          onResetLeaguesFilterText={this.handleResetLeaguesFilterText}
           onFilterTextChange={this.handleFilterTextChange}
           leagues={this.displayLeagues}
           onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
           selectedLeagues={this.state.selectedLeagues}
-          leaguesFilterText={this.state.leaguesFilterText}
-          onLeaguesFilterTextChange={this.handleLeaguesFilterTextChange}
         />
         <SoccerTable
           matches={filteredMatches}

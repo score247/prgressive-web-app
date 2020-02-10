@@ -3,7 +3,6 @@ import LeagueRow from '../league-row';
 import Checkbox from '../../checkbox';
 import { cloneDeep } from "lodash";
 import SearchBar from '../../search-bar';
-import { isThisQuarter } from 'date-fns';
 
 interface League {
     id: string;
@@ -15,14 +14,11 @@ type State = {
     filterText: string;
 };
 
-interface Props {
+type Props = {
     leagues: string[];
     selectedLeagues: string[];
     onSubmitFilterLeagues: (selectedLeagues: string[]) => void;
     onCancel: () => void;
-    leaguesFilterText: string;
-    onLeaguesFilterTextChange: (text: string) => void;
-    onResetLeaguesFilterText: () => void;
 }
 
 class LeaguesFilteringTable extends React.Component<Props, State> {
@@ -34,7 +30,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         this.displayLeagues = [];
         this.state = {
             selectedLeagues: props.selectedLeagues,
-            filterText: props.leaguesFilterText
+            filterText: ""
         };
     }
 
@@ -90,12 +86,17 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
     };
 
     handleSubmitFilterLeagues = () => {
-        this.props.onLeaguesFilterTextChange(this.state.filterText);
         this.props.onSubmitFilterLeagues(this.state.selectedLeagues);
     }
 
+    onResetLeaguesFilterText = () => {
+        this.setState({
+            filterText: ""
+        });
+    }
+
     render() {
-        this.displayLeagues = this.props.leaguesFilterText !== "" ?
+        this.displayLeagues = this.state.filterText !== "" ?
             this.props.leagues.filter(league => league.toLowerCase().includes(this.state.filterText.toLowerCase())) :
             this.props.leagues;
         return (
@@ -106,9 +107,9 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                 </div>
                 <div className="list-league">
                     <div className="league-search-section">
-                        <Checkbox id="all" checked={this.state.selectedLeagues.length === this.props.leagues.length} value="all" onChange={this.handleSelectAll} />
+                        <Checkbox id="all" checked={this.state.selectedLeagues.length === this.displayLeagues.length} value="all" onChange={this.handleSelectAll} />
                         <span>Check all</span>
-                        <SearchBar filterText={this.state.filterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.props.onResetLeaguesFilterText} />
+                        <SearchBar filterText={this.state.filterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.onResetLeaguesFilterText} />
                     </div>
                     {this.displayLeagues.map(league => <LeagueRow
                         key={league}
