@@ -1,4 +1,4 @@
 export const SoccerSortOptions = {
-    KICKOFFTIME: 1,
+    KICK_OFF_TIME: 1,
     LEAGUE: 2
 };

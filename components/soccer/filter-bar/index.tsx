@@ -21,8 +21,9 @@ type Props = {
     onFilterTextChange: (filterText: string) => void;
     leagues: string[];
     selectedLeagues: string[];
-    onSelectLeague: (selectedLeagues: string[]) => void;
-    onSubmitFilterLeagues: () => void;
+    onSubmitFilterLeagues: (selectedLeagues: string[]) => void;
+    onLeaguesFilterTextChange: (leaguesFilterText: string) => void;
+    leaguesFilterText: string;
 };
 
 class SoccerFilterBar extends React.Component<Props, State> {
@@ -40,8 +41,8 @@ class SoccerFilterBar extends React.Component<Props, State> {
         });
     }
 
-    handleSubmitFilterLeagues = () => {
-        this.props.onSubmitFilterLeagues();
+    handleSubmitFilterLeagues = (selectedLeagues: string[]) => {
+        this.props.onSubmitFilterLeagues(selectedLeagues);
         this.setState({
             isLeaguesFilteringPopupOpen: !this.state.isLeaguesFilteringPopupOpen
         });
@@ -61,9 +62,10 @@ class SoccerFilterBar extends React.Component<Props, State> {
                         <LeaguesFilteringTable
                             leagues={this.props.leagues}
                             selectedLeagues={this.props.selectedLeagues}
-                            onSelectLeague={this.props.onSelectLeague}
                             onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
-                            onCancel={this.togglePopup} />
+                            onCancel={this.togglePopup}
+                            leaguesFilterText={this.props.leaguesFilterText}
+                            onLeaguesFilterTextChange={this.props.onLeaguesFilterTextChange} />
                     </Modal>
                     <SearchBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} onReset={this.props.onResetFilterText} />
                 </div>

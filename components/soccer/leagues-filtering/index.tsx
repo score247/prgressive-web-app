@@ -2,74 +2,123 @@ import React, { Fragment } from "react";
 import LeagueRow from '../league-row';
 import Checkbox from '../../checkbox';
 import { cloneDeep } from "lodash";
+import SearchBar from '../../search-bar';
+import { isThisQuarter } from 'date-fns';
 
 interface League {
     id: string;
     name: string;
 }
 
+type State = {
+    selectedLeagues: string[];
+    filterText: string;
+};
+
 interface Props {
     leagues: string[];
     selectedLeagues: string[];
-    onSelectLeague: (selectedLeagues: string[]) => void;
-    onSubmitFilterLeagues: () => void;
+    onSubmitFilterLeagues: (selectedLeagues: string[]) => void;
     onCancel: () => void;
+    leaguesFilterText: string;
+    onLeaguesFilterTextChange: (text: string) => void;
 }
 
-const LeaguesFilteringTable: React.FC<Props> = (props) => {
+class LeaguesFilteringTable extends React.Component<Props, State> {
+    displayLeagues: string[] = [];
 
-    const handleSelectLeague = (id: string) => {
-        const index = props.selectedLeagues.indexOf(id);
+    constructor(props: Props) {
+        super(props);
+
+        this.displayLeagues = [];
+        this.state = {
+            selectedLeagues: props.selectedLeagues,
+            filterText: ""
+        };
+    }
+
+    handleSelectLeague = (id: string) => {
+        const { selectedLeagues } = this.state;
+
+        const index = selectedLeagues.indexOf(id);
         let result: string[] = [];
 
         if (index >= 0) {
             result = [
-                ...props.selectedLeagues.slice(0, index),
-                ...props.selectedLeagues.slice(index + 1)
+                ...selectedLeagues.slice(0, index),
+                ...selectedLeagues.slice(index + 1)
             ];
         } else {
-            result = cloneDeep(props.selectedLeagues);
+            result = cloneDeep(selectedLeagues);
             result.push(id);
         }
 
-        props.onSelectLeague(result);
+        this.setState({
+            selectedLeagues: result
+        });
     };
 
-    const handleSelectAll = () => {
+    handleSelectAll = () => {
         let selectedLeagues: string[];
 
-        if (props.selectedLeagues.length === props.leagues.length) {
+        if (this.state.selectedLeagues.length === this.displayLeagues.length) {
             selectedLeagues = [];
 
         } else {
-            selectedLeagues = props.leagues;
+            selectedLeagues = this.displayLeagues;
         }
 
-        props.onSelectLeague(selectedLeagues);
+        this.setState({
+            selectedLeagues: selectedLeagues
+        });
     };
 
-    return (
-        <Fragment>
-            <div>
-                <span>Check all</span>
-                <Checkbox id="all" checked={props.selectedLeagues.length === props.leagues.length} value="all" onChange={handleSelectAll} />
-                <input className="league-search" placeholder="Find leagues"></input>
-            </div>
-            <div>
-                {props.leagues.map(league => <LeagueRow
-                    key={league}
-                    isSelected={props.selectedLeagues.indexOf(league) >= 0}
-                    league={league}
-                    onSelect={handleSelectLeague} />)}
-            </div >
-            <div>
-                <button onClick={props.onSubmitFilterLeagues}>OK</button>
-                <button onClick={props.onCancel}>Cancel</button>
-            </div>
-        </Fragment>
+    clearAllSelectedLeagues = () => {
+        this.setState({
+            selectedLeagues: []
+        });
+    }
 
-    );
+    handleFilterLeaguesChange = (text: string) => {
+        if (this.state.selectedLeagues.length !== 0 && this.state.selectedLeagues.length === this.props.leagues.length) {
+            this.clearAllSelectedLeagues();
+        }
+        this.props.onLeaguesFilterTextChange(text);
+    };
 
-};
+    handleSubmitFilterLeagues = () => {
+        this.props.onSubmitFilterLeagues(this.state.selectedLeagues);
+    }
+
+    render() {
+        this.displayLeagues = this.props.leaguesFilterText !== "" ?
+            this.props.leagues.filter(league => league.toLowerCase().includes(this.props.leaguesFilterText.toLowerCase())) :
+            this.props.leagues;
+        return (
+            <Fragment>
+                <div>
+                    <span>Check all</span>
+                    <Checkbox id="all"
+                        checked={this.state.selectedLeagues.length > 0 && this.state.selectedLeagues.length === this.displayLeagues.length}
+                        value="all"
+                        onChange={this.handleSelectAll} />
+                    <SearchBar filterText={this.props.leaguesFilterText} onFilterTextChange={this.handleFilterLeaguesChange} />
+                </div>
+                <div>
+                    {this.displayLeagues.map(league => <LeagueRow
+                        key={league}
+                        isSelected={this.state.selectedLeagues.indexOf(league) >= 0}
+                        league={league}
+                        onSelect={this.handleSelectLeague} />)}
+                </div >
+                <div>
+                    <button onClick={this.handleSubmitFilterLeagues}>OK</button>
+                    <button onClick={this.props.onCancel}>Cancel</button>
+                </div>
+            </Fragment>
+
+        );
+    }
+}
 
 export default LeaguesFilteringTable;
