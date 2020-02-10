@@ -17,6 +17,7 @@ type Props = {
     sortByValue: number;
     onSortChange: (sortValue: number) => void;
     filterText: string;
+    onResetFilterText: () => void;
     onFilterTextChange: (filterText: string) => void;
     leagues: string[];
     selectedLeagues: string[];
@@ -64,7 +65,7 @@ class SoccerFilterBar extends React.Component<Props, State> {
                             onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
                             onCancel={this.togglePopup} />
                     </Modal>
-                    <SearchBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} />
+                    <SearchBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} onReset={this.props.onResetFilterText} />
                 </div>
             </div>
         );
