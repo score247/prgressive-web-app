@@ -50,7 +50,8 @@
 .mobile {
     .search-section {
         display: flex;
-        justify-content: flex-end;
+        justify-content: space-between;
+        align-items: center;
         width: 100%;
 
         .icon-search {
@@ -59,11 +60,18 @@
     }
 
     .search-box {
-        width: 100%;
-
+        width: 80%;
+        border-radius: 2rem;
+        position: relative;
+        .icon-close {
+            position: absolute;
+            right: 1.2rem;
+            top: 1rem;
+        }
     }
 
     .btn-cancel {
         color: #fff;
+        cursor: pointer;
     }
 }

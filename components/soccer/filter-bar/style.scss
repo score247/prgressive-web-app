@@ -24,11 +24,13 @@
 
 .mobile {
     .search-filter {
-        top: 0;
+        top: 4rem;
         right: 0;
+        left: 0;
         z-index: 999;
         position: fixed;
         padding: 0.9rem 1.8rem;
+        background-color: #1B3464;
     }
 
     .combo-search {
