@@ -21,12 +21,11 @@ class MatchInfoTab extends React.Component<Props, State> {
     render() {
         const collapseExpandClass = this.state.isBallTrackerCollapsed ? "expand" : "collapse";
         const ballTrackerHeader = <div className="ball-tracker-header">
-            <span className="ball-tracker-icon"></span>
-            <span>Ball Tracker</span>
+            <span className="text">Ball Tracker</span>
             <span 
                 className={collapseExpandClass} 
                 onClick={() => this.setState({ isBallTrackerCollapsed: !this.state.isBallTrackerCollapsed})}>
-                    Collapse/Expand
+                    <span className="icon-arrow-down"></span>
             </span>
         </div>;
         const ballTrackerContent = <div className={this.state.isBallTrackerCollapsed ? "display-none" : ""}>
