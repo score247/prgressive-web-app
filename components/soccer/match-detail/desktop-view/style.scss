@@ -15,9 +15,8 @@
 
 
 .react-tabs {
-  height: 4rem;
-  background-color: #1b3464;
-  .react-tabs__tab-list {
+  .react-tabs__tab-list {    
+    background-color: #1b3464;
     border-bottom: none;
     display: flex;
     flex: 0 1 auto;

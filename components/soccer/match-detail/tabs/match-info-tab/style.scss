@@ -10,3 +10,15 @@
         cursor: pointer;
     }
 }
+
+.left-section, .right-section {
+    width: 25.5rem;
+}
+
+.ball-tracker {
+    width: calc(100% - 25.5rem - 25.5rem);
+}
+
+.info-tab {
+    display: flex;
+}

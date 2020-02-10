@@ -34,10 +34,15 @@ class MatchInfoTab extends React.Component<Props, State> {
         </div>;
 
         return <>
-            <div>
-                {ballTrackerHeader}
-                {ballTrackerContent}
+            <div className="info-tab">
+                <div className="left-section"></div>
+                <div className="ball-tracker">
+                    {ballTrackerHeader}
+                    {ballTrackerContent}
+                </div>
+                <div className="right-section"></div>
             </div>
+            
         </>;
     }
 }
