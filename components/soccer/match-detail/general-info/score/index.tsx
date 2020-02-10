@@ -35,17 +35,15 @@ function renderFirstHalfScore(match: MatchSummary) {
 const Score: React.FC<Props> = props => {
   const { match } = props;
   const matchStatusId = match.MatchStatus?.Value;
-  const displayScore = isPreMatch(matchStatusId)
-    ? null
-    : (<div className="full-score">
-      <div className="home-score">{match.HomeScore}</div>
-      <Status match={match} />
-      <div className="away-score">{match.AwayScore}</div>
-    </div>);
+  const renderScore = !isPreMatch(matchStatusId);
 
   return (
     <div className="score">
-      {displayScore}
+      <div className="full-score">
+      <div className="home-score">{renderScore && match.HomeScore}</div>
+      <Status match={match} />
+      <div className="away-score">{renderScore && match.AwayScore}</div>
+    </div>
       <div className="half-score">{renderFirstHalfScore(match)}</div>
     </div>
   );
