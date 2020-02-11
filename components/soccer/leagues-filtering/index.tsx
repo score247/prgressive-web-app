@@ -99,7 +99,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
             <Fragment>
                 <div className="header-filter">
                     <div className="text-header">League filtering</div>
-                    <span className="icon-close"></span>
+                    <span className="icon-close" onClick={this.props.onCancel}></span>
                 </div>
                 <div className="content-league">
                     <div className="league-search-section">
@@ -113,11 +113,11 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                     </div>
                     <div className="list-league">
                         {this.displayLeagues.map(league => <LeagueRow
-                        key={league.id}
-                        isSelected={this.state.selectedLeagues.indexOf(league.id) >= 0}
+                            key={league.id}
+                            isSelected={this.state.selectedLeagues.indexOf(league.id) >= 0}
                             league={league}
                             onSelect={this.handleSelectLeague} />)}
-                    </div>                   
+                    </div>
                 </div >
                 <div className="footer-league">
                     <button onClick={this.handleSubmitFilterLeagues} className="btn btn-primary-solid">OK</button>

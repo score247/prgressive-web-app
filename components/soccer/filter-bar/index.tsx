@@ -77,7 +77,10 @@ class SoccerFilterBar extends React.Component<Props, State> {
                 ? <MobileFilterBar
                     filterText={this.props.filterText}
                     onFilterTextChange={this.props.onFilterTextChange}
-                    onReset={this.props.onResetFilterText} placeHolder="Search" />
+                    onReset={this.props.onResetFilterText}
+                    placeHolder="Search"
+                    onSortChange={this.props.onSortChange}
+                    sortByValue={this.props.sortByValue} />
                 : this.desktopFilterBar()
         );
 
