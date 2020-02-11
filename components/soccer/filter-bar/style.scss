@@ -169,3 +169,18 @@
 .ReactModal__Overlay {
     background-color: rgba(229, 229, 229, 0.6) !important;
 }
+
+.mobile-sort-menu {
+    background-color: #1B3464;
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    z-index: 101;
+    color: #fff;
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.25);
+    .action-item {
+        padding: .8rem 1.8rem;
+        border-top: .1rem solid #2D4470;
+        
+    }
+}
