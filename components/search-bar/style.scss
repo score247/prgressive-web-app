@@ -50,7 +50,6 @@
 .mobile {
     .search-section {
         display: flex;
-        justify-content: space-between;
         align-items: center;
         width: 100%;
 
@@ -63,11 +62,23 @@
         width: 80%;
         border-radius: 2rem;
         position: relative;
+        margin-right: 1.2rem;
 
         .icon-close {
             position: absolute;
             right: 1.2rem;
-            top: 1rem;
+            top: .8rem;
+            width: 1.4rem;
+            height: 1.4rem;
+            background: #C8CEDA;
+            border-radius: 50%;
+            &:before {
+                font-size: 0.6rem;
+                color: #fff;
+                position: absolute;
+                left: .3rem;
+                top: .4rem;
+            }
         }
     }
 
