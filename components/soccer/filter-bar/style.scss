@@ -147,14 +147,14 @@
   padding: 0.8rem;
 
   .league-row {
-        flex: 0 1 33.33%;
+    flex: 0 1 33.33%;
     padding: 0.8rem 0;
-        display: flex;
-        justify-content: space-between;
-        cursor: pointer;
-        .icon-menu-favorites {
-            padding-right: 1.8rem;
-        }
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    .icon-menu-favorites {
+      padding-right: 1.8rem;
+    }
   }
 }
 
