@@ -103,8 +103,8 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                 </div>
                 <div className="content-league">
                     <div className="league-search-section">
-                        <Checkbox id="all" checked={this.state.selectedLeagues.length === this.displayLeagues.length} value="all" onChange={this.handleSelectAll} />
-                            <span>Check all</span>
+                        <div><Checkbox id="all" checked={this.state.selectedLeagues.length === this.displayLeagues.length} value="all" onChange={this.handleSelectAll} />
+                            <span>Check all</span></div>
                         <SearchBar
                             filterText={this.state.filterText}
                             onFilterTextChange={this.handleFilterLeaguesChange}

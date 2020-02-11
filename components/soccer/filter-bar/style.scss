@@ -4,6 +4,20 @@
     padding: 1rem 0;
     font-size: 1.4rem;
     color: #3A3B45;
+    .icon-search:before {
+        .mobile & {
+            font-size: 2rem;
+            padding: 0 0.9rem;
+        }
+    }
+
+    .icon-more  {
+        position: relative;
+        top: .3rem;
+        .mobile & {
+            padding: 0  1.8rem 0 .9rem;
+        }        
+    }
 }
 
 .combo-search {
@@ -31,11 +45,17 @@
     }
 
     .search-section {
+        top: 0;
         left: 0;
         right: 0;
         position: fixed;
         background-color: #1B3464;
         z-index: 999;
+        height: 4rem;
+        padding: 0 1.2rem;
+        .txt-search {
+            height: 3rem;
+        }
     }
 }
 
@@ -144,4 +164,8 @@
     .btn {
         min-width: 18rem;
     }
+}
+
+.ReactModal__Overlay {
+    background-color: rgba(229, 229, 229, 0.6) !important;
 }

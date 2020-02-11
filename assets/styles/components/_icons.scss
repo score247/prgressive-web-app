@@ -13,6 +13,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+.icon-more:before {
+    content: "\e912";
+    color: #fff;
+}
 .icon-sort:before {
     content: "\e911";
     color: #fff;

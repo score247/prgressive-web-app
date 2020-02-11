@@ -37,7 +37,7 @@ export default class MobileFilterBar extends React.Component<SearchBarProps, Sta
                         : (
                             <>
                                 <span className="icon-search" onClick={this.handleSearchClick}></span>
-                                <span className="icon-close"></span>
+                    <span className="icon-more"></span>
                             </>
                         )
                     }
