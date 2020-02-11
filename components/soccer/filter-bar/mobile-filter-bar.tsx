@@ -49,11 +49,17 @@ export default class MobileFilterBar extends React.Component<Props, State> {
     renderSortOption = (sortByValue: number) => {
         if (sortByValue === SoccerSortOptions.KICK_OFF_TIME) {
             return (<div onClick={() => this.props.onSortChange(SoccerSortOptions.LEAGUE)} className="action-item">Sort by Leagues</div>);
-        } else {
-            return (<div onClick={() => this.props.onSortChange(SoccerSortOptions.KICK_OFF_TIME)} className="action-item">Sort by Kick off time</div>);
         }
 
+        return (<span onClick={() => this.props.onSortChange(SoccerSortOptions.KICK_OFF_TIME)}>Sort by Kick off time</span>);
     };
+
+    handleLeaguesFilteringClick = () => {
+        this.setState({
+            openLeaguesFiltering: !this.state.openLeaguesFiltering
+        });
+    };
+
     render() {
         return (
             <>
@@ -65,7 +71,7 @@ export default class MobileFilterBar extends React.Component<Props, State> {
                 {this.state.openSortMenu && (
                     <div className="mobile-sort-menu">
                         {this.renderSortOption(this.props.sortByValue)}
-                        <div className="action-item">Filter Leagues</div>
+                        <div className="action-item" onClick={this.handleLeaguesFilteringClick}>Filter Leagues</div>
                     </div>
                 )}
                 <Modal
