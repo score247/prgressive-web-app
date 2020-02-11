@@ -101,21 +101,23 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                     <div className="text-header">League filtering</div>
                     <span className="icon-close"></span>
                 </div>
-                <div className="list-league">
+                <div className="content-league">
                     <div className="league-search-section">
                         <Checkbox id="all" checked={this.state.selectedLeagues.length === this.displayLeagues.length} value="all" onChange={this.handleSelectAll} />
-                        <span>Check all</span>
+                            <span>Check all</span>
                         <SearchBar filterText={this.state.filterText} onFilterTextChange={this.handleFilterLeaguesChange} onReset={this.onResetLeaguesFilterText} />
                     </div>
-                    {this.displayLeagues.map(league => <LeagueRow
+                    <div className="list-league">
+                        {this.displayLeagues.map(league => <LeagueRow
                         key={league.id}
                         isSelected={this.state.selectedLeagues.indexOf(league.id) >= 0}
-                        league={league}
-                        onSelect={this.handleSelectLeague} />)}
+                            league={league}
+                            onSelect={this.handleSelectLeague} />)}
+                    </div>                   
                 </div >
-                <div className="btn-group">
-                    <button onClick={this.handleSubmitFilterLeagues}>OK</button>
-                    <button onClick={this.props.onCancel}>Cancel</button>
+                <div className="footer-league">
+                    <button onClick={this.handleSubmitFilterLeagues} className="btn btn-primary-solid">OK</button>
+                    <button onClick={this.props.onCancel} className="btn btn-primary-outline">Cancel</button>
                 </div>
             </Fragment>
 
