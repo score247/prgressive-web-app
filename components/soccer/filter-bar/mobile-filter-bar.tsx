@@ -32,10 +32,17 @@ export default class MobileFilterBar extends React.Component<SearchBarProps, Sta
         return (
             <>
                 <div className="search-filter">
-                    <span className="icon-search" onClick={this.handleSearchClick}></span>
-                    <span className="icon-close"></span>
+                    {this.state.openSearch
+                        ? <MobileSearchBar {...this.props} onCancel={this.handleCancelClick} />
+                        : (
+                            <>
+                                <span className="icon-search" onClick={this.handleSearchClick}></span>
+                                <span className="icon-close"></span>
+                            </>
+                        )
+                    }
                 </div>
-                {this.state.openSearch && <MobileSearchBar {...this.props} onCancel={this.handleCancelClick} />}
+
             </>
         );
     }

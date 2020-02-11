@@ -31,7 +31,6 @@
     }
 
     .search-section {
-        top: 4rem;
         left: 0;
         right: 0;
         position: fixed;
@@ -50,7 +49,10 @@
     display: flex;
     flex-direction: column;
     overflow: hidden !important;
-    .checkbox input[type="checkbox"], .checkbox label:before, .checkbox label:after {
+
+    .checkbox input[type="checkbox"],
+    .checkbox label:before,
+    .checkbox label:after {
         width: 1.2rem;
         height: 1.2rem;
     }
@@ -104,14 +106,17 @@
 
     .search-section {
         width: calc(100% - 10rem);
+
         .txt-search {
             font-size: 1.4rem;
             font-size: 'Roboto', Verdana, Geneva, Tahoma, sans-serif;
             width: calc(100% - 3rem);
         }
-        .search-box{
+
+        .search-box {
             position: relative;
         }
+
         .icon-close {
             display: none;
         }
@@ -122,7 +127,8 @@
 .list-league {
     display: flex;
     flex-wrap: wrap;
-    padding: .8rem;    
+    padding: .8rem;
+
     .league-row {
         flex: 1 1 50%;
         padding: .8rem 0;
@@ -134,6 +140,7 @@
     justify-content: center;
     border-top: 1px solid #DEE2E6;
     padding: 1.2rem 0;
+
     .btn {
         min-width: 18rem;
     }
