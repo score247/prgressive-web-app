@@ -2,11 +2,13 @@ import React from "react";
 import Router from 'next/router';
 import cookie from 'js-cookie';
 import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
-import { ViewMode, ResourceType, CookieName, MobileAppUrl } from "../common/constants";
+import { ViewMode, ResourceType, CookieName, MobileAppUrl, ResourceKey } from "../common/constants";
 import Button from "../components/basic/button";
 import "../assets/styles/pages/loading.scss";
 
-const LoadingPage: LocalizedPage = () => {
+const LoadingPage: LocalizedPage = props => {
+    const { t } = props;
+
     const handleDesktopViewClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         event.preventDefault();
         cookie.set(CookieName.VIEW_MODE, ViewMode.DESKTOP);
@@ -25,24 +27,24 @@ const LoadingPage: LocalizedPage = () => {
 
     return (
         <div className="loading-page">
-            <div className="title">Score247 Official Website</div>
-            <div className="note">You are using a smart device. Please select one of the following browsing mode that's compatible with your device.</div>
+            <div className="title">{t(ResourceKey.SITE_TITLE)}</div>
+            <div className="note">{t(ResourceKey.LOADING_PAGE_NOTE)}</div>
             <div className="content">
-                <Button className="btn btn-mobile" onClick={handleMobileViewClick}>Mobile website</Button>
-                <Button className="btn btn-primary-outline btn-desktop" onClick={handleDesktopViewClick}>Desktop website</Button>
-                <div className="divide">or mobile application</div>
-                <Button className="btn btn-download" onClick={handleAppStoreClick}>Download from app store</Button>
+                <Button className="btn btn-mobile" onClick={handleMobileViewClick}>{t(ResourceKey.MOBILE_WEBSITE)}</Button>
+                <Button className="btn btn-primary-outline btn-desktop" onClick={handleDesktopViewClick}>{t(ResourceKey.DESKTOP_WEBSITE)}</Button>
+                <div className="divide">{t(ResourceKey.OR_MOBILE_APPLICATION)}</div>
+                <Button className="btn btn-download" onClick={handleAppStoreClick}>{t(ResourceKey.DOWNLOAD_FROM_APP_STORE)}</Button>
                 <div className="logo"> <img src="/static/images/score247.svg" alt="Logo" /></div>
             </div>
             <div className="footer">
-                <span className="icon-copy-right"></span>2019 Score247, Inc. All right reserved
+                <span className="icon-copy-right"></span>{t(ResourceKey.COPYRIGHT)}
             </div>
         </div>
     );
 };
 
 LoadingPage.getInitialProps = () => ({
-    namespacesRequired: [ResourceType.SOCCER]
+    namespacesRequired: [ResourceType.COMMON]
 });
 
 export default withTranslation()(LoadingPage);

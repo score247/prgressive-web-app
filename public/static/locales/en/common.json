@@ -13,5 +13,12 @@
   "tv": "tv",
   "mobile": "mobile",
   "settings": "settings",
-  "kickofftime": "Kick-off time"
+  "kickofftime": "Kick-off time",
+  "site_title": "Score247 Official Website",
+  "copyright": "2019 Score247, Inc. All right reserved",
+  "mobile_website": "Mobile website",
+  "desktop_website": "Desktop website",
+  "loading_page_note": "You are using a smart device. Please select one of the following browsing mode that's compatible with your device.",
+  "download_from_app_store": "Download from App Store",
+  "or_mobile_application": "or mobile application"
 }

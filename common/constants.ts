@@ -23,6 +23,13 @@ export class ResourceKey {
   public static readonly MOBILE = "mobile";
   public static readonly FAVORITES = "favorites";
   public static readonly MATCHINFO = "matchinfo";
+  public static readonly SITE_TITLE = "site_title";
+  public static readonly COPYRIGHT = "copyright";
+  public static readonly MOBILE_WEBSITE = "mobile_website";
+  public static readonly DESKTOP_WEBSITE = "desktop_website";
+  public static readonly LOADING_PAGE_NOTE = "loading_page_note";
+  public static readonly DOWNLOAD_FROM_APP_STORE = "download_from_app_store";
+  public static readonly OR_MOBILE_APPLICATION = "or_mobile_application";
 }
 
 export class HttpStatusCode {
