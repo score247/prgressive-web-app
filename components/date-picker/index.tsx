@@ -6,6 +6,7 @@ import DatePicker, {
   setDefaultLocale
 } from "react-datepicker";
 import { vi, enUS } from "date-fns/locale";
+import { i18n } from "../../common/helpers/Localizer";
 
 vi.options = { weekStartsOn: 1 };
 enUS.options = { weekStartsOn: 1 };
@@ -20,7 +21,7 @@ class DatePickerWrapper extends PureComponent<ReactDatePickerProps> {
 
     return (
       <div className={`datepicker-wrapper ${className}`}>
-        <DatePicker {...rest} />
+        <DatePicker locale={i18n.language} {...rest} />
       </div>
     );
   }

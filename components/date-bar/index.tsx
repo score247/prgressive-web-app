@@ -56,9 +56,9 @@ class DateBar extends Component<Props, State> {
         <div className="days">
           {isSameDay(date, this.today)
             ? this.props.t(ResourceKey.TODAY)
-            : formatDate(date, DateTimeFormat.WEEKDAY)}
+            : formatDate(date, DateTimeFormat.WEEKDAY, this.props.i18n.language)}
         </div>
-        <div>{formatDate(date, DateTimeFormat.DAY_MONTH_ONLY)}</div>
+        <div>{formatDate(date, DateTimeFormat.DAY_MONTH_ONLY, this.props.i18n.language)}</div>
       </div>
     );
   };
