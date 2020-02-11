@@ -1,10 +1,13 @@
 import React from "react";
 import MobileSearchBar from "../../search-bar/mobile";
 import { SoccerSortOptions } from '../../../common/enums/soccer-sort-option';
+import Modal from 'react-modal';
+import LeaguesFilteringTable from '../leagues-filtering';
 
 type State = {
     openSearch: boolean;
     openSortMenu: boolean;
+    openLeaguesFiltering: boolean;
 };
 
 type Props = {
@@ -21,7 +24,8 @@ export default class MobileFilterBar extends React.Component<Props, State> {
         super(props);
         this.state = {
             openSearch: false,
-            openSortMenu: false
+            openSortMenu: false,
+            openLeaguesFiltering: false
         };
     }
 
@@ -54,17 +58,10 @@ export default class MobileFilterBar extends React.Component<Props, State> {
         return (
             <>
                 <div className="search-filter">
-                    {this.state.openSearch
-                        ? <MobileSearchBar {...this.props} onCancel={this.handleCancelClick} />
-                        : (
-                            <>
-                                <span className="icon-search" onClick={this.handleSearchClick}></span>
-                    <span className="icon-more" onClick={this.handleSortMenuClick}></span>
-                            </>
-                        )
-                    }
+                    <span className="icon-search" onClick={this.handleSearchClick}></span>
+                    <span className="icon-more" onClick={this.handleSortMenuClick}> ></span>
                 </div>
-
+                {this.state.openSearch && <MobileSearchBar {...this.props} onCancel={this.handleCancelClick} />}
                 {this.state.openSortMenu && (
                     <div className="mobile-sort-menu">
                         {this.renderSortOption(this.props.sortByValue)}
@@ -72,6 +69,16 @@ export default class MobileFilterBar extends React.Component<Props, State> {
                         <span>Filter Leagues</span>
                     </div>
                 )}
+                <Modal
+                    isOpen={this.state.openLeaguesFiltering}
+                    ariaHideApp={false}
+                >
+                    <LeaguesFilteringTable
+                        leagues={[]}
+                        selectedLeagues={[]}
+                        onSubmitFilterLeagues={() => { }}
+                        onCancel={() => { }} />
+                </Modal>
             </>
         );
     }
