@@ -13,7 +13,7 @@ const LeagueRow: React.FunctionComponent<Props> = (props) => {
     return (
         <div className="league-row">
             <Checkbox id={league.id} checked={isSelected} value={league.id} onChange={() => props.onSelect(league.id)} />
-            <span>{league.name}</span>
+            <span onClick={() => props.onSelect(league.id)}>{league.name}</span>
             <i className="icon-menu-favorites"></i>
         </div>
     );
