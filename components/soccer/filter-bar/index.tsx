@@ -65,7 +65,7 @@ class SoccerFilterBar extends React.Component<Props, State> {
                             onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
                             onCancel={this.togglePopup} />
                     </Modal>
-                    <SearchBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} onReset={this.props.onResetFilterText} />
+                    <SearchBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} onReset={this.props.onResetFilterText} placeHolder="Search" />
                 </div>
             </div>
         );
@@ -74,7 +74,10 @@ class SoccerFilterBar extends React.Component<Props, State> {
     render() {
         const filterBar = ({ isMobile }: { isMobile: boolean }) => (
             isMobile
-                ? <MobileFilterBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} onReset={this.props.onResetFilterText} />
+                ? <MobileFilterBar
+                    filterText={this.props.filterText}
+                    onFilterTextChange={this.props.onFilterTextChange}
+                    onReset={this.props.onResetFilterText} placeHolder="Search" />
                 : this.desktopFilterBar()
         );
 

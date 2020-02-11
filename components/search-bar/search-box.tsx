@@ -11,7 +11,7 @@ const SearchBox: React.FC<SearchBarProps> = props => {
             <span className="icon-search"></span>
             <input
                 type="text"
-                placeholder="Search"
+                placeholder={props.placeHolder}
                 value={props.filterText}
                 onChange={handleFilterTextChange}
                 className="txt-search"
