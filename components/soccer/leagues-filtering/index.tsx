@@ -4,6 +4,7 @@ import Checkbox from '../../checkbox';
 import { cloneDeep } from "lodash";
 import SearchBar from '../../search-bar';
 import { League } from '../filter-table/type';
+import { DeviceContextConsumer } from "../../../contexts/device-context";
 
 type State = {
     selectedLeagues: string[];
@@ -95,7 +96,8 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         this.displayLeagues = this.state.filterText !== "" ?
             this.props.leagues.filter(league => league.name.toLowerCase().includes(this.state.filterText.toLowerCase())) :
             this.props.leagues;
-        return (
+
+        const leaguesFiltering = ({ isMobile }: { isMobile: boolean }) => (
             <Fragment>
                 <div className="header-filter">
                     <div className="text-header">League filtering</div>
@@ -104,7 +106,10 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                 <div className="content-league">
                     <div className="league-search-section">
                         <div>
-                            <Checkbox id="all" checked={this.state.selectedLeagues.length === this.displayLeagues.length} value="all" onChange={this.handleSelectAll} />
+                            <Checkbox id="all"
+                                checked={this.state.selectedLeagues.length > 0 && this.state.selectedLeagues.length === this.displayLeagues.length}
+                                value="all"
+                                onChange={this.handleSelectAll} />
                             <span>Check all</span>
                         </div>
                         <SearchBar
@@ -126,8 +131,8 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                     <button onClick={this.props.onCancel} className="btn btn-primary-outline">Cancel</button>
                 </div>
             </Fragment>
-
         );
+        return <DeviceContextConsumer>{leaguesFiltering}</DeviceContextConsumer>;
     }
 }
 
