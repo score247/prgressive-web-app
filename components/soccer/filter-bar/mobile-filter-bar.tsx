@@ -51,7 +51,7 @@ export default class MobileFilterBar extends React.Component<Props, State> {
             return (<div onClick={() => this.props.onSortChange(SoccerSortOptions.LEAGUE)} className="action-item">Sort by Leagues</div>);
         }
 
-        return (<span onClick={() => this.props.onSortChange(SoccerSortOptions.KICK_OFF_TIME)}>Sort by Kick off time</span>);
+        return (<div onClick={() => this.props.onSortChange(SoccerSortOptions.KICK_OFF_TIME)} className="action-item">Sort by Kick off time</div>);
     };
 
     handleLeaguesFilteringClick = () => {
