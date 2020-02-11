@@ -118,7 +118,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                             onReset={this.onResetLeaguesFilterText}
                             placeHolder="Find leagues" />
                     </div>
-                    <div className="list-league">
+                    <div className={isMobile ? "mobile-list-league" : "list-league"}>
                         {this.displayLeagues.map(league => <LeagueRow
                             key={league.id}
                             isSelected={this.state.selectedLeagues.indexOf(league.id) >= 0}

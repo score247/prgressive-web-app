@@ -80,7 +80,12 @@ class SoccerFilterBar extends React.Component<Props, State> {
                     onReset={this.props.onResetFilterText}
                     placeHolder="Search"
                     onSortChange={this.props.onSortChange}
-                    sortByValue={this.props.sortByValue} />
+                    sortByValue={this.props.sortByValue}
+                    leagues={this.props.leagues}
+                    selectedLeagues={this.props.selectedLeagues}
+                    onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
+                    onTogglePopup={this.togglePopup}
+                    isLeaguesFilteringPopupOpen={this.state.isLeaguesFilteringPopupOpen} />
                 : this.desktopFilterBar()
         );
 
