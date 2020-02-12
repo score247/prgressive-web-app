@@ -52,13 +52,16 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
     };
 
     handleSelectAll = () => {
-        let selectedLeagues: string[];
+        let selectedLeagues: string[] = [];
 
-        if (this.state.selectedLeagues.length === this.displayLeagues.length) {
-            selectedLeagues = [];
-
-        } else {
-            selectedLeagues = this.displayLeagues.map(league => league.id);
+        if (this.state.selectedLeagues.length === 0) {
+            selectedLeagues = this.props.leagues.map(x => x.id);
+        }
+        else if (this.displayLeagues.length > 0 && this.displayLeagues.map(x => x.id).every(elem => this.state.selectedLeagues.includes(elem))) {
+            selectedLeagues = this.state.selectedLeagues.filter((elem) => this.displayLeagues.map(x => x.id).indexOf(elem) < 0);
+        }
+        else {
+            selectedLeagues = this.state.selectedLeagues.concat(this.displayLeagues.map(x => x.id));
         }
 
         this.setState({
@@ -67,22 +70,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
     };
 
     handleFilterLeaguesChange = (text: string) => {
-        let selectedLeagues: string[] = [];
-        const filteredLeagues = text !== "" ?
-            this.props.leagues.filter(league =>
-                league.name?.toLowerCase().search(text.toLowerCase()) !== -1 ||
-                league.abbreviation?.toLowerCase().search(text.toLowerCase()) !== -1)
-                .map(x => x.id) :
-            this.state.selectedLeagues;
-
-        if (this.state.selectedLeagues.length !== this.props.leagues.length) {
-            selectedLeagues = this.state.selectedLeagues;
-        } else {
-            selectedLeagues = filteredLeagues;
-        }
-
         this.setState({
-            selectedLeagues: selectedLeagues,
             filterText: text
         });
     };
@@ -100,7 +88,6 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
     isCheckAllSelected = (displayLeagues: League[]) => {
         return (this.state.selectedLeagues.length > 0 &&
             this.displayLeagues.length > 0 &&
-            this.state.selectedLeagues.length >= displayLeagues.length &&
             displayLeagues.map(x => x.id).every(leagueId => this.state.selectedLeagues.indexOf(leagueId) > -1));
     }
 
