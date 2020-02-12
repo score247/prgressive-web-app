@@ -61,7 +61,14 @@ export default class MobileFilterBar extends React.Component<Props, State> {
         }
 
         return (<div onClick={() => this.handleClickSortOption(SoccerSortOptions.KICK_OFF_TIME)} className="action-item">Sort by Kick off time</div>);
-    };
+    }
+
+    handleClickOpenLeaguesFilteringPopup = () => {
+        this.props.onTogglePopup();
+        this.setState({
+            openSortMenu: !this.state.openSortMenu
+        });
+    }
 
     render() {
         return (
@@ -74,7 +81,7 @@ export default class MobileFilterBar extends React.Component<Props, State> {
                 {this.state.openSortMenu && (
                     <div className="mobile-sort-menu">
                         {this.renderSortOption(this.props.sortByValue)}
-                        <div className="action-item" onClick={this.props.onTogglePopup}>Filter Leagues</div>
+                        <div className="action-item" onClick={this.handleClickOpenLeaguesFilteringPopup}>Filter Leagues</div>
                     </div>
                 )}
                 <Modal
