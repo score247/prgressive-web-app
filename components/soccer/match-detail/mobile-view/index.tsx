@@ -25,11 +25,11 @@ const Mobile: React.FC<Props> = props => {
           <Tab>Table</Tab>
         </TabList>
         <SwipeableViews index={selectedTabIndex} onChangeIndex={setTab} enableMouseEvents>
+          <TabPanel>
+            This is Info Page
+          </TabPanel>
           <TabPanel forceRender={true} >
             <MatchInfoTab matchId={props.matchInfo.Match.Id} />
-          </TabPanel>
-          <TabPanel>
-            Tracker
           </TabPanel>
           <TabPanel>
             Stats
