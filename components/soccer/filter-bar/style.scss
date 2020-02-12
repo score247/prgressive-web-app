@@ -142,8 +142,9 @@
 }
 
 .list-league {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-column-gap: 1.2rem;
   padding: 0.8rem;
 
   .league-row {
@@ -152,8 +153,12 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
+    border-right: 1px solid #DEE2E6;
     .icon-menu-favorites {
       padding-right: 1.8rem;
+    }
+    &:nth-child(3n) {
+      border-right: none;
     }
   }
 }
