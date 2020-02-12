@@ -105,9 +105,12 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
     }
 
     render() {
+
         this.displayLeagues = this.state.filterText !== "" ?
-            this.props.leagues.filter(league => league.name.toLowerCase().includes(this.state.filterText.toLowerCase())) :
-            this.props.leagues;
+            this.props.leagues.filter(league =>
+                league.name?.toLowerCase().search(this.state.filterText.toLowerCase()) !== -1
+                || league.abbreviation?.toLowerCase().search(this.state.filterText.toLowerCase()) !== -1)
+            : this.props.leagues;
         return (
             <Fragment>
                 <div className="header-filter">
