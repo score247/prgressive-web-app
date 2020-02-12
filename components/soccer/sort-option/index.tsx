@@ -29,7 +29,7 @@ const prefix = () => ({
     display: 'flex',
 
     ':before': {
-        content: '"Sort by: "',
+        content: '"Sort by:"'
     },
 });
 

@@ -19,9 +19,9 @@ const Status: React.FC<Props> = props => {
   });
 
   return (
-    <div>
+    <div className="status-section">
       {isMobile && (
-        <div>
+        <div >
           {formatDate(new Date(match.EventDate[0]), DateTimeFormat.TIME)}
         </div>
       )}

@@ -15,14 +15,17 @@ const MobileView: React.FC<Props> = props => {
       <div className="extra-info">
         <div className="league-name"><span className={match.CountryCode}></span>{match?.LeagueName}</div>
         <div className="kick-off-time">
-          {formatDate(new Date(match.EventDate[0]), DateTimeFormat.DAY_MONTH_ONLY)}`}
+          {formatDate(new Date(match.EventDate[0]), DateTimeFormat.DAY_MONTH_ONLY)}
         </div>
       </div>
       <div className="main-info">
         <Status match={match} />
-        <HomeTeam match={match} />
-        <Score match={match} />
-        <AwayTeam match={match} />
+        <div className="match-section">
+          <HomeTeam match={match} />
+          <Score match={match} />
+          <AwayTeam match={match} />
+        </div>        
+        <span className="icon-menu-favorites"></span>
       </div>
     </div>
   );

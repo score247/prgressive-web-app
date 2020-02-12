@@ -92,7 +92,7 @@ class SoccerMatchDetail extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className="content">
+      <div className="content match-detail">
         <DeviceContextConsumer>{this.renderMatchDetail}</DeviceContextConsumer>
       </div>
     );

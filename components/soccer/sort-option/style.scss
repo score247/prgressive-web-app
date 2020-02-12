@@ -10,5 +10,10 @@
     .select__control {
         min-height: unset;
         height: 100%;
+        cursor: pointer;
     }
+}
+
+.css-1dl2bqg-singleValue:before {
+    padding-right: .4rem;
 }
