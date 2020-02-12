@@ -2,13 +2,14 @@ import "./style.scss";
 import * as React from "react";
 import Layout from "../../components/layout";
 import { LocalizedPage } from "../../common/helpers/Localizer";
-import { ResourceType, ResourceKey } from "../../common/constants";
+import { CommonResourceKey } from "../../common/constants";
 import withLoadingPage from "../../hoc/with-loading-page";
+import { ResourceType } from "../../common/resources";
 
 const Basketball: LocalizedPage = props => {
   return (
-    <Layout title="Basketball" breadcrumbs={[props.t(ResourceKey.BASKETBALL)]}>
-      <h1>{props.t(ResourceKey.BASKETBALL)}</h1>
+    <Layout title="Basketball" breadcrumbs={[props.t(CommonResourceKey.BASKETBALL)]}>
+      <h1>{props.t(CommonResourceKey.BASKETBALL)}</h1>
       <table>
         <thead>
           <th></th>

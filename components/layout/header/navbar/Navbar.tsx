@@ -2,9 +2,9 @@ import React from "react";
 import "./Navbar.scss";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../common/helpers/Localizer";
-import { ResourceType, ResourceKey } from "../../../../common/constants";
 import SportLink from "../../../sport-link";
 import FunctionLink from "../../../function-link";
+import { ResourceType, CommonResourceKey } from "../../../../common/resources";
 
 interface IProps extends WithTranslation {
   sport: string;
@@ -22,21 +22,21 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
               sport={sport}
               href={"/"}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.SOCCER)}
+              htmlText={t(CommonResourceKey.SOCCER)}
               iconClassName="icon-soccer"
             />
             <SportLink
               sport={sport}
               href={"/basketball"}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.BASKETBALL)}
+              htmlText={t(CommonResourceKey.BASKETBALL)}
               iconClassName="icon-basketball"
             />
             <SportLink
               sport={sport}
               href={"/esports"}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.E_SPORTS)}
+              htmlText={t(CommonResourceKey.E_SPORTS)}
               iconClassName="icon-esports"
             />
           </ul>
@@ -46,37 +46,37 @@ const Navbar: React.FunctionComponent<IProps> = ({ t, sport }: IProps) => {
             <FunctionLink
               href={`/${sport}/leagues`}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.LEAGUES)}
+              htmlText={t(CommonResourceKey.LEAGUES)}
               iconClassName=""
             />
             <FunctionLink
               href={`/${sport}/favorites`}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.MY_FAVORITES)}
+              htmlText={t(CommonResourceKey.MY_FAVORITES)}
               iconClassName=""
             />
             <FunctionLink
               href={`/${sport}/news`}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.NEWS)}
+              htmlText={t(CommonResourceKey.NEWS)}
               iconClassName=""
             />
             <FunctionLink
               href={`/${sport}/tv`}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.TV_SCHEDULES)}
+              htmlText={t(CommonResourceKey.TV_SCHEDULES)}
               iconClassName=""
             />
             <FunctionLink
               href={`/mobile`}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.MOBILE)}
+              htmlText={t(CommonResourceKey.MOBILE)}
               iconClassName=""
             />
             <FunctionLink
               href={`/settings`}
               activeClassName={activeClass}
-              htmlText={t(ResourceKey.SETTINGS)}
+              htmlText={t(CommonResourceKey.SETTINGS)}
               iconClassName=""
             />
           </ul>

@@ -3,7 +3,7 @@ import SearchBox from "../search-box";
 import { SearchBarProps } from "../type";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../common/helpers/Localizer";
-import { ResourceType, ResourceKey } from "../../../common/constants";
+import { ResourceType, CommonResourceKey } from "../../../common/resources";
 
 type Props = {
     onCancel: () => void;
@@ -17,7 +17,7 @@ const MobileSearchBar: React.FC<Props> = (props) => {
     return (
         <div className="search-section">
             <SearchBox {...props} />
-            <span className="btn-cancel" onClick={handleCancelClick}>{props.t(ResourceKey.CANCEL)}</span>
+            <span className="btn-cancel" onClick={handleCancelClick}>{props.t(CommonResourceKey.CANCEL)}</span>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import Layout from "../components/layout";
 import DateBar from "../components/date-bar";
 import Banner from "../components/banner";
 import { SportsEnum } from "../common/enums/sport-enum";
-import { ResourceType, ResourceKey, DateTimeFormat } from "../common/constants";
+import { DateTimeFormat } from "../common/constants";
 import { WithTranslation } from "next-i18next";
 import { isSameDay } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
@@ -17,6 +17,7 @@ import { DeviceContextType } from "../contexts/device-context-type";
 import withLoadingPage from "../hoc/with-loading-page";
 import LeftBar from "../components/left-bar";
 import RightBar from "../components/right-bar";
+import { ResourceType, CommonResourceKey } from "../common/resources";
 
 type State = {
   selectedDate: Date;
@@ -32,7 +33,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
     super(props);
     this.state = {
       selectedDate: new Date(),
-      breadcrumbs: [props.t(SportsEnum.SOCCER), props.t(ResourceKey.TODAY)],
+      breadcrumbs: [props.t(SportsEnum.SOCCER), props.t(CommonResourceKey.TODAY)],
       onlyLiveMatch: false,
       soccerSignalRClient: undefined
     };
@@ -56,7 +57,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
   handleDateChange = async (date: Date) => {
     const breadcrumbs = this.state.breadcrumbs.slice();
     breadcrumbs[1] = isSameDay(this.today, date)
-      ? this.props.t(ResourceKey.TODAY)
+      ? this.props.t(CommonResourceKey.TODAY)
       : formatDate(date, DateTimeFormat.DATE_ONLY, this.props.i18n.language);
 
     this.setState({
@@ -70,7 +71,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
 
   handleLiveButtonClick = async () => {
     const breadcrumbs = this.state.breadcrumbs.slice();
-    breadcrumbs[1] = this.props.t(ResourceKey.LIVE_MATCH);
+    breadcrumbs[1] = this.props.t(CommonResourceKey.LIVE_MATCH);
 
     this.setState({ onlyLiveMatch: true, breadcrumbs });
     await this.filterSoccerTable.current?.handleLiveButtonClick();

@@ -24,7 +24,7 @@ const MobileView: React.FC<Props> = props => {
           <HomeTeam match={match} />
           <Score match={match} />
           <AwayTeam match={match} />
-        </div>        
+        </div>
         <span className="icon-menu-favorites"></span>
       </div>
     </div>

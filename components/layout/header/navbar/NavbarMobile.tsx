@@ -4,7 +4,7 @@ import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../common/helpers/Localizer";
 import { SportsEnum } from "../../../../common/enums/sport-enum";
 import FunctionLink from "../../../function-link";
-import { ResourceType, ResourceKey } from "../../../../common/constants";
+import { ResourceType, CommonResourceKey } from "../../../../common/resources";
 
 interface IProps extends WithTranslation {
   sport: string;
@@ -34,19 +34,19 @@ const NavbarMobile: React.FunctionComponent<IProps> = ({
         <FunctionLink
           href={`/${sport}/favorites`}
           activeClassName={activeClass}
-          htmlText={t(ResourceKey.FAVORITES)}
+          htmlText={t(CommonResourceKey.FAVORITES)}
           iconClassName="icon-menu-favorites"
         />
         <FunctionLink
           href={`/${sport}/leagues`}
           activeClassName={activeClass}
-          htmlText={t(ResourceKey.LEAGUES)}
+          htmlText={t(CommonResourceKey.LEAGUES)}
           iconClassName="icon-menu-leagues"
         />
         <FunctionLink
           href={`/${sport}/news`}
           activeClassName={activeClass}
-          htmlText={t(ResourceKey.NEWS)}
+          htmlText={t(CommonResourceKey.NEWS)}
           iconClassName="icon-menu-news"
         />
         <FunctionLink

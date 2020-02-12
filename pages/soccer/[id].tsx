@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../components/layout";
-import { ResourceType, ResourceKey } from "../../common/constants";
+import { ResourceType, CommonResourceKey } from "../../common/constants";
 import { LocalizedPage } from "../../common/helpers/Localizer";
 import withLoadingPage from "../../hoc/with-loading-page";
 import SoccerMatchDetail from "../../components/soccer/match-detail";
@@ -13,10 +13,10 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
   const { t, matchId } = props;
   return (
     <Layout
-      title={t(ResourceKey.SOCCER)}
+      title={t(CommonResourceKey.SOCCER)}
       breadcrumbs={[
-        t(ResourceKey.SOCCER),
-        t(ResourceKey.MATCHINFO, { ns: ResourceType.SOCCER })
+        t(CommonResourceKey.SOCCER),
+        t(CommonResourceKey.MATCHINFO, { ns: ResourceType.SOCCER })
       ]}
     >
       <SoccerMatchDetail matchId={matchId} />

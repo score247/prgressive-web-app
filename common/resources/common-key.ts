@@ -1,0 +1,33 @@
+export class CommonResourceKey {
+    public static readonly BASKETBALL = "basketball";
+    public static readonly SOCCER = "soccer";
+    public static readonly E_SPORTS = "esports";
+    public static readonly TODAY = "today";
+    public static readonly LIVE = "live";
+    public static readonly LIVE_MATCH = "livematch";
+    public static readonly MY_FAVORITES = "myfavorites";
+    public static readonly LEAGUES = "leagues";
+    public static readonly TV_SCHEDULES = "tvschedules";
+    public static readonly TV = "tv";
+    public static readonly SETTINGS = "settings";
+    public static readonly NEWS = "news";
+    public static readonly MOBILE = "mobile";
+    public static readonly FAVORITES = "favorites";
+    public static readonly MATCHINFO = "matchinfo";
+    public static readonly SITE_TITLE = "site_title";
+    public static readonly COPYRIGHT = "copyright";
+    public static readonly DESKTOP = "desktop";
+    public static readonly LOADING_PAGE_NOTE = "loading_page_note";
+    public static readonly DOWNLOAD_FROM_APP_STORE = "download_from_app_store";
+    public static readonly OR_MOBILE_APPLICATION = "or_mobile_application";
+    public static readonly LANGUAGES = "languages";
+    public static readonly LOGIN = "login";
+    public static readonly REGISTER = "register";
+    public static readonly CANCEL = "cancel";
+    public static readonly KICK_OFF_TIME = "kickofftime";
+    public static readonly LEAGUE = "league";
+    public static readonly TIME = "time";
+    public static readonly STATUS = "status";
+    public static readonly HOME = "home";
+    public static readonly AWAY = "away";
+}

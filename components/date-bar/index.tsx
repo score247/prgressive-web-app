@@ -4,9 +4,10 @@ import DatePicker from "../date-picker";
 import { addDays, isSameDay, addYears } from "date-fns";
 import { withTranslation } from "../../common/helpers/Localizer";
 import { State, Props } from "./type";
-import { ResourceType, ResourceKey, DateTimeFormat } from "../../common/constants";
+import { DateTimeFormat } from "../../common/constants";
 import CustomDateInput from "./custom-date-input";
 import { formatDate } from "../../common/helpers/date-time-helper";
+import { ResourceType, CommonResourceKey } from "../../common/resources";
 
 class DateBar extends Component<Props, State> {
   today: Date;
@@ -55,7 +56,7 @@ class DateBar extends Component<Props, State> {
       >
         <div className="days">
           {isSameDay(date, this.today)
-            ? this.props.t(ResourceKey.TODAY)
+            ? this.props.t(CommonResourceKey.TODAY)
             : formatDate(date, DateTimeFormat.WEEKDAY, this.props.i18n.language)}
         </div>
         <div>{formatDate(date, DateTimeFormat.DAY_MONTH_ONLY, this.props.i18n.language)}</div>

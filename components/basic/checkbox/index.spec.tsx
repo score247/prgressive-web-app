@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, ShallowWrapper } from "enzyme";
-import Checkbox from "./";
+import Checkbox from ".";
 import { CheckboxProps } from "./type";
 
 describe("<Checkbox />", () => {

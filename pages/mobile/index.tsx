@@ -1,12 +1,12 @@
 import * as React from "react";
 import Layout from "../../components/layout";
 import { LocalizedPage } from "../../common/helpers/Localizer";
-import { ResourceKey, ResourceType } from "../../common/constants";
+import { CommonResourceKey, ResourceType } from "../../common/constants";
 import withLoadingPage from "../../hoc/with-loading-page";
 
 const MobilePage: LocalizedPage = ({ t }) => {
   return (
-    <Layout title="Mobile" breadcrumbs={[t(ResourceKey.MOBILE)]}>
+    <Layout title="Mobile" breadcrumbs={[t(CommonResourceKey.MOBILE)]}>
       <h1>Mobile Page</h1>
     </Layout>
   );

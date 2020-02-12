@@ -1,11 +1,11 @@
 import * as React from "react";
 import Layout from "../../components/layout";
 import { LocalizedPage } from "../../common/helpers/Localizer";
-import { ResourceKey, ResourceType } from "../../common/constants";
+import { CommonResourceKey, ResourceType } from "../../common/constants";
 import withLoadingPage from "../../hoc/with-loading-page";
 
 const FavoritesPage: LocalizedPage = ({ t }) => {
-  const breadcrumbs = [t(ResourceKey.BASKETBALL), t(ResourceKey.FAVORITES)];
+  const breadcrumbs = [t(CommonResourceKey.BASKETBALL), t(CommonResourceKey.FAVORITES)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>

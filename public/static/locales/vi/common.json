@@ -23,5 +23,10 @@
   "languages": "Languages",
   "login": "Login",
   "register": "Register",
-  "cancel": "Cancel"
+  "cancel": "Cancel",
+  "league": "League",
+  "time": "Time",
+  "status": "Status",
+  "home": "Home",
+  "away": "Away"
 }

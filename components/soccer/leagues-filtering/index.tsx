@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import LeagueRow from '../league-row';
-import Checkbox from '../../checkbox';
+import Checkbox from '../../basic/checkbox';
 import { cloneDeep } from "lodash";
 import SearchBar from '../../search-bar';
 import { League } from '../filter-table/type';

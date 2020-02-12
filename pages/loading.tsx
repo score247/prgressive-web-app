@@ -2,9 +2,10 @@ import React from "react";
 import Router from 'next/router';
 import cookie from 'js-cookie';
 import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
-import { ViewMode, ResourceType, CookieName, MobileAppUrl, ResourceKey } from "../common/constants";
+import { ViewMode, CookieName, MobileAppUrl, CommonResourceKey } from "../common/constants";
 import Button from "../components/basic/button";
 import "../assets/styles/pages/loading.scss";
+import { ResourceType } from "../common/resources";
 
 const LoadingPage: LocalizedPage = props => {
     const { t } = props;
@@ -27,17 +28,17 @@ const LoadingPage: LocalizedPage = props => {
 
     return (
         <div className="loading-page">
-            <div className="title">{t(ResourceKey.SITE_TITLE)}</div>
-            <div className="note">{t(ResourceKey.LOADING_PAGE_NOTE)}</div>
+            <div className="title">{t(CommonResourceKey.SITE_TITLE)}</div>
+            <div className="note">{t(CommonResourceKey.LOADING_PAGE_NOTE)}</div>
             <div className="content">
-                <Button className="btn btn-mobile" onClick={handleMobileViewClick}>{t(ResourceKey.MOBILE)}</Button>
-                <Button className="btn btn-primary-outline btn-desktop" onClick={handleDesktopViewClick}>{t(ResourceKey.DESKTOP)}</Button>
-                <div className="divide">{t(ResourceKey.OR_MOBILE_APPLICATION)}</div>
-                <Button className="btn btn-download" onClick={handleAppStoreClick}>{t(ResourceKey.DOWNLOAD_FROM_APP_STORE)}</Button>
+                <Button className="btn btn-mobile" onClick={handleMobileViewClick}>{t(CommonResourceKey.MOBILE)}</Button>
+                <Button className="btn btn-primary-outline btn-desktop" onClick={handleDesktopViewClick}>{t(CommonResourceKey.DESKTOP)}</Button>
+                <div className="divide">{t(CommonResourceKey.OR_MOBILE_APPLICATION)}</div>
+                <Button className="btn btn-download" onClick={handleAppStoreClick}>{t(CommonResourceKey.DOWNLOAD_FROM_APP_STORE)}</Button>
                 <div className="logo"> <img src="/static/images/score247.svg" alt="Logo" /></div>
             </div>
             <div className="footer">
-                <span className="icon-copy-right"></span>{t(ResourceKey.COPYRIGHT)}
+                <span className="icon-copy-right"></span>{t(CommonResourceKey.COPYRIGHT)}
             </div>
         </div>
     );

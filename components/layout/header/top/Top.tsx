@@ -6,7 +6,7 @@ import { SportsEnum } from "../../../../common/enums/sport-enum";
 import { filter } from "lodash";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../common/helpers/Localizer";
-import { ResourceType, ResourceKey } from "../../../../common/constants";
+import { ResourceType, CommonResourceKey } from "../../../../common/resources";
 
 type Props = {
   sport: string;
@@ -66,8 +66,8 @@ const Top: React.FunctionComponent<Props> = props => {
             />
           </div>
           <div className="user-languages">
-            <div className="login">{t(ResourceKey.LANGUAGES)}</div>
-            <div className="login">{t(ResourceKey.LOGIN)}/{t(ResourceKey.REGISTER)}</div>
+            <div className="login">{t(CommonResourceKey.LANGUAGES)}</div>
+            <div className="login">{t(CommonResourceKey.LOGIN)}/{t(CommonResourceKey.REGISTER)}</div>
           </div>
         </div>
       </div>
