@@ -67,7 +67,7 @@ const Top: React.FunctionComponent<Props> = props => {
           </div>
           <div className="user-languages">
             <div className="login">{t(ResourceKey.LANGUAGES)}</div>
-            <div className="login">Login/Register</div>
+            <div className="login">{t(ResourceKey.LOGIN)}/{t(ResourceKey.REGISTER)}</div>
           </div>
         </div>
       </div>

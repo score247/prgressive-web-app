@@ -30,6 +30,9 @@ export class ResourceKey {
   public static readonly DOWNLOAD_FROM_APP_STORE = "download_from_app_store";
   public static readonly OR_MOBILE_APPLICATION = "or_mobile_application";
   public static readonly LANGUAGES = "languages";
+  public static readonly LOGIN = "login";
+  public static readonly REGISTER = "register";
+  public static readonly CANCEL = "cancel";
 }
 
 export class HttpStatusCode {

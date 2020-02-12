@@ -19,5 +19,9 @@
   "desktop": "Desktop",
   "loading_page_note": "You are using a smart device. Please select one of the following browsing mode that's compatible with your device.",
   "download_from_app_store": "Download from App Store",
-  "or_mobile_application": "or mobile application"
+  "or_mobile_application": "or mobile application",
+  "languages": "Languages",
+  "login": "Login",
+  "register": "Register",
+  "cancel": "Cancel"
 }
