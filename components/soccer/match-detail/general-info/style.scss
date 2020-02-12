@@ -93,5 +93,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    .mobile & {
+      color: #FF0000;
+    }
+  }
+
+  .half-score {
+    .mobile & {
+      color: #0057FF;
+    }
   }
 }
