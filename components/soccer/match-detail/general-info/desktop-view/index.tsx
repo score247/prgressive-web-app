@@ -23,9 +23,11 @@ const DesktopView: React.FC<Props> = props => {
         </div>
       </div>
       <div className="main-info">
-        <HomeTeam match={match} />
-        <Score match={match} />
-        <AwayTeam match={match} />
+        <div className="match-section">
+          <HomeTeam match={match} />
+          <Score match={match} />
+          <AwayTeam match={match} />
+        </div>        
         <span className="icon-menu-favorites"></span>
       </div>
     </div>

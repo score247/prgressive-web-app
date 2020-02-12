@@ -33,15 +33,25 @@
     .status-section {
       width: 5rem;
     }
-    .icon-menu-favorites {
+  }
+  
+  .match-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .icon-menu-favorites {
+    width: 8rem;
+    font-size: 2.4rem;
+    .mobile & {
       width: 5rem;
-    }
-    .match-section {
-      flex: 1;
-      display: flex;
-      justify-content: center;
+      font-size: 1.6rem;
     }
   }
+
+ 
   .home-section {
     text-align: right;
   }
@@ -87,20 +97,17 @@
       border-radius: 50%;
       background-color: #e0e0e0;
       line-height: 6.4rem;
+      color: #000;
     }
   }
   .full-score {
     display: flex;
     align-items: center;
     justify-content: center;
-    .mobile & {
-      color: #FF0000;
-    }
+    color: #FF0000;
   }
 
   .half-score {
-    .mobile & {
       color: #0057FF;
-    }
   }
 }
