@@ -155,13 +155,15 @@ class FilterSoccerTable extends React.Component<{}, State> {
 
     this.setState({
       displayMode: mode,
-      filterText: mode === DisplayMode.SHOW_ALL ? "" : this.state.filterText
+      filterText: mode === DisplayMode.SHOW_ALL ? "" : this.state.filterText,
+      filteredMatchByLeagues: this.state.matches,
+      selectedLeagues: mode === DisplayMode.SHOW_ALL ? this.displayLeagues.map(match => match.id) : this.state.selectedLeagues
     });
   };
 
   filterMatches = (mode: DisplayMode) => {
     if (mode === DisplayMode.SHOW_ALL) {
-      return this.state.filteredMatchByLeagues;
+      return this.state.matches;
     } else {
       const selectedIds = this.soccerTableRef.current?.getSelectedIds();
       if (!selectedIds || selectedIds.length <= 0) {
@@ -217,9 +219,9 @@ class FilterSoccerTable extends React.Component<{}, State> {
     filteredMatches = filteredMatches.filter(
       match =>
         match.HomeTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-          -1 ||
+        -1 ||
         match.AwayTeamName?.toLowerCase().search(filterText.toLowerCase()) !==
-          -1
+        -1
     );
 
     return (

@@ -92,6 +92,12 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         });
     }
 
+    isCheckAllSelected = (displayLeagues: League[]) => {
+        return (this.state.selectedLeagues.length > 0 &&
+            this.state.selectedLeagues.length >= displayLeagues.length &&
+            displayLeagues.map(x => x.id).every(leagueId => this.state.selectedLeagues.indexOf(leagueId) > -1));
+    }
+
     render() {
         this.displayLeagues = this.state.filterText !== "" ?
             this.props.leagues.filter(league => league.name.toLowerCase().includes(this.state.filterText.toLowerCase())) :
@@ -107,11 +113,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                     <div className="league-search-section">
                         <div>
                             <Checkbox id="all"
-                                checked={
-                                    this.state.selectedLeagues.length > 0 &&
-                                    this.state.selectedLeagues.length >= this.displayLeagues.length &&
-                                    this.displayLeagues.map(x => x.id).every(leagueId => this.state.selectedLeagues.indexOf(leagueId) > -1)
-                                }
+                                checked={this.isCheckAllSelected(this.displayLeagues)}
                                 value="all"
                                 onChange={this.handleSelectAll} />
                             <span>Check all</span>
