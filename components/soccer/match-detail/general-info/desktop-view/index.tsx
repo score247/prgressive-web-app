@@ -1,11 +1,12 @@
 import React from "react";
-import { DateTimeFormat, CommonResourceKey } from "../../../../../common/constants";
+import { DateTimeFormat } from "../../../../../common/constants";
 import { Props } from "./type";
 import HomeTeam from "../home-team";
 import AwayTeam from "../away-team";
 import Score from "../score";
 import { useTranslation } from "../../../../../common/helpers/Localizer";
 import { formatDate } from "../../../../../common/helpers/date-time-helper";
+import { CommonResourceKey } from "../../../../../common/resources";
 
 
 const DesktopView: React.FC<Props> = props => {
@@ -27,7 +28,7 @@ const DesktopView: React.FC<Props> = props => {
           <HomeTeam match={match} />
           <Score match={match} />
           <AwayTeam match={match} />
-        </div>        
+        </div>
         <span className="icon-menu-favorites"></span>
       </div>
     </div>

@@ -2,10 +2,10 @@ import React from "react";
 import Router from 'next/router';
 import cookie from 'js-cookie';
 import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
-import { ViewMode, CookieName, MobileAppUrl, CommonResourceKey } from "../common/constants";
+import { ViewMode, CookieName, MobileAppUrl } from "../common/constants";
 import Button from "../components/basic/button";
 import "../assets/styles/pages/loading.scss";
-import { ResourceType } from "../common/resources";
+import { ResourceType, CommonResourceKey } from "../common/resources";
 
 const LoadingPage: LocalizedPage = props => {
     const { t } = props;

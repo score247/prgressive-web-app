@@ -1,9 +1,9 @@
 import React from "react";
 import Layout from "../../components/layout";
-import { ResourceType, CommonResourceKey } from "../../common/constants";
 import { LocalizedPage } from "../../common/helpers/Localizer";
 import withLoadingPage from "../../hoc/with-loading-page";
 import SoccerMatchDetail from "../../components/soccer/match-detail";
+import { CommonResourceKey, ResourceType } from "../../common/resources";
 
 type Props = {
   matchId: string | string[];
