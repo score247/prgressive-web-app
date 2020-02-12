@@ -30,8 +30,8 @@ const LoadingPage: LocalizedPage = props => {
             <div className="title">{t(ResourceKey.SITE_TITLE)}</div>
             <div className="note">{t(ResourceKey.LOADING_PAGE_NOTE)}</div>
             <div className="content">
-                <Button className="btn btn-mobile" onClick={handleMobileViewClick}>{t(ResourceKey.MOBILE_WEBSITE)}</Button>
-                <Button className="btn btn-primary-outline btn-desktop" onClick={handleDesktopViewClick}>{t(ResourceKey.DESKTOP_WEBSITE)}</Button>
+                <Button className="btn btn-mobile" onClick={handleMobileViewClick}>{t(ResourceKey.MOBILE)}</Button>
+                <Button className="btn btn-primary-outline btn-desktop" onClick={handleDesktopViewClick}>{t(ResourceKey.DESKTOP)}</Button>
                 <div className="divide">{t(ResourceKey.OR_MOBILE_APPLICATION)}</div>
                 <Button className="btn btn-download" onClick={handleAppStoreClick}>{t(ResourceKey.DOWNLOAD_FROM_APP_STORE)}</Button>
                 <div className="logo"> <img src="/static/images/score247.svg" alt="Logo" /></div>

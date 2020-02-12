@@ -17,6 +17,6 @@ const MobileSearchBar: React.FC<Props> = (props) => {
             <span className="btn-cancel" onClick={handleCancelClick}>Cancel</span>
         </div>
     );
-}
+};
 
 export default MobileSearchBar;
