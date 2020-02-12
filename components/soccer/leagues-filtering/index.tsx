@@ -102,8 +102,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         this.displayLeagues = this.state.filterText !== "" ?
             this.props.leagues.filter(league => league.name.toLowerCase().includes(this.state.filterText.toLowerCase())) :
             this.props.leagues;
-
-        const leaguesFiltering = ({ isMobile }: { isMobile: boolean }) => (
+        return (
             <Fragment>
                 <div className="header-filter">
                     <div className="text-header">League filtering</div>
@@ -124,7 +123,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                             onReset={this.onResetLeaguesFilterText}
                             placeHolder="Find leagues" />
                     </div>
-                    <div className={isMobile ? "mobile-list-league" : "list-league"}>
+                    <div className="list-league">
                         {this.displayLeagues.map(league => <LeagueRow
                             key={league.id}
                             isSelected={this.state.selectedLeagues.indexOf(league.id) >= 0}
@@ -138,7 +137,6 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                 </div>
             </Fragment>
         );
-        return <DeviceContextConsumer>{leaguesFiltering}</DeviceContextConsumer>;
     }
 }
 
