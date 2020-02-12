@@ -35,6 +35,10 @@
             font-size: 0.5rem;
         }
     }
+
+    .mobile & {
+        width: 100%;
+    }
 }
 
 .info-tab {

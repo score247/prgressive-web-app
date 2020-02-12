@@ -9,22 +9,6 @@ type Props = {
   matchInfo: MatchInfo;
 };
 
-const styles = {
-  slide: {
-    padding: 15,
-    minHeight: 100,
-    color: "#fff"
-  },
-  slide1: {
-    backgroundColor: "#FEA900"
-  },
-  slide2: {
-    backgroundColor: "#B3DC4A"
-  },
-  slide3: {
-    backgroundColor: "#6AC0FF"
-  }
-};
 const Mobile: React.FC<Props> = props => {
   const [selectedTabIndex, setTab] = useState(0);
 
@@ -41,22 +25,22 @@ const Mobile: React.FC<Props> = props => {
           <Tab>Table</Tab>
         </TabList>
         <SwipeableViews index={selectedTabIndex} onChangeIndex={setTab} enableMouseEvents>
-          <TabPanel forceRender={true} style={Object.assign({}, styles.slide, styles.slide1)}>
+          <TabPanel forceRender={true} >
             <MatchInfoTab matchId={props.matchInfo.Match.Id} />
           </TabPanel>
-          <TabPanel style={Object.assign({}, styles.slide, styles.slide2)}>
+          <TabPanel>
             Tracker
           </TabPanel>
-          <TabPanel style={Object.assign({}, styles.slide, styles.slide3)}>
+          <TabPanel>
             Stats
           </TabPanel>
-          <TabPanel style={Object.assign({}, styles.slide, styles.slide1)}>
+          <TabPanel>
             Line-ups
           </TabPanel>
-          <TabPanel style={Object.assign({}, styles.slide, styles.slide2)}>
+          <TabPanel>
             H2H
           </TabPanel>
-          <TabPanel style={Object.assign({}, styles.slide, styles.slide3)}>
+          <TabPanel>
             Table
           </TabPanel>
         </SwipeableViews>

@@ -19,7 +19,7 @@ class MatchInfoTab extends React.Component<Props, State> {
     }
 
     render() {
-        const collapseExpandClass = this.state.isBallTrackerCollapsed ? "expand" : "collapse";
+        const collapseExpandClass = this.state.isBallTrackerCollapsed ? "collapse" : "expand";
         const ballTrackerHeader = <div className="ball-tracker-header">
             <span className="text">Ball Tracker</span>
             <span 
