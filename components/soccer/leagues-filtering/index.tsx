@@ -116,7 +116,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                 </div>
                 <div className="content-league">
                     <div className="league-search-section">
-                        <div>
+                        <div className="check-all">
                             <Checkbox id="all"
                                 checked={this.isCheckAllSelected(this.displayLeagues)}
                                 value="all"

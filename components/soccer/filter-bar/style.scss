@@ -56,6 +56,10 @@
     .txt-search {
       height: 3rem;
     }
+    .icon-search {
+      top: .6rem;
+      left: .4rem;
+    }
   }
 }
 
@@ -69,6 +73,40 @@
   display: flex;
   flex-direction: column;
   overflow: hidden !important;
+  &.mobile {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    .league-row {
+      .icon-menu-favorites {
+        padding-right: 0;
+      }
+    }
+    .search-section {
+      background-color: transparent;
+      position: relative;
+      width: 100%;
+      padding: 0;
+      margin: .4rem 0;
+      .search-box {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+    .list-league {
+      padding: 0.8rem 1.2rem 0.8rem 1.6rem;
+    }
+    .league-search-section {
+      flex-direction: column-reverse;
+      align-items: flex-start;
+      padding: 0 0.8rem;
+      .check-all {
+        margin-left: 0.8rem;
+        margin-bottom: .8rem;
+      }
+    }
+   
+  }
 
   .checkbox input[type="checkbox"],
   .checkbox label:before,
@@ -133,11 +171,9 @@
 
     .search-box {
       position: relative;
+      border-radius: 2rem;
     }
 
-    .icon-close {
-      display: none;
-    }
   }
 }
 
@@ -146,6 +182,9 @@
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 1.2rem;
   padding: 0.8rem;
+  .mobile & {
+    grid-template-columns: 1fr;
+  }
 
   .league-row {
     flex: 0 1 33.33%;
@@ -154,6 +193,9 @@
     justify-content: space-between;
     cursor: pointer;
     border-right: 1px solid #DEE2E6;
+    .mobile & {
+      border-right: none;
+    }
     .icon-menu-favorites {
       padding-right: 1.8rem;
     }
@@ -171,11 +213,15 @@
 
   .btn {
     min-width: 18rem;
+    .mobile & {
+      min-width: 17rem;
+    }
   }
 }
 
 .ReactModal__Overlay {
   background-color: rgba(229, 229, 229, 0.6) !important;
+  z-index: 99999;
 }
 
 .mobile-sort-menu {

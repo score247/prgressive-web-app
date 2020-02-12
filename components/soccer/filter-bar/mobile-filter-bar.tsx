@@ -87,6 +87,7 @@ export default class MobileFilterBar extends React.Component<Props, State> {
                 <Modal
                     isOpen={this.props.isLeaguesFilteringPopupOpen}
                     ariaHideApp={false}
+                    className="mobile"
                 >
                     <LeaguesFilteringTable
                         leagues={this.props.leagues}
