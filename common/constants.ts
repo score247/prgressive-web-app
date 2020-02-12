@@ -29,6 +29,7 @@ export class ResourceKey {
   public static readonly LOADING_PAGE_NOTE = "loading_page_note";
   public static readonly DOWNLOAD_FROM_APP_STORE = "download_from_app_store";
   public static readonly OR_MOBILE_APPLICATION = "or_mobile_application";
+  public static readonly LANGUAGES = "languages";
 }
 
 export class HttpStatusCode {

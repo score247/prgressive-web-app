@@ -4,10 +4,13 @@ import Select, { ValueType } from "react-select";
 import Router from "next/router";
 import { SportsEnum } from "../../../../common/enums/sport-enum";
 import { filter } from "lodash";
+import { WithTranslation } from "next-i18next";
+import { withTranslation } from "../../../../common/helpers/Localizer";
+import { ResourceType, ResourceKey } from "../../../../common/constants";
 
-interface IProps {
+type Props = {
   sport: string;
-}
+} & WithTranslation;
 
 interface SelectOptions {
   value: string;
@@ -47,7 +50,8 @@ const onChangeSportMobile = (selectedOption: ValueType<SelectOptions>) => {
   Router.push(option.value);
 };
 
-const Top: React.FunctionComponent<IProps> = ({ sport }) => {
+const Top: React.FunctionComponent<Props> = props => {
+  const { t, sport } = props;
   const sportOptions = createOptions();
   return (
     <>
@@ -62,7 +66,7 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => {
             />
           </div>
           <div className="user-languages">
-            <div className="login">Languages</div>
+            <div className="login">{t(ResourceKey.LANGUAGES)}</div>
             <div className="login">Login/Register</div>
           </div>
         </div>
@@ -78,10 +82,9 @@ const Top: React.FunctionComponent<IProps> = ({ sport }) => {
           onChange={onChangeSportMobile}
           isSearchable={false}
         />
-        {/* <i className="icon-search" /> */}
       </div>
     </>
   );
 };
 
-export default Top;
+export default withTranslation(ResourceType.COMMON)(Top);

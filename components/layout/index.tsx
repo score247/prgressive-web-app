@@ -29,9 +29,6 @@ const Layout: React.FunctionComponent<Props> = ({ children, title = "Home", brea
             <Breadcrumbs breadcrumbs={breadcrumbs} />
             <div className="wrap-content">
               {children}
-              {/* <LeftBar />
-              <div className="main-container">{children}</div>
-              <RightBar /> */}
             </div>
           </div>
           <Footer />

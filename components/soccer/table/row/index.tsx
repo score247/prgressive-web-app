@@ -32,7 +32,7 @@ class SoccerRow extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      isSelected: false
+      isSelected: this.props.isSelected
     };
   }
 
@@ -93,6 +93,8 @@ class SoccerRow extends React.Component<Props, State> {
         </td>
       );
     };
+
+    const { isSelected } = this.state;
 
     return (
       <>
