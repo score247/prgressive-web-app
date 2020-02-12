@@ -107,7 +107,11 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                     <div className="league-search-section">
                         <div>
                             <Checkbox id="all"
-                                checked={this.state.selectedLeagues.length > 0 && this.state.selectedLeagues.length === this.displayLeagues.length}
+                                checked={
+                                    this.state.selectedLeagues.length > 0 &&
+                                    this.state.selectedLeagues.length === this.displayLeagues.length &&
+                                    this.state.selectedLeagues.every(leagueId => this.displayLeagues.map(x => x.id).indexOf(leagueId) > -1)
+                                }
                                 value="all"
                                 onChange={this.handleSelectAll} />
                             <span>Check all</span>
