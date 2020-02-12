@@ -7,6 +7,7 @@ import {
 } from "../../../../../common/enums/match-status-type";
 import { MatchSummary } from "../../../../../models";
 import Status from "../status";
+import { useDeviceContext } from "../../../../../contexts/device-context";
 
 function isPreMatch(matchStatusId?: number): boolean {
   return !matchStatusId || PreMatchStatuses.some(x => x === matchStatusId);
@@ -42,12 +43,13 @@ const Score: React.FC<Props> = props => {
   const { match } = props;
   const matchStatusId = match.MatchStatus?.Value;
   const renderScore = !isPreMatch(matchStatusId);
+  const { isMobile } = useDeviceContext();
 
   return (
     <div className="score">
       <div className="full-score">
         <div className="home-score">{renderScore && match.HomeScore}</div>
-        <Status match={match} />
+        {isMobile ? <div>-</div> : <Status match={match} />}
         <div className="away-score">{renderScore && match.AwayScore}</div>
       </div>
       {renderFirstHalfScore(match)}
