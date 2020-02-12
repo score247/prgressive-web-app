@@ -1,5 +1,5 @@
 import React from "react";
-import { DateTimeFormat } from "../../../../../common/constants";
+import { DateTimeFormat, ResourceKey } from "../../../../../common/constants";
 import { Props } from "./type";
 import HomeTeam from "../home-team";
 import AwayTeam from "../away-team";
@@ -16,7 +16,7 @@ const DesktopView: React.FC<Props> = props => {
       <div className="extra-info">
         <div className="league-name">{match?.LeagueName}</div>
         <div className="kick-off-time">
-          {`${t("kickofftime")}: ${formatDate(
+          {`${t(ResourceKey.MY_FAVORITES)}: ${formatDate(
             new Date(match.EventDate[0]),
             DateTimeFormat.DATE_TIME
           )}`}

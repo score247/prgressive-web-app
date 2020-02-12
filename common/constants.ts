@@ -33,6 +33,7 @@ export class ResourceKey {
   public static readonly LOGIN = "login";
   public static readonly REGISTER = "register";
   public static readonly CANCEL = "cancel";
+  public static readonly KICK_OFF_TIME = "kickofftime";
 }
 
 export class HttpStatusCode {
