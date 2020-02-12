@@ -16,7 +16,7 @@ type Props = {
 const sortOptions = [
     {
         value: 1,
-        label: "Kick off time"
+        label: "KO time"
     },
     {
         value: 2,

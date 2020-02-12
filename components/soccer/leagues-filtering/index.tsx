@@ -4,7 +4,6 @@ import Checkbox from '../../checkbox';
 import { cloneDeep } from "lodash";
 import SearchBar from '../../search-bar';
 import { League } from '../filter-table/type';
-import { DeviceContextConsumer } from "../../../contexts/device-context";
 
 type State = {
     selectedLeagues: string[];
@@ -67,17 +66,23 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
         });
     };
 
-    clearAllSelectedLeagues = () => {
-        this.setState({
-            selectedLeagues: []
-        });
-    }
-
     handleFilterLeaguesChange = (text: string) => {
-        if (this.state.selectedLeagues.length !== 0 && this.state.selectedLeagues.length === this.props.leagues.length) {
-            this.clearAllSelectedLeagues();
+        let selectedLeagues: string[] = [];
+        const filteredLeagues = text !== "" ?
+            this.props.leagues.filter(league =>
+                league.name?.toLowerCase().search(text.toLowerCase()) !== -1 ||
+                league.abbreviation?.toLowerCase().search(text.toLowerCase()) !== -1)
+                .map(x => x.id) :
+            this.state.selectedLeagues;
+
+        if (this.state.selectedLeagues.length !== this.props.leagues.length) {
+            selectedLeagues = this.state.selectedLeagues;
+        } else {
+            selectedLeagues = filteredLeagues;
         }
+
         this.setState({
+            selectedLeagues: selectedLeagues,
             filterText: text
         });
     };
@@ -94,6 +99,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
 
     isCheckAllSelected = (displayLeagues: League[]) => {
         return (this.state.selectedLeagues.length > 0 &&
+            this.displayLeagues.length > 0 &&
             this.state.selectedLeagues.length >= displayLeagues.length &&
             displayLeagues.map(x => x.id).every(leagueId => this.state.selectedLeagues.indexOf(leagueId) > -1));
     }
@@ -115,7 +121,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                                 checked={this.isCheckAllSelected(this.displayLeagues)}
                                 value="all"
                                 onChange={this.handleSelectAll} />
-                            <span>Check all</span>
+                            <span onClick={this.handleSelectAll}>Check all</span>
                         </div>
                         <SearchBar
                             filterText={this.state.filterText}

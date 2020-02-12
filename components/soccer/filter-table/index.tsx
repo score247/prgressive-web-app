@@ -60,7 +60,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
     this.displayLeagues = uniqBy(
       matches.map(match => ({
         name: match.LeagueName,
-        id: match.LeagueId
+        id: match.LeagueId,
+        abbreviation: match.LeagueAbbreviation
       })),
       "id"
     ).sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
@@ -82,7 +83,8 @@ class FilterSoccerTable extends React.Component<{}, State> {
     this.displayLeagues = uniqBy(
       matches.map(match => ({
         name: match.LeagueName,
-        id: match.LeagueId
+        id: match.LeagueId,
+        abbreviation: match.LeagueAbbreviation
       })),
       "id"
     ).sort((a, b) => (a.name > b.name ? 1 : b.name > a.name ? -1 : 0));
