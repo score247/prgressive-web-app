@@ -2,15 +2,15 @@ import NextI18Next, { WithTranslation } from "next-i18next";
 import { NextPage } from "next";
 const NextI18NextInstance = new NextI18Next({
   defaultLanguage: "en",
-  otherLanguages: ["vi", "id", "ms", "th", "zh"],
+  otherLanguages: ["vi", "id", "th", "zhTW", "zhCN"],
   localePath:
     typeof window === "undefined" ? "public/static/locales" : "static/locales",
   localeSubpaths: {
     vi: "vi",
     id: "id",
-    ms: "ms",
     th: "th",
-    zh: "zh"
+    zhCN: "zhCN",
+    zhTW: "zhTW",
   }
 });
 

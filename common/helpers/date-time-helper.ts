@@ -1,4 +1,4 @@
-import { enUS, vi } from "date-fns/locale";
+import { enUS, vi, th, id, zhCN, zhTW } from "date-fns/locale";
 import { format as datefnsFormat } from "date-fns";
 
 export function getLocale(language = "en") {
@@ -7,6 +7,14 @@ export function getLocale(language = "en") {
       return enUS;
     case "vi":
       return vi;
+    case "id":
+      return id;
+    case "th":
+      return th;
+    case "zhCN":
+      return zhCN;
+    case "zhTW":
+      return zhTW;
   }
 
   return enUS;

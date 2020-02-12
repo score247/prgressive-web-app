@@ -1,9 +1,8 @@
 import "./style.scss";
 import React, { PureComponent } from "react";
 import { State, Props } from "./type";
-import { format, isSameDay } from "date-fns";
-import { ResourceType, ResourceKey, DateTimeFormat } from "../../common/constants";
-import { withTranslation } from "../../common/helpers/Localizer";
+import { format } from "date-fns";
+import { DateTimeFormat } from "../../common/constants";
 
 class Breadcrumbs extends PureComponent<Props, State> {
   intervalId?: number;
@@ -40,4 +39,4 @@ class Breadcrumbs extends PureComponent<Props, State> {
   }
 }
 
-export default withTranslation(ResourceType.COMMON)(Breadcrumbs);
+export default Breadcrumbs;

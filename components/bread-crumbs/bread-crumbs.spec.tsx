@@ -18,9 +18,6 @@ describe("DateBar", () => {
     };
 
     props = {
-      t: (key: string): string => key,
-      i18n: instance,
-      tReady: true,
       breadcrumbs: ["soccer", "today"]
     };
   });
@@ -32,7 +29,7 @@ describe("DateBar", () => {
 
   it("should render breadcrumbs", () => {
     const wrapper = shallow(<Breadcrumbs {...props} />);
-    expect(wrapper.dive().find(".selected-sport").length).toBeGreaterThanOrEqual(1);
+    expect(wrapper.find(".selected-sport").length).toBeGreaterThanOrEqual(1);
   });
 
   it("should call clearInterval when unmount", () => {
