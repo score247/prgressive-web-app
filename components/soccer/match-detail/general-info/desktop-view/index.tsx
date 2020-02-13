@@ -17,7 +17,7 @@ const DesktopView: React.FC<Props> = props => {
       <div className="extra-info">
         <div className="league-name">{match?.LeagueName}</div>
         <div className="kick-off-time">
-          {`${t(CommonResourceKey.MY_FAVORITES)}: ${formatDate(
+          {`${t(CommonResourceKey.KICK_OFF_TIME)}: ${formatDate(
             new Date(match.EventDate[0]),
             DateTimeFormat.DATE_TIME
           )}`}
