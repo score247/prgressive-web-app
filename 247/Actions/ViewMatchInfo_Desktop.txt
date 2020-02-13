@@ -1,0 +1,162 @@
+*** Settings ***
+Library           Selenium2Library
+Library           AppiumLibrary
+Library           DateTime
+Resource          ../Interfaces/CreateDataTool/CreateMatch.txt
+Resource          ../Interfaces/CreateDataTool/LoginPage.txt
+Resource          ../Actions/CommonAction.txt
+Resource          ../Interfaces/Desktop/01_Layout/DateBar_Web.txt
+
+*** Keywords ***
+Check leagues code Desktop
+    [Arguments]    ${matchID}    ${LeagueCode}
+    Open Home Page
+    ${xpath}=    Catenate    //input[@id = '${matchID}']//ancestor::tr/td[2]
+    ${xpath}=    Replace String    ${xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${xpath}    timeout=60
+    ${leagues}    Selenium2Library.Get text    ${xpath}
+    Log To Console    ${leagues}
+    Should be equal    ${leagues}    ${LeagueCode}
+    Close Browser
+
+Check leagues code Mobile
+    [Arguments]    ${matchID}    ${LeagueCode}
+    setup and open android phone
+    ${xpath}=    Catenate    //input[@id = '${matchID}']//ancestor::tr/td[2]
+    ${xpath}=    Replace String    ${xpath}    ${space}    ${empty}
+    AppiumLibrary.Page Should Contain Element    ${xpath}    timeout=60
+    ${leagues}    AppiumLibrary.Get text    ${xpath}
+    Log To Console    ${leagues}
+    Should be equal    ${leagues}    ${LeagueCode}
+    Close Browser
+
+Verify LeaguesCode
+    [Arguments]    ${view}
+    Open Excel    D:/RB/247/Data set/Test.xls
+    ${RowCount}    Get Row Count    Sheet1
+    : FOR    ${row}    IN RANGE    0    3
+    \    ${val1}    Read Cell Data By Coordinates    Sheet1    0    ${row}
+    \    ${val2}    Read Cell Data By Coordinates    Sheet1    1    ${row}
+    \    ${val3}    Read Cell Data By Coordinates    Sheet1    2    ${row}
+    \    ${lengthval3}    Get Length    ${val3}
+    \    ${LeagueCode}    Get First Letter    ${val2}
+    \    ${LeagueCode}=    Run Keyword If    ${lengthval3}>0    Catenate    ${val3}    ${LeagueCode}
+    \    ...    ELSE    Replace String    ${LeagueCode}    ${space}    ${empty}
+    \    ${NewMatchID}    Create New Match    ${val1}
+    \    Close Browser
+    \    Log To Console    ${NewMatchID}
+    \    Log To Console    ${LeagueCode}
+    \    Log To Console    ${lengthval3}
+    \    Run Keyword If    ${view}>0    Check leagues code Desktop    ${NewMatchID}    ${LeagueCode}
+    \    ...    ELSE    Check leagues code Mobile    ${NewMatchID}    ${LeagueCode}
+    \    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    \    Delete New Match    ${xpathdel}
+
+Verify Match Info
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Selenium2Library.Page Should Contain Element    ${KOTime_Xpath}    timeout=115
+    ${KOTime_txt}    Selenium2Library.Get text    ${KOTime_Xpath}
+    ${KOTime_txt}=    Get Substring    ${KOTime_txt}    11    16
+    Log To Console    ${KOTime_txt}
+    Close Browser
+    Open Home Page
+    ${KOTime_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[3]
+    ${KOTime_Result_Xpath}=    Replace String    ${KOTime_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${KOTime_Result_Xpath}    timeout=60
+    ${KOTime_Result_txt}    Selenium2Library.Get text    ${KOTime_Result_Xpath}
+    Should be equal    ${KOTime_txt}    ${KOTime_Result_txt}
+    # Check HomeName AwayName
+    ${HomeName_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[5]
+    ${HomeName_Result_Xpath}=    Replace String    ${HomeName_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${HomeName_Result_Xpath}    timeout=60
+    ${HomeName_Result_txt}    Selenium2Library.Get text    ${HomeName_Result_Xpath}
+    Should be equal    Mike-Arsenal    ${HomeName_Result_txt}
+    ${AwayName_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[7]
+    ${AwayName_Result_Xpath}=    Replace String    ${AwayName_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${AwayName_Result_Xpath}    timeout=60
+    ${AwayName_Result_txt}    Selenium2Library.Get text    ${AwayName_Result_Xpath}
+    Should be equal    Mike-Liverpool    ${AwayName_Result_txt}
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete New Match    ${xpathdel}
+
+Verify Postponed Match
+    ${NewMatchID}    Create Post Match    sr:tournament:17    postponed
+    Close Browser
+    Open Home Page
+    sleep    3s
+    Selenium2Library.Page Should Contain Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]    timeout=60
+    Selenium2Library.Click Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]
+    sleep    3s
+    ${Status_Result_Xpath}=    Catenate    SEPARATOR=    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    ${Status_Result_txt}    Postp.
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete Post Match    ${xpathdel}
+
+Verify start_delayed Match
+    ${NewMatchID}    Create Post Match    sr:tournament:17    start_delayed
+    Close Browser
+    Open Home Page
+    sleep    3s
+    Selenium2Library.Page Should Contain Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]    timeout=60
+    Selenium2Library.Click Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]
+    sleep    3s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    ${Status_Result_txt}    Delayed
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete Post Match    ${xpathdel}
+
+Verify cancel Match
+    ${NewMatchID}    Create Post Match    sr:tournament:17    cancelled
+    Close Browser
+    Open Home Page
+    sleep    3s
+    Selenium2Library.Page Should Contain Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]    timeout=60
+    Selenium2Library.Click Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]
+    sleep    3s
+    ${Status_Result_Xpath}=    Catenate    SEPARATOR=    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    ${Status_Result_txt}    Canc.
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete Post Match    ${xpathdel}
+
+Verify abandoned Match
+    ${NewMatchID}    Create Post Match    sr:tournament:17    abandoned
+    Close Browser
+    Open Home Page
+    sleep    3s
+    Selenium2Library.Page Should Contain Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]    timeout=60
+    Selenium2Library.Click Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]
+    sleep    3s
+    ${Status_Result_Xpath}=    Catenate    SEPARATOR=    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    ${Status_Result_txt}    AB
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete Post Match    ${xpathdel}
+
+Verify interrupted Match
+    ${NewMatchID}    Create Post Match    sr:tournament:17    interrupted
+    Close Browser
+    Open Home Page
+    sleep    3s
+    Selenium2Library.Page Should Contain Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]    timeout=60
+    Selenium2Library.Click Element    //*[@id="__next"]/div/div/div[2]/div[2]/div[2]/div/div[2]
+    sleep    3s
+    ${Status_Result_Xpath}=    Catenate    SEPARATOR=    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    ${Status_Result_txt}    INT
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete Post Match    ${xpathdel}

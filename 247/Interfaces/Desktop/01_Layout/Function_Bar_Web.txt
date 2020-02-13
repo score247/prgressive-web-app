@@ -1,0 +1,19 @@
+*** Variables ***
+${Soccer_Sports}    //body/div/div/header/nav[1]/div/div[1]/ul/li[1]/a
+${Basketball_Sports}    //body/div/div/header/nav[1]/div/div[1]/ul/li[2]/a
+${Esports_Sports}    //body/div/div/header/nav[1]/div/div[1]/ul/li[3]/a
+${leagues_fn_bar}    //body/div/div/header/nav[1]/div/div[2]/ul/li[1]/a
+${my_favorites_fn_bar}    //body/div/div/header/nav[1]/div/div[2]/ul/li[2]/a
+${news_fn_bar}    //body/div/div/header/nav[1]/div/div[2]/ul/li[3]/a
+${tv_schedules_fn_bar}    //body/div/div/header/nav[1]/div/div[2]/ul/li[4]/a
+${mobile_fn_bar}    //body/div/div/header/nav[1]/div/div[2]/ul/li[5]/a
+${settings_fn_bar}    //body/div/div/header/nav[1]/div/div[2]/ul/li[6]/a
+${soccer_menu}    //body/div/div/header/nav[1]/div/div[1]/ul/li[1]
+${basketball_menu}    //body/div/div/header/nav[1]/div/div[1]/ul/li[2]
+${esports_menu}    //body/div/div/header/nav[1]/div/div[1]/ul/li[3]
+${leagues_menu}    //body/div/div/header/nav[1]/div/div[2]/ul/li[1]
+${my_favorites_menu}    //body/div/div/header/nav[1]/div/div[2]/ul/li[2]
+${news_menu}      //body/div/div/header/nav[1]/div/div[2]/ul/li[3]
+${tv_schedules_menu}    //body/div/div/header/nav[1]/div/div[2]/ul/li[4]
+${mobile_menu}    //body/div/div/header/nav[1]/div/div[2]/ul/li[5]
+${settings_menu}    //body/div/div/header/nav[1]/div/div[2]/ul/li[6]

@@ -1,0 +1,11 @@
+*** Variables ***
+${Browser}        Chrome
+${SiteUrl}        https://score247-web.nexdev.net
+${DashboardTitle}    You have not provided the correct credentials to log in. Please check your username and password are correct.
+${Header}         //div/header/div[@class ='header-top']
+${Header_logo}    //div/header/div[1]/div[1]/div[1]/img[1]
+${Header_logo_text}    //div/header/div[1]/div[1]/div[1]/img[2]
+${Languages_btn}    //body/div/div/header/div[1]/div/div[2]/div[1]
+${Login_btn}      //body/div/div/header/div[1]/div/div[2]/div[2]
+####### Mobile #######
+${Header_m}       //*[@id="__next"]/div/header/div[2]/div/div/div[1]/div/span

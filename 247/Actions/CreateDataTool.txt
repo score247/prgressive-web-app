@@ -1,0 +1,88 @@
+*** Settings ***
+Library           Selenium2Library
+Library           AppiumLibrary
+Library           DateTime
+Resource          ../Interfaces/CreateDataTool/CreateMatch.txt
+Resource          ../Interfaces/CreateDataTool/LoginPage.txt
+Resource          ../Actions/CommonAction.txt
+
+*** Keywords ***
+Get First Letter
+    [Arguments]    ${input}    ${result}=
+    @{words} =    Split String    ${input}    ${SPACE}
+    : FOR    ${letter}    IN    @{words}
+    \    @{string} =    Split String To Characters    ${letter}
+    \    ${result}=    Catenate    SEPARATOR=    ${result}    ${string}[0]
+    \    ${result}=    Convert To Uppercase    ${result}
+    [Return]    ${result}
+
+Login Create Data Page
+    open browser    http://ha.nexdev.net:7873/dev/    Firefox    alias=tab1
+    Maximize Browser Window
+    Selenium2Library.Page Should Contain Element    ${Login_username_txt}    timeout=15
+    Selenium2Library.Input Text    ${Login_username_txt}    score247
+    Selenium2Library.Input Text    ${Login_password_txt}    score@247
+    Selenium2Library.Click button    ${Login_Submit_btn}
+
+Create New Match
+    [Arguments]    ${value}
+    Login Create Data Page
+    Selenium2Library.Page Should Contain Element    ${Data_NewMatch_btn}    timeout=15
+    Selenium2Library.Click button    ${Data_NewMatch_btn}
+    Selenium2Library.Page Should Contain Element    ${Data_League_sel}    timeout=15
+    Select From List By value    ${Data_League_sel}    ${value}
+    Selenium2Library.Page Should Contain Element    ${Data_Home_sel}    timeout=15
+    Select From List By value    ${Data_Home_sel}    sr:team:1759904207
+    Selenium2Library.Page Should Contain Element    ${Data_Away_sel}    timeout=15
+    Select From List By value    ${Data_Away_sel}    sr:team:955685600
+    Selenium2Library.Wait Until Page Contains Element    ${Data_Sunmit_btn}    timeout=15
+    Selenium2Library.Click button    ${Data_Sunmit_btn}
+    Selenium2Library.Wait Until Page Contains Element    ${Data_GetMatchID}    timeout=355
+    ${matchID}    Selenium2Library.Get text    ${Data_GetMatchID}
+    sleep    10s
+    [Return]    ${matchID}
+
+Create Post Match
+    [Arguments]    ${value}    ${Status}
+    Login Create Data Page
+    Selenium2Library.Page Should Contain Element    ${Data_NewMatch_btn}    timeout=15
+    Selenium2Library.Click button    ${Data_NewMatch_btn}
+    Selenium2Library.Page Should Contain Element    ${Data_League_sel}    timeout=15
+    Select From List By value    ${Data_League_sel}    ${value}
+    Selenium2Library.Page Should Contain Element    ${Data_Home_sel}    timeout=15
+    Select From List By value    ${Data_Home_sel}    sr:team:1759904207
+    Selenium2Library.Page Should Contain Element    ${Data_Away_sel}    timeout=15
+    Select From List By value    ${Data_Away_sel}    sr:team:955685600
+    Selenium2Library.Page Should Contain Element    //*[@id="newMatchStatus"]    timeout=15
+    Select From List By value    //*[@id="newMatchStatus"]    ${Status}
+    Select Yeterday Date    //input[@name='Match.Scheduled']
+    Selenium2Library.Click Element    //*[@id="Match_Referee"]
+    Selenium2Library.Wait Until Page Contains Element    ${Data_Sunmit_btn}    timeout=15
+    Selenium2Library.Click button    ${Data_Sunmit_btn}
+    Selenium2Library.Wait Until Page Contains Element    ${Data_GetMatchID}    timeout=355
+    ${matchID}    Selenium2Library.Get text    ${Data_GetMatchID}
+    sleep    10s
+    [Return]    ${matchID}
+
+Select Yeterday Date
+    [Arguments]    ${Xpath}
+    ${Yeterday_Date} =    Get Current Date    result_format=%m/%d/%Y    increment=-1 day
+    Selenium2Library.Input Text    ${Xpath}    ${Yeterday_Date}
+
+Delete New Match
+    [Arguments]    ${matchcode}
+    Login Create Data Page
+    Selenium2Library.Page Should Contain Element    ${matchcode}    timeout=15
+    Selenium2Library.Click Element    ${matchcode}
+    Close Browser
+
+Delete Post Match
+    [Arguments]    ${matchcode}
+    Login Create Data Page
+    sleep    2s
+    Selenium2Library.Page Should Contain Element    //body/main/form[2]/button[2]    timeout=60
+    Selenium2Library.Click Element    //body/main/form[2]/button[2]
+    sleep    2s
+    Selenium2Library.Page Should Contain Element    ${matchcode}    timeout=60
+    Selenium2Library.Click Element    ${matchcode}
+    Close Browser

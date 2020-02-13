@@ -1,0 +1,4 @@
+*** Variables ***
+${Login_username_txt}    //body/main/div/div/form/div[1]/input[@name='username']
+${Login_password_txt}    //body/main/div/div/form/div[2]/input[@name='password']
+${Login_Submit_btn}    //body/main/div/div/form/button

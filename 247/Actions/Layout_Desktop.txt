@@ -1,0 +1,190 @@
+*** Settings ***
+Library           Selenium2Library    run_on_failure=Selenium2Library.CapturePageScreenshot
+Library           DateTime
+Resource          ../Interfaces/Desktop/01_Layout/Header_Web.txt
+Resource          ../Interfaces/Desktop/01_Layout/Function_Bar_Web.txt
+Resource          ../Interfaces/Desktop/01_Layout/DateBar_Web.txt
+Resource          ../Interfaces/Desktop/01_Layout/Breadcrumbs.txt
+
+*** Keywords ***
+Assert Header
+    # Check Header
+    Selenium2Library.Page Should Contain Element    ${Header}    timeout=30s
+    Selenium2Library.Element Should Be Visible    ${Header}
+    Selenium2Library.Element Should Be Visible    ${Header_logo}
+    Selenium2Library.Element Should Be Visible    ${Header_logo_text}
+    Selenium2Library.Element Should Be Visible    ${Languages_btn}
+    Selenium2Library.Element Should Be Visible    ${Login_btn}
+
+Assert Fn_bar
+    # Check Function Bar
+    Selenium2Library.Page Should Contain Element    ${Soccer_Sports}    timeout=30s
+    Selenium2Library.Element Should Be Visible    ${Soccer_Sports}
+    Selenium2Library.Element Should Be Visible    ${Basketball_Sports}
+    Selenium2Library.Element Should Be Visible    ${Esports_Sports}
+    Selenium2Library.Element Should Be Visible    ${leagues_fn_bar}
+    Selenium2Library.Element Should Be Visible    ${my_favorites_fn_bar}
+    Selenium2Library.Element Should Be Visible    ${news_fn_bar}
+    Selenium2Library.Element Should Be Visible    ${tv_schedules_fn_bar}
+    Selenium2Library.Element Should Be Visible    ${mobile_fn_bar}
+    Selenium2Library.Element Should Be Visible    ${settings_fn_bar}
+    # Check defaulf UI
+    ${soccer_highlighted}=    Selenium2Library.Get Element Attribute    ${soccer_menu}@class
+    Should be equal    ${soccer_highlighted}    menu-item active
+    # Click on BASKETBALL
+    Selenium2Library.Click Element    ${Basketball_Sports}
+    Selenium2Library.Page Should Contain Element    ${Basketball_menu}    timeout=15
+    ${basketball_highlighted}=    Selenium2Library.Get Element Attribute    ${Basketball_menu}@class
+    Should be equal    ${basketball_highlighted}    menu-item active
+    # Click on ESPORTS
+    Selenium2Library.Click Element    ${Esports_Sports}
+    Selenium2Library.Page Should Contain Element    ${esports_menu}    timeout=15
+    sleep    1s
+    ${esports_highlighted}=    Selenium2Library.Get Element Attribute    ${esports_menu}@class
+    Should be equal    ${esports_highlighted}    menu-item active
+    # Click on LEAGUES
+    Selenium2Library.Click Element    ${leagues_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${leagues_menu}    timeout=15
+    ${leagues_highlighted}=    Selenium2Library.Get Element Attribute    ${leagues_menu}@class
+    Should be equal    ${leagues_highlighted}    menu-item active
+    # Click on MY FAVORITES
+    Selenium2Library.Click Element    ${my_favorites_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${my_favorites_menu}    timeout=15
+    ${my_favorites_highlighted}=    Selenium2Library.Get Element Attribute    ${my_favorites_menu}@class
+    Should be equal    ${my_favorites_highlighted}    menu-item active
+    # Click on NEWS
+    Selenium2Library.Click Element    ${news_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${news_menu}    timeout=15
+    ${news_highlighted}=    Selenium2Library.Get Element Attribute    ${news_menu}@class
+    Should be equal    ${news_highlighted}    menu-item active
+    # Click to TV SCHEDULES
+    Selenium2Library.Click Element    ${tv_schedules_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${tv_schedules_menu}    timeout=15
+    ${schedules_highlighted}=    Selenium2Library.Get Element Attribute    ${tv_schedules_menu}@class
+    Should be equal    ${schedules_highlighted}    menu-item active
+    # Click to MOBILE
+    Selenium2Library.Click Element    ${mobile_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${mobile_menu}    timeout=15
+    ${mobile_highlighted}=    Selenium2Library.Get Element Attribute    ${mobile_menu}@class
+    Should be equal    ${mobile_highlighted}    menu-item active
+    # Click to SETTINGS
+    Selenium2Library.Click Element    ${settings_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${settings_menu}    timeout=15
+    ${settings_highlighted}=    Selenium2Library.Get Element Attribute    ${settings_menu}@class
+    Should be equal    ${settings_highlighted}    menu-item active
+
+Assert Breadcrumbs
+    ${Now}=    Get Current Date    result_format='%Y-%m-%d %H:%M'
+    ${date}    Convert Date    ${now}    result_format=%d %b %Y
+    ${date+1}    Add Time To Date    ${now}    1 days    result_format=%d %b %Y
+    ${date+2}    Add Time To Date    ${Now}    2 days    result_format=%d %b %Y
+    ${date-1}    Add Time To Date    ${Now}    -1 days    result_format=%d %b %Y
+    ${date-2}    Add Time To Date    ${Now}    -2 days    result_format=%d %b %Y
+    # Check defaulf UI
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    Should be equal    ${Breadcrumbs_txt}    Soccer / Today
+    # Click on TODAY + 1
+    Selenium2Library.Click Element    ${Today+1}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    ${Breadcrumbs_txt_exp}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${date+1}
+    Should be equal    ${Breadcrumbs_txt}    ${Breadcrumbs_txt_exp}
+    # Click on TODAY + 2
+    Selenium2Library.Click Element    ${Today+2}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    ${Breadcrumbs_txt_exp}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${date+2}
+    Should be equal    ${Breadcrumbs_txt}    ${Breadcrumbs_txt_exp}
+    # Click on TODAY - 1
+    Selenium2Library.Click Element    ${Today-1}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    ${Breadcrumbs_txt_exp}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${date-1}
+    Should be equal    ${Breadcrumbs_txt}    ${Breadcrumbs_txt_exp}
+    # Click on TODAY - 2
+    Selenium2Library.Click Element    ${Today-2}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    ${Breadcrumbs_txt_exp}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${date-2}
+    Should be equal    ${Breadcrumbs_txt}    ${Breadcrumbs_txt_exp}
+    # Click on LEAGUES
+    Selenium2Library.Click Element    ${leagues_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    Should be equal    ${Breadcrumbs_txt}    Soccer / Leagues
+    # Click on MY FAVORITES
+    Selenium2Library.Click Element    ${my_favorites_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    Should be equal    ${Breadcrumbs_txt}    Soccer / My Favorites
+    # Click on NEWS
+    Selenium2Library.Click Element    ${news_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    Should be equal    ${Breadcrumbs_txt}    Soccer / News
+    # Click to TV SCHEDULES
+    Selenium2Library.Click Element    ${tv_schedules_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    ${LastText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${LastText_Breadcrumbs}
+    ${Breadcrumbs_txt}    Catenate    SEPARATOR=    ${FirstText_Breadcrumbs_txt}    ${space}    ${LastText_Breadcrumbs_txt}
+    Should be equal    ${Breadcrumbs_txt}    Soccer / Tv Schedules
+    # Click to MOBILE
+    Selenium2Library.Click Element    ${mobile_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    Should be equal    ${FirstText_Breadcrumbs_txt}    Mobile
+    # Click to SETTINGS
+    Selenium2Library.Click Element    ${settings_fn_bar}
+    Selenium2Library.Page Should Contain Element    ${FirstText_Breadcrumbs}    timeout=15
+    ${FirstText_Breadcrumbs_txt}=    Selenium2Library.Get Text    ${FirstText_Breadcrumbs}
+    Should be equal    ${FirstText_Breadcrumbs_txt}    Settings
+
+Assert Date_Bar
+    ${Now}=    Get Current Date    result_format='%Y-%m-%d %H:%M'
+    ${date_today}    Convert Date    ${Now}    result_format=%d %b
+    ${date+1}    Add Time To Date    ${Now}    1 days    result_format=%d %b
+    ${date+2}    Add Time To Date    ${Now}    2 days    result_format=%d %b
+    ${date-1}    Add Time To Date    ${Now}    -1 days    result_format=%d %b
+    ${date-2}    Add Time To Date    ${Now}    -2 days    result_format=%d %b
+    ${CurrentDay}    Get Current Date    result_format=%A
+    #Log    ${CurrentDay}
+    Selenium2Library.Page Should Contain Element    ${Today}    timeout=35
+    ${Today_txt}    Selenium2Library.Get Text    ${Today}
+    Should be equal    ${Today_txt}    ${date_today}
+    ${Today+1_txt}    Selenium2Library.Get Text    ${Today+1}
+    Should be equal    ${Today+1_txt}    ${date+1}
+    ${Today+2_txt}    Selenium2Library.Get Text    ${Today+2}
+    Should be equal    ${Today+2_txt}    ${date+2}
+    ${Today-1_txt}    Selenium2Library.Get Text    ${Today-1}
+    Should be equal    ${Today-1_txt}    ${date-1}
+    ${Today-2_txt}    Selenium2Library.Get Text    ${Today-2}
+    Should be equal    ${Today-2_txt}    ${date-2}
+
+Backgroup_color
+    ${BG}    Get CSS Property Value    //body/div/div/div/div[2]/div[2]/div[3]/table/tbody/tr[1]/td[2]    background-color
+    Log To Console    ${BG}
+
+Get CSS Property Value
+    [Arguments]    ${locator}    ${attribute name}
+    [Documentation]    Get the CSS property value of an Element.
+    ${css}=    Selenium2Library.Get WebElement    ${locator}
+    ${prop_val}=    Call Method    ${css}    value_of_css_property    ${attribute name}
+    [Return]    ${prop_val}

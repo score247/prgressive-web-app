@@ -1,0 +1,716 @@
+*** Settings ***
+Library           Selenium2Library
+Library           AppiumLibrary
+Library           DateTime
+Resource          ../Interfaces/CreateDataTool/CreateMatch.txt
+Resource          ../Interfaces/CreateDataTool/LoginPage.txt
+Resource          ../Actions/CommonAction.txt
+
+*** Keywords ***
+test
+    ${NewMatchID}    Create Post Match    sr:tournament:17    postponed
+
+Get TimeLine
+    sleep    2s
+    ${Timeline_txt}    Selenium2Library.Get Text    ${Timeline}
+    ${Timeline_txt}=    Replace String    ${Timeline_txt}    ${space}    ${empty}
+    ${Timeline_txt}=    Get Substring    ${Timeline_txt}    10    18
+    Log To Console    ${Timeline_txt}
+    ${Timeline_txt}=    Convert Time    ${Timeline_txt}    timer    exclude_millis=yes
+    ${Timeline_txt}=    Add Time To Time    ${Timeline_txt}    00:02:00    timer    exclude_millis=yes
+    Log To Console    ${Timeline_txt}
+    [Return]    ${Timeline_txt}
+
+Wait Create Event
+    [Arguments]    ${value}
+    Selenium2Library.Reload Page
+    ${rowcount}    Selenium2Library.Get Matching Xpath Count    @{row}
+    Should be true    ${rowcount}>${value}
+
+Get Row Event
+    ${CurrentRow}    Selenium2Library.Get Matching Xpath Count    @{row}
+    [Return]    ${CurrentRow}
+
+Scenario
+    [Arguments]    ${value}
+    Selenium2Library.Page Should Contain Element    ${Scenario_sel}    timeout=60
+    Select From List By value    ${Scenario_sel}    ${value}
+    Selenium2Library.Page Should Contain Element    ${Apply_Scenario_btn}    timeout=60
+    Selenium2Library.Click button    ${Apply_Scenario_btn}
+    sleep    5s
+
+Verify Card Event
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_ScoreChange_1H}
+    Wait Until Keyword Succeeds    40 times    4s    Wait Create Event    2
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    2s
+    Card Event    home    yellow_card
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    3s
+    #sleep    130s
+    #Selenium2Library.Page Should Contain Element    //td[text()='1 - 0']    timeout=300
+    ${YellowCard_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[5]//span[@class='yellow-card']
+    ${YellowCard_Result_Xpath}=    Replace String    ${YellowCard_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${YellowCard_Result_Xpath}    timeout=60
+    ${YellowCard_Result_txt}    Selenium2Library.Get text    ${YellowCard_Result_Xpath}
+    Should be equal    1    ${YellowCard_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Card Event    home    red_card
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    3s
+    ${RedCard_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[5]//span[@class='red-card']
+    ${RedCard_Result_Xpath}=    Replace String    ${RedCard_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${RedCard_Result_Xpath}    timeout=60
+    ${RedCard_Result_txt}    Selenium2Library.Get text    ${RedCard_Result_Xpath}
+    Should be equal    1    ${RedCard_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Card Event    home    yellow_red_card
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    3s
+    ${RedCard_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[5]//span[@class='red-card']
+    ${RedCard_Result_Xpath}=    Replace String    ${RedCard_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${RedCard_Result_Xpath}    timeout=60
+    ${RedCard_Result_txt}    Selenium2Library.Get text    ${RedCard_Result_Xpath}
+    Should be equal    2    ${RedCard_Result_txt}
+    sleep    1s
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    2s
+    Card Event    away    yellow_card
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    3s
+    ${YellowCard_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[7]//span[@class='yellow-card']
+    ${YellowCard_Result_Xpath}=    Replace String    ${YellowCard_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${YellowCard_Result_Xpath}    timeout=60
+    ${YellowCard_Result_txt}    Selenium2Library.Get text    ${YellowCard_Result_Xpath}
+    Should be equal    1    ${YellowCard_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Card Event    away    red_card
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    3s
+    ${RedCard_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[7]//span[@class='red-card']
+    ${RedCard_Result_Xpath}=    Replace String    ${RedCard_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${RedCard_Result_Xpath}    timeout=60
+    ${RedCard_Result_txt}    Selenium2Library.Get text    ${RedCard_Result_Xpath}
+    Should be equal    1    ${RedCard_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Card Event    away    yellow_red_card
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    3s
+    ${RedCard_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[7]//span[@class='red-card']
+    ${RedCard_Result_Xpath}=    Replace String    ${RedCard_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${RedCard_Result_Xpath}    timeout=60
+    ${RedCard_Result_txt}    Selenium2Library.Get text    ${RedCard_Result_Xpath}
+    Should be equal    2    ${RedCard_Result_txt}
+    Close Browser
+    Selenium2Library.switch browser    tab1
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete New Match    ${xpathdel}
+
+Match Time Event
+    [Arguments]    ${type}
+    Selenium2Library.Reload Page
+    ${TimeLine}    Get Time Line
+    Selenium2Library.Page Should Contain Element    ${MatchTimeEvent}    timeout=60
+    Selenium2Library.Click Element    ${MatchTimeEvent}
+    Selenium2Library.Clear Element Text    //*[@id="EventTimeForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]
+    Selenium2Library.Input Text    //*[@id="EventTimeForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]    ${TimeLine}
+    Selenium2Library.Page Should Contain Element    ${MatchTime_EventType}    timeout=60
+    Select From List By value    ${MatchTime_EventType}    ${type}
+    Selenium2Library.Page Should Contain Element    ${MatchTime_Process}    timeout=60
+    Selenium2Library.Click button    ${MatchTime_Process}
+    Selenium2Library.Page Should Contain Element    ${ApplyEvent_btn}    timeout=60
+    Selenium2Library.Click button    ${ApplyEvent_btn}
+    sleep    5s
+
+Match Time Event Aggregate
+    [Arguments]    ${team}
+    Selenium2Library.Reload Page
+    ${TimeLine}    Get Time Line
+    Selenium2Library.Page Should Contain Element    ${MatchTimeEvent}    timeout=60
+    Selenium2Library.Click Element    ${MatchTimeEvent}
+    Selenium2Library.Clear Element Text    //*[@id="EventTimeForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]
+    Selenium2Library.Input Text    //*[@id="EventTimeForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]    ${TimeLine}
+    Selenium2Library.Page Should Contain Element    ${MatchTime_EventType}    timeout=60
+    Select From List By value    ${MatchTime_EventType}    match_end_normal
+    Selenium2Library.Page Should Contain Element    //select[@name="aggregate_winner_id"]    timeout=60
+    Select From List By value    //select[@name="aggregate_winner_id"]    ${team}
+    Selenium2Library.Page Should Contain Element    //*[@id="aggregate_input"]/input[@name="aggregate_home_score"]
+    Selenium2Library.Input Text    //*[@id="aggregate_input"]/input[@name="aggregate_home_score"]    4
+    Selenium2Library.Page Should Contain Element    //*[@id="aggregate_input"]/input[@name="aggregate_away_score"]
+    Selenium2Library.Input Text    //*[@id="aggregate_input"]/input[@name="aggregate_away_score"]    4
+    Selenium2Library.Page Should Contain Element    ${MatchTime_Process}    timeout=60
+    Selenium2Library.Click button    ${MatchTime_Process}
+    Selenium2Library.Page Should Contain Element    ${ApplyEvent_btn}    timeout=60
+    Selenium2Library.Click button    ${ApplyEvent_btn}
+    sleep    5s
+
+Score Change
+    [Arguments]    ${team}    ${Period}    ${Time}
+    Selenium2Library.Reload Page
+    ${TimeLine}    Get Time Line
+    Selenium2Library.Page Should Contain Element    ${MatchScoreEvent}    timeout=60
+    Selenium2Library.Click Element    ${MatchScoreEvent}
+    Selenium2Library.Page Should Contain Element    ${MatchScoreEvent_MatchTime}    timeout=60
+    Selenium2Library.Input Text    ${MatchScoreEvent_MatchTime}    ${Time}
+    Selenium2Library.Page Should Contain Element    ${MatchScoreEvent_Team_sel}    timeout=60
+    Select From List By value    ${MatchScoreEvent_Team_sel}    ${team}
+    Selenium2Library.Page Should Contain Element    ${MatchScoreEvent_Period_sel}    timeout=60
+    Select From List By value    ${MatchScoreEvent_Period_sel}    ${Period}
+    Selenium2Library.Clear Element Text    //*[@id="EventScoreForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]
+    Selenium2Library.Input Text    //*[@id="EventScoreForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]    ${TimeLine}
+    Selenium2Library.Page Should Contain Element    ${MatchScoreEvent_Process}    timeout=60
+    Selenium2Library.Click button    ${MatchScoreEvent_Process}
+    Selenium2Library.Page Should Contain Element    ${ApplyEvent_btn}    timeout=60
+    Selenium2Library.Click button    ${ApplyEvent_btn}
+
+Card Event
+    [Arguments]    ${Team}    ${Type}
+    Selenium2Library.Reload Page
+    ${TimeLine}    Get Time Line
+    Selenium2Library.Page Should Contain Element    ${CardEvent}    timeout=60
+    Selenium2Library.Click Element    ${CardEvent}
+    Selenium2Library.Page Should Contain Element    ${CardEvent_MatchTime}    timeout=60
+    Selenium2Library.Input Text    ${CardEvent_MatchTime}    20
+    Selenium2Library.Page Should Contain Element    ${CardEvent_Type_sel}    timeout=60
+    Select From List By value    ${CardEvent_Type_sel}    ${Type}
+    Selenium2Library.Page Should Contain Element    ${CardEvent_Team_sel}    timeout=60
+    Select From List By value    ${CardEvent_Team_sel}    ${Team}
+    Selenium2Library.Clear Element Text    //*[@id="EventCardForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]
+    Selenium2Library.Input Text    //*[@id="EventCardForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]    ${TimeLine}
+    Selenium2Library.Page Should Contain Element    ${CardEvent_Process}    timeout=60
+    Selenium2Library.Click button    ${CardEvent_Process}
+    Selenium2Library.Page Should Contain Element    ${ApplyEvent_btn}    timeout=60
+    Selenium2Library.Click button    ${ApplyEvent_btn}
+
+Injury Time
+    [Arguments]    ${Period Type}
+    Selenium2Library.Reload Page
+    ${TimeLine}    Get Time Line
+    Selenium2Library.Page Should Contain Element    ${InjuryTimeExtraEvent}    timeout=60
+    Selenium2Library.Click Element    ${InjuryTimeExtraEvent}
+    Selenium2Library.Page Should Contain Element    ${InjuryTimeExtra}    timeout=60
+    Selenium2Library.Input Text    ${InjuryTimeExtra}    5
+    Selenium2Library.Clear Element Text    //*[@id="EventInjuryExtraTimeForm"]/div[1]/div[4]//*[@id="payload_timeline_hour"]
+    Selenium2Library.Input Text    //*[@id="EventInjuryExtraTimeForm"]/div[1]/div[4]//*[@id="payload_timeline_hour"]    ${TimeLine}
+    Selenium2Library.Page Should Contain Element    ${InjuryPeriodType}    timeout=60
+    Select From List By value    ${InjuryPeriodType}    ${Period Type}
+    Selenium2Library.Page Should Contain Element    ${Injury_Process}    timeout=60
+    Selenium2Library.Click button    ${Injury_Process}
+    Selenium2Library.Page Should Contain Element    ${ApplyEvent_btn}    timeout=60
+    Selenium2Library.Click button    ${ApplyEvent_btn}
+
+Verify Injuty Time
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_CardEvent}
+    Wait Until Keyword Succeeds    50 times    5s    Wait Create Event    9
+    ${CurrentRow}=    Get Row Event
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Injury Time    1st_half
+    Wait Until Keyword Succeeds    50 times    5s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    ${Status_Result_txt}=    Get Substring    ${Status_Result_txt}    0    3
+    Should be equal    45+    ${Status_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    3s
+    Score Change    home    extra_time    45
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    10s
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    Should be equal    2 - 1    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    2 - 1    ${1H_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    3s
+    Score Change    away    extra_time    45
+    Wait Until Keyword Succeeds    30 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    Should be equal    2 - 2    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    2 - 2    ${1H_Result_txt}
+    Close Browser
+    Selenium2Library.switch browser    tab1
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete New Match    ${xpathdel}
+
+Verify 1H Break Start
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_CardEvent}
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    1
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Match Time Event    break_start
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${InjuryTime_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${InjuryTime_Result_Xpath}=    Replace String    ${InjuryTime_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${InjuryTime_Result_Xpath}    timeout=60
+    ${InjuryTime_Result_txt}    Selenium2Library.Get text    ${InjuryTime_Result_Xpath}
+    Should be equal    HT    ${InjuryTime_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Match Time Event    2nd_period_start
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${InjuryTime_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${InjuryTime_Result_Xpath}=    Replace String    ${InjuryTime_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${InjuryTime_Result_Xpath}    timeout=60
+    ${InjuryTime_Result_txt}    Selenium2Library.Get text    ${InjuryTime_Result_Xpath}
+    ${InjuryTime_Result_txt}=    Get Substring    ${InjuryTime_Result_txt}    0    2
+    ${InjuryTime_Result_txt}=    Convert To Integer    ${InjuryTime_Result_txt}
+    Should Be True    ${InjuryTime_Result_txt} > 45
+    Close Browser
+    Selenium2Library.switch browser    tab1
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    #Delete New Match    ${xpathdel}
+
+Verify 2nd Period Start
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_BreakStart}
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    13
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Match Time Event    2nd_period_start
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${InjuryTime_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${InjuryTime_Result_Xpath}=    Replace String    ${InjuryTime_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${InjuryTime_Result_Xpath}    timeout=60
+    ${InjuryTime_Result_txt}    Selenium2Library.Get text    ${InjuryTime_Result_Xpath}
+    ${InjuryTime_Result_txt}=    Get Substring    ${InjuryTime_Result_txt}    0    2
+    ${InjuryTime_Result_txt}=    Convert To Integer    ${InjuryTime_Result_txt}
+    Should Be True    ${InjuryTime_Result_txt} > 45
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    3s
+    Score Change    home    regular_period    50
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    10s
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    Should be equal    3 - 2    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    2 - 2    ${1H_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    3s
+    Score Change    away    regular_period    70
+    Wait Until Keyword Succeeds    30 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    Should be equal    3 - 3    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    2 - 2    ${1H_Result_txt}
+    Close Browser
+    Selenium2Library.switch browser    tab1
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    #Delete New Match    ${xpathdel}
+
+Verify Injury 2nd
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_2H_Start}
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    16
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Injury Time    2nd_half
+    Wait Until Keyword Succeeds    50 times    5s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    ${Status_Result_txt}=    Get Substring    ${Status_Result_txt}    0    3
+    Should be equal    90+    ${Status_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    3s
+    Score Change    home    extra_time    90
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    10s
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    Should be equal    4 - 3    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    2 - 2    ${1H_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    3s
+    Score Change    away    extra_time    90
+    Wait Until Keyword Succeeds    30 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    Should be equal    4 - 4    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    2 - 2    ${1H_Result_txt}
+    Close Browser
+    Selenium2Library.switch browser    tab1
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    #Delete New Match    ${xpathdel}
+
+Verify Break Awaiting Extra Time
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_2H_Start}
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    16
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Match Time Event    await_extra
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    Await. ET    ${Status_Result_txt}
+    ${Ext_Score_Result_Xpath}=    Catenate    SEPARATOR=    //tr[@data-match-id='${NewMatchID}']/td[@class="text-extra"]/span
+    Selenium2Library.Page Should Contain Element    ${Ext_Score_Result_Xpath}    timeout=60
+    ${Ext_Score_Result_txt}    Selenium2Library.Get text    ${Ext_Score_Result_Xpath}
+    Log To Console    ${Ext_Score_Result_txt}
+    Should be equal    FT [3 - 3]    ${Ext_Score_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Match Time Event    1st_extra_start
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    ${Status_Result_txt}=    Remove String    ${Status_Result_txt}    '
+    ${Status_Result_txt}=    Convert To Integer    ${Status_Result_txt}
+    Should Be True    ${Status_Result_txt} > 90
+    #Close Browser
+    #Selenium2Library.switch browser    tab1
+    #Close Browser
+    #${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    #Delete New Match    ${xpathdel}
+
+Verify Break Extra Time - 2nd Period Extra Time Start
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_1stExt_Start}
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    18
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Match Time Event    break_extra
+    Wait Until Keyword Succeeds    50 times    3s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    ETHT    ${Status_Result_txt}
+    ${Ext_Score_Result_Xpath}=    Catenate    SEPARATOR=    //tr[@data-match-id='${NewMatchID}']/td[@class="text-extra"]/span
+    Selenium2Library.Page Should Contain Element    ${Ext_Score_Result_Xpath}    timeout=60
+    ${Ext_Score_Result_txt}    Selenium2Library.Get text    ${Ext_Score_Result_Xpath}
+    Log To Console    ${Ext_Score_Result_txt}
+    Should be equal    FT [3 - 3]    ${Ext_Score_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Match Time Event    2nd_extra_start
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    ${Status_Result_txt}=    Get Substring    ${Status_Result_txt}    0    2
+    ${Status_Result_txt}=    Convert To Integer    ${Status_Result_txt}
+    Should Be True    ${Status_Result_txt} > 104
+    #Close Browser
+    #Selenium2Library.switch browser    tab1
+    #Close Browser
+    #${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    #Delete New Match    ${xpathdel}
+
+Verify Break Awaiting Penalty - penalty_start
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_2ndExt_Start}
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    18
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Match Time Event    await_penalty
+    Wait Until Keyword Succeeds    50 times    3s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    Await. PEN1    ${Status_Result_txt}
+    ${Ext_Score_Result_Xpath}=    Catenate    SEPARATOR=    //tr[@data-match-id='${NewMatchID}']/td[@class="text-extra"]/span
+    Selenium2Library.Page Should Contain Element    ${Ext_Score_Result_Xpath}    timeout=60
+    ${Ext_Score_Result_txt}    Selenium2Library.Get text    ${Ext_Score_Result_Xpath}
+    Log To Console    ${Ext_Score_Result_txt}
+    Should be equal    FT [3 - 3]    ${Ext_Score_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Match Time Event    penalty_start
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    PEN    ${Status_Result_txt}
+    #Close Browser
+    #Selenium2Library.switch browser    tab1
+    #Close Browser
+    #${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    #Delete New Match    ${xpathdel}
+
+Verify match_end_normal
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_2H_Start}
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    16
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Match Time Event    match_end_normal
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    FT    ${Status_Result_txt}
+    Close Browser
+    Selenium2Library.switch browser    tab1
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    #Delete New Match    ${xpathdel}
+
+Verify match_end_Aggregate
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_2H_Start}
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    16
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    Selenium2Library.switch browser    tab1
+    Match Time Event Aggregate    home
+    Wait Until Keyword Succeeds    50 times    2s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    #check status = FT
+    Selenium2Library.switch browser    tab2
+    sleep    15s
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should be equal    FT    ${Status_Result_txt}
+    #Check Icon Team Win
+    ${Icon_Team_Win_Result_Xpath}=    Catenate    SEPARATOR=    //input[@id = '${NewMatchID}']//ancestor::tr/td[5]/i[@class="icon-arrow-right"]
+    # ${Icon_Team_Win_Result_Xpath}=    Replace String    ${Icon_Team_Win_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Icon_Team_Win_Result_Xpath}    timeout=60
+    #Check extra line score
+    ${Ext_Score_Result_Xpath}=    Catenate    SEPARATOR=    //tr[@data-match-id='${NewMatchID}']/td[@class="text-extra"]/span
+    Selenium2Library.Page Should Contain Element    ${Ext_Score_Result_Xpath}    timeout=60
+    ${Ext_Score_Result_txt}    Selenium2Library.Get text    ${Ext_Score_Result_Xpath}
+    Log To Console    ${Ext_Score_Result_txt}
+    Should be equal    FT [3 - 3], AGGR [4 - 4]    ${Ext_Score_Result_txt}
+    Close Browser
+    Selenium2Library.switch browser    tab1
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    #Delete New Match    ${xpathdel}
+
+Verify Score Change
+    ${NewMatchID}    Create New Match    sr:tournament:17
+    Scenario    ${Scenario_MatchStart}
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    1
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Open Home Page
+    # Check Status - Score - 1H
+    ${Status_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[4]
+    ${Status_Result_Xpath}=    Replace String    ${Status_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Status_Result_Xpath}    timeout=60
+    ${Status_Result_txt}    Selenium2Library.Get text    ${Status_Result_Xpath}
+    Should not be equal    -    ${Status_Result_txt}
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    sleep    3s
+    Should be equal    0 - 0    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    0 - 0    ${1H_Result_txt}
+    sleep    1s
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    3s
+    Score Change    home    regular_period    5
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    3s
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    Should be equal    1 - 0    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    1 - 0    ${1H_Result_txt}
+    Selenium2Library.switch browser    tab1
+    Selenium2Library.Reload Page
+    sleep    3s
+    Score Change    away    regular_period    10
+    Wait Until Keyword Succeeds    20 times    4s    Wait Create Event    ${CurrentRow}
+    ${CurrentRow}=    Get Row Event
+    Log To Console    ${CurrentRow}
+    Selenium2Library.switch browser    tab2
+    sleep    3s
+    ${Score_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[6]
+    ${Score_Result_Xpath}=    Replace String    ${Score_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${Score_Result_Xpath}    timeout=60
+    ${Score_Result_txt}    Selenium2Library.Get text    ${Score_Result_Xpath}
+    Should be equal    1 - 1    ${Score_Result_txt}
+    ${1H_Result_Xpath}=    Catenate    //input[@id = '${NewMatchID}']//ancestor::tr/td[8]
+    ${1H_Result_Xpath}=    Replace String    ${1H_Result_Xpath}    ${space}    ${empty}
+    Selenium2Library.Page Should Contain Element    ${1H_Result_Xpath}    timeout=60
+    ${1H_Result_txt}    Selenium2Library.Get text    ${1H_Result_Xpath}
+    Should be equal    1 - 1    ${1H_Result_txt}
+    Close Browser
+    Selenium2Library.switch browser    tab1
+    Close Browser
+    ${xpathdel}=    Catenate    SEPARATOR=    //td[contains(.,'${NewMatchID}')]//ancestor::tr/td[11]/a[3]
+    Delete New Match    ${xpathdel}

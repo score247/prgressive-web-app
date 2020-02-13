@@ -1,0 +1,43 @@
+*** Settings ***
+Library           AppiumLibrary    run_on_failure=Nothing
+Library           OperatingSystem
+Library           Screenshot
+Library           Collections
+Library           Screenshot
+Library           String
+Library           Dialogs
+Library           Process
+Resource          ../Actions/Layout_Desktop.txt
+Resource          ../Actions/CommonAction.txt
+Library           ExcelLibrary
+Library           Selenium2Library    run_on_failure=Selenium2Library.CapturePageScreenshot
+
+*** Test Cases ***
+Header
+    Open Home page
+    #sleep    3s
+    Assert Header
+    sleep    3s
+
+Function_bar
+    Open Home page
+    sleep    3s
+    Assert Fn_bar
+    sleep    3s
+    [Teardown]    Close Browser
+
+Date_bar
+    Open Home page
+    sleep    3s
+    Assert Date_bar
+    #Backgroup_color
+    sleep    3s
+    [Teardown]    Close Browser
+
+Breadcrumbs
+    Open Home page
+    sleep    3s
+    Assert Breadcrumbs
+    #Backgroup_color
+    sleep    3s
+    [Teardown]    Close Browser

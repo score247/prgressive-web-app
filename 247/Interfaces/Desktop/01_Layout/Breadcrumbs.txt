@@ -1,0 +1,3 @@
+*** Variables ***
+${FirstText_Breadcrumbs}    //*[@id="__next"]/div/div/div[1]/div[1]/span[1]
+${LastText_Breadcrumbs}    //*[@id="__next"]/div/div/div[1]/div[1]/span[2]

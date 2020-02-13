@@ -1,0 +1,42 @@
+*** Variables ***
+${Data_NewMatch_btn}    //body/main/form[1]/button[1]
+${Data_League_sel}    //*[@id="Match_Tournament_Id"]
+${Data_Home_sel}    //*[@id="HomeTeam_Id"]
+${Data_Away_sel}    //*[@id="AwayTeam_Id"]
+${Data_Sunmit_btn}    //input[@class ='btn-submit']
+${Data_GetMatchID}    //body/main/div[2]/div[1]/div[1]/div[1]/label[2]
+${KOTime_Xpath}    //div[5]/label[@class='match-value']
+${Scenario_sel}    //select[@name='scenarioId']
+${Apply_Scenario_btn}    //body/main/div[2]/div[1]/form/div/div[2]/input
+${MatchScoreEvent}    //body/main/div[2]/div[1]/div[2]/div[3]/div[1]/div
+${MatchScoreEvent_MatchTime}    //*[@id="EventScoreForm"]/div[1]/div[6]/input[@id="payload_timeline_match_time"]
+${MatchScoreEvent_Team_sel}    //*[@id="EventScoreForm"]//*[@id="scoreEventTeam"]
+${MatchScoreEvent_Period_sel}    //*[@id="EventScoreForm"]/div[1]/div[3]//*[@id="scorePeriodType"]
+${MatchScoreEvent_Process}    //*[@id="EventScoreForm"]/div[2]/button
+${ApplyEvent_btn}    //*[@id="btnApplyEvents"]
+${CardEvent}      //*[@id="matchCardEventHeading"]/div
+${CardEvent_MatchTime}    //*[@id="EventCardForm"]/div[1]/div[6]/input[@id="payload_timeline_match_time"]
+${CardEvent_Team_sel}    //*[@id="EventCardForm"]/div[1]/div[8]/select[@id="payload_timeline_team"]
+${CardEvent_Type_sel}    //*[@id="EventCardForm"]/div[1]/div[2]/*[@id="eventType"]
+${CardEvent_Process}    //*[@id="EventCardForm"]/div[2]/button
+${InjuryTimeExtraEvent}    //*[@id="matchInjuryTimeExtraEventHeading"]/div
+${InjuryPeriodType}    //*[@id="EventInjuryExtraTimeForm"]//*[@id="eventType"]
+${InjuryTimeExtra}    //*[@id="EventInjuryExtraTimeForm"]//*[@id="payload_timeline_injury_time_announced"]
+${Injury_Process}    //*[@id="EventInjuryExtraTimeForm"]/div[2]/button
+@{row}            //*[@id="TimelineTable"]/tbody//td[1]
+${Scenario_ScoreChange_1H}    1611167330
+${Scenario_MatchStart}    1449653725
+${Scenario_CardEvent}    213913853
+${Scenario_BreakStart}    483872262
+${Scenario_2H_Start}    245566705
+${Scenario_1stExt_Start}    1862811663
+${Scenario_2ndExt_Start}    914519278
+######
+${MatchTimeEvent}    //*[@id="matchTimeEventHeading"]/div
+${MatchStart_Process}    //*[@id="EventInjuryExtraTimeForm"]/div[2]/button
+${MatchTimeEvent_Time}    //*[@id="EventTimeForm"]/div[1]/div[5]//*[@id="payload_timeline_hour"]
+#####
+${Timeline}       //*[@id="TimelineTable"]/tbody/tr[1]/td[2]
+${MatchTimeEvent}    //*[@id="matchTimeEventHeading"]/div
+${MatchTime_EventType}    //*[@id="payload_timeline_type"]
+${MatchTime_Process}    //*[@id="EventTimeForm"]/div[2]/button

@@ -1,0 +1,2 @@
+*** Variables ***
+${Header}         //*[@id="__next"]/div/header/div[2]/div/div/div[1]/div/span

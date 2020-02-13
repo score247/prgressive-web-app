@@ -1,0 +1,22 @@
+*** Settings ***
+Library           Selenium2Library
+Library           DateTime
+
+*** Keywords ***
+Open Home page
+    open browser    https://score247-web-test.nexdev.net/    Chrome    alias=tab2
+    Maximize Browser Window
+    sleep    3s
+
+Get CSS Property Value
+    [Arguments]    ${locator}    ${attribute name}
+    [Documentation]    Get the CSS property value of an Element.
+    ${css}=    Get WebElement    ${locator}
+    ${prop_val}=    Call Method    ${css}    value_of_css_property    ${attribute name}
+    [Return]    ${prop_val}
+
+setup and open android phone
+    ${androiddriver1}=    Open Application    http://127.0.0.1:4723/wd/hub    platformName=android    platformVersion=7.0    deviceName=emulator-5554    automationName=uiautomator2
+    ...    browserName=Chrome
+    Go To Url    https://score247-web.nexdev.net
+    sleep    5s

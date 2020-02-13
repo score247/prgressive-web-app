@@ -1,0 +1,30 @@
+*** Settings ***
+Library           OperatingSystem
+Library           AppiumLibrary
+Library           Screenshot
+Library           Collections
+Library           String
+Library           Dialogs
+Library           Process
+Resource          ../Actions/Layout_Mobile.txt
+Resource          ../Actions/CommonAction.txt
+Library           ExcelLibrary
+
+*** Test Cases ***
+Header
+    setup and open android phone
+    Assert Header
+    [Teardown]    Close Browser
+
+Function_bar
+    setup and open android phone
+    Assert Fn_bar
+    sleep    3s
+    [Teardown]    Close Browser
+
+Date_bar
+    setup and open android phone
+    Assert Date_bar
+    #Backgroup_color
+    sleep    3s
+    [Teardown]    Close Browser

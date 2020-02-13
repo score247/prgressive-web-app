@@ -1,0 +1,71 @@
+*** Settings ***
+Library           AppiumLibrary
+Library           DateTime
+Resource          ../Interfaces/Mobile/01_Layout/Header_Mobile.txt
+Resource          ../Interfaces/Mobile/01_Layout/Function_Bar_Mobile.txt
+Resource          ../Interfaces/Mobile/01_Layout/DateBar_Mobile.txt
+
+*** Keywords ***
+Assert Header
+    AppiumLibrary.Page Should Contain Element    ${Header}    timeout=15
+    ${Header_txt}=    AppiumLibrary.get text    ${Header}
+    Should be equal    ${Header_txt}    SOCCER
+
+Assert Fn_bar
+    AppiumLibrary.Page Should Contain Element    ${Scores_fn_bar}    timeout=15
+    ${Scores_fn_bar_txt}=    AppiumLibrary.get text    ${Scores_fn_bar}
+    Should be equal    ${Scores_fn_bar_txt}    Scores
+    AppiumLibrary.Page Should Contain Element    ${Favorites_fn_bar}    timeout=15
+    ${favorites_fn_bar_txt}=    AppiumLibrary.get text    ${Favorites_fn_bar}
+    Should be equal    ${Favorites_fn_bar_txt}    favorites
+    AppiumLibrary.Page Should Contain Element    ${Leagues_fn_bar}    timeout=15
+    ${Leagues_fn_bar_txt}=    AppiumLibrary.get text    ${Leagues_fn_bar}
+    Should be equal    ${Leagues_fn_bar_txt}    leagues
+    AppiumLibrary.Page Should Contain Element    ${news_fn_bar}    timeout=15
+    ${news_fn_bar_txt}=    AppiumLibrary.get text    ${news_fn_bar}
+    Should be equal    ${news_fn_bar_txt}    news
+    AppiumLibrary.Page Should Contain Element    ${TV_fn_bar}    timeout=15
+    ${TV_fn_bar_txt}=    AppiumLibrary.get text    ${TV_fn_bar}
+    Should be equal    ${TV_fn_bar_txt}    TV
+    #check highlight
+    ${Scores__highlighted}    AppiumLibrary.Get Element Attribute    ${HL_Scores_fn_bar}    class
+    Should be equal    ${Scores__highlighted}    menu-item active
+    # Click on Favorites
+    AppiumLibrary.Click Element    ${Favorites_fn_bar}
+    AppiumLibrary.Page Should Contain Element    ${HL_Favorites_fn_bar}    timeout=15
+    ${Favorites_highlighted}    AppiumLibrary.Get Element Attribute    ${HL_Favorites_fn_bar}    class
+    Should be equal    ${Favorites_highlighted}    menu-item active
+    # Click on LEAGUES
+    AppiumLibrary.Click Element    ${Leagues_fn_bar}
+    AppiumLibrary.Page Should Contain Element    ${HL_Leagues_fn_bar}    timeout=15
+    ${Leagues_highlighted}=    AppiumLibrary.Get Element Attribute    ${HL_Leagues_fn_bar}    class
+    Should be equal    ${Leagues_highlighted}    menu-item active
+    # Click on NEWS
+    AppiumLibrary.Click Element    ${news_fn_bar}
+    AppiumLibrary.Page Should Contain Element    ${HL_news_fn_bar}    timeout=15
+    ${news_highlighted}    AppiumLibrary.Get Element Attribute    ${HL_news_fn_bar}    class
+    Should be equal    ${news_highlighted}    menu-item active
+    # Click to TV
+    AppiumLibrary.Click Element    ${TV_fn_bar}
+    AppiumLibrary.Page Should Contain Element    ${HL_TV_fn_bar}    timeout=15
+    ${TV_highlighted}    AppiumLibrary.Get Element Attribute    ${HL_TV_fn_bar}    class
+    Should be equal    ${TV_highlighted}    menu-item active
+
+Assert Date_Bar
+    ${Now}=    Get Current Date    result_format='%Y-%m-%d %H:%M'
+    ${date_today}    Convert Date    ${Now}    result_format=%d %b
+    ${date+1}    Add Time To Date    ${Now}    1 days    result_format=%d %b
+    ${date+2}    Add Time To Date    ${Now}    2 days    result_format=%d %b
+    ${date-1}    Add Time To Date    ${Now}    -1 days    result_format=%d %b
+    ${date-2}    Add Time To Date    ${Now}    -2 days    result_format=%d %b
+    ${CurrentDay}    Get Current Date    result_format=%A
+    # Log    ${CurrentDay}
+    AppiumLibrary.Wait Until Page Contains Element    ${Today}    timeout=35
+    ${Today_txt}    AppiumLibrary.Get Text    ${Today}
+    Should be equal    ${Today_txt}    ${date_today}
+    Log To Console    111111
+    ${Today+1_txt}    AppiumLibrary.Get Text    ${Today+1}
+    Should be equal    ${Today+1_txt}    ${date+1}
+    ${Today+2_txt}    AppiumLibrary.Get Text    ${Today+2}
+    Should be equal    ${Today+2_txt}    ${date+2}
+    Log To Console    111111

@@ -1,0 +1,12 @@
+*** Variables ***
+${Scores_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[1]/a
+${Favorites_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[2]/a
+${Leagues_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[3]/a
+${news_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[4]/a
+${TV_fn_bar}      //*[@id="__next"]/div/header/nav[2]/ul/li[5]/a
+# highlight
+${HL_Scores_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[1]
+${HL_Favorites_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[2]
+${HL_Leagues_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[3]
+${HL_news_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[4]
+${HL_TV_fn_bar}    //*[@id="__next"]/div/header/nav[2]/ul/li[5]
