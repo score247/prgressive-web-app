@@ -105,8 +105,12 @@
       width: 6.4rem;
       border-radius: 50%;
       background-color: #e0e0e0;
-      line-height: 6.4rem;
       color: #000;
+      word-break: break-all;
+      padding: 0 .8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .full-score {
