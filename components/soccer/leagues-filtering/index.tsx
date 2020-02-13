@@ -115,11 +115,13 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                             placeHolder="Find leagues" />
                     </div>
                     <div className="list-league">
-                        {this.displayLeagues.map(league => <LeagueRow
-                            key={league.id}
-                            isSelected={this.state.selectedLeagues.indexOf(league.id) >= 0}
-                            league={league}
-                            onSelect={this.handleSelectLeague} />)}
+                        {this.displayLeagues.length === 0 ?
+                            <span className="no-leagues">There are no leagues available.</span> :
+                            this.displayLeagues.map(league => <LeagueRow
+                                key={league.id}
+                                isSelected={this.state.selectedLeagues.indexOf(league.id) >= 0}
+                                league={league}
+                                onSelect={this.handleSelectLeague} />)}
                     </div>
                 </div >
                 <div className="footer-league">

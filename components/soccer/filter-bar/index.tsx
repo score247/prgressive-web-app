@@ -38,6 +38,7 @@ class SoccerFilterBar extends React.Component<Props, State> {
     togglePopup = () => {
         const disableScrolling = this.state.isLeaguesFilteringPopupOpen ? "unset" : "hidden";
         document.body.style.overflow = disableScrolling;
+
         this.setState({
             isLeaguesFilteringPopupOpen: !this.state.isLeaguesFilteringPopupOpen
         });
