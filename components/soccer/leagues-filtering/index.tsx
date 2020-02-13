@@ -114,11 +114,11 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                                 onChange={this.handleSelectAll} />
                             <span onClick={this.handleSelectAll}>{t(CommonResourceKey.CHECK_ALL)}</span>
                         </div>
-                        <SearchBar
+                        {/* <SearchBar
                             filterText={this.state.filterText}
                             onFilterTextChange={this.handleFilterLeaguesChange}
                             onReset={this.onResetLeaguesFilterText}
-                            placeHolder="Find leagues" />
+                            placeHolder="Find leagues" /> */}
                     </div>
                     <div className="list-league">
                         {this.displayLeagues.length === 0 ?
