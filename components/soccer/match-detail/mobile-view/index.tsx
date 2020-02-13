@@ -24,28 +24,21 @@ const Mobile: React.FC<Props> = props => {
           <Tab>H2H</Tab>
           <Tab>Table</Tab>
         </TabList>
-        <SwipeableViews index={selectedTabIndex} onChangeIndex={setTab} enableMouseEvents>
-          <TabPanel>
-            This is Info Page
-          </TabPanel>
-          <TabPanel forceRender={true} >
+        <SwipeableViews
+          index={selectedTabIndex}
+          onChangeIndex={setTab}
+          enableMouseEvents
+        >
+          <TabPanel>This is Info Page</TabPanel>
+          <TabPanel forceRender={true}>
             <MatchInfoTab matchId={props.matchInfo.Match.Id} />
           </TabPanel>
-          <TabPanel>
-            Stats
-          </TabPanel>
-          <TabPanel>
-            Line-ups
-          </TabPanel>
-          <TabPanel>
-            H2H
-          </TabPanel>
-          <TabPanel>
-            Table
-          </TabPanel>
+          <TabPanel>This is Stats page</TabPanel>
+          <TabPanel>This is Line-ups page</TabPanel>
+          <TabPanel>This is H2H page</TabPanel>
+          <TabPanel>This is Table page</TabPanel>
         </SwipeableViews>
       </Tabs>
-     
     </>
   );
 };

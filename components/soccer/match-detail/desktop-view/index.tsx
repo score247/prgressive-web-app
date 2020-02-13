@@ -46,10 +46,10 @@ const Desktop: React.FC<Props> = props => {
         <TabPanel forceRender={true}>
           <MatchInfoTab matchId={props.matchInfo.Match.Id} />
         </TabPanel>
-        <TabPanel>Commentary</TabPanel>
-        <TabPanel>Statistics</TabPanel>
-        <TabPanel>H2H</TabPanel>
-        <TabPanel>Table</TabPanel>
+        <TabPanel>This is Commentary page</TabPanel>
+        <TabPanel>This is Statistics page</TabPanel>
+        <TabPanel>This is H2H page</TabPanel>
+        <TabPanel>This is Table page</TabPanel>
       </Tabs>
     </>
   );
