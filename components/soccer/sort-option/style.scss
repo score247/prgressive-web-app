@@ -11,6 +11,10 @@
         min-height: unset;
         height: 100%;
         cursor: pointer;
+        &.select__control--is-focused {
+            border-color: hsl(0,0%,80%);
+            box-shadow: none;
+        }
     }
 }
 

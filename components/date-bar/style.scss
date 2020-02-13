@@ -70,6 +70,12 @@
         padding: 1.2rem 1rem;
       }
     }
+  .date-item.live-score {
+    padding: 2.5rem 1.8rem 2.2rem;
+    .mobile & {
+      padding: 1.4rem 1rem 1.2rem;
+    }
+  }
 
   .days {
     text-transform: uppercase;
