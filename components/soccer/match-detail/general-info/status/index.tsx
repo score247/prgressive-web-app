@@ -9,19 +9,21 @@ const Status: React.FC<Props> = props => {
   const { match } = props;
   const { isMobile } = useDeviceContext();
   const [status, setStatus] = useState<string>(buildMatchStatus(match));
-  const intervalId = window.setInterval(
-    () => setStatus(buildMatchStatus(match)),
-    60000 //NOSONAR
-  );
+  const intervalTime = 15000;
 
   useEffect(() => {
+    const intervalId = window.setInterval(
+      () => setStatus(buildMatchStatus(match)),
+      intervalTime
+    );
+
     return () => window.clearInterval(intervalId);
   });
 
   return (
     <div className="status-section">
       {isMobile && (
-        <div >
+        <div>
           {formatDate(new Date(match.EventDate[0]), DateTimeFormat.TIME)}
         </div>
       )}
