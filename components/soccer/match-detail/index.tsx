@@ -33,6 +33,7 @@ class SoccerMatchDetail extends React.Component<Props, State> {
 
   async componentDidMount() {
     const matchInfo = await SoccerAPI.GetMatch(this.props.matchId);
+    this.setupSignalClient();
     this.setState({ matchInfo });
   }
 
