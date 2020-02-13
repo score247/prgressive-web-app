@@ -42,7 +42,7 @@ class SoccerPage extends React.Component<WithTranslation, State> {
 
   static async getInitialProps() {
     return {
-      namespacesRequired: [ResourceType.COMMON]
+      namespacesRequired: [ResourceType.SOCCER]
     };
   }
 
