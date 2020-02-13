@@ -10,8 +10,9 @@ const Status: React.FC<Props> = props => {
   const { isMobile } = useDeviceContext();
   const [status, setStatus] = useState<string>(buildMatchStatus(match));
   const intervalTime = 15000;
-
+  
   useEffect(() => {
+    setStatus(buildMatchStatus(match));
     const intervalId = window.setInterval(
       () => setStatus(buildMatchStatus(match)),
       intervalTime
