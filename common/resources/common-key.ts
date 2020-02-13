@@ -40,4 +40,5 @@ export class CommonResourceKey {
     public static readonly OK = "ok";
     public static readonly LAST_RESULTS = "last_results";
     public static readonly CANCELLED_MATCHES = "cancelled_matches";
+    public static readonly SEARCH = "search";
 }

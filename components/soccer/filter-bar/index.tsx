@@ -69,7 +69,11 @@ class SoccerFilterBar extends React.Component<Props, State> {
                             onSubmitFilterLeagues={this.handleSubmitFilterLeagues}
                             onCancel={this.togglePopup} />
                     </Modal>
-                    <SearchBar filterText={this.props.filterText} onFilterTextChange={this.props.onFilterTextChange} onReset={this.props.onResetFilterText} placeHolder="Search" />
+                    <SearchBar
+                        filterText={this.props.filterText}
+                        onFilterTextChange={this.props.onFilterTextChange}
+                        onReset={this.props.onResetFilterText}
+                        placeHolder={this.props.t(CommonResourceKey.SEARCH)} />
                 </div>
             </div>
         );
@@ -82,7 +86,7 @@ class SoccerFilterBar extends React.Component<Props, State> {
                     filterText={this.props.filterText}
                     onFilterTextChange={this.props.onFilterTextChange}
                     onReset={this.props.onResetFilterText}
-                    placeHolder="Search"
+                    placeHolder={this.props.t(CommonResourceKey.SEARCH)}
                     onSortChange={this.props.onSortChange}
                     sortByValue={this.props.sortByValue}
                     leagues={this.props.leagues}

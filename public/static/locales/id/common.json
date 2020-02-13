@@ -39,5 +39,6 @@
   "find_leagues": "Find leagues",
   "ok": "OK",
   "last_results": "Last Results",
-  "cancelled_matches": "Cancelled/postponed/abandoned/delayed/interrupted matches"
+  "cancelled_matches": "Cancelled/postponed/abandoned/delayed/interrupted matches",
+  "search": "Search"
 }
