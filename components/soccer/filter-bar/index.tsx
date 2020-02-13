@@ -45,9 +45,7 @@ class SoccerFilterBar extends React.Component<Props, State> {
 
     handleSubmitFilterLeagues = (selectedLeagues: string[]) => {
         this.props.onSubmitFilterLeagues(selectedLeagues);
-        this.setState({
-            isLeaguesFilteringPopupOpen: !this.state.isLeaguesFilteringPopupOpen
-        });
+        this.togglePopup();
     }
 
     desktopFilterBar = () => {
