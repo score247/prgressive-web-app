@@ -33,6 +33,10 @@ class SoccerMatchDetail extends React.Component<Props, State> {
 
   async componentDidMount() {
     const matchInfo = await SoccerAPI.GetMatch(this.props.matchId);
+    if(!matchInfo.TimelineEvents) {
+      matchInfo.TimelineEvents = [];
+    }
+
     this.setupSignalClient();
     this.setState({ matchInfo });
   }
@@ -65,6 +69,7 @@ class SoccerMatchDetail extends React.Component<Props, State> {
       matchEvent.Timeline &&
       matchInfo?.Match.Id === matchEvent.MatchId
     ) {
+      console.log(message);
       const matchResult = matchEvent.MatchResult;
       const timeline = matchEvent.Timeline;
 
