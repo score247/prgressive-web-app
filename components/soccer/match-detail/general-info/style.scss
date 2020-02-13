@@ -25,7 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 1.2rem 0 2.4rem;
+  padding: 1.2rem 0 3.6rem;
 
   .mobile & {
     justify-content: initial;
@@ -40,6 +40,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    .mobile &{
+      align-items: flex-start;
+    }
   }
 
   .icon-menu-favorites {
@@ -50,20 +53,24 @@
       font-size: 1.6rem;
     }
   }
-
+  .home-section, .away-section {
+    position: relative;
+  }
  
   .home-section {
     text-align: right;
+    .reference-info {
+      right: 0;
+    }
   }
   .away-section {
     text-align: left;
+    .reference-info {
+      left: 0;
+    }
   }
   .reference-info {
-    position: relative;
-    top: 0.6rem;
-    .mobile & {
-      top: 0.2rem;
-    }
+    position: absolute;
   }
   .home-name,
   .away-name {
@@ -78,6 +85,7 @@
   .score {
     display: flex;
     flex-direction: column;
+    position: relative;
     .mobile & {
       padding: 0 .8rem;
     }
@@ -87,11 +95,12 @@
       padding: 0 4rem;
       .mobile & {
         font-size: 1.2rem;
-        padding: 0 .4rem;
+        padding: 0 .4rem;        
+        font-weight: bold;
       }
     }
     .status {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       height: 6.4rem;
       width: 6.4rem;
       border-radius: 50%;
@@ -109,5 +118,19 @@
 
   .half-score {
       color: #0057FF;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -1.6rem;
+      font-size: 1.4rem;      
+      .mobile & {
+        font-size: 1.2rem;
+        width: 100%;
+        font-weight: bold;
+        position: relative;
+        bottom: unset;
+        left: unset;
+        transform: unset;
+      }
   }
 }
