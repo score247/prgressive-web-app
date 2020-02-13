@@ -17,7 +17,7 @@ const Header = () => {
         <th className="col-home">{t(CommonResourceKey.HOME)}</th>
         <th className="col-score">{t(SoccerResourceKey.SCORE)}</th>
         <th className="col-away">{t(CommonResourceKey.AWAY)}</th>
-        {!isMobile && <th className="width-50">{t(SoccerResourceKey.FIRST_HALF)}</th>}
+        {!isMobile && <th className="width-50">{t(SoccerResourceKey.FIRST_HALF, { ns: ResourceType.SOCCER })}</th>}
         <th className="col-favorites"></th>
       </tr>
     </thead>
