@@ -26,7 +26,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
   private readonly cacheExpiryTimeInMinutes = 120;
   private readonly defaultSortProperty = "EventDate";
   displayMatches: MatchSummary[];
-  soccerTableRef: any;
+  soccerTableRef: React.RefObject<SoccerTable>;
   displayLeagues: League[];
   filteredAndSortedMatchByLeague: MatchSummary[];
 
@@ -34,7 +34,7 @@ class FilterSoccerTable extends React.Component<{}, State> {
     super(props);
 
     this.displayMatches = [];
-    this.soccerTableRef = React.createRef();
+    this.soccerTableRef = React.createRef<SoccerTable>();
     this.displayLeagues = [];
     this.filteredAndSortedMatchByLeague = [];
 

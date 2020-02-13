@@ -3,7 +3,7 @@ import Layout from "../../components/layout";
 import { LocalizedPage } from "../../common/helpers/Localizer";
 import withLoadingPage from "../../hoc/with-loading-page";
 import SoccerMatchDetail from "../../components/soccer/match-detail";
-import { CommonResourceKey, ResourceType } from "../../common/resources";
+import { CommonResourceKey, ResourceType, SoccerResourceKey } from "../../common/resources";
 
 type Props = {
   matchId: string | string[];
@@ -16,7 +16,7 @@ const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
       title={t(CommonResourceKey.SOCCER)}
       breadcrumbs={[
         t(CommonResourceKey.SOCCER),
-        t(CommonResourceKey.MATCHINFO, { ns: ResourceType.SOCCER })
+        t(SoccerResourceKey.MATCH_INFO, { ns: ResourceType.SOCCER })
       ]}
     >
       <SoccerMatchDetail matchId={matchId} />

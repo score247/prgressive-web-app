@@ -13,7 +13,6 @@ export class CommonResourceKey {
     public static readonly NEWS = "news";
     public static readonly MOBILE = "mobile";
     public static readonly FAVORITES = "favorites";
-    public static readonly MATCHINFO = "matchinfo";
     public static readonly SITE_TITLE = "site_title";
     public static readonly COPYRIGHT = "copyright";
     public static readonly DESKTOP = "desktop";
