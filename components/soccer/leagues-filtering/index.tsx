@@ -54,13 +54,9 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
     handleSelectAll = () => {
         let selectedLeagues: string[] = [];
 
-        if (this.state.selectedLeagues.length === 0) {
-            selectedLeagues = this.props.leagues.map(x => x.id);
-        }
-        else if (this.displayLeagues.length > 0 && this.displayLeagues.map(x => x.id).every(elem => this.state.selectedLeagues.includes(elem))) {
+        if (this.isCheckAllSelected(this.displayLeagues)) {
             selectedLeagues = this.state.selectedLeagues.filter((elem) => this.displayLeagues.map(x => x.id).indexOf(elem) < 0);
-        }
-        else {
+        } else {
             selectedLeagues = this.state.selectedLeagues.concat(this.displayLeagues.map(x => x.id));
         }
 
@@ -92,11 +88,10 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
     }
 
     render() {
-
         this.displayLeagues = this.state.filterText !== "" ?
             this.props.leagues.filter(league =>
-                league.name?.toLowerCase().search(this.state.filterText.toLowerCase()) !== -1
-                || league.abbreviation?.toLowerCase().search(this.state.filterText.toLowerCase()) !== -1)
+                league.name?.toLowerCase().includes(this.state.filterText.toLowerCase())
+                || league.abbreviation?.toLowerCase().includes(this.state.filterText.toLowerCase()))
             : this.props.leagues;
         return (
             <Fragment>
