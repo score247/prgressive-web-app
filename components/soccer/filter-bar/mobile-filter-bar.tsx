@@ -4,6 +4,9 @@ import { SoccerSortOptions } from '../../../common/enums/soccer-sort-option';
 import Modal from 'react-modal';
 import LeaguesFilteringTable from '../leagues-filtering';
 import { League } from '../filter-table/type';
+import { WithTranslation } from "next-i18next";
+import { withTranslation } from "../../../common/helpers/Localizer";
+import { ResourceType, CommonResourceKey } from "../../../common/resources";
 
 type State = {
     openSearch: boolean;
@@ -22,9 +25,9 @@ type Props = {
     onSubmitFilterLeagues: (selectedLeagues: string[]) => void;
     onTogglePopup: () => void;
     isLeaguesFilteringPopupOpen: boolean;
-};
+} & WithTranslation;
 
-export default class MobileFilterBar extends React.Component<Props, State> {
+class MobileFilterBar extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
@@ -81,7 +84,7 @@ export default class MobileFilterBar extends React.Component<Props, State> {
                 {this.state.openSortMenu && (
                     <div className="mobile-sort-menu">
                         {this.renderSortOption(this.props.sortByValue)}
-                        <div className="action-item" onClick={this.handleClickOpenLeaguesFilteringPopup}>Filter Leagues</div>
+                        <div className="action-item" onClick={this.handleClickOpenLeaguesFilteringPopup}>{this.props.t(CommonResourceKey.FILTER_BY_LEAGUE)}</div>
                     </div>
                 )}
                 <Modal
@@ -99,3 +102,5 @@ export default class MobileFilterBar extends React.Component<Props, State> {
         );
     }
 }
+
+export default withTranslation(ResourceType.COMMON)(MobileFilterBar);

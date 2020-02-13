@@ -9,6 +9,9 @@ import Modal from 'react-modal';
 import LeaguesFilteringTable from '../leagues-filtering';
 import MobileFilterBar from "./mobile-filter-bar";
 import { League } from '../filter-table/type';
+import { WithTranslation } from "next-i18next";
+import { withTranslation } from "../../../common/helpers/Localizer";
+import { ResourceType, CommonResourceKey } from "../../../common/resources";
 
 type State = {
     isLeaguesFilteringPopupOpen: boolean;
@@ -24,7 +27,7 @@ type Props = {
     leagues: League[];
     selectedLeagues: string[];
     onSubmitFilterLeagues: (selectedLeagues: string[]) => void;
-};
+} & WithTranslation;
 
 class SoccerFilterBar extends React.Component<Props, State> {
     constructor(props: Props) {
@@ -54,7 +57,7 @@ class SoccerFilterBar extends React.Component<Props, State> {
             <div className="search-filter">
                 <DisplayOptions onDisplayModeChange={this.props.onDisplayModeChange} />
                 <div className="combo-search">
-                    <div className="filter-event" onClick={this.togglePopup}>Filter by League</div>
+                    <div className="filter-event" onClick={this.togglePopup}>{this.props.t(CommonResourceKey.FILTER_BY_LEAGUE)}</div>
                     <SoccerSortOption sortByValue={this.props.sortByValue} onSortChange={this.props.onSortChange} />
                     <Modal
                         isOpen={this.state.isLeaguesFilteringPopupOpen}
@@ -94,4 +97,4 @@ class SoccerFilterBar extends React.Component<Props, State> {
     }
 }
 
-export default SoccerFilterBar;
+export default withTranslation(ResourceType.COMMON)(SoccerFilterBar);

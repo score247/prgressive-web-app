@@ -4,6 +4,9 @@ import Checkbox from '../../basic/checkbox';
 import { cloneDeep } from "lodash";
 import SearchBar from '../../search-bar';
 import { League } from '../filter-table/type';
+import { WithTranslation } from "next-i18next";
+import { withTranslation } from "../../../common/helpers/Localizer";
+import { ResourceType, CommonResourceKey } from "../../../common/resources";
 
 type State = {
     selectedLeagues: string[];
@@ -15,7 +18,7 @@ type Props = {
     selectedLeagues: string[];
     onSubmitFilterLeagues: (selectedLeagues: string[]) => void;
     onCancel: () => void;
-};
+} & WithTranslation;
 
 class LeaguesFilteringTable extends React.Component<Props, State> {
     displayLeagues: League[] = [];
@@ -88,15 +91,18 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
     }
 
     render() {
-        this.displayLeagues = this.state.filterText !== "" ?
-            this.props.leagues.filter(league =>
-                league.name?.toLowerCase().includes(this.state.filterText.toLowerCase())
-                || league.abbreviation?.toLowerCase().includes(this.state.filterText.toLowerCase()))
-            : this.props.leagues;
+        const { filterText } = this.state;
+        const { t, leagues } = this.props;
+        this.displayLeagues = filterText !== "" ?
+            leagues.filter(league =>
+                league.name?.toLowerCase().includes(filterText.toLowerCase())
+                || league.abbreviation?.toLowerCase().includes(filterText.toLowerCase()))
+            : leagues;
+
         return (
             <Fragment>
                 <div className="header-filter">
-                    <div className="text-header">League filtering</div>
+                    <div className="text-header">{t(CommonResourceKey.LEAGUE_FILTERING)}</div>
                     <span className="icon-close" onClick={this.props.onCancel}></span>
                 </div>
                 <div className="content-league">
@@ -106,7 +112,7 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                                 checked={this.isCheckAllSelected(this.displayLeagues)}
                                 value="all"
                                 onChange={this.handleSelectAll} />
-                            <span onClick={this.handleSelectAll}>Check all</span>
+                            <span onClick={this.handleSelectAll}>{t(CommonResourceKey.CHECK_ALL)}</span>
                         </div>
                         <SearchBar
                             filterText={this.state.filterText}
@@ -125,12 +131,12 @@ class LeaguesFilteringTable extends React.Component<Props, State> {
                     </div>
                 </div >
                 <div className="footer-league">
-                    <button onClick={this.handleSubmitFilterLeagues} className="btn btn-primary-solid">OK</button>
-                    <button onClick={this.props.onCancel} className="btn btn-primary-outline">Cancel</button>
+                    <button onClick={this.handleSubmitFilterLeagues} className="btn btn-primary-solid">{t(CommonResourceKey.OK)}</button>
+                    <button onClick={this.props.onCancel} className="btn btn-primary-outline">{t(CommonResourceKey.CANCEL)}</button>
                 </div>
             </Fragment>
         );
     }
 }
 
-export default LeaguesFilteringTable;
+export default withTranslation(ResourceType.COMMON)(LeaguesFilteringTable);

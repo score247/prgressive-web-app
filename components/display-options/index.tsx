@@ -2,18 +2,22 @@ import "./style.scss";
 import React from "react";
 import { DisplayMode } from "../../common/constants";
 import { DisplayOptionsProps } from "./type";
+import { useTranslation } from "react-i18next";
+import { ResourceType, CommonResourceKey } from "../../common/resources";
 
 const DisplayOptions: React.FC<DisplayOptionsProps> = props => {
+  const { t } = useTranslation(ResourceType.COMMON);
+
   return (
     <div className="show-hide">
       <span className="show-all" onClick={() => props.onDisplayModeChange(DisplayMode.SHOW_ALL)}>
-        Show All
+        {t(CommonResourceKey.SHOW_ALL)}
       </span>
       <span className="hide" onClick={() => props.onDisplayModeChange(DisplayMode.HIDE)}>
-        Hide
+        {t(CommonResourceKey.HIDE)}
       </span>
       <span className="show-only" onClick={() => props.onDisplayModeChange(DisplayMode.SHOW_ONLY)}>
-        Show Only
+        {t(CommonResourceKey.SHOW_ONLY)}
       </span>
     </div>
   );

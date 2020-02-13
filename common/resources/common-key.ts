@@ -31,4 +31,14 @@ export class CommonResourceKey {
     public static readonly HOME = "home";
     public static readonly AWAY = "away";
     public static readonly NO_MATCHES_FOUND = "no_matches_found";
+    public static readonly SHOW_ALL = "show_all";
+    public static readonly HIDE = "hide";
+    public static readonly SHOW_ONLY = "show_only";
+    public static readonly FILTER_BY_LEAGUE = "filter_by_league";
+    public static readonly LEAGUE_FILTERING = "league_filtering";
+    public static readonly CHECK_ALL = "check_all";
+    public static readonly FIND_LEAGUES = "find_leagues";
+    public static readonly OK = "ok";
+    public static readonly LAST_RESULTS = "last_results";
+    public static readonly CANCELLED_MATCHES = "cancelled_matches";
 }

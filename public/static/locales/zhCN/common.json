@@ -29,5 +29,15 @@
   "status": "Status",
   "home": "Home",
   "away": "Away",
-  "no_matches_found": "There are no matches available."
+  "no_matches_found": "There are no matches available.",
+  "show_all": "Show All",
+  "hide": "Hide",
+  "show_only": "Show Only",
+  "filter_by_league": "Filter by League",
+  "league_filtering": "League filtering",
+  "check_all": "Check all",
+  "find_leagues": "Find leagues",
+  "ok": "OK",
+  "last_results": "Last Results",
+  "cancelled_matches": "Cancelled/postponed/abandoned/delayed/interrupted matches"
 }
