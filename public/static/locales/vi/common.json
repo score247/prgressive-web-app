@@ -28,5 +28,6 @@
   "time": "Time",
   "status": "Status",
   "home": "Home",
-  "away": "Away"
+  "away": "Away",
+  "no_matches_found": "There are no matches available."
 }

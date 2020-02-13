@@ -10,6 +10,7 @@ import { DateTimeFormat } from "../../../common/constants";
 import AdvertisementRow from "./advertisement-row";
 import advertisements from "../../../advertisement";
 import "./style.scss";
+import EmptyRow from "./empty-row";
 
 export type Props = {
   matches: MatchSummary[];
@@ -107,8 +108,8 @@ class SoccerTable extends React.Component<Props> {
     };
   }
 
-  renderBodyRows() {
-    const { selectedDate, matches } = this.props;
+  renderBodyRows(matches: MatchSummary[]) {
+    const { selectedDate } = this.props;
     const classifiedRows = this.classifyMatchRowsByStatus(matches);
     this.renderedRow = 0;
     this.displayedAdvertisements = advertisements.slice();
@@ -127,7 +128,8 @@ class SoccerTable extends React.Component<Props> {
   }
 
   render() {
-    const bodyRows = this.renderBodyRows();
+    const { matches } = this.props;
+    const bodyRows = matches && matches.length > 0 ? this.renderBodyRows(matches) : <EmptyRow />;
 
     return (
       <table className="table">

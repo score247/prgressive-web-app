@@ -30,4 +30,5 @@ export class CommonResourceKey {
     public static readonly STATUS = "status";
     public static readonly HOME = "home";
     public static readonly AWAY = "away";
+    public static readonly NO_MATCHES_FOUND = "no_matches_found";
 }
