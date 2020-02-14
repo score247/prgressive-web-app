@@ -1,6 +1,6 @@
 import * as React from "react";
 import { shallow } from "enzyme";
-import TopEvents from "./TopEvents";
+import TopEvents from "./index";
 
 describe("<TopEvents />", () => {
   it("should render correctly", () => {

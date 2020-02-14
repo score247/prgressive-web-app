@@ -199,7 +199,6 @@
     padding: 0.8rem 0;
     display: flex;
     justify-content: space-between;
-    cursor: pointer;
     border-right: 1px solid #dee2e6;
     .mobile & {
       border-right: none;
@@ -252,5 +251,9 @@
 }
 
 .check-all {
+  cursor: pointer;
+}
+
+.league-row-name {
   cursor: pointer;
 }
