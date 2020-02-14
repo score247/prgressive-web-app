@@ -4,6 +4,7 @@ import { buildMatchStatus } from "../../../../../common/helpers/match-status-hel
 import { useDeviceContext } from "../../../../../contexts/device-context";
 import { formatDate } from "../../../../../common/helpers/date-time-helper";
 import { DateTimeFormat } from "../../../../../common/constants";
+import { MatchStatusHelper } from "../../../../../common/enums/match-status-type";
 
 const Status: React.FC<Props> = props => {
   const { match } = props;
@@ -28,7 +29,9 @@ const Status: React.FC<Props> = props => {
           {formatDate(new Date(match.EventDate[0]), DateTimeFormat.TIME)}
         </div>
       )}
-      <div className="status">{status}</div>
+      <div className="status">
+        {!isMobile && MatchStatusHelper.isLiveMatch() && <span className="icon-clock"></span>}
+        {status}</div>
     </div>
   );
 };

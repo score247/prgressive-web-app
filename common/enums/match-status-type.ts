@@ -95,6 +95,10 @@ export class MatchStatusHelper {
   static isCancelStatus(matchStatus?: Enumeration) : boolean {
     return CancelStatus.find(status => matchStatus?.Value === status) !== undefined;
   }
+
+  static isLiveMatch(matchStatus?: Enumeration): boolean {
+    return MatchStatusType.LIVE.value === matchStatus?.Value;
+  }
 }
 
 export const MatchStatusTypeDic: MatchStatusKeyNumberValue = {};
