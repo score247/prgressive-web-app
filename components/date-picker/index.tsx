@@ -1,23 +1,10 @@
 import "./style.scss";
 import React, { PureComponent } from "react";
-import DatePicker, {
-  ReactDatePickerProps,
-  registerLocale,
-  setDefaultLocale
-} from "react-datepicker";
-import { vi, enUS, th, zhCN, zhTW, id } from "date-fns/locale";
+import DatePicker, { ReactDatePickerProps } from "react-datepicker";
 import { i18n } from "../../common/helpers/Localizer";
+import { registerDatePickerLocale } from "./register-locale";
 
-vi.options = { weekStartsOn: 1 };
-enUS.options = { weekStartsOn: 1 };
-
-registerLocale("vi", vi);
-registerLocale("en", enUS);
-registerLocale("th", th);
-registerLocale("zhCN", zhCN);
-registerLocale("zhTW", zhTW);
-registerLocale("id", id);
-setDefaultLocale("en");
+registerDatePickerLocale();
 
 class DatePickerWrapper extends PureComponent<ReactDatePickerProps> {
   render() {
