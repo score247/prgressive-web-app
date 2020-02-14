@@ -56,7 +56,9 @@
     background-color: #1b3464;
     z-index: 999;
     height: 4rem;
-    padding: 0 1.8rem;
+    padding: 0 1.6rem;
+    display: flex;
+    justify-content: space-between;
     .txt-search {
       height: 3rem;
     }
@@ -207,6 +209,11 @@
     }
     &:nth-child(3n) {
       border-right: none;
+    }
+
+    .league-row-name {
+      display: flex;
+      align-items: baseline;
     }
   }
 }

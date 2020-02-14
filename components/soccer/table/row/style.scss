@@ -19,20 +19,20 @@
 }
 
 [class$="card"] {
-    border-radius: .3rem;
+    border-radius: .2rem;
     color: #000;
     height: 1.6rem;
-    line-height: 1.8rem;
     font-family: 'Roboto', sans-serif;
     font-size: 1.1rem;
     display: inline-block;
     margin: 0 .4rem;
-    padding: 0 .4rem;
+    width: 1.1rem;
     text-align: center;
 }
 
 .red-card {
     background-color: #FF0000;
+    color: #fff;
 }
 
 .yellow-card {
