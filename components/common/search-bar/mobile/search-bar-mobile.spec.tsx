@@ -2,7 +2,7 @@ import React from "react";
 import { shallow, render } from "enzyme";
 import MobileSearchBar from ".";
 import { SearchBarProps } from '../type';
-import { DeviceContext } from "../../../contexts/device-context";
+import { DeviceContext } from "../../../../contexts/device-context";
 
 type Props = {
     onCancel: () => void;

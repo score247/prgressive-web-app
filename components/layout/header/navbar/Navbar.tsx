@@ -2,8 +2,8 @@ import React from "react";
 import "./Navbar.scss";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../common/helpers/Localizer";
-import SportLink from "../../../sport-link";
-import FunctionLink from "../../../function-link";
+import SportLink from "../../../common/sport-link";
+import FunctionLink from "../../../common/function-link";
 import { ResourceType, CommonResourceKey } from "../../../../common/resources";
 
 interface IProps extends WithTranslation {

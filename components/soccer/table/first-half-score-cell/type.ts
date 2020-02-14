@@ -1,4 +1,4 @@
-import { MatchPeriod } from "../../../../models/match-period";
+import { MatchPeriod } from "../../../../apis/soccer/models/match-period";
 
 export type FirstHalfScoreCellProps = {
     firstHalfPeriod?: MatchPeriod;

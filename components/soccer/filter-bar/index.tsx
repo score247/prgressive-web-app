@@ -1,8 +1,8 @@
 import React from "react";
-import DisplayOptions from "../../display-options";
+import DisplayOptions from "../../common/display-options";
 import { DisplayMode } from "../../../common/constants";
 import SoccerSortOption from "../sort-option";
-import SearchBar from "../../search-bar";
+import SearchBar from "../../common/search-bar";
 import { DeviceContextConsumer } from "../../../contexts/device-context";
 import "./style.scss";
 import Modal from 'react-modal';

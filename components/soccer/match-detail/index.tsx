@@ -1,11 +1,11 @@
 import "./style.scss";
 import React from "react";
 import dynamic from "next/dynamic";
-import { MatchInfo } from "../../../models";
-import { SoccerAPI } from "../../../apis/soccer-api";
-import { SoccerSignalRClient } from "../../../apis/soccer-signalr-client";
+import { MatchInfo } from "../../../apis/soccer/models";
+import { SoccerAPI } from "../../../apis/soccer/soccer-api";
+import { SoccerSignalRClient } from "../../../apis/soccer/soccer-signalr-client";
 import appSettings from "../../../app-settings";
-import { MatchEventSignalRMessage } from "../../../models/soccer/signalr-messages";
+import { MatchEventSignalRMessage } from "../../../apis/soccer/models/signalr-messages";
 import { DeviceContextConsumer } from "../../../contexts/device-context";
 import { DeviceContextType } from "../../../contexts/device-context-type";
 import { updateMatchFromEvent } from "../../../common/helpers/soccer-match-helper";

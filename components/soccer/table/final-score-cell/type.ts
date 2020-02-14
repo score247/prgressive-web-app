@@ -1,4 +1,4 @@
-import { MatchPeriod } from "../../../../models";
+import { MatchPeriod } from "../../../../apis/soccer/models";
 
 export type Props = {
     homeScore: number;

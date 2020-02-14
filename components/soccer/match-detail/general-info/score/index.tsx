@@ -5,7 +5,7 @@ import {
   MatchStatusType,
   PreMatchStatuses
 } from "../../../../../common/enums/match-status-type";
-import { MatchSummary } from "../../../../../models";
+import { MatchSummary } from "../../../../../apis/soccer/models";
 import Status from "../status";
 import { useDeviceContext } from "../../../../../contexts/device-context";
 

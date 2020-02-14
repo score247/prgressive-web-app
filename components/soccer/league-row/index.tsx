@@ -1,5 +1,5 @@
 import React from "react";
-import Checkbox from '../../basic/checkbox';
+import Checkbox from '../../common/basic/checkbox';
 import { League } from '../filter-table/type';
 
 type Props = {

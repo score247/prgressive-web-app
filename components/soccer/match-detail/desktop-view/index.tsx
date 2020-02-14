@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { MatchInfo } from "../../../../models/match-info";
+import { MatchInfo } from "../../../../apis/soccer/models/match-info";
 import GeneralInfo from "../general-info";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import MatchInfoTab from "../tabs/match-info-tab";
-import Advertisement from "../../../advertisement";
+import Advertisement from "../../../common/advertisement";
 
 type Props = {
   matchInfo: MatchInfo;

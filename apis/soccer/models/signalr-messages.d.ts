@@ -1,6 +1,6 @@
 
 import { MatchResult } from "./match-result";
-import { TimelineEvent } from "../timeline-event";
+import { TimelineEvent } from "./timeline-event";
 
 export interface MatchEvent {
     LeagueId: string,

@@ -1,5 +1,5 @@
 import React from "react";
-import MobileSearchBar from "../../search-bar/mobile";
+import MobileSearchBar from "../../common/search-bar/mobile";
 import { SoccerSortOptions } from '../../../common/enums/soccer-sort-option';
 import Modal from 'react-modal';
 import LeaguesFilteringTable from '../leagues-filtering';

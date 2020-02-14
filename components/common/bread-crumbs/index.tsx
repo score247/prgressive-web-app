@@ -2,7 +2,7 @@ import "./style.scss";
 import React, { PureComponent } from "react";
 import { State, Props } from "./type";
 import { format } from "date-fns";
-import { DateTimeFormat } from "../../common/constants";
+import { DateTimeFormat } from "../../../common/constants";
 
 class Breadcrumbs extends PureComponent<Props, State> {
   intervalId?: number;

@@ -4,7 +4,7 @@ import {
   MatchStatusTypeDic,
   MatchStatusHelper
 } from "../enums/match-status-type";
-import { MatchSummary } from "../../models";
+import { MatchSummary } from "../../apis/soccer/models";
 import { differenceInMinutes } from "date-fns";
 
 class PeriodTime {

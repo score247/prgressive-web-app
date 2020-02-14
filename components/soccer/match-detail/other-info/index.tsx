@@ -1,5 +1,5 @@
 import React from "react";
-import { MatchInfo } from "../../../../models";
+import { MatchInfo } from "../../../../apis/soccer/models";
 
 type Props = {
     matchInfo: MatchInfo;

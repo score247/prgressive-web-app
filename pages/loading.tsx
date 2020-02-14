@@ -3,7 +3,7 @@ import Router from 'next/router';
 import cookie from 'js-cookie';
 import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
 import { ViewMode, CookieName, MobileAppUrl } from "../common/constants";
-import Button from "../components/basic/button";
+import Button from "../components/common/basic/button";
 import "../assets/styles/pages/loading.scss";
 import { ResourceType, CommonResourceKey } from "../common/resources";
 

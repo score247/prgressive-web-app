@@ -1,7 +1,7 @@
 import "./style.scss";
 import React, { PureComponent } from "react";
 import DatePicker, { ReactDatePickerProps } from "react-datepicker";
-import { i18n } from "../../common/helpers/Localizer";
+import { i18n } from "../../../common/helpers/Localizer";
 import { registerDatePickerLocale } from "./register-locale";
 
 registerDatePickerLocale();

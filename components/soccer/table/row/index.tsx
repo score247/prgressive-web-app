@@ -1,10 +1,10 @@
 import "./style.scss";
 import React from "react";
-import { MatchSummary } from "../../../../models";
+import { MatchSummary } from "../../../../apis/soccer/models";
 import TimeAndStatusCell from "../time-status-cell";
 import FirstHalfScoreCell from "../first-half-score-cell";
 import FinalScoreCell from "../final-score-cell";
-import Checkbox from "../../../basic/checkbox";
+import Checkbox from "../../../common/basic/checkbox";
 import HomeTeamCell from "../home-team-cell";
 import AwayTeamCell from "../away-team-cell";
 import ExtraMatchInfoRow from "../extra-match-info-row";

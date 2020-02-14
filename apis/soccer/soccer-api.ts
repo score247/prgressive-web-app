@@ -1,9 +1,9 @@
-import appSettings from "../app-settings";
-import { MatchSummary, MatchInfo, League, MatchCommentary, MatchLineups } from "../models";
+import appSettings from "../../app-settings";
+import { MatchSummary, MatchInfo, League, MatchCommentary, MatchLineups } from "./models";
 import { startOfDay, endOfDay } from "date-fns";
-import { covertToUTC } from "../common/helpers/date-time-helper";
-import API from "../common/helpers/api-helper";
-import { MatchStatistic } from "../models/match-statistic";
+import { covertToUTC } from "../../common/helpers/date-time-helper";
+import API from "../../common/helpers/api-helper";
+import { MatchStatistic } from "./models/match-statistic";
 
 
 export const SoccerAPI = {

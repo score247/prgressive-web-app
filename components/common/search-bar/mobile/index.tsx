@@ -2,8 +2,8 @@ import React from "react";
 import SearchBox from "../search-box";
 import { SearchBarProps } from "../type";
 import { WithTranslation } from "next-i18next";
-import { withTranslation } from "../../../common/helpers/Localizer";
-import { ResourceType, CommonResourceKey } from "../../../common/resources";
+import { withTranslation } from "../../../../common/helpers/Localizer";
+import { ResourceType, CommonResourceKey } from "../../../../common/resources";
 
 type Props = {
     onCancel: () => void;

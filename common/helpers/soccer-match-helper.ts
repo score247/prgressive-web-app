@@ -1,5 +1,5 @@
-import { MatchSummary, TimelineEvent } from "../../models";
-import { MatchResult } from "../../models/soccer/match-result";
+import { MatchSummary, TimelineEvent } from "../../apis/soccer/models";
+import { MatchResult } from "../../apis/soccer/models/match-result";
 import { EventTypes } from "../enums/event-type";
 
 export function updateMatchFromEvent(

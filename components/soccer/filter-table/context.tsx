@@ -1,5 +1,5 @@
 import React from "react";
-import { MatchSummary } from "../../../models";
+import { MatchSummary } from "../../../apis/soccer/models";
 import { SoccerSortOptions } from "../../../common/enums/soccer-sort-option";
 import { sortArray } from "../../../common/utils/sort";
 

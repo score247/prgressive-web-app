@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import GeneralInfo from "../general-info";
-import { MatchInfo } from "../../../../models/match-info";
+import { MatchInfo } from "../../../../apis/soccer/models/match-info";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import SwipeableViews from "react-swipeable-views";
 import MatchInfoTab from "../tabs/match-info-tab";

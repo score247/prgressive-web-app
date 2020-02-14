@@ -3,7 +3,7 @@ import React from "react";
 import Head from "next/head";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import Breadcrumbs from "../bread-crumbs";
+import Breadcrumbs from "../common/bread-crumbs";
 import { DeviceContextConsumer } from "../../contexts/device-context";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../common/helpers/Localizer";

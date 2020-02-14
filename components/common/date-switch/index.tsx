@@ -1,9 +1,9 @@
 import "./style.scss";
 import React, { PureComponent } from "react";
 import { addDays } from "date-fns";
-import { formatDate } from "../../common/helpers/date-time-helper";
-import { DateTimeFormat } from "../../common/constants";
-import { i18n } from "../../common/helpers/Localizer";
+import { formatDate } from "../../../common/helpers/date-time-helper";
+import { DateTimeFormat } from "../../../common/constants";
+import { i18n } from "../../../common/helpers/Localizer";
 import { Props } from "./type";
 
 

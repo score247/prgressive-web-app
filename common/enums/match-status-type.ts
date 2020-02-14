@@ -1,4 +1,4 @@
-import { Enumeration } from "../../models";
+import { Enumeration } from "../../apis/soccer/models";
 
 interface MatchStatusKeyNumberValue {
   [key: number]: MatchStatus;

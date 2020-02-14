@@ -1,7 +1,7 @@
 import React from "react";
 import { Props } from "./type";
 import { PeriodType } from "../../../../common/enums/period-type";
-import { MatchPeriod, Enumeration } from "../../../../models";
+import { MatchPeriod, Enumeration } from "../../../../apis/soccer/models";
 import { MatchStatusType } from "../../../../common/enums/match-status-type";
 import "./style.scss";
 

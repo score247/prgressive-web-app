@@ -2,7 +2,7 @@ import React from "react";
 import { DeviceContext } from "../../../../contexts/device-context";
 import { Props } from "./type";
 import { MatchStatusType, PreMatchStatuses } from "../../../../common/enums/match-status-type";
-import { MatchPeriod } from "../../../../models";
+import { MatchPeriod } from "../../../../apis/soccer/models";
 
 function isPreMatch(matchStatusId?: number): boolean {
   return (

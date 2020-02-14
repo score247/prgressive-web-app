@@ -1,6 +1,6 @@
 import "./league-cell.scss";
 import React from "react";
-import { MatchSummary } from "../../../../models";
+import { MatchSummary } from "../../../../apis/soccer/models";
 
 const LeagueCell: React.FC<{ match: MatchSummary, rowSpan?: number }> = ({ match, rowSpan }) => {
     const league = match.IsInternationalLeague ? match.LeagueAbbreviation : `${match.CountryCode} ${match.LeagueAbbreviation}`;

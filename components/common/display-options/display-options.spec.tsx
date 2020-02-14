@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import DisplayOptions from ".";
 import { DisplayOptionsProps } from "./type";
-import { DisplayMode } from "../../common/constants";
+import { DisplayMode } from "../../../common/constants";
 
 describe("DisplayOptions", () => {
   let props: DisplayOptionsProps;

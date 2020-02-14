@@ -1,22 +1,22 @@
 import * as React from "react";
 import Layout from "../components/layout";
-import DateBar from "../components/date-bar";
-import Banner from "../components/banner";
+import DateBar from "../components/common/date-bar";
+import Banner from "../components/common/banner";
 import { SportsEnum } from "../common/enums/sport-enum";
 import { DateTimeFormat } from "../common/constants";
 import { WithTranslation } from "next-i18next";
 import { isSameDay } from "date-fns";
 import { formatDate } from "../common/helpers/date-time-helper";
-import DateSwitch from "../components/date-switch";
+import DateSwitch from "../components/common/date-switch";
 import FilterSoccerTable from "../components/soccer/filter-table";
-import { SoccerSignalRClient } from "../apis/soccer-signalr-client";
+import { SoccerSignalRClient } from "../apis/soccer/soccer-signalr-client";
 import appSettings from "../app-settings";
-import { MatchEventSignalRMessage } from "../models/soccer/signalr-messages";
+import { MatchEventSignalRMessage } from "../apis/soccer/models/signalr-messages";
 import { DeviceContextConsumer } from "../contexts/device-context";
 import { DeviceContextType } from "../contexts/device-context-type";
 import withLoadingPage from "../hoc/with-loading-page";
-import LeftBar from "../components/left-bar";
-import RightBar from "../components/right-bar";
+import LeftBar from "../components/common/left-bar";
+import RightBar from "../components/common/right-bar";
 import { ResourceType, CommonResourceKey } from "../common/resources";
 
 type State = {

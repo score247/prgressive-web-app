@@ -1,13 +1,13 @@
-import "./style.scss";
+import "./style.scss"; 
 import React, { Component } from "react";
 import DatePicker from "../date-picker";
 import { addDays, isSameDay, addYears } from "date-fns";
-import { withTranslation } from "../../common/helpers/Localizer";
+import { withTranslation } from "../../../common/helpers/Localizer";
 import { State, Props } from "./type";
-import { DateTimeFormat } from "../../common/constants";
+import { DateTimeFormat } from "../../../common/constants";
 import CustomDateInput from "./custom-date-input";
-import { formatDate } from "../../common/helpers/date-time-helper";
-import { ResourceType, CommonResourceKey } from "../../common/resources";
+import { formatDate } from "../../../common/helpers/date-time-helper";
+import { ResourceType, CommonResourceKey } from "../../../common/resources";
 
 class DateBar extends Component<Props, State> {
   today: Date;

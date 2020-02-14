@@ -1,4 +1,4 @@
-import { Enumeration } from "../Enumeration";
+import { Enumeration } from "./Enumeration";
 import { MatchPeriod } from "../MatchPeriod";
 
 export interface MatchResult {

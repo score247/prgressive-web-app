@@ -3,7 +3,7 @@ import "./Navbar.scss";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../common/helpers/Localizer";
 import { SportsEnum } from "../../../../common/enums/sport-enum";
-import FunctionLink from "../../../function-link";
+import FunctionLink from "../../../common/function-link";
 import { ResourceType, CommonResourceKey } from "../../../../common/resources";
 
 interface IProps extends WithTranslation {

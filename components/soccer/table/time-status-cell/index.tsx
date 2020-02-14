@@ -1,5 +1,5 @@
 import React from "react";
-import { MatchSummary } from "../../../../models";
+import { MatchSummary } from "../../../../apis/soccer/models";
 import { MatchStatusHelper } from "../../../../common/enums/match-status-type";
 import { TimeStatusCellProps, TimeStatusCellState } from "./types";
 import { DeviceContext } from "../../../../contexts/device-context";
