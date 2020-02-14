@@ -6,14 +6,17 @@ import HomeTeam from "../home-team";
 import AwayTeam from "../away-team";
 import Score from "../score";
 import Status from "../status";
-
+import appSettings from "../../../../../app-settings";
 
 const MobileView: React.FC<Props> = props => {
   const { match } = props;
   return (
     <div className="general-info">
       <div className="extra-info">
-        <div className="league-name"><span className={match.CountryCode}></span>{match?.LeagueName}</div>
+        <div className="league-name">
+          <img src={`${appSettings.assetsUrl}/flags/${match.CountryCode}.svg`} />
+          {match?.LeagueName}
+        </div>
         <div className="kick-off-time">
           {formatDate(new Date(match.EventDate[0]), DateTimeFormat.DAY_MONTH_ONLY)}
         </div>

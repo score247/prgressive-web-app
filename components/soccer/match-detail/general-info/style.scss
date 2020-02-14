@@ -9,14 +9,21 @@
   justify-content: space-between;
   padding: 0.8rem;
   border-bottom: 0.1rem solid #dee2e6;
+
   .league-name,
   .kick-off-time {
     font-size: 1.4rem;
     color: #000;
   }
+
   .league-name {
     text-transform: uppercase;
     font-weight: bold;
+
+    img {
+      width: 3rem;
+      height: 2.5rem;
+    }
   }
 }
 
@@ -30,17 +37,19 @@
   .mobile & {
     justify-content: initial;
     padding: 1.2rem 0;
+
     .status-section {
       width: 5rem;
     }
   }
-  
+
   .match-section {
     flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    .mobile &{
+
+    .mobile & {
       align-items: flex-start;
     }
   }
@@ -48,57 +57,71 @@
   .icon-menu-favorites {
     width: 8rem;
     font-size: 2.4rem;
+
     .mobile & {
       width: 5rem;
       font-size: 1.6rem;
     }
   }
-  .home-section, .away-section {
+
+  .home-section,
+  .away-section {
     position: relative;
   }
- 
+
   .home-section {
     text-align: right;
+
     .reference-info {
       right: 0;
     }
   }
+
   .away-section {
     text-align: left;
+
     .reference-info {
       left: 0;
     }
   }
+
   .reference-info {
     position: absolute;
   }
+
   .home-name,
   .away-name {
     font-size: 2.8rem;
     font-weight: bold;
     color: #000;
     align-self: center;
+
     .mobile & {
       font-size: 1.2rem;
     }
   }
+
   .score {
     display: flex;
     flex-direction: column;
     position: relative;
+
     .mobile & {
       padding: 0 .8rem;
     }
+
     .home-score,
     .away-score {
       font-size: 6.4rem;
       padding: 0 4rem;
+
       .mobile & {
         font-size: 1.2rem;
-        padding: 0 .4rem;        
+        padding: 0 .4rem;
         font-weight: bold;
       }
     }
+
     .status {
       font-size: 1.4rem;
       height: 6.4rem;
@@ -114,6 +137,7 @@
       flex-direction: column;
     }
   }
+
   .full-score {
     display: flex;
     align-items: center;
@@ -122,20 +146,21 @@
   }
 
   .half-score {
-      color: #0057FF;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -1.6rem;
-      font-size: 1.4rem;      
-      .mobile & {
-        font-size: 1.2rem;
-        width: 100%;
-        font-weight: bold;
-        position: relative;
-        bottom: unset;
-        left: unset;
-        transform: unset;
-      }
+    color: #0057FF;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -1.6rem;
+    font-size: 1.4rem;
+
+    .mobile & {
+      font-size: 1.2rem;
+      width: 100%;
+      font-weight: bold;
+      position: relative;
+      bottom: unset;
+      left: unset;
+      transform: unset;
+    }
   }
 }

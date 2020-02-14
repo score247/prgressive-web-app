@@ -10,4 +10,5 @@ export default interface AppSettings {
   encryptKey: string;
   salt: string;
   sportRadarWidgetKey: string;
+  assetsUrl: string;
 }
