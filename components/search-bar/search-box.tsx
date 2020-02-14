@@ -1,24 +1,39 @@
 import React from "react";
 import { SearchBarProps } from "./type";
 
-const SearchBox: React.FC<SearchBarProps> = props => {
-    const handleFilterTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        props.onFilterTextChange(event.target.value);
+class SearchBox extends React.Component<SearchBarProps> {
+    textInputRef: React.RefObject<HTMLInputElement>;
+
+    constructor(props: SearchBarProps) {
+        super(props);
+
+        this.textInputRef = React.createRef<HTMLInputElement>();
+    }
+
+    handleFilterTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        this.props.onFilterTextChange(event.target.value);
     };
 
-    return (
-        <div className="search-box">
-            <span className="icon-search"></span>
-            <input
-                type="text"
-                placeholder={props.placeHolder}
-                value={props.filterText}
-                onChange={handleFilterTextChange}
-                className="txt-search"
-            />
-            <span className="icon-close" onClick={props.onReset}></span>
-        </div>
-    );
-};
+    focus() {
+        this.textInputRef.current?.focus();
+    }
+
+    render() {
+        return (
+            <div className="search-box">
+                <span className="icon-search"></span>
+                <input
+                    ref={this.textInputRef}
+                    type="text"
+                    placeholder={this.props.placeHolder}
+                    value={this.props.filterText}
+                    onChange={this.handleFilterTextChange}
+                    className="txt-search"
+                />
+                <span className="icon-close" onClick={this.props.onReset}></span>
+            </div>
+        );
+    }
+}
 
 export default SearchBox;

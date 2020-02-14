@@ -9,17 +9,27 @@ type Props = {
     onCancel: () => void;
 } & SearchBarProps & WithTranslation;
 
-const MobileSearchBar: React.FC<Props> = (props) => {
-    const handleCancelClick = () => {
-        props.onCancel();
-    };
+class MobileSearchBar extends React.Component<Props> {
+    searchBoxRef: React.RefObject<SearchBox>;
 
-    return (
-        <div className="search-section">
-            <SearchBox {...props} />
-            <span className="btn-cancel" onClick={handleCancelClick}>{props.t(CommonResourceKey.CANCEL)}</span>
-        </div>
-    );
-};
+    constructor(props: Props) {
+        super(props);
+
+        this.searchBoxRef = React.createRef<SearchBox>();
+    }
+
+    componentDidMount() {
+        this.searchBoxRef.current?.focus();
+    }
+
+    render() {
+        return (
+            <div className="search-section">
+                <SearchBox {...this.props} ref={this.searchBoxRef} />
+                <span className="btn-cancel" onClick={this.props.onCancel}>{this.props.t(CommonResourceKey.CANCEL)}</span>
+            </div>
+        );
+    }
+}
 
 export default withTranslation(ResourceType.COMMON)(MobileSearchBar);
