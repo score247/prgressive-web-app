@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Layout from "./";
+import Layout from ".";
 
 describe("<Layout />", () => {
   const children = <div>some text</div>;

@@ -61,8 +61,8 @@
       height: 3rem;
     }
     .icon-search {
-      top: .6rem;
-      left: .4rem;
+      top: 0.6rem;
+      left: 0.4rem;
       cursor: pointer;
     }
   }
@@ -92,7 +92,7 @@
       position: relative;
       width: 100%;
       padding: 0;
-      margin: .4rem 0;
+      margin: 0.4rem 0;
       .search-box {
         width: 100%;
         margin-right: 0;
@@ -106,7 +106,6 @@
       align-items: flex-start;
       padding: 0 0.4rem;
     }
-   
   }
 
   .checkbox input[type="checkbox"],
@@ -129,7 +128,7 @@
   border-bottom: 0.1rem solid #dee2e6;
   .mobile & {
     justify-content: center;
-    background-color: #1B3464;
+    background-color: #1b3464;
     color: #fff;
   }
 
@@ -181,7 +180,6 @@
       position: relative;
       border-radius: 2rem;
     }
-
   }
 }
 
@@ -200,7 +198,7 @@
     display: flex;
     justify-content: space-between;
     cursor: pointer;
-    border-right: 1px solid #DEE2E6;
+    border-right: 1px solid #dee2e6;
     .mobile & {
       border-right: none;
     }
@@ -244,4 +242,8 @@
     padding: 0.8rem 1.8rem;
     border-top: 0.1rem solid #2d4470;
   }
+}
+
+.check-all {
+  cursor: pointer;
 }

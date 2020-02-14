@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import DisplayOptions from "./";
+import DisplayOptions from ".";
 import { DisplayOptionsProps } from "./type";
 import { DisplayMode } from "../../common/constants";
 
@@ -25,7 +25,7 @@ describe("DisplayOptions", () => {
 
     showAll.simulate("click");
     expect(props.onDisplayModeChange).toBeCalledTimes(1);
-    expect(props.onDisplayModeChange).toBeCalledWith(DisplayMode.ShowAll);
+    expect(props.onDisplayModeChange).toBeCalledWith(DisplayMode.SHOW_ALL);
   });
 
   it("should trigger onDisplayModeChange correctly", () => {
@@ -34,7 +34,7 @@ describe("DisplayOptions", () => {
 
     showAll.simulate("click");
     expect(props.onDisplayModeChange).toBeCalledTimes(1);
-    expect(props.onDisplayModeChange).toBeCalledWith(DisplayMode.ShowOnly);
+    expect(props.onDisplayModeChange).toBeCalledWith(DisplayMode.SHOW_ONLY);
   });
 
   it("should trigger onDisplayModeChange correctly", () => {
@@ -43,6 +43,6 @@ describe("DisplayOptions", () => {
 
     showAll.simulate("click");
     expect(props.onDisplayModeChange).toBeCalledTimes(1);
-    expect(props.onDisplayModeChange).toBeCalledWith(DisplayMode.Hide);
+    expect(props.onDisplayModeChange).toBeCalledWith(DisplayMode.HIDE);
   });
 });
