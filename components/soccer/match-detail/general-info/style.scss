@@ -17,7 +17,7 @@
   .league-name,
   .kick-off-time {
     font-size: 1.4rem;
-    color: #000;
+    color: #000;    
   }
 
   .league-name {
@@ -30,6 +30,10 @@
       margin-right: .4rem;
     }
   }
+}
+
+.mobile .extra-info .kick-off-time {
+  text-transform: uppercase;
 }
 
 .main-info {
