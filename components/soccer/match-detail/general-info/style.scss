@@ -13,6 +13,7 @@
   justify-content: space-between;
   padding: 0.8rem;
   border-bottom: 0.1rem solid #dee2e6;
+  align-items: center;
 
   .league-name,
   .kick-off-time {
@@ -24,9 +25,11 @@
     text-transform: uppercase;
     font-weight: bold;
     display: flex;
+    align-items: center;
 
     img {
       width: 3rem;
+      height: 2rem;
       margin-right: .4rem;
     }
   }

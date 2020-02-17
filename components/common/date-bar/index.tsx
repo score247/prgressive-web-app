@@ -59,7 +59,7 @@ class DateBar extends Component<Props, State> {
             ? this.props.t(CommonResourceKey.TODAY)
             : formatDate(date, DateTimeFormat.WEEKDAY, this.props.i18n.language)}
         </div>
-        <div>{formatDate(date, DateTimeFormat.DAY_MONTH_ONLY, this.props.i18n.language)}</div>
+        <div className="format-date">{formatDate(date, DateTimeFormat.DAY_MONTH_ONLY, this.props.i18n.language)}</div>
       </div>
     );
   };
