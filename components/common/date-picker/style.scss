@@ -41,6 +41,12 @@
       }
     }
 
+    .react-datepicker__day--today {
+      background-color: #fce5e6;
+      color: #3A3B45;
+      border-radius: 50%;
+    }
+
     .react-datepicker__current-month {
       font-size: 1.6rem;
       color: #E6292E;
