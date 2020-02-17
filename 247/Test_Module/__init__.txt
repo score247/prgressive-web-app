@@ -1,0 +1,22 @@
+--outputdir
+%~dp0\test
+-C
+off
+-W
+156
+--suite
+247.Test Module.S01 Desktop Layout
+--test
+247.Test Module.S01 Desktop Layout.Date_bar
+--suite
+247.Test Module.S01 Desktop Layout
+--test
+247.Test Module.S01 Desktop Layout.Function_bar
+--suite
+247.Test Module.S01 Desktop Layout
+--test
+247.Test Module.S01 Desktop Layout.Header
+--suite
+247.Test Module.S01 Desktop Layout
+--test
+247.Test Module.S01 Desktop Layout.Breadcrumbs

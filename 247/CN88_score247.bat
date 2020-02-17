@@ -1,0 +1,1 @@
+call pybot -e NoRun --outputdir "%~dp0\Report" "%~dp0\Test_Modules\arg.txt"
