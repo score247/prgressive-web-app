@@ -38,7 +38,7 @@ class MobileFilterBar extends React.Component<Props, State> {
 
     handleSearchClick = () => {
         const { openSearch } = this.state;
-        this.setState({ openSearch: !openSearch });
+        this.setState({ openSearch: !openSearch, openSortMenu: false });
         if (openSearch) {
             this.props.onReset();
         }
