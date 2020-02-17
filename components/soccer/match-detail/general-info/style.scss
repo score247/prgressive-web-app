@@ -49,15 +49,15 @@
 
     .status-section {
       width: 5rem;
+      position: absolute;
     }
   }
 
   .match-section {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    display: grid;
+    grid-template-columns: 1fr 5rem 1fr;
+    width: 100%;
+    padding: 0 5rem;
     .mobile & {
       align-items: flex-start;
     }
@@ -70,6 +70,8 @@
     .mobile & {
       width: 5rem;
       font-size: 1.6rem;
+      position: absolute;
+      right: .8rem;
     }
   }
 
