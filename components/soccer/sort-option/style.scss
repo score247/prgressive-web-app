@@ -1,0 +1,23 @@
+.sort-dropdown {
+    height: 3.6rem;
+    min-width: 14.8rem;
+    margin-right: 1.2rem;
+
+    .select__indicator-separator {
+        display: none;
+    }
+
+    .select__control {
+        min-height: unset;
+        height: 100%;
+        cursor: pointer;
+        &.select__control--is-focused {
+            border-color: hsl(0,0%,80%);
+            box-shadow: none;
+        }
+    }
+}
+
+.select__single-value:before {
+    padding-right: .4rem;
+}

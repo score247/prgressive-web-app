@@ -1,0 +1,191 @@
+.general-info {
+  border-radius: 0.4rem;
+  box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.25);
+  margin-bottom: 0.8rem;
+  .mobile & {
+    margin: 0 0.8rem 0.8rem 0.8rem;
+    background-color: #fff;
+  }
+}
+
+.extra-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border-bottom: 1px solid #dee2e6;
+  align-items: center;
+
+  .league-name,
+  .kick-off-time {
+    font-size: 1.4rem;
+    color: #000;    
+  }
+
+  .league-name {
+    text-transform: uppercase;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 3rem;
+      height: 2rem;
+      margin-right: .4rem;
+    }
+  }
+}
+
+.mobile .extra-info .kick-off-time {
+  text-transform: uppercase;
+}
+
+.main-info {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.2rem 0 3.6rem;
+  position: relative;
+
+  .mobile & {
+    justify-content: initial;
+    padding: 1.2rem 0;
+
+    .status-section {
+      width: 5rem;
+      position: absolute;
+    }
+  }
+
+  .match-section {
+    display: grid;
+    grid-template-columns: 1fr 24rem 1fr;
+    align-items: center;
+    width: 100%;
+    padding: 0 12rem;
+    .mobile & {
+      align-items: flex-start;
+      grid-template-columns: 1fr 5rem 1fr;
+      padding: 0 5rem;
+    }
+  }
+
+  .icon-menu-favorites {
+    width: 8rem;
+    font-size: 2.4rem;
+    width: 5rem;
+    position: absolute;
+    right: 3rem;
+    .mobile & {
+      font-size: 1.6rem;
+      right: .8rem;
+    }
+
+    // .mobile & {
+    //   width: 5rem;
+    //   font-size: 1.6rem;
+    //   position: absolute;
+    //   right: .8rem;
+    // }
+  }
+
+  .home-section,
+  .away-section {
+    position: relative;
+  }
+
+  .home-section {
+    text-align: right;
+
+    .reference-info {
+      right: 0;
+    }
+  }
+
+  .away-section {
+    text-align: left;
+
+    .reference-info {
+      left: 0;
+    }
+  }
+
+  .reference-info {
+    position: absolute;
+  }
+
+  .home-name,
+  .away-name {
+    font-size: 2.8rem;
+    font-weight: bold;
+    color: #000;
+    align-self: center;
+
+    .mobile & {
+      font-size: 1.2rem;
+    }
+  }
+
+  .score {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .mobile & {
+      padding: 0 .8rem;
+    }
+
+    .home-score,
+    .away-score {
+      font-size: 6.4rem;
+      padding: 0 2rem;
+
+      .mobile & {
+        font-size: 1.2rem;
+        padding: 0 .4rem;
+        font-weight: bold;
+      }
+    }
+
+    .status {
+      font-size: 1.4rem;
+      height: 6.4rem;
+      width: 6.4rem;
+      border-radius: 50%;
+      background-color: #e0e0e0;
+      color: #000;
+      word-break: break-all;
+      padding: 0 .8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+
+  .full-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FF0000;
+  }
+
+  .half-score {
+    color: #0057FF;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -1.6rem;
+    font-size: 1.4rem;
+
+    .mobile & {
+      font-size: 1.2rem;
+      width: 100%;
+      font-weight: bold;
+      position: relative;
+      bottom: unset;
+      left: unset;
+      transform: unset;
+    }
+  }
+}

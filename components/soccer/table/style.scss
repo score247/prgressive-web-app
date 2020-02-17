@@ -10,10 +10,11 @@
 }
 
 .mobile {
-    padding: 4.3rem 0 5rem;
+    padding: 4rem 0 5rem;
     .header-top-mobile {
         position: fixed;
         width: 100%;
         top: 0;
+        z-index: 100;
     }
 }

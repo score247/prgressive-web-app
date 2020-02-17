@@ -1,0 +1,40 @@
+@import '../../../assets/styles/abstracts/variables';
+.site-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 2.3rem 0;
+  font-size: 1.4rem;
+
+  .mobile & {
+    display: none;
+  }
+
+  .selected-sport, .selected-sub {
+    color: #263E6C;
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
+  .selected-date {
+    text-transform: capitalize;
+  }
+
+  .GMT-time {
+    color: #3A3B45;
+    position: relative;
+    padding-right: 2.2rem;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      top: 50%;
+      right: 8px;
+      margin-top: -2px;
+      border-style: solid;
+      border-color: #282d38 transparent transparent transparent;
+      border-width: 4px 4px 0 4px;
+    }
+  }
+}

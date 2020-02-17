@@ -1,11 +1,12 @@
 import * as React from "react";
 import Layout from "../../components/layout";
-import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { ResourceKey, ResourceType } from "../../common/constants";
+import { LocalizedPage } from "../../common/helpers/Localizer";
+import withLoadingPage from "../../hoc/with-loading-page";
+import { CommonResourceKey, ResourceType } from "../../common/resources";
 
-const MobilePage: LocalizedPage = ({t}) => {
+const MobilePage: LocalizedPage = ({ t }) => {
   return (
-    <Layout title="Mobile" breadcrumbs={[t(ResourceKey.MOBILE)]}>
+    <Layout title="Mobile" breadcrumbs={[t(CommonResourceKey.MOBILE)]}>
       <h1>Mobile Page</h1>
     </Layout>
   );
@@ -17,4 +18,4 @@ MobilePage.getInitialProps = async () => {
   };
 };
 
-export default withTranslation()(MobilePage) ;
+export default withLoadingPage(MobilePage);

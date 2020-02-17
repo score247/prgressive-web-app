@@ -1,52 +1,32 @@
 import React from "react";
 import { Props } from "./type";
 import { PeriodType } from "../../../../common/enums/period-type";
-import { MatchPeriod, Enumeration } from "../../../../models";
+import { MatchPeriod, Enumeration } from "../../../../apis/soccer/models";
 import { MatchStatusType } from "../../../../common/enums/match-status-type";
-import { useDeviceContext } from "../../../../contexts/device-context";
 import "./style.scss";
 
-const colSpanOnMobile = 6;
-const colSpanOnDesktop = 9;
+const colSpan = 3;
 
 const renderRegularPeriodScore = (fullTimePeriod: MatchPeriod[]) => {
-  const homeScore = fullTimePeriod.reduce(
-    (total, period) => total + period.HomeScore,
-    0
-  );
-  const awayScore = fullTimePeriod.reduce(
-    (total, period) => total + period.AwayScore,
-    0
-  );
+  const homeScore = fullTimePeriod.reduce((total, period) => total + period.HomeScore, 0);
+  const awayScore = fullTimePeriod.reduce((total, period) => total + period.AwayScore, 0);
 
   return `FT [${homeScore} - ${awayScore}]`;
 };
 
-const renderOverTimePeriodScore = (
-  overTimePeriod?: MatchPeriod,
-  matchStatus?: Enumeration
-) => {
-  if (
-    overTimePeriod &&
-    matchStatus &&
-    matchStatus.Value !== MatchStatusType.AWAITING_EXTRA_TIME.value
-  ) {
+const renderOverTimePeriodScore = (overTimePeriod?: MatchPeriod, matchStatus?: Enumeration) => {
+  if (overTimePeriod && matchStatus && matchStatus.Value !== MatchStatusType.AWAITING_EXTRA_TIME.value) {
     return `, ET [${overTimePeriod.HomeScore} - ${overTimePeriod.AwayScore}]`;
   }
 
   return null;
 };
 
-const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) =>
-  `, AGGR [${homeTeamScore} - ${awayTeamScore}]`;
+const renderAggregateScore = (homeTeamScore: number, awayTeamScore: number) => `, AGGR [${homeTeamScore} - ${awayTeamScore}]`;
 
 const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumeration) => {
-  if (
-    penaltyPeriod &&
-    matchStatus &&
-    matchStatus.Value !== MatchStatusType.AWAITING_PENALTIES.value
-  ) {
-    return `, Pen [${penaltyPeriod.HomeScore} - ${penaltyPeriod.AwayScore}]`;
+  if (penaltyPeriod && matchStatus && matchStatus.Value !== MatchStatusType.AWAITING_PENALTIES.value) {
+    return `, PEN [${penaltyPeriod.HomeScore} - ${penaltyPeriod.AwayScore}]`;
   }
 
   return null;
@@ -55,6 +35,7 @@ const renderPenaltyScore = (penaltyPeriod?: MatchPeriod, matchStatus?: Enumerati
 
 export default function ExtraMatchInfoRow(props: Props) {
   const {
+    Id,
     AggregateAwayScore,
     AggregateHomeScore,
     MatchPeriods,
@@ -63,41 +44,24 @@ export default function ExtraMatchInfoRow(props: Props) {
     MatchStatus
   } = props.match;
 
-  const { isMobile } = useDeviceContext();
-  const colSpan = isMobile ? colSpanOnMobile : colSpanOnDesktop;
-
   if (MatchPeriods) {
-    const regularPeriods = MatchPeriods.filter(
-      x => x.PeriodType.Value === PeriodType.Regular
+    const regularPeriods = MatchPeriods.filter(x => x.PeriodType.Value === PeriodType.Regular);
+    const overTimePeriod = MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Overtime);
+    const penaltyPeriod = MatchPeriods.find(x => x.PeriodType.Value === PeriodType.Penalties);
+    const showAggregateScore = AggregateWinnerId && EventStatus.Value === MatchStatusType.CLOSED.value;
+
+    return (
+      <tr data-match-id={Id} onClick={props.onClick}>
+        <td className="text-extra" colSpan={colSpan}>
+          <span className="extra-match-info">
+            {renderRegularPeriodScore(regularPeriods)}
+            {renderOverTimePeriodScore(overTimePeriod, MatchStatus)}
+            {showAggregateScore && renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
+            {renderPenaltyScore(penaltyPeriod, MatchStatus)}
+          </span>
+        </td>
+      </tr>
     );
-
-    const overTimePeriod = MatchPeriods.find(
-      x => x.PeriodType.Value === PeriodType.Overtime
-    );
-
-    const penaltyPeriod = MatchPeriods.find(
-      x => x.PeriodType.Value === PeriodType.Penalties
-    );
-
-    const showAggregateScore =
-      AggregateWinnerId && EventStatus.Value === MatchStatusType.CLOSED.value;
-
-    if (overTimePeriod || penaltyPeriod || showAggregateScore) {
-      return (
-        <tr>
-          <td className="text-extra" colSpan={colSpan}>
-            <span className="icon-link-match"></span>
-            <span className="extra-match-info">
-              {renderRegularPeriodScore(regularPeriods)}
-              {renderOverTimePeriodScore(overTimePeriod, MatchStatus)}
-              {showAggregateScore &&
-                renderAggregateScore(AggregateHomeScore, AggregateAwayScore)}
-              {renderPenaltyScore(penaltyPeriod, MatchStatus)}
-            </span>
-          </td>
-        </tr>
-      );
-    }
   }
 
   return null;

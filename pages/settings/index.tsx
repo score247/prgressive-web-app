@@ -1,10 +1,11 @@
 import * as React from "react";
 import Layout from "../../components/layout";
-import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { ResourceKey, ResourceType } from "../../common/constants";
+import { LocalizedPage } from "../../common/helpers/Localizer";
+import withLoadingPage from "../../hoc/with-loading-page";
+import { CommonResourceKey, ResourceType } from "../../common/resources";
 
 const SettingPage: LocalizedPage = ({ t }) => {
-  const breadcrumbs = [t(ResourceKey.SETTINGS)];
+  const breadcrumbs = [t(CommonResourceKey.SETTINGS)];
 
   return (
     <Layout title="Setting" breadcrumbs={breadcrumbs}>
@@ -19,4 +20,4 @@ SettingPage.getInitialProps = async () => {
   };
 };
 
-export default withTranslation()(SettingPage);
+export default withLoadingPage(SettingPage);

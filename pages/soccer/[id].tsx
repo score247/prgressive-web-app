@@ -1,37 +1,36 @@
 import React from "react";
-import { useRouter } from "next/router";
-import { ResourceType } from "../../common/constants";
-import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { MatchInfo } from "../../models";
-import { SoccerAPI } from "../../apis/soccer-api";
+import Layout from "../../components/layout";
+import { LocalizedPage } from "../../common/helpers/Localizer";
+import withLoadingPage from "../../hoc/with-loading-page";
+import SoccerMatchDetail from "../../components/soccer/match-detail";
+import { CommonResourceKey, ResourceType, SoccerResourceKey } from "../../common/resources";
 
 type Props = {
-    matchInfo: MatchInfo
+  matchId: string | string[];
 };
 
-const MatchDetailPage: LocalizedPage<Props> = (props) => {
-    const { matchInfo } = props;
-    const match = matchInfo.Match;
-
-    return (
-        <div>
-            <span>{match.HomeTeamName}</span>
-            <span>{match.HomeScore}</span>
-            <span>-</span>
-            <span>{match.AwayScore}</span>
-            <span>{match.AwayTeamName}</span>
-        </div>
-    );
+const SoccerMatchDetailPage: LocalizedPage<Props> = props => {
+  const { t, matchId } = props;
+  return (
+    <Layout
+      title={t(CommonResourceKey.SOCCER)}
+      breadcrumbs={[
+        t(CommonResourceKey.SOCCER),
+        t(SoccerResourceKey.MATCH_INFO, { ns: ResourceType.SOCCER })
+      ]}
+    >
+      <SoccerMatchDetail matchId={matchId} />
+    </Layout>
+  );
 };
 
-MatchDetailPage.getInitialProps = async ({ query }) => {
-    const { id } = query;
-    const matchInfo = await SoccerAPI.GetMatch(id);
+SoccerMatchDetailPage.getInitialProps = async ({ query }) => {
+  const { id } = query;
 
-    return {
-        matchInfo,
-        namespacesRequired: [ResourceType.SOCCER]
-    };
+  return {
+    matchId: id,
+    namespacesRequired: [ResourceType.SOCCER]
+  };
 };
 
-export default withTranslation()(MatchDetailPage);
+export default withLoadingPage(SoccerMatchDetailPage);

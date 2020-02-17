@@ -2,9 +2,9 @@ import React from "react";
 import "./Navbar.scss";
 import { WithTranslation } from "next-i18next";
 import { withTranslation } from "../../../../common/helpers/Localizer";
-import { SportsEnum } from "../../../../common/enums/sportenum";
-import FunctionLink from "../../../function-link";
-import { ResourceType, ResourceKey } from "../../../../common/constants";
+import { SportsEnum } from "../../../../common/enums/sport-enum";
+import FunctionLink from "../../../common/function-link";
+import { ResourceType, CommonResourceKey } from "../../../../common/resources";
 
 interface IProps extends WithTranslation {
   sport: string;
@@ -18,8 +18,8 @@ const NavbarMobile: React.FunctionComponent<IProps> = ({
     sport === SportsEnum.SOCCER
       ? "icon-soccer"
       : sport === SportsEnum.BASKETBALL
-      ? "icon-basketball"
-      : "icon-esports";
+        ? "icon-basketball"
+        : "icon-esports";
   const activeClass = "active";
 
   return (
@@ -34,19 +34,19 @@ const NavbarMobile: React.FunctionComponent<IProps> = ({
         <FunctionLink
           href={`/${sport}/favorites`}
           activeClassName={activeClass}
-          htmlText={t(ResourceKey.FAVORITES)}
+          htmlText={t(CommonResourceKey.FAVORITES)}
           iconClassName="icon-menu-favorites"
         />
         <FunctionLink
           href={`/${sport}/leagues`}
           activeClassName={activeClass}
-          htmlText={t(ResourceKey.LEAGUES)}
+          htmlText={t(CommonResourceKey.LEAGUES)}
           iconClassName="icon-menu-leagues"
         />
         <FunctionLink
           href={`/${sport}/news`}
           activeClassName={activeClass}
-          htmlText={t(ResourceKey.NEWS)}
+          htmlText={t(CommonResourceKey.NEWS)}
           iconClassName="icon-menu-news"
         />
         <FunctionLink

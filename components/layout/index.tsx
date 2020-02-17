@@ -1,35 +1,45 @@
 import "./style.scss";
-import React, { useState } from "react";
+import React from "react";
 import Head from "next/head";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import Breadcrumbs from "../bread-crumbs";
-import LeftBar from "./left-bar/LeftBar";
-import RightBar from "./right-bar/RightBar";
+import Breadcrumbs from "../common/bread-crumbs";
+import { DeviceContextConsumer } from "../../contexts/device-context";
+import { WithTranslation } from "next-i18next";
+import { withTranslation } from "../../common/helpers/Localizer";
+import { ResourceType, CommonResourceKey } from "../../common/resources";
 
-const Layout: React.FunctionComponent<{
+type Props = {
   title?: string;
   breadcrumbs?: string[];
-}> = ({ children, title = "Home", breadcrumbs = [""] }) => {
+} & WithTranslation;
+
+const Layout: React.FunctionComponent<Props> = ({ children, title = "Home", breadcrumbs = [""], t }) => {
+  const className = (isMobile: boolean) => {
+    return isMobile ? "wrap-page mobile" : "wrap-page";
+  };
+
   return (
-    <div className="wrap-page">
-      <Head>
-        <title>{title} | Score247</title>
-      </Head>
-      <Header />
-      <div className="container">
-        <Breadcrumbs
-          breadcrumbs={breadcrumbs}
-        />
-        <div className="wrap-content">
-          <LeftBar />
-          <div className="main-container">{children}</div>
-          <RightBar />
+    <DeviceContextConsumer>
+      {({ isMobile }) => (
+        <div className={className(isMobile)}>
+          <Head>
+            <title>{title} | {t(CommonResourceKey.SITE_TITLE)}</title>
+            {!isMobile && <meta name="viewport" content="initial-scale=0, maximum-scale=0" />}
+          </Head>
+          <Header />
+          <div className="container">
+            <Breadcrumbs breadcrumbs={breadcrumbs} />
+            <div className="wrap-content">
+              {children}
+            </div>
+          </div>
+          <Footer />
         </div>
-      </div>
-      <Footer />
-    </div>
+      )}
+    </DeviceContextConsumer>
+
   );
 };
 
-export default Layout;
+export default withTranslation(ResourceType.COMMON)(Layout);

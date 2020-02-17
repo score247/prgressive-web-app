@@ -1,5 +1,5 @@
 import React from "react";
-import { LocalizedPage } from "../common/helpers/Localizer";
+import { LocalizedPage, withTranslation } from "../common/helpers/Localizer";
 import { NextPageContext } from "next";
 import { HttpStatusCode } from "../common/constants";
 
@@ -21,10 +21,10 @@ Error.getInitialProps = async (context: NextPageContext) => {
   const statusCode = context.res
     ? context.res.statusCode
     : context.err
-    ? context.err.statusCode
-    : HttpStatusCode.NOTFOUND;
+      ? context.err.statusCode
+      : HttpStatusCode.NOTFOUND;
 
   return { namespacesRequired: ["common"], statusCode: statusCode || HttpStatusCode.INTERNAL_SERVER_ERROR };
 };
 
-export default Error;
+export default withTranslation()(Error);

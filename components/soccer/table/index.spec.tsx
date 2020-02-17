@@ -3,6 +3,10 @@ import { shallow, ShallowWrapper } from "enzyme";
 import { Props } from "./index";
 import SoccerTable from "./index";
 
+jest.mock("next/config", () => () => ({
+    publicRuntimeConfig: {}
+}));
+
 describe("<SoccerTable />", () => {
     let props: Props;
     let wrapper: ShallowWrapper;
@@ -18,5 +22,4 @@ describe("<SoccerTable />", () => {
     it("should render correctly", () => {
         expect(wrapper).toMatchSnapshot();
     });
-
 });

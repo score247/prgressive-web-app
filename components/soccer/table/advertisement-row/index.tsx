@@ -1,5 +1,5 @@
 import React from "react";
-import Advertisement from "../../../advertisement";
+import Advertisement from "../../../common/advertisement";
 import { useDeviceContext } from "../../../../contexts/device-context";
 import { Props } from "./type";
 import "./style.scss";

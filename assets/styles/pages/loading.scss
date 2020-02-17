@@ -1,0 +1,86 @@
+.loading-page {
+    margin: auto;
+    text-align: center;  
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    .title {
+      text-align: center;
+      color: #1B3464;
+      font-weight: bold;
+      font-size: 2rem;
+      margin-top: 10rem;
+
+      @media screen and (orientation: landscape) {
+        margin-top: 4rem;
+      }
+    }
+  
+    .note {
+      color: #3A3A3A;
+      font-size: 1.2rem;
+      margin: 1.2rem 0 1.6rem;
+    }
+  
+    .content {
+      text-align: center;
+      width: 31.1rem;
+      margin: 0 auto;
+      flex: 1;
+    }
+    
+    [class *="btn"] {
+      display: block;
+      text-align: center;
+      width: 100%;
+      margin: 0 0 1.6rem;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+      transition: .2s ease;
+      cursor: pointer;
+      font-family: inherit;
+    }
+  
+    .btn-mobile {
+      color: #fff;    
+      background: #1B3464;    
+    }
+  
+    .btn-download {
+      background-color: #FD4549;
+      color: #fff;
+    }
+  
+    .divide {
+      font-size: 1.2rem;
+      color: #3A3A3A;
+      position: relative;
+      margin-bottom: 1.6rem;
+      &:before, &:after {
+        position: absolute;
+        top: .8rem;
+        height: 1px;
+        width: 9.5rem;
+        background-color: #3A3A3A;
+        content: '';
+      }
+      &:before {
+          left: 0;
+      }
+      &:after {
+          right: 0;
+      }
+    }
+
+    .logo {
+        margin-top: 3.2rem;
+    }
+  }
+
+  .footer {
+      color: #86888A;
+      padding: .8rem 0;
+      .icon-copy-right {
+          padding-right: 0.8rem;
+      }
+  }

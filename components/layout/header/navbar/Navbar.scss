@@ -63,12 +63,16 @@
 
   .menu-item.active {
     background: rgba($color: #000000, $alpha: 0.12);
+    .nav-link {
+      color: #FF7D00;
+    }
   }
 
   .nav-link {
     color: white;
     text-decoration: none;
     font-size: 1.1rem;
+    text-transform: capitalize;
 
     >i {
       display: block;

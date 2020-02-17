@@ -1,8 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import Top from "./Top";
-import { SportsEnum } from "../../../../common/enums/sportenum";
-import Select from "react-select";
+import { SportsEnum } from "../../../../common/enums/sport-enum";
 import Router from "next/router";
 
 jest.mock("next/router", () => ({ push: jest.fn() }));
@@ -15,7 +14,7 @@ describe("<Top/>", () => {
   });
 
   it("should redirect when select sport in dropdown", () => {
-    wrapper.find(Select).simulate("change", {
+    wrapper.dive().find(".sport-dropdown").simulate("change", {
       value: "/basketball",
       label: SportsEnum.BASKETBALL.toUpperCase()
     });

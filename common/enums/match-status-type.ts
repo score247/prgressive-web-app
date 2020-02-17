@@ -1,4 +1,4 @@
-import { Enumeration } from "../../models";
+import { Enumeration } from "../../apis/soccer/models";
 
 interface MatchStatusKeyNumberValue {
   [key: number]: MatchStatus;
@@ -67,6 +67,13 @@ export const EndStatus = [
   MatchStatusType.ENDED_AFTER_PENALTIES.value
 ];
 
+export const PreMatchStatuses = [
+  MatchStatusType.NOT_STARTED.value,
+  MatchStatusType.POSTPONED.value,
+  MatchStatusType.START_DELAYED.value,
+  MatchStatusType.CANCELLED.value
+];
+
 export class MatchStatusHelper {
   static isMatchNotEndOrCancel(matchStatus: Enumeration): boolean {
     if (EndStatus.find(status => matchStatus?.Value === status)
@@ -87,6 +94,10 @@ export class MatchStatusHelper {
 
   static isCancelStatus(matchStatus?: Enumeration) : boolean {
     return CancelStatus.find(status => matchStatus?.Value === status) !== undefined;
+  }
+
+  static isLiveMatch(matchStatus?: Enumeration): boolean {
+    return MatchStatusType.LIVE.value === matchStatus?.Value;
   }
 }
 

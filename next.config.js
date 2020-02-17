@@ -1,10 +1,10 @@
 const withPlugins = require("next-compose-plugins");
 const sass = require("@zeit/next-sass");
 const offline = require("next-offline");
-const env = process.env.SETTINGENV || "development";
+//const env = process.env.SETTINGENV || "development";
 const appSettings = {
-  ...require("./appsettings.json"),
-  ...require(`./appsettings.${env}.json`)
+  ...require("./_configs/appsettings.json"),
+  //...require(`./appsettings.${env}.json`)
 };
 const nextConfig = {
   excludeFile: str => /\*.{spec,test}.js/.test(str),

@@ -1,10 +1,11 @@
 import * as React from "react";
 import Layout from "../../components/layout";
-import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { ResourceKey, ResourceType } from "../../common/constants";
+import { LocalizedPage } from "../../common/helpers/Localizer";
+import withLoadingPage from "../../hoc/with-loading-page";
+import { CommonResourceKey, ResourceType } from "../../common/resources";
 
 const NewsPage: LocalizedPage = ({ t }) => {
-  const breadcrumbs = [t(ResourceKey.BASKETBALL), t(ResourceKey.NEWS)];
+  const breadcrumbs = [t(CommonResourceKey.BASKETBALL), t(CommonResourceKey.NEWS)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
@@ -19,4 +20,4 @@ NewsPage.getInitialProps = async () => {
   };
 };
 
-export default withTranslation()(NewsPage);
+export default withLoadingPage(NewsPage);

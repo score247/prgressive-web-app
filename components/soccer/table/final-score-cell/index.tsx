@@ -1,20 +1,13 @@
 import React from "react";
 import { DeviceContext } from "../../../../contexts/device-context";
 import { Props } from "./type";
-import { MatchStatusType } from "../../../../common/enums/match-status-type";
-import { MatchPeriod } from "../../../../models";
-
-const preMatchStatuses = [
-  MatchStatusType.NOT_STARTED,
-  MatchStatusType.POSTPONED,
-  MatchStatusType.START_DELAYED,
-  MatchStatusType.CANCELLED
-];
+import { MatchStatusType, PreMatchStatuses } from "../../../../common/enums/match-status-type";
+import { MatchPeriod } from "../../../../apis/soccer/models";
 
 function isPreMatch(matchStatusId?: number): boolean {
   return (
     matchStatusId === undefined ||
-    preMatchStatuses.some(x => x.value === matchStatusId)
+    PreMatchStatuses.some(x => x === matchStatusId)
   );
 }
 
@@ -24,11 +17,11 @@ function renderFirstHalfScore(
   matchStatusId?: number
 ) {
   const matchStatusesToNotShow = [
-    ...preMatchStatuses,
-    MatchStatusType.FIRST_HALF
+    ...PreMatchStatuses,
+    MatchStatusType.FIRST_HALF.value
   ];
 
-  if (isMobile && firstHalfPeriod !== undefined && !matchStatusesToNotShow.some(x => x.value === matchStatusId)) {
+  if (isMobile && firstHalfPeriod && !matchStatusesToNotShow.some(x => x === matchStatusId)) {
     return (
       <div className="text-1H">
         ({firstHalfPeriod.HomeScore} - {firstHalfPeriod.AwayScore})

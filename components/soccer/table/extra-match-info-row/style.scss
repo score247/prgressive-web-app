@@ -1,7 +1,10 @@
 .text-extra {
-    font-size: 1.1rem;
+    font-size: 1rem;
     position: relative;
-    color: #000;
+    color: rgba(0, 0, 0, 0.64);
+    border-top: none !important;
+    border-left: none !important;
+    cursor: pointer;
 
     .icon-link-match {
         position: absolute;
@@ -24,7 +27,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 3rem;
         }
 
     }

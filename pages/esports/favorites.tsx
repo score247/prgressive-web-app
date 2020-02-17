@@ -1,14 +1,15 @@
 import * as React from "react";
 import Layout from "../../components/layout";
-import { LocalizedPage, withTranslation } from "../../common/helpers/Localizer";
-import { ResourceKey, ResourceType } from "../../common/constants";
+import { LocalizedPage } from "../../common/helpers/Localizer";
+import withLoadingPage from "../../hoc/with-loading-page";
+import { CommonResourceKey, ResourceType } from "../../common/resources";
 
 const FavoritesPage: LocalizedPage = ({ t }) => {
-  const breadcrumbs = [t(ResourceKey.E_SPORTS), t(ResourceKey.FAVORITES)];
+  const breadcrumbs = [t(CommonResourceKey.E_SPORTS), t(CommonResourceKey.FAVORITES)];
 
   return (
     <Layout breadcrumbs={breadcrumbs}>
-      <h1>Esport - Favorites</h1>
+      <h1>ESport - Favorites</h1>
     </Layout>
   );
 };
@@ -19,4 +20,4 @@ FavoritesPage.getInitialProps = async () => {
   };
 };
 
-export default withTranslation()(FavoritesPage);
+export default withLoadingPage(FavoritesPage);
