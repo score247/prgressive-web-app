@@ -42,6 +42,7 @@
   justify-content: center;
   align-items: center;
   padding: 1.2rem 0 3.6rem;
+  position: relative;
 
   .mobile & {
     justify-content: initial;
@@ -55,24 +56,34 @@
 
   .match-section {
     display: grid;
-    grid-template-columns: 1fr 5rem 1fr;
+    grid-template-columns: 1fr 24rem 1fr;
+    align-items: center;
     width: 100%;
-    padding: 0 5rem;
+    padding: 0 12rem;
     .mobile & {
       align-items: flex-start;
+      grid-template-columns: 1fr 5rem 1fr;
+      padding: 0 5rem;
     }
   }
 
   .icon-menu-favorites {
     width: 8rem;
     font-size: 2.4rem;
-
-    .mobile & {
-      width: 5rem;
+    width: 5rem;
+    position: absolute;
+    right: 3rem;
+    .mobile {
       font-size: 1.6rem;
-      position: absolute;
       right: .8rem;
     }
+
+    // .mobile & {
+    //   width: 5rem;
+    //   font-size: 1.6rem;
+    //   position: absolute;
+    //   right: .8rem;
+    // }
   }
 
   .home-section,
@@ -124,7 +135,7 @@
     .home-score,
     .away-score {
       font-size: 6.4rem;
-      padding: 0 4rem;
+      padding: 0 2rem;
 
       .mobile & {
         font-size: 1.2rem;
