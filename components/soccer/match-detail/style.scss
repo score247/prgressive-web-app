@@ -48,11 +48,11 @@
   .react-tabs__tab--selected {
     border-radius: 0;
     background-color: #122344;
-    border-bottom: 0.1rem solid #e70c12;
+    border-bottom: 1px solid #e70c12;
     .mobile & {
       background-color: #fff;
       color: #FF7D00;
-      border-bottom: 0.2rem solid #FF7D00;
+      border-bottom: 2px solid #FF7D00;
     }
   }
 }
